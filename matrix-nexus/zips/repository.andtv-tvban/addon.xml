@@ -24,7 +24,7 @@
     </extension>
     
     <extension point="xbmc.addon.metadata">
-        <summary>[COLOR azure][B]Repo[/B][/COLOR] [COLOR limegreen][B]andtv[/B][/COLOR][COLOR blueviolet][B]tvban[/B][/COLOR]</summary>
+        <summary>[COLOR azure][B]Repo[/COLOR] [COLOR limegreen][B]andtv[/COLOR][COLOR blueviolet]tvban[/B][/COLOR]</summary>
         <description>Repositorio de addons para [COLOR azure]ANDTV[/COLOR] [COLOR blueviolet]TVBAN.[/COLOR]
 [B][COLOR lime]CREDITOS:
 [COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseAnd[/COLOR]</description> 		             
