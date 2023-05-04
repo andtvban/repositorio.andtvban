@@ -1,7 +1,7 @@
 1
 |||
 
-[COLOR greenyellow][B]¡¡¡BIENVENIDOS A LA BUILD TVBAN NEXUS !!![B][/COLOR]
+[COLOR greenyellow][B]¡¡¡BIENVENIDOS A LA BUILD TVBAN MATRIX !!![B][/COLOR]
 
 [COLOR aquamarine][B]INSTALACIÓN:[B][/COLOR]
 
@@ -12,7 +12,7 @@ Seleccionamos la Build que deseas instalar [COLOR yellowgreen][B]20.x[/B][/COLOR
 Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Forzar el Cierre de Kodi"[/B][/COLOR]. Pulsaremos en [COLOR white][B]"OK"[/B][/COLOR].
 Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.
 
-[COLOR gold][B]20/06/2022 ¡¡¡ACTUALIZADOR PARCHE TVBAN NEXUS!!![/B][/COLOR]
+[COLOR gold][B]20/06/2022 ¡¡¡ACTUALIZADOR PARCHE TVBAN MATRIX!!![/B][/COLOR]
 
 [COLOR red][B]* AGREGADO TACONES EN EL BUSCADOR[/B][/COLOR]
 
@@ -20,11 +20,11 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 [COLOR aquamarine][B]INSTALACIÓN DE PARCHE:[/B][/COLOR]
 
 Para instalar un parche, deberemos seleccionar la build correspondiente que tengamos instalada y dentro nos saldrá el parche a instalar.
-Después de la instalacion del parche, una vez cargado KODI se tiene que ir a la sección MANTENIMIENTO en AJUSTES, una vez allí entrar en HERRAMIENTAS ADDON y pulsar HABILITAR/DESHABILITAR ADDONS, para la correcta activación de los Addons añadidos.
+Después de la instalacion del parche, una vez cargado KODI se tiene que ir a la sección MANTENIMIENTO en AJUSTES, una vez allí entrar en HERRAMIENTAS ADDONS y pulsar HABILITAR/DESHABILITAR ADDONS, para la correcta activación de los Addons añadidos.
 
 
-[COLOR red]                   ****** JOSEATEBA, DAVIDZGZ ******                 [/COLOR] 
+[COLOR red]                   ****** JOSEATEBA, ANDTV_TVBAN ******                 [/COLOR] 
   
 [COLOR dodgerblue]https://t.me/beelinkking[/COLOR]
 
-[COLOR white][B]GRACIAS POR UTILIZAR [COLOR dodgerblue]TVBAN [COLOR lime]NEXUS![/B][/COLOR]
+[COLOR white][B]GRACIAS POR UTILIZAR [COLOR dodgerblue]TVBAN [COLOR lime]MATRIX![/B][/COLOR]

@@ -52,7 +52,7 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/QO5MWaJ.jpg)</onfocus>
                         </control>
 			            
-						<control type="radiobutton" id="9002" description="Moe´s TV">
+						<control type="radiobutton" id="9002" description="Moe's TV">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Moe's TV</label>
@@ -88,7 +88,16 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/FdZVrX3.png)</onfocus>
                         </control>
 					    
-						<control type="radiobutton" id="9006" description="Palantir 2">
+						<control type="radiobutton" id="9006" description="Balandro">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>Balandro</label>
+							<selected>System.HasAddon(plugin.video.balandro)</selected>
+                            <onclick>InstallAddon(plugin.video.balandro)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/lpckOAp.png)</onfocus>
+                        </control>
+						
+						<control type="radiobutton" id="9007" description="Palantir 2">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Palantir 2</label>
@@ -97,22 +106,22 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/WlWLdLl.png)</onfocus>
                         </control> 
 						
-						<!--<control type="radiobutton" id="9007" description="Tacones">
+						-<control type="radiobutton" id="9008" description="Tacones">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Tacones</label>
 							<selected>System.HasAddon(plugin.video.tacones)</selected>
                             <onclick>InstallAddon(plugin.video.tacones)</onclick>	
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus> 
-                        </control>-->
-						
-						<control type="radiobutton" id="9008" description="Balandro">
+                        </control>
+												
+						<control type="radiobutton" id="9009" description="CRISTAL AZUL 3.0.6">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
-                            <label>Balandro</label>
-							<selected>System.HasAddon(plugin.video.balandro)</selected>
-                            <onclick>InstallAddon(plugin.video.balandro)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/lpckOAp.png)</onfocus>
+                            <label>CRISTAL AZUL 3.0.6</label>
+							<selected>System.HasAddon(plugin.video.cristalazul)</selected>
+                            <onclick>InstallAddon(plugin.video.cristalazul)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/8opYWgI.png)</onfocus>
                         </control>
 						
 						<!--<control type="radiobutton" id="9009" description="Apex Sports">
