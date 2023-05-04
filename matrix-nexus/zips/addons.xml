@@ -1169,7 +1169,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 
     <extension point="xbmc.addon.metadata">
-        <summary>[COLOR azure][B]Repo[/COLOR] [COLOR limegreen][B]andtv[/COLOR][COLOR blueviolet]tvban[/B][/COLOR]</summary>
+        <summary>[COLOR azure]Repo[/COLOR] [COLOR limegreen]andtv[/COLOR][COLOR blueviolet]tvban[/COLOR]</summary>
         <description>Repositorio de addons para [COLOR azure]ANDTV[/COLOR] [COLOR blueviolet]TVBAN.[/COLOR]
 [B][COLOR lime]CREDITOS:
 [COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseAnd[/COLOR]</description>
