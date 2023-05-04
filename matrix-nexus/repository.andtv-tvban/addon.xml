@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.andtv-tvban" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B][/COLOR]" version="15.2.23" provider-name="andtv_tvban, JoseAnd">
-    <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B][/COLOR]">
+<addon id="repository.andtv-tvban" name="[COLOR azure][B]Repo[/B][/COLOR] [COLOR limegreen][B]andtv[/B][/COLOR][COLOR blueviolet][B]tvban[/B][/COLOR]" version="4.5.23" provider-name="andtv_tvban, JoseAnd">
+    <extension point="xbmc.addon.repository" name="[COLOR azure][B]Repo[/B][/COLOR] [COLOR limegreen][B]andtv[/B][/COLOR][COLOR blueviolet][B]tvban[/B][/COLOR]">
         <dir minversion="19.0" maxversion="19.9.0">
             <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/addons.xml</info>
             <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/addons.xml.md5</checksum>
@@ -24,7 +24,7 @@
     </extension>
     
     <extension point="xbmc.addon.metadata">
-        <summary>[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B][/COLOR]</summary>
+        <summary>[COLOR azure][B]Repo[/B][/COLOR] [COLOR limegreen][B]andtv[/B][/COLOR][COLOR blueviolet][B]tvban[/B][/COLOR]</summary>
         <description>Repositorio de addons para [COLOR azure]ANDTV[/COLOR] [COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B].
 [B][COLOR lime]CREDITOS:
 [COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseAnd[/COLOR]</description> 		             
