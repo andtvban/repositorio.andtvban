@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.program.andtv-tvban" name="[B][COLOR azure]andtv[/COLOR] [COLOR lime]tvban[/COLOR][/B]" version="9.2.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.andtv-tvban" name="[B][COLOR limegreen]andtv[/COLOR][COLOR blueviolet]tvban[/COLOR][/B]" version="9.2.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
@@ -26,7 +26,7 @@
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtvban.github.io/andtv/</source>
 		<news>
-• [B]plugin.program[/B] [COLOR azure][B]andtv[/B][/COLOR]-[COLOR lime][B]tvban[/B][/COLOR]
+• [COLOR azure][B]plugin.program[/B][/COLOR] [COLOR limegreen][B]andtv[/B][/COLOR][COLOR blueviolet][B]tvban[/B][/COLOR]
 • Para Kodi 19.0 Matrix - Kodi 20.0 Nexus
 
 • 05/02/2023
