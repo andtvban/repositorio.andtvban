@@ -12,7 +12,7 @@ ART = os.path.join(PATH, 'resources', 'media')
 
 #########################################################
 #        User Edit Variables                            #
-#########################################################https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildmnfiles/builds.txt
+#########################################################
 ADDONTITLE = '[COLOR azure][B]andtv[/B][/COLOR] [COLOR darkviolet][B]tvban[/B][/COLOR]'
 BUILDERNAME = 'JoseAndTEBA & Andtv'
 EXCLUDES = [ADDON_ID, 'repository.andtv-tvban']
