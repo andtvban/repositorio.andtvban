@@ -14,7 +14,8 @@
 	<extension point="xbmc.service" library="startup.py" start="startup" />
   
 	<extension point="xbmc.addon.metadata">
-		<summary lang="es">[COLOR azure]andtv[/COLOR] [COLOR lime]tvban[/COLOR] tu Wizard para KODI 19, 20 !!</summary>
+		<summary lang="es">[COLOR limegreen]andtv [COLOR blueviolet]tvban[/COLOR], 
+		tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19 [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[COLOR blueviolet]Nexus[/COLOR]</summary>
 		
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B] 
