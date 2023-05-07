@@ -102,6 +102,8 @@ def check_addon_init():
 
     # Lanzamos en Servicio de actualización de FIXES
     try:
+        from platformcode.custom_code import emergency_fixes
+        emergency_fixes()                                       # Fixes de emergencia que deben ejecutarse lo antes posible
         threading.Thread(target=check_addon_monitor).start()    # Creamos un Thread independiente, hasta el fin de Kodi
         time.sleep(5)  # Dejamos terminar la primera verificación...
     except:                                     # Si hay problemas de threading, se llama una sola vez
@@ -260,10 +262,7 @@ def check_addon_updates(verbose=False, monitor=None):
         if downloadtools.downloadfile(url + ADDON_UPDATES_ZIP, localfilename, silent=True) < 0:
             raise
 
-        try:
-            alfa_caching = config.cache_reset(action='OFF')         # Reseteamos e inactivamos las caches de settings
-        except:
-            alfa_caching = False
+        alfa_caching = config.cache_reset(action='OFF')             # Reseteamos e inactivamos las caches de settings
         
         # Descomprimir zip dentro del addon
         # ---------------------------------
@@ -274,11 +273,7 @@ def check_addon_updates(verbose=False, monitor=None):
             xbmc.executebuiltin('Extract("%s", "%s")' % (localfilename, config.get_runtime_path()))
             time.sleep(1)
 
-        if alfa_caching:
-            try:
-                alfa_caching = config.cache_reset(action='ON')      # Reseteamos y activamos las caches de settings
-            except:
-                alfa_caching = False
+        alfa_caching = config.cache_reset(action='ON')              # Reseteamos y activamos las caches de settings
         
         # Borrar el zip descargado
         # ------------------------
@@ -382,6 +377,8 @@ def verify_emergency_update():
     command = ''
     updates_url = ''
     github_url = ''
+    proxyCF = ''
+    proxySSL = ''
     
     try:
         if not PY3: from lib import alfaresolver
@@ -390,19 +387,28 @@ def verify_emergency_update():
         if result:
             for x, (fecha, addon_version, fix_version_, install, key) in enumerate(result):
                 if verify_addon_version(CURRENT_VERSION, addon_version):
+
+                    fix_version__ = fix_version_.split('|')
+                    fix_version = fix_version__[0] or '*'
+                    if len(fix_version__) >= 2:
+                        updates_url = fix_version__[1]
+                    if len(fix_version__) >= 3:
+                        github_url = fix_version__[2]
+                    if x == 0:
+                        if len(fix_version__) >= 4:
+                            proxyCF = fix_version__[3]
+                        if len(fix_version__) >= 5:
+                            proxySSL = fix_version__[4]
+                        parse_emergency_proxies(proxyCF, proxySSL)
+
+                    if str(install).startswith('-'): break
+
                     if os.path.exists(last_fix_json):
                         with open(last_fix_json, "r") as lfj:
                             lastfix = jsontools.load(lfj.read())
                         if lastfix:
-                            if not fix_version_:
+                            if not fix_version:
                                 break
-                            fix_version__ = fix_version_.split('|')
-                            fix_version = fix_version__[0] or '*'
-                            if len(fix_version__) == 2:
-                                updates_url = fix_version__[1]
-                            elif len(fix_version__) == 3:
-                                updates_url = fix_version__[1]
-                                github_url = fix_version__[2]
                             if verify_addon_version(lastfix.get('fix_version', '0'), fix_version):
                                 resp = True
                                 command = result[x]
@@ -458,6 +464,19 @@ def parse_emergency_update(updates_url, github_url):
         logger.error(traceback.format_exc())
 
     return url
+
+
+def parse_emergency_proxies(proxyCF, proxySSL):
+
+    try:
+        if not PY3:
+            from core.proxytools import set_proxy_lists
+        else:
+            from core.proxytools_py3 import set_proxy_lists
+        set_proxy_lists(proxyCF, proxySSL)
+
+    except:
+        logger.error(traceback.format_exc())
 
 
 def check_update_to_others(verbose=False, app=True):
@@ -582,6 +601,7 @@ def check_dependencies(in_folder):
                     return res
 
     except:
+        return False
         logger.error(traceback.format_exc())
 
     return res
@@ -685,7 +705,7 @@ def show_update_info(new_fix_json, wait=False):
         fixed = list()
         old_fix = os.path.join(config.get_runtime_path(), 'last_fix.json')
 
-        if isinstance(new_fix_json, dict):
+        if isinstance(new_fix_json.get("files", {}), dict):
             if not os.path.exists(old_fix):
                 for k, v in new_fix_json["files"].items():
                     if "channels" in v:
@@ -707,7 +727,7 @@ def show_update_info(new_fix_json, wait=False):
                         if not channel_parameters["channel"] or channel_parameters["adult"]:
                             continue
                         fixed.append("- %s\n" % v.title())
-        elif isinstance(new_fix_json, list):
+        elif isinstance(new_fix_json.get("files", []), list):
             if not os.path.exists(old_fix):
                 for fix in new_fix_json["files"]:
                     if "channels" in fix:

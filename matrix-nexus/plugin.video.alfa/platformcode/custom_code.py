@@ -79,6 +79,9 @@ def init():
     """
 
     try:
+        # TORREST: Modificaciones temporales
+        emergency_fixes()
+
         # Comprobando la integridad de la estructura de Settings.xml
         config.verify_settings_integrity()
         
@@ -124,6 +127,10 @@ def init():
             config.set_setting('cf_assistant_ua', '')                           # Se limpia CF_UA. Mejora de rendimiento en httptools CF
             config.set_setting("current_host", '', channel='dontorrent')        # Se resetea el host de algunos canales que tienen alternativas
             config.set_setting("current_host", '', channel='mejortorrent')      # Se resetea el host de algunos canales que tienen alternativas
+            config.set_setting("debug_report", False)                           # Se resetea el DEBUG extendido
+            config.set_setting("report_started", False)                         # Se resetea el Reporte de error
+        if config.get_setting("debug_report") and not config.get_setting("debug"):
+            config.set_setting("debug_report", False)                           # Se resetea el DEBUG extendido
             
         # Periodicamente se resetean los valores de "current_host" de los canales para eliminar asignaciones antiguas
         round_level = 1
@@ -168,21 +175,6 @@ def init():
         
         # LIBTORRENT: se descarga el binario de Libtorrent cada vez que se actualiza Alfa
         update_libtorrent()
-        
-        # TORREST: Modificaciones temporales
-        if xbmc.getCondVisibility('System.HasAddon("plugin.video.torrest")'):
-            try:
-                __settings__ = xbmcaddon.Addon(id="plugin.video.torrest")
-                if __settings__.getSetting("s:check_available_space") == 'true':
-                    __settings__.setSetting("s:check_available_space", "false") # No comprobar espacio disponible hasta que lo arreglen
-                #__settings__.setSetting("s:service_log_level", "2")             # TEMPORAL
-                #__settings__.setSetting("s:alerts_log_level", "5")              # TEMPORAL
-                #__settings__.setSetting("s:api_log_level", "4")                 # TEMPORAL
-                #if not filetools.exists(filetools.join(config.get_data_path(), "quasar.json")) \
-                #    and not config.get_setting('addon_quasar_update', default=False):
-                #    question_update_external_addon("torrest")
-            except:
-                pass
 
         # QUASAR: Preguntamos si se hacen modificaciones a Quasar
         if not filetools.exists(filetools.join(config.get_data_path(), "quasar.json")) \
@@ -1218,6 +1210,16 @@ def verify_data_jsons(json_file=None):
     counter_jsons = 0
 
     try:
+        # Verificamos si existe "resources/videolab_list.json" para cachear los accesos a la Videoteca de Alfa.  Si no está, lo creamos
+        json_path = filetools.join(ADDON_PATH, 'resources', 'videolab_list.json')
+        if not filetools.exists(json_path):
+            from lib.generictools import create_videolab_list
+            try:
+                threading.Thread(target=create_videolab_list).start()
+                time.sleep(1)
+            except:
+                logger.error(traceback.format_exc())
+        
         from core.channeltools import IGNORE_NULL_LABELS
         # Vemos si ya se ha limpiado, si no marcamos
         if filetools.exists(ADDON_CUSTOMCODE_JSON):
@@ -1424,3 +1426,27 @@ def set_season_holidays():
     except:
         if xml: logger.error('XML File: %s; XML: %s' % (xml_file, str(xml)))
         logger.error(traceback.format_exc())
+        
+        
+def emergency_fixes():
+
+    if xbmc.getCondVisibility('System.HasAddon("plugin.video.torrest")'):
+        try:
+            __settings__ = xbmcaddon.Addon(id="plugin.video.torrest")
+            if __settings__.getSetting("s:check_available_space") == 'true':
+                __settings__.setSetting("s:check_available_space", "false") # No comprobar espacio disponible hasta que lo arreglen
+            if not PY3 and ADDON_PLATFORM in ["android", "atv2"] \
+                       and __settings__.getSetting("has_libtorrest") == 'true' \
+                       and __settings__.getSetting("force_torrest") == 'false':     # Si es Androdid con Kodi 18...
+                __settings__.setSetting("force_torrest", "true")            # Forzar uso de Binario en vez de .so (crash)
+            if __settings__.getSetting("min_candidate_size") == '100':
+                __settings__.setSetting("min_candidate_size", "50")         # Marcar mínimo tamaño de archivo más pequeño
+            #__settings__.setSetting("s:service_log_level", "2")             # TEMPORAL
+            #__settings__.setSetting("s:alerts_log_level", "5")              # TEMPORAL
+            #__settings__.setSetting("s:api_log_level", "4")                 # TEMPORAL
+            #if not filetools.exists(filetools.join(config.get_data_path(), "quasar.json")) \
+            #    and not config.get_setting('addon_quasar_update', default=False):
+            #    question_update_external_addon("torrest")
+            logger.info('Torrest PATCHED', force=True)
+        except:
+            logger.error(traceback.format_exc())

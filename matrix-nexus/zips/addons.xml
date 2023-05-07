@@ -16,14 +16,14 @@
 
 	<extension point="xbmc.addon.metadata">
 		<summary lang="es">
-		[COLOR limegreen]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
-		tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]</summary>
+	[COLOR limegreen]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
+	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]</summary>
 
     	<description lang="es">
-[COLOR lime][B]CREDITOS:[/COLOR][/B]
-[COLOR white][B]• Developers:[/B]      [COLOR limegreen]JoseAnd[/COLOR]
+[COLOR springgreen][B]CREDITOS:[/COLOR][/B]
+[COLOR white][B]• Developers:[/B]      [COLOR dodgerblue]JoseAnd[/COLOR]
 [COLOR white][B]• Testers:[/B]             [COLOR limegreen]andtv, [COLOR blueviolet]tvban[/COLOR]
-[COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
+[COLOR white][B]• Telegram:[/B]         [COLOR deepskyblue]t.me/beelinkking[/COLOR]</description>
 		<platform>all</platform>
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtvban.github.io/andtv/</source>
@@ -410,7 +410,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.video.alfa" name="Alfa" version="3.8.5" provider-name="Alfa Addon">
+<addon id="plugin.video.alfa" name="Alfa" version="3.8.11" provider-name="Alfa Addon">
 	<requires>
 		<import addon="script.module.requests"></import>
 		<import addon="script.module.beautifulsoup4" version="4.5.3"></import>
@@ -442,12 +442,12 @@
 		<news>[B]Estos son los cambios para esta versión:[/B]
 
       [COLOR green][B]Arreglos[/B][/COLOR]
-      ¤ Cuevana3                          ¤ Dilo                             ¤ Dontorrent
-      ¤ Hdfull                                ¤ Magnetpelis               ¤ Newpct1
-      ¤ Seriesmetro                     ¤ Sololatino                    ¤ Zonaleros
-      ¤ +18
+      ¤ Cuevana3video                   ¤ Newpct1                        ¤ +18
 
-      [COLOR green][B]Novedades[/B][/COLOR]</news>
+      [COLOR green][B]Novedades y Remasterizaciones[/B][/COLOR]
+      ¤ Dontorrent                          ¤ Rarbg                             ¤ Ennovelas
+
+        </news>
 		<assets>
 			<icon>resources/icon.png</icon>
 			<fanart>resources/fanart.jpg</fanart>
@@ -460,7 +460,7 @@
 	<extension point="xbmc.service" library="videolibrary_service.py" start="login|startup"></extension>
 </addon>
 
-<addon id="plugin.video.balandro" name="Balandro" version="3.0.1" provider-name="Balandro Team">
+<addon id="plugin.video.balandro" name="Balandro" version="3.0.4" provider-name="Balandro Team">
   <requires>
      <import addon="script.module.requests"/>
   </requires>
@@ -475,11 +475,13 @@
       <icon>icon.png</icon>
     </assets>
     <news>
-    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.1[/COLOR][COLOR red]  Febrero de 2023[/B][/COLOR]
+    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.4[/COLOR][COLOR red]  Abril de 2023[/B][/COLOR]
 
     [COLOR goldenrod][B]Media Centers Soportados[/COLOR][COLOR plum]  20.x,  19.x,  18.x  y  17.x[/B][/COLOR]
 
-    [COLOR springgreen][B]Fuente:[/COLOR]  [COLOR cyan]balandro-tk.github.io/balandro/[/B][/COLOR]
+    [COLOR springgreen][B]Fuente:[/COLOR]  [COLOR cyan]https://balandro-tk.github.io/balandro/[/B][/COLOR]
+
+    [COLOR firebrick][B]Desarrollo:[/COLOR]  [COLOR orange]github.com/balandro-tk/balandro-addon[/B][/COLOR]
 
     [COLOR limegreen][B]Contacto:[/B][/COLOR]
         Foro  mimediacenter.info/foro/
