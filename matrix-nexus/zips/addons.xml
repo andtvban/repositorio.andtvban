@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.program.andtv-tvban" name="[B][COLOR limegreen]andtv[/COLOR][COLOR blueviolet]tvban[/COLOR][/B]" version="9.2.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.andtv-tvban" name="[B][COLOR limegreen]andtv[/COLOR][COLOR blueviolet]tvban[/COLOR][/B]" version="7.5.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
@@ -15,12 +15,14 @@
 	<extension point="xbmc.service" library="startup.py" start="startup" />
 
 	<extension point="xbmc.addon.metadata">
-		<summary lang="es">[COLOR azure]andtv[/COLOR] [COLOR lime]tvban[/COLOR] tu Wizard para KODI 19, 20 !!</summary>
+		<summary lang="es">
+		[COLOR limegreen]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
+		tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]</summary>
 
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
-[COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
-[COLOR white][B]• Testers:[/B]             [COLOR dodgerblue]andtv, [COLOR gold]tvban[/COLOR]
+[COLOR white][B]• Developers:[/B]      [COLOR limegreen]JoseAnd[/COLOR]
+[COLOR white][B]• Testers:[/B]             [COLOR limegreen]andtv, [COLOR blueviolet]tvban[/COLOR]
 [COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
 		<platform>all</platform>
 		<reuselanguageinvoker>false</reuselanguageinvoker>
@@ -30,11 +32,15 @@
 • Para Kodi 19.0 Matrix - Kodi 20.0 Nexus
 
 • 05/02/2023
-- Inciada la compatibilidad con Kodi 20.0 Nexus
+- Inciada la compatibilidad con Versiones de Kodi.
 - Nuevo Instalador a la versión  5.2.23
 - Añadido nuevos arreglos:
 + Limpieza de Miniaturas.
 + Color en Notificaciones.
+
+• 07/05/2023
+- Añadido nuevos arreglos
+
 </news>
 	<assets>
 	    <icon>icon.png</icon>
@@ -1046,9 +1052,9 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
         </dir>-->
 		<!--<dir minversion="21.9.1">
-            <info compressed="false">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/repo/omega/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/repo/omega/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/repo/omega/zips/</datadir>
         </dir>-->
     </extension>
 
