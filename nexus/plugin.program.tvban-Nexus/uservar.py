@@ -1,7 +1,8 @@
-import xbmcaddon
-
-import os
-
+#########################################################
+import xbmcaddon 
+                                      
+import os                                             
+#########################################################
 #########################################################
 #         Global Variables - DON'T EDIT!!!              #
 #########################################################
@@ -125,7 +126,7 @@ HEADERTYPE = 'Image'
 FONTHEADER = ''
 HEADERMESSAGE = '[COLOR azure][B]ANDTV[/B][/COLOR] [COLOR blueviolet][B]NEXUS[/B][/COLOR]'
 # url to image if using Image 424x180
-HEADERIMAGE = 'https://i.imgur.com/7wJW9zd.png'
+HEADERIMAGE = 'https://i.imgur.com/TipaCbZ.png'
 # Font for Notification Window
 FONTSETTINGS = ''
 # Background for Notification Window
