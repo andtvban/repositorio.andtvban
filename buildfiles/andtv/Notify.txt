@@ -5,7 +5,7 @@
 
 [COLOR aquamarine][B]INSTALACIÓN:[B][/COLOR]
 
-[COLOR deepskyblue]* Para realizar la instalación correctamente deberás pulsar en la opción [COLOR white][B]"Build Menu"[/B][/COLOR] en la ventana que aparece después de instalar el plugin instalador (Wizard).
+[COLOR deepskyblue]* Para HACER la instalación correctamente deberás pulsar en la opción [COLOR white][B]"Build Menu"[/B][/COLOR] en la ventana que aparece después de instalar el plugin instalador (Wizard).
 
 En ésta ventana de Notificación, damos a [COLOR white][B]"Cerrar"[/B][/COLOR]
 Seleccionamos la Build que deseas instalar, por ejemplo [COLOR yellowgreen][B]TVBan E.ARM[/B][/COLOR] - [COLOR white][B]Instalar Build[/B][/COLOR]. 
