@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR azure][B]ANDTV[/B] [COLOR blueviolet]NEX[/COLOR][/B]" version="12.5.23" provider-name="andtv_tvban, JoseAnd">
-    <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [COLOR blueviolet][B]NEXUS[/B][/COLOR]">
+<addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR azure]ANDTV [COLOR blueviolet]NEX[/B][/COLOR]" version="12.5.23" provider-name="andtv_tvban, JoseAnd">
+    <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure]ANDTV[ [COLOR blueviolet]NEXUS[/B][/COLOR]">
 		<dir minversion="20.0" maxversion="20.9.0">
             <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml</info>
             <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml.md5</checksum>
