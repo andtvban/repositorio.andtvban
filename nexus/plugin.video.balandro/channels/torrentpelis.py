@@ -61,8 +61,19 @@ def do_downloadpage(url, post=None, headers=None):
     for ant in ant_hosts:
         url = url.replace(ant, host)
 
-    # ~ data = httptools.downloadpage(url, post=post, headers=headers).data
-    data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers).data
+    timeout = None
+    if host in url:
+        if config.get_setting('channel_torrentpelis_proxies', default=''): timeout = config.get_setting('channels_repeat', default=30)
+
+    if not url.startswith(host):
+        data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
+    else:
+        data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers, timeout=timeout).data
+
+        if not data:
+            if not '?s=' in url:
+                platformtools.dialog_notification('TorrentPelis', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+                data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers, timeout=timeout).data
 
     if '<title>You are being redirected...</title>' in data or '<title>Just a moment...</title>' in data:
         try:
@@ -70,8 +81,11 @@ def do_downloadpage(url, post=None, headers=None):
             ck_name, ck_value = balandroresolver.get_sucuri_cookie(data)
             if ck_name and ck_value:
                 httptools.save_cookie(ck_name, ck_value, host.replace('https://', '')[:-1])
-                # ~ data = httptools.downloadpage(url, post=post, headers=headers).data
-                data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers).data
+
+                if not url.startswith(host):
+                    data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
+                else:
+                    data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers, timeout=timeout).data
         except:
             pass
 
@@ -129,7 +143,7 @@ def mainlist_pelis(item):
 
     itemlist.append(item.clone( title = 'Tendencias', action = 'list_all', url = host + 'tendencias/', search_type = 'movie' ))
 
-    itemlist.append(item.clone( title = 'Netflix', action = 'list_all', url = host + 'genero/netflix/', search_type = 'movie' ))
+    itemlist.append(item.clone( title = 'Netflix', action = 'list_all', url = host + 'genero/netflix/', search_type = 'movie', text_color='moccasin' ))
 
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'movie' ))
 
@@ -147,7 +161,7 @@ def generos(item):
     matches = scrapertools.find_multiple_matches(bloque, 'href="(.*?)">(.*?)</a>')
 
     for url, title in matches:
-        itemlist.append(item.clone( action='list_all', title=title, url=url ))
+        itemlist.append(item.clone( action='list_all', title=title, url=url, text_color = 'deepskyblue' ))
 
     return sorted(itemlist,key=lambda x: x.title)
 
@@ -161,7 +175,7 @@ def list_all(item):
     if 'Añadido recientemente' in data:
         bloque = scrapertools.find_single_match(data, 'Añadido recientemente(.*?)<div class="sidebar')
     else:
-        bloque = scrapertools.find_single_match(data, 'Tendencias(.*?)<div class="sidebar')
+        bloque = scrapertools.find_single_match(data, 'Peliculas Torrent(.*?)<div class="sidebar')
 
     matches = scrapertools.find_multiple_matches(bloque, '<article(.*?)</article')
 
@@ -181,14 +195,13 @@ def list_all(item):
 
         plot = scrapertools.find_single_match(match, '<div class="texto">(.*?)</div>')
 
-        itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb,
-                                    contentType='movie', contentTitle=title, infoLabels={'year': year, 'plot': plot} ))
+        itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, contentType='movie', contentTitle=title, infoLabels={'year': year, 'plot': plot} ))
 
     tmdb.set_infoLabels(itemlist)
 
     if itemlist:
         if '<div class="pagination">' in data:
-           next_url = scrapertools.find_single_match(data, '<div class="pagination">.*?<span class="current">.*?' + "<a href='(.*?)'")
+           next_url = scrapertools.find_single_match(data, '<div class="pagination">.*?<span class="current">.*?<a href="(.*?)"')
 
            if next_url:
                if '/page/' in next_url:
@@ -206,10 +219,13 @@ def findvideos(item):
     data = do_downloadpage(item.url)
 
     link = scrapertools.find_single_match(data, "id='link-.*?<a href='(.*?)'")
+    if not link: link = scrapertools.find_single_match(data, 'id="link-.*?<a href="(.*?)"')
 
     links = scrapertools.find_multiple_matches(data, "<tr id='link-.*?href='(.*?)'.*?<strong class='quality'>(.*?)</strong>.*?src='(.*?)'.*?<strong class='quality'>(.*?)</strong>")
+    if not links: links = scrapertools.find_multiple_matches(data, '<tr id="link-.*?href="(.*?)".*?<strong class="quality">(.*?)</strong>.*?src="(.*?)".*?<strong class="quality">(.*?)</strong>')
 
     linksd =  scrapertools.find_multiple_matches(data, "<tr class='downloads'.*?id='.*?<a href='(.*?)'.*?<strong class='quality'>(.*?)</strong>.*?src='(.*?)'.*?<strong class='quality'>(.*?)</strong>")
+    if not linksd: linksd =  scrapertools.find_multiple_matches(data, '<tr class="downloads".*?id=".*?<a href="(.*?)".*?<strong class="quality">(.*?)</strong>.*?src="(.*?)".*?<strong class="quality">(.*?)</strong>')
 
     links = links + linksd
 
@@ -239,16 +255,23 @@ def play(item):
         urlb64 = base64.b64decode(urlb64).decode('utf-8')
 
         if '/enlaces/' in urlb64:
-            # ~ resp = httptools.downloadpage(urlb64, follow_redirects=False, only_headers=True)
-            resp = httptools.downloadpage_proxy('torrentpelis', urlb64, follow_redirects=False, only_headers=True)
+            if not urlb64.startswith(host):
+                resp = httptools.downloadpage(urlb64, follow_redirects=False, only_headers=True)
+            else:
+                resp = httptools.downloadpage_proxy('torrentpelis', urlb64, follow_redirects=False, only_headers=True)
+
             if 'location' in resp.headers: url = resp.headers['location']
         else:
             data = do_downloadpage(urlb64)
             url = scrapertools.find_single_match(data, '<a id="link".*?href="(.*?)"')
 
     elif '/enlaces/' in url:
-        # ~ url = httptools.downloadpage(url, follow_redirects=False).headers['location']
-        url = httptools.downloadpage_proxy('torrentpelis', url, follow_redirects=False).headers['location']
+        if not url.startswith(host):
+            resp = httptools.downloadpage(url, follow_redirects=False, only_headers=True)
+        else:
+            resp = httptools.downloadpage_proxy('torrentpelis', url, follow_redirects=False, only_headers=True)
+
+        if 'location' in resp.headers: url = resp.headers['location']
 
     if url.startswith('magnet:'):
         itemlist.append(item.clone( url = url, server = 'torrent' ))
@@ -292,8 +315,7 @@ def list_search(item):
         year = scrapertools.find_single_match(match, '<span class="year">(.*?)</span>')
         if not year: year = '-'
 
-        itemlist.append(item.clone( action = 'findvideos', url = url, title = title, thumbnail=thumb,
-                                    contentType = 'movie', contentTitle = title, infoLabels = {'year': year} ))
+        itemlist.append(item.clone( action = 'findvideos', url = url, title = title, thumbnail=thumb, contentType = 'movie', contentTitle = title, infoLabels = {'year': year} ))
 
     tmdb.set_infoLabels(itemlist)
 

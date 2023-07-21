@@ -1,14 +1,13 @@
-Version 5.1.94 (Mar 06, 2023)
+Version 5.1.102 (Jul 08, 2023)
 - Code Base Changes:
     - None
 
 - Resolvers Added:
-    - duboku
+    - None
 
 - Resolvers Fixed/Updated:
-    - videa
-    - vudeo
-    - voesx
+    - neohd
+    - vembx
 
 - Resolvers Removed
     - None

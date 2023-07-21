@@ -24,8 +24,8 @@ from resolveurl.resolver import ResolveUrl, ResolverError
 
 class DesiuploadResolver(ResolveUrl):
     name = 'Desiupload'
-    domains = ['desiupload.co', 'desiupload.to']
-    pattern = r'(?://|\.)(desiupload\.[ct]o)/([0-9a-zA-Z]+)'
+    domains = ['desiupload.co', 'desiupload.to', 'quotesread.org']
+    pattern = r'(?://|\.)((?:desiupload|quotesread)\.(?:[ct]o|org))/([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
@@ -41,7 +41,7 @@ class DesiuploadResolver(ResolveUrl):
             'referer': rurl
         }
         html = self.net.http_POST(web_url, form_data=payload, headers=headers).content
-        source = re.search(r'direct_link".+?href="([^"]+)', html)
+        source = re.search(r'href="([^"]+).+?>\s*Download', html)
         if source:
             headers['verifypeer'] = 'false'
             return source.group(1).replace(' ', '%20') + helpers.append_headers(headers)

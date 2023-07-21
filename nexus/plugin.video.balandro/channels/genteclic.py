@@ -37,11 +37,11 @@ def categorias(item):
     logger.info()
     itemlist = []
 
-    itemlist.append(item.clone( title = 'Conspiraciones', action = 'list_all', url = host + 'category/conspiraciones/' ))
+    itemlist.append(item.clone( title = 'Conspiraciones', action = 'list_all', url = host + 'category/conspiraciones/', text_color='moccasin' ))
 
-    itemlist.append(item.clone( title = 'Curiosidades', action = 'list_all', url = host + 'category/curiosidades/' ))
+    itemlist.append(item.clone( title = 'Curiosidades', action = 'list_all', url = host + 'category/curiosidades/', text_color='moccasin' ))
 
-    itemlist.append(item.clone( title = 'Documentales', action = 'list_all', url = host + 'category/documentales/' ))
+    itemlist.append(item.clone( title = 'Documentales', action = 'list_all', url = host + 'category/documentales/', text_color='moccasin' ))
 
     return itemlist
 
@@ -86,8 +86,7 @@ def list_all(item):
 
         thumb = scrapertools.find_single_match(article, ' data-src="([^"]+)')
 
-        itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, languages=lang,  
-                                    contentType='movie', infoLabels = {'year': '-'}, contentTitle=title))
+        itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, languages=lang, contentType='movie', infoLabels = {'year': '-'}, contentTitle=title ))
 
     tmdb.set_infoLabels(itemlist)
 
@@ -127,7 +126,10 @@ def findvideos(item):
 
         url = servertools.normalize_url(servidor, url)
 
-        itemlist.append(Item(channel = item.channel, action = 'play', server = servidor, title = '', url = url, language = item.languages ))
+        lang = item.languages
+        if not lang: lang = 'Lat'
+
+        itemlist.append(Item(channel = item.channel, action = 'play', server = servidor, title = '', url = url, language = lang ))
 
     if not itemlist:
         if not ses == 0:

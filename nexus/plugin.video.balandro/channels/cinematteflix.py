@@ -54,20 +54,20 @@ def generos(item):
 
     descartar_xxx = config.get_setting('descartar_xxx', default=False)
 
-    itemlist.append(item.clone( title = 'Análisis y estudios', url = host + 'category/analisis-y-estudios/', action = 'list_all' ))
-    itemlist.append(item.clone( title = 'Artículos de cine', url = host + 'category/articulos-de-cine/', action = 'list_all' ))
+    itemlist.append(item.clone( title = 'Análisis y estudios', url = host + 'category/analisis-y-estudios/', action = 'list_all', text_color = 'deepskyblue' ))
+    itemlist.append(item.clone( title = 'Artículos de cine', url = host + 'category/articulos-de-cine/', action = 'list_all', text_color = 'deepskyblue' ))
 
-    itemlist.append(item.clone( title = 'Cinematte', url = host + 'category/cinematte-flix/', action = 'list_all' ))
-    itemlist.append(item.clone( title = 'Críticas', url = host + 'category/critica/', action = 'list_all' ))
-    itemlist.append(item.clone( title = 'Contemporaneo', url = host + 'category/actualidad/', action = 'list_all' ))
+    itemlist.append(item.clone( title = 'Cinematte', url = host + 'category/cinematte-flix/', action = 'list_all', text_color = 'deepskyblue' ))
+    itemlist.append(item.clone( title = 'Críticas', url = host + 'category/critica/', action = 'list_all', text_color = 'deepskyblue' ))
+    itemlist.append(item.clone( title = 'Contemporaneo', url = host + 'category/actualidad/', action = 'list_all', text_color = 'deepskyblue' ))
 
     if not descartar_xxx:
-        itemlist.append(item.clone( title = 'Erotismo', url = host + 'category/erotismo/', action = 'list_all' ))
+        itemlist.append(item.clone( title = 'Erotismo', url = host + 'category/erotismo/', action = 'list_all', text_color = 'deepskyblue' ))
 
-    itemlist.append(item.clone( title = 'Imprescindibles', url = host + 'category/imprescindibles/', action = 'list_all' ))
-    itemlist.append(item.clone( title = 'Lecciones de cine', url = host + 'category/lecciones-de-cine/', action = 'list_all' ))
-    itemlist.append(item.clone( title = 'Operas primas', url = host + 'category/obras-maestras/', action = 'list_all' ))
-    itemlist.append(item.clone( title = 'Uncategorized', url = host + 'category/uncategorized/', action = 'list_all' ))
+    itemlist.append(item.clone( title = 'Imprescindibles', url = host + 'category/imprescindibles/', action = 'list_all', text_color = 'deepskyblue' ))
+    itemlist.append(item.clone( title = 'Lecciones de cine', url = host + 'category/lecciones-de-cine/', action = 'list_all', text_color = 'deepskyblue' ))
+    itemlist.append(item.clone( title = 'Operas primas', url = host + 'category/obras-maestras/', action = 'list_all', text_color = 'deepskyblue' ))
+    itemlist.append(item.clone( title = 'Uncategorized', url = host + 'category/uncategorized/', action = 'list_all', text_color = 'deepskyblue' ))
 
     return itemlist
 
@@ -87,7 +87,7 @@ def list_all(item):
         if item.group == 'magazine':
             if '/sin-categoria/' in match: continue
 
-        url = scrapertools.find_single_match(match, 'class="entry-title"><a href="(.*?)"')
+        url = scrapertools.find_single_match(match, 'href="(.*?)"')
         if not url: continue
 
         if '/passionatte.com/' in url: continue
@@ -115,11 +115,14 @@ def list_all(item):
         elif 'Versión ' in info: langs = 'Vo'
         else: langs = 'Esp'
 
-        title = scrapertools.find_single_match(match, 'rel="bookmark">(.*?)</a>').lower()
+        title = scrapertools.find_single_match(match, 'rel="bookmark">(.*?)</a>')
+        if not title: title = scrapertools.find_single_match(match, 'href=".*?">(.*?)</a>')
 
         if not title: continue
 
-        title = title.lower().replace('ver ', '').replace('videoclub gratuito ', '').replace('videoclub gratis ', '').replace('videoclub online ', '').replace('videoclub ', '').replace('y descargar ', '').strip()
+        title = title.lower()
+
+        title = title.replace('Ver Serie completa ', '').replace('ver ', '').replace('videoclub gratuito online ', '').replace('videoclub gratuito ', '').replace('videoclub gratis: ', '').replace('videoclub gratis ', '').replace('videoclub online gratis: ', '').replace('videoclub online gratis ', '').replace('videoclub online: ', '').replace('videoclub online ', '').replace('videoclub: ', '').replace('videoclub ', '').replace('y descargar ', '').strip()
 
         if title.startswith('|'):
             title = title.split("|")[1]
@@ -132,10 +135,9 @@ def list_all(item):
 
         title = title.replace('Á', 'á').replace('É', 'é').replace('Í', 'í').replace('Ó', 'ó').replace('Ú', 'ú').replace('Ñ', 'ñ')
 
-        if not year == '-':
-            title = title.replace('(' + year + ')', '').strip()
+        if not year == '-': title = title.replace('(' + year + ')', '').strip()
 
-        title = title.replace('&#8211;', '')
+        title = title.replace('&#8211;', '').replace('&#8221;', '').replace('&#215;', '')
 
         if capitulos:
             datos_cap = do_downloadpage(url)

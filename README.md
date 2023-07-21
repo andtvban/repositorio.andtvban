@@ -1,6 +1,6 @@
-# Repositorio andtvban: Matrix y Nexus. 
+# Repositorio andtvban: Matrix  Nexus. 
 
-# Tu Repo andtvtvban que no puede faltar para tu Kodi.
+# Tu Repo andtvban que no puede faltar para tu Kodi.
 
 # Matrix
 ![img](https://i.imgur.com/FmHatKc.png)
