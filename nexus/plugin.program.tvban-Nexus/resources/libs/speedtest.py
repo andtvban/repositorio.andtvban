@@ -248,7 +248,7 @@ def get_config():
     request = build_request('http://www.speedtest.net/speedtest-config.php')
     uh = catch_request(request)
     if uh is False:
-        logging.log('No se pudo recuperar la configuración de speedtest.net: {0}'.format(uh), level=xbmc.LOGDEBUG)
+        logging.log('Could not retrieve speedtest.net configuration: {0}'.format(uh), level=xbmc.LOGDEBUG)
         sys.exit(1)
 
     configxml = []
@@ -278,7 +278,7 @@ def get_config():
                 'upload': get_attributes_by_tag_name(root, 'upload'),
                 }
     except SyntaxError:
-        logging.log('Error al analizar la configuración de speedtest.net', level=xbmc.LOGDEBUG)
+        logging.log('Failed to parse speedtest.net configuration', level=xbmc.LOGDEBUG)
         sys.exit(1)
 
     del root
@@ -337,7 +337,7 @@ def closest_servers(client, all=False):
         if servers:
             break
     if not servers:
-        logging.log('Error al recuperar la lista de servidores speedtest.net: {0}'.format('\n'.join(errors)), level=xbmc.LOGDEBUG)
+        logging.log('Failed to retrieve list of speedtest.net servers: {0}'.format('\n'.join(errors)), level=xbmc.LOGDEBUG)
         sys.exit(1)
     closest = []
     for d in sorted(servers.keys()):
@@ -596,7 +596,7 @@ def main():
     try:
         speedtest()
     except KeyboardInterrupt:
-        logging.log('\nCancelado...', level=xbmc.LOGDEBUG)
+        logging.log('\nCancelling...', level=xbmc.LOGDEBUG)
         dp = xbmcgui.DialogProgress()
         dp.close()
         sys.exit()
