@@ -123,7 +123,7 @@ REPOZIPURL = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/ma
 # Enable Notification screen Yes or No
 ENABLE = 'Yes'
 # Url to notification file
-NOTIFICATION = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/ANDTV/Notify.txt'
+NOTIFICATION = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/andtv/Notify.txt'
 # Use either 'Text' or 'Image'
 HEADERTYPE = 'Image'
 # Font size of header
