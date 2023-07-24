@@ -19,7 +19,7 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 
 [COLOR aquamarine][B]INSTALACIÓN DEL PARCHE:[/B][/COLOR]
 
-[COLOR tan]Para instalar un parche, deberemos seleccionar la Build que tengamos instalada, por ejemplo [COLOR azure][B]Tvban [COLOR lime]Nvidia[/COLOR],dentro veremos el/os PARCHE/S, por ejemplo [COLOR azure][B]Tvban [COLOR lime]Nvidia[/COLOR] [COLOR gold]17.7.23[/B][/COLOR] y damos a instalar.[/COLOR]
+[COLOR tan]Para instalar un parche, deberemos seleccionar la Build que tengamos instalada, por ejemplo [COLOR azure][B]Tvban [COLOR lime]Nvidia[/COLOR], [COLOR tan]dentro veremos el/os PARCHE/S, por ejemplo [COLOR azure][B]Tvban [COLOR lime]Nvidia[/COLOR] [COLOR gold]17.7.23[/B][/COLOR] y damos a instalar.[/COLOR]
 
 
 [COLOR red]                   ****** JOSEATEBA, ANDTVBAN******                 [/COLOR] 
