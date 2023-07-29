@@ -1,6 +1,6 @@
 name="[B][COLOR white]Tvban [COLOR dodgerblue]Windows [COLOR gold]26.7.23[/COLOR][/B]"
 url="https://github.com/andtvban/andtvban.github.io/releases/download/1.1/B.Tvban_Windows26J.zip"
-icon="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
-fanart="https://andtv.github.io/tvban/wizard/wizardFI/FABuild.jpg"
+icon="https://andtvban.github.io/tvban/wizard/wizardFI/ICParche.jpg"
+fanart="https://andtvban.github.io/tvban/wizard/wizardFI/FABuild.jpg"
 adult="no"
 description="[COLOR azure][B]Andtv[/COLOR] [COLOR darkviolet]Nexus[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus[/B][/COLOR]"
