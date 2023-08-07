@@ -9,7 +9,7 @@
 ![img align="center"](https://i.imgur.com/19lQWCN.png)
 <p align="center">
 # Kodi 21 Omega
-   <p align="left">
+   <p align="center">
    <img src="https://i.imgur.com/19lQWCN.png/badge/STATUS-EN%20DESAROLLO-green">
    </p>
 
