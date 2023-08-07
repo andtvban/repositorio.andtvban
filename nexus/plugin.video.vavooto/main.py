@@ -5,6 +5,15 @@
 if __name__ == "__main__":
 	import sys, xbmc
 	from resources.lib import utils, vjlive, vjackson
+	if utils.PY2:
+		if not xbmc.getCondVisibility("System.HasAddon(script.module.futures)"):
+			xbmc.executebuiltin('InstallAddon(script.module.futures)')
+			xbmc.executebuiltin('SendClick(11)')
+	else:
+		if not xbmc.getCondVisibility("System.HasAddon(inputstream.ffmpegdirect)"):
+			xbmc.executebuiltin('InstallAddon(inputstream.ffmpegdirect)')
+			xbmc.executebuiltin('SendClick(11)')
+		
 	params = dict(utils.parse_qsl(sys.argv[2][1:]))
 	tv = params.get("name")
 	action = params.pop("action", None)
