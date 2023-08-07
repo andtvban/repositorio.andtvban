@@ -1,13 +1,20 @@
-Version 5.1.102 (Jul 08, 2023)
+Version 5.1.105 (Aug 06, 2023)
 - Code Base Changes:
-    - None
+    - Add b64decode to helpers
+    - Add aadecode v2 support
 
 - Resolvers Added:
-    - None
+    - vidguard
 
 - Resolvers Fixed/Updated:
-    - neohd
-    - vembx
+    - doodstream
+    - drkvid
+    - filelions
+    - filemoon
+    - mixdrop
+    - streamtape
+    - streamwish
+    - vtube
 
 - Resolvers Removed
     - None

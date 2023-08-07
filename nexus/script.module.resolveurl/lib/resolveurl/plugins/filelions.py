@@ -22,8 +22,12 @@ from resolveurl.plugins.__resolve_generic__ import ResolveGeneric
 
 class FileLionsResolver(ResolveGeneric):
     name = 'FileLions'
-    domains = ['filelions.com', 'filelions.to', 'ajmidyadfihayh.sbs', 'alhayabambi.sbs', 'techradar.ink']
-    pattern = r'(?://|\.)((?:filelions|ajmidyadfihayh|alhayabambi|techradar)\.(?:com|to|sbs|ink))/(?:v|f|d)/([0-9a-zA-Z]+)'
+    domains = ['filelions.com', 'filelions.to', 'ajmidyadfihayh.sbs', 'alhayabambi.sbs', 'techradar.ink',
+               'moflix-stream.click', 'azipcdn.com', 'mlions.pro', 'alions.pro', 'dlions.pro',
+               'filelions.live']
+    pattern = r'(?://|\.)((?:filelions|ajmidyadfihayh|alhayabambi|techradar|moflix-stream|azipcdn|' \
+              r'[mad]lions)\.' \
+              r'(?:com|to|sbs|ink|click|pro|live))/(?:v|f|d)/([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
         return helpers.get_media_url(
