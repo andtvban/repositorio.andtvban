@@ -10,7 +10,7 @@
 
 # Kodi 21 Omega
 <p align="center">
-  [img](https://i.imgur.com/19lQWCN.png)/>
+![img](https://i.imgur.com/19lQWCN.png)
 </p>
 
 
