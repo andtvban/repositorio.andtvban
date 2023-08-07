@@ -7,10 +7,10 @@
 
 # Kodi 20 Nexus
 ![img align="center"](https://i.imgur.com/19lQWCN.png)
-
-# Kodi 21 Omega
 <p align="center">
+# Kodi 21 Omega
+
 ![img](https://i.imgur.com/19lQWCN.png)
-</p>
+
 
 
