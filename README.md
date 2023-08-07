@@ -1,9 +1,11 @@
-# Repositorio andtvban: Matrix  Nexus. 
+# Repositorio andtvban: Matrix, Nexus. 
 
 # Tu Repo andtvban que no puede faltar para tu Kodi.
 
-# Matrix
+# Kodi 19 Matrix
 ![img](https://i.imgur.com/FmHatKc.png)
 
-# Nexus
+# Kodi 20 Nexus
 ![img](https://i.imgur.com/19lQWCN.png)
+
+# Kodi 21 Omega
