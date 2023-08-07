@@ -10,8 +10,7 @@
 
 # Kodi 21 Omega
 <p align="center">
-  <img src="[https://github.com/waldyr/Sublime-Installer/blob/master/sublime_text.png?raw=true](https://i.imgur.com/19lQWCN.png)
-)" alt="Sublime's custom image"/>
+  <img src="(https://i.imgur.com/19lQWCN.png)/>
 </p>
 
 
