@@ -1201,7 +1201,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
   </extension>
 </addon>
 
-<addon id="repository.slyguy" name="SlyGuy Repository (slyguy.uk)" provider-name="SlyGuy" version="0.0.4">
+<addon id="repository.slyguy" name="SlyGuy Repository (slyguy.uk)" provider-name="SlyGuy" version="0.0.8">
   <extension point="xbmc.addon.repository" name="SlyGuy Repository (slyguy.uk)">
     <dir>
       <info compressed="false">https://slyguy.uk/.repo/addons.xml</info>
