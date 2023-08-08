@@ -10,7 +10,7 @@
 En ésta ventana de Notificación, damos a [COLOR white][B]"Cerrar"[/B][/COLOR]
 Seleccionamos la Build que deseas instalar, por ejemplo [COLOR azure][B]Tvban [COLOR lime]Nvidia[/COLOR] - [COLOR white][B]Instalar Build[/B][/COLOR]. 
 Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Forzar el Cierre de Kodi"[/B][/COLOR]. Pulsaremos en [COLOR white][B]"OK"[/B][/COLOR].
-Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.
+Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.[/COLOR]
 
 [COLOR gold][B]¡¡¡Nuevo: [COLOR dodgerblue]PARCHE BUILD TVBAN[COLOR gold]!!![/B][/COLOR]
 [B][COLOR white]Tvban ARM [COLOR lime]Nvidia [COLOR dodgerblue]Windows [COLOR gold]9.8.23[/B][/COLOR]
