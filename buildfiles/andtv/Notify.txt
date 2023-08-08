@@ -14,8 +14,8 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 
 [COLOR gold][B]¡¡¡Nuevo: [COLOR dodgerblue]PARCHE BUILD TVBAN!!![/B][/COLOR]
 
-[COLOR orange][B]* Actualizaciones de addons, añadido repositorios[/B][/COLOR] [COLOR gold][B]8.8.23[/B][/COLOR]
-
+[COLOR orange][B]* Actualizaciones de addons, añadido repositorios[/B][/COLOR] 
+[B][COLOR white]Tvban ARM [COLOR lime]Nvidia [COLOR dodgerblue]Windows [COLOR gold]8.8.23[/B][/COLOR]
 
 [COLOR aquamarine][B]INSTALACIÓN DEL PARCHE:[/B][/COLOR]
 
