@@ -8,7 +8,7 @@
 [COLOR deepskyblue]* Para HACER la instalación correctamente deberás pulsar en la opción [COLOR white][B]"Build Menu"[/B][/COLOR] en la ventana que aparece después de instalar el [COLOR azure]plugin.program.Andtv-Nexus[/COLOR] (Wizard).
 
 En ésta ventana de Notificación, damos a [COLOR white][B]"Cerrar"[/B][/COLOR]
-Seleccionamos la Build que deseas instalar, por ejemplo [COLOR yellowgreen][B]TVBan Nvidia[/B][/COLOR] - [COLOR white][B]Instalar Build[/B][/COLOR]. 
+Seleccionamos la Build que deseas instalar, por ejemplo [COLOR azure][B]Tvban [COLOR lime]Nvidia[/COLOR] - [COLOR white][B]Instalar Build[/B][/COLOR]. 
 Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Forzar el Cierre de Kodi"[/B][/COLOR]. Pulsaremos en [COLOR white][B]"OK"[/B][/COLOR].
 Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.
 

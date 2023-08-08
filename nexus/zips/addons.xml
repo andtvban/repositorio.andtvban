@@ -361,7 +361,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="25.7.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="8.8.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
@@ -389,6 +389,9 @@
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtvban.github.io/tvban/</source>
 		<news>
+• [COLOR darkorange]8/08/2023[/COLOR]
+- Nuevo Logo
+
 • [COLOR darkorange]24/07/2023[/COLOR]
 - Corregir
 
