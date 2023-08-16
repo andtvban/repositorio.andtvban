@@ -1,4 +1,4 @@
-name="[B][COLOR white]Tvban [COLOR lime]Nvidia [COLOR gold]15.8.23[/COLOR][/B]"
+name="[B][COLOR white]Tvban [COLOR lime]Nvidia [COLOR gold]16.8.23[/COLOR][/B]"
 url="https://github.com/andtvban/andtvban.github.io/releases/download/1.1/B.Tvban_Nvidia16A.zip"
 icon="https://andtvban.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtvban.github.io/tvban/wizard/wizardFI/FABuild.jpg"
