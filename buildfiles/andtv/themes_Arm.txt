@@ -1,5 +1,5 @@
-name="[B][COLOR white]Tvban ARM [COLOR gold]17.8.23[/COLOR][/B]"
-url="https://github.com/andtvban/andtvban.github.io/releases/download/1.1/B.Tvban_ARM17A.zip"
+name="[B][COLOR white]Tvban ARM [COLOR gold]18.8.23[/COLOR][/B]"
+url="https://github.com/andtvban/andtvban.github.io/releases/download/1.1/B.Tvban_ARM18A.zip"
 icon="https://andtvban.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtvban.github.io/tvban/wizard/wizardFI/FABuild.jpg"
 adult="no"
