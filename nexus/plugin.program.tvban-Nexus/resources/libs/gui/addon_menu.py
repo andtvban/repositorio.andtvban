@@ -237,7 +237,7 @@ class AddonMenu:
             pass
             
         Downloader().download(url, lib)
-        title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1,
+        title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR5,
                                                                                       plugin)
         self.progress_dialog.update(0, title
                                     +'\n'+''
