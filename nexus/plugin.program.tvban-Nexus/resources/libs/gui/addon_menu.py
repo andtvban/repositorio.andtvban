@@ -237,7 +237,7 @@ class AddonMenu:
             pass
             
         Downloader().download(url, lib)
-        title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR5,
+        title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1,
                                                                                       plugin)
         self.progress_dialog.update(0, title
                                     +'\n'+''
@@ -374,7 +374,7 @@ class AddonMenu:
         except:
             pass
         Downloader().download(url, lib)
-        title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, name)
+        title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR2, name)
         progress_dialog.update(0, title
                                 +'\n'+''
                                 +'\n'+'[COLOR {0}]Espere por Favor[/COLOR]'.format(CONFIG.COLOR2))
@@ -421,7 +421,7 @@ class AddonMenu:
         except:
             pass
         Downloader().download(url, lib)
-        title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, name)
+        title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR2, name)
         progress_dialog.update(0, title
                                     +'\n'+''
                                     +'\n'+'[COLOR {0}]Espere por Favor[/COLOR]'.format(CONFIG.COLOR2))
