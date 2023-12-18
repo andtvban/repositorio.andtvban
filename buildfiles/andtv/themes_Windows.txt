@@ -1,5 +1,5 @@
-name="[B][COLOR white]Tvban [COLOR dodgerblue]Windows [COLOR gold]26.10.23[/COLOR][/B]"
-url="https://github.com/andtvban/andtvban.github.io/releases/download/1.1/B.Tvban_Windows26Oc.zip"
+name="[B][COLOR white]Tvban [COLOR dodgerblue]Windows [COLOR gold]18.12.23[/COLOR][/B]"
+url="https://github.com/andtvban/andtvban.github.io/releases/download/1.1/B.Tvban_Windows18Dc.zip"
 icon="https://andtvban.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtvban.github.io/tvban/wizard/wizardFI/FABuild.jpg"
 adult="no"
