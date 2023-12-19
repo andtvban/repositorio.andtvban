@@ -1,5 +1,5 @@
-name="[B][COLOR white]Tvban [COLOR lime]Nvidia [COLOR gold]20.12.23[/COLOR][/B]"
-url="https://github.com/andtvban/andtvban.github.io/releases/download/1.1/B.Tvban_Nvidia20Dc.zip"
+name="[B][COLOR white]Tvban [COLOR lime]Nvidia [COLOR gold]21.12.23[/COLOR][/B]"
+url="https://github.com/andtvban/andtvban.github.io/releases/download/1.1/B.Tvban_Nvidia21Dc.zip"
 icon="https://andtvban.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtvban.github.io/tvban/wizard/wizardFI/FABuild.jpg"
 adult="no"
