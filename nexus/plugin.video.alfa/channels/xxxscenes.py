@@ -17,7 +17,7 @@ from core.item import Item
 from core import servertools
 from core import httptools
 from bs4 import BeautifulSoup
-from channels import autoplay
+from modules import autoplay
 
 list_quality = ['default']
 list_servers = []
@@ -118,12 +118,13 @@ def lista(item):
     soup = create_soup(item.url)
     matches = soup.find_all('div', class_='video-block')
     for elem in matches:
+        logger.debug(elem)
         url = elem.a['href']
         title = elem.find(class_='title').text.strip()
-        time = elem.find(class_='duration').text.strip()
+        time = elem.find(class_='duration')
         thumbnail = elem.img['data-src']
         if time:
-            title = "[COLOR yellow]%s[/COLOR] %s" % (time,title)
+            title = "[COLOR yellow]%s[/COLOR] %s" % (time.text.strip(),title)
         plot = ""
         itemlist.append(Item(channel=item.channel, action="findvideos", title=title, url=url, thumbnail=thumbnail,
                                plot=plot, fanart=thumbnail, contentTitle=title ))

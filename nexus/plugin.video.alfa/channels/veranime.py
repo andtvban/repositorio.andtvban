@@ -7,25 +7,20 @@ import sys
 PY3 = False
 if sys.version_info[0] >= 3: PY3 = True; unicode = str; unichr = chr; long = int; _dict = dict
 
-import re
-import traceback
-if not PY3: _dict = dict; from collections import OrderedDict as dict
+from lib import AlfaChannelHelper
+if not PY3: _dict = dict; from AlfaChannelHelper import dict
+from AlfaChannelHelper import DictionaryAllChannel
+from AlfaChannelHelper import re, traceback, time, base64, xbmcgui
+from AlfaChannelHelper import Item, servertools, scrapertools, jsontools, get_thumb, config, logger, filtertools, autoplay
 
-from core.item import Item
-from core import servertools
-from core import scrapertools
-from core import jsontools
-from channelselector import get_thumb
-from platformcode import config, logger
-from channels import filtertools, autoplay
-from lib.AlfaChannelHelper import DictionaryAllChannel
+from modules import renumbertools
 
-IDIOMAS = {"audio castellano": "CAST", "audio latino": "LAT", "subtitulado": "VOSE"}
+IDIOMAS = AlfaChannelHelper.IDIOMAS_ANIME
 list_language = list(set(IDIOMAS.values()))
-list_quality = []
-list_quality_movies = ['DVDR', 'HDRip', 'VHSRip', 'HD', '2160p', '1080p', '720p', '4K', '3D', 'Screener', 'BluRay']
-list_quality_tvshow = ['HDTV', 'HDTV-720p', 'WEB-DL 1080p', '4KWebRip']
-list_servers = ["aparatcam", "streamtape", "fembed", "mixdrop", "doodstream", "clipwatching"]
+list_quality_movies = AlfaChannelHelper.LIST_QUALITY_MOVIES
+list_quality_tvshow = AlfaChannelHelper.LIST_QUALITY_TVSHOW
+list_quality = list_quality_movies + list_quality_tvshow
+list_servers = AlfaChannelHelper.LIST_SERVERS
 forced_proxy_opt = 'ProxyCF'
 
 canonical = {
@@ -34,7 +29,7 @@ canonical = {
              'host_alt': ["https://ww3.animeonline.ninja/"], 
              'host_black_list': ["https://ww2.animeonline.ninja/", "https://www1.animeonline.ninja/"], 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'forced_proxy_ifnot_assistant': forced_proxy_opt, 
-             'cf_assistant_if_proxy': True, 'cf_assistant_get_source': True, 'CF_stat': True, 'session_verify': False, 
+             'cf_assistant_if_proxy': True, 'cf_assistant_get_source': False, 'CF_stat': True, 'session_verify': False, 
              'CF': False, 'CF_test': False, 'alfa_s': True
             }
 host = canonical['host'] or canonical['host_alt'][0]
@@ -115,6 +110,8 @@ def mainlist(item):
 
     itemlist.append(Item(channel=item.channel, title="Buscar...", action="search", url=host,
                          thumbnail=get_thumb("search", auto=True)))
+
+    itemlist = renumbertools.show_option(item.channel, itemlist)
 
     itemlist = filtertools.show_option(itemlist, item.channel, list_language, list_quality_tvshow, list_quality_movies)
 
@@ -216,7 +213,10 @@ def list_all_matches(item, matches_int, **AHkwargs):
             elem_json['language'] = '*VOSE'
             if elem.find("div", class_=["texto", "contenido"]): 
                 elem_json['plot'] = elem.find("div", class_=["texto", "contenido"]).get_text(strip=True)
-        
+
+            elem_json['context'] = renumbertools.context(item)
+            elem_json['context'].extend(autoplay.context)
+
         except Exception:
             logger.error(elem)
             logger.error(traceback.format_exc())
@@ -282,6 +282,8 @@ def episodesxseason_matches(item, matches_int, **AHkwargs):
                 elem_json['title'] = info.a.get_text(strip=True)
                 elem_json['season'] = item.contentSeason
                 elem_json['thumbnail'] = elem.img.get('data-src', '') or elem.img.get('src', '')
+                elem_json['season'], elem_json['episode'] = renumbertools.numbered_for_trakt(item.channel, 
+                                                            item.contentSerieName, elem_json['season'], elem_json['episode'])
 
             except Exception:
                 logger.error(elem)
@@ -359,7 +361,7 @@ def findvideos_matches(item, matches_int, langs, response, **AHkwargs):
                         elem_json['server'] = servers.get(elem_json['server'], elem_json['server'])
                         if not elem_json['server']: continue
                         
-                        elem_json['server'] = elem.find("span").get_text(strip=True)
+                        # elem_json['server'] = elem.find("span").get_text(strip=True)
 
                         elem_json['language'] = re.sub('\s+-.*', '', elem.find('p').get_text(strip=True))
                         elem_json['language'] = IDIOMAS.get(elem_json['language'].lower(), "VOSE")
@@ -415,7 +417,7 @@ def search(item, texto, **AHkwargs):
     kwargs.update(AHkwargs)
 
     try:
-        texto = texto.replace(" ", "+")
+        texto = AlfaChannel.do_quote(texto, '', plus=True)
         item.url = item.url + "?s=" + texto
 
         if texto:
@@ -430,3 +432,35 @@ def search(item, texto, **AHkwargs):
         for line in sys.exc_info():
             logger.error("%s" % line)
         return []
+
+
+def newest(categoria, **AHkwargs):
+    logger.info()
+    kwargs.update(AHkwargs)
+
+    itemlist = []
+    item = Item()
+
+    item.title = "newest"
+    item.category_new = "newest"
+    item.channel = canonical['channel']
+
+    try:
+        if categoria in ['anime']:
+            item.url = host
+            item.c_type = 'episodios'
+            item.extra = "novedades"
+            item.action = "list_all"
+            itemlist = list_all(item)
+
+        if len(itemlist) > 0 and ">> Página siguiente" in itemlist[-1].title:
+            itemlist.pop()
+
+    # Se captura la excepción, para no interrumpir al canal novedades si un canal falla
+    except Exception:
+        for line in sys.exc_info():
+            logger.error("{0}".format(line))
+        logger.error(traceback.format_exc())
+        return []
+
+    return itemlist

@@ -24,20 +24,17 @@ def mainlist_animes(item):
     logger.info()
     itemlist = []
 
-    descartar_anime = config.get_setting('descartar_anime', default=False)
-
-    if descartar_anime: return itemlist
+    if config.get_setting('descartar_anime', default=False): return
 
     if config.get_setting('adults_password'):
         from modules import actions
-        if actions.adults_password(item) == False:
-            return itemlist
+        if actions.adults_password(item) == False: return
 
     itemlist.append(item.clone( title = 'Buscar anime ...', action = 'search', search_type = 'tvshow', text_color='springgreen' ))
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host, search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Nuevos episodios', action = 'list_all', url = host + 'new-season', search_type = 'tvshow', text_color = 'olive' ))
+    itemlist.append(item.clone( title = 'Nuevos episodios', action = 'list_all', url = host + 'new-season', search_type = 'tvshow', text_color = 'cyan' ))
 
     itemlist.append(item.clone( title = 'Recientes', action = 'list_all', url = host + 'recently-added-raw', search_type = 'tvshow' ))
 
@@ -109,19 +106,19 @@ def list_all(item):
 
             title = title.replace('Episode', '[COLOR goldenrod]Episode[/COLOR]')
 
-            itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, 
-                                        contentType = 'episode', contentSerieName = SerieName, contentSeason = season, contentEpisodeNumber = epis, infoLabels={'year': '-'} ))
+            itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, infoLabels={'year': '-'}, 
+                                        contentType = 'episode', contentSerieName = SerieName, contentSeason = season, contentEpisodeNumber = epis ))
 
     tmdb.set_infoLabels(itemlist)
 
     if itemlist:
         if "<ul class='pagination'" in data:
-            next_url = scrapertools.find_single_match(data, "<ul class='pagination'.*?class=active>.*?</li>.*?href='(.*?)'")
+            next_page = scrapertools.find_single_match(data, "<ul class='pagination'.*?class=active>.*?</li>.*?href='(.*?)'")
 
-            if next_url:
-                next_url = host[:-1] + next_url
+            if next_page:
+                next_page = host[:-1] + next_page
 
-                itemlist.append(item.clone( title = 'Siguientes ...', url = next_url, action = 'list_all', text_color = 'coral' ))
+                itemlist.append(item.clone( title = 'Siguientes ...', url = next_page, action = 'list_all', text_color = 'coral' ))
 
     return itemlist
 
@@ -150,9 +147,7 @@ def findvideos(item):
 
         srv = srv.lower()
 
-        if '/hqq.' in url or '/waaw.' in url or '/netu.' in url: continue
-
-        elif 'jetload.' in url: continue
+        if 'jetload.' in url: continue
         elif '/hydrax.' in url: continue
 
         servidor = servertools.get_server_from_url(url)
@@ -162,6 +157,8 @@ def findvideos(item):
 
         other = ''
         if servidor == 'directo': other = srv.replace('server', '').strip()
+
+        if servidor == 'various': other = servertools.corregir_other(url)
 
         itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = url, language = 'Vose', other = other ))
 

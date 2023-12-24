@@ -7,30 +7,22 @@ import sys
 PY3 = False
 if sys.version_info[0] >= 3: PY3 = True; unicode = str; unichr = chr; long = int; _dict = dict
 
-import re
-import traceback
-import base64
+from lib import AlfaChannelHelper
+if not PY3: _dict = dict; from AlfaChannelHelper import dict
+from AlfaChannelHelper import DictionaryAllChannel
+from AlfaChannelHelper import re, traceback, time, base64, xbmcgui
+from AlfaChannelHelper import Item, servertools, scrapertools, jsontools, get_thumb, config, logger, filtertools, autoplay
+
 import ast
-if not PY3: _dict = dict; from collections import OrderedDict as dict
-
-from core.item import Item
-from core import servertools
-from core import scrapertools
-from core import jsontools
-from channelselector import get_thumb
-from platformcode import config, logger
-from channels import filtertools, autoplay
-from lib.AlfaChannelHelper import DictionaryAllChannel
-
 from platformcode.platformtools import dialog_notification, dialog_ok, itemlist_refresh, show_channel_settings
 
-IDIOMAS = {'lat': 'LAT', 'spa': 'CAST', 'esp': 'CAST', 'sub': 'VOSE', 'espsub': 'VOSE', 'engsub': 'VOS', 'eng': 'VO'}
+IDIOMAS = AlfaChannelHelper.IDIOMAS_T
 list_language = list(set(IDIOMAS.values()))
-list_quality = []
-list_quality_movies = ['HD1080', 'HD720', 'HDTV', 'DVDRIP', 'RHDTV', 'DVDSCR']
-list_quality_tvshow = ['HDTV', 'HDTV-720p', 'WEB-DL 1080p', '4KWebRip']
-list_servers = ['clipwatching', 'gamovideo', 'vidoza', 'vidtodo', 'openload', 'uptobox']
-forced_proxy_opt = ''
+list_quality_movies = AlfaChannelHelper.LIST_QUALITY_MOVIES
+list_quality_tvshow = AlfaChannelHelper.LIST_QUALITY_TVSHOW
+list_quality = list_quality_movies + list_quality_tvshow
+list_servers = AlfaChannelHelper.LIST_SERVERS
+forced_proxy_opt = 'ProxySSL'
 assistant = False
 
 # https://dominioshdfull.com/
@@ -38,15 +30,16 @@ assistant = False
 canonical = {
              'channel': 'hdfull', 
              'host': config.get_setting("current_host", 'hdfull', default=''), 
-             'host_alt': ["https://hdfull.today/"], 
+             "host_alt": ["https://hd-full.im/", "https://hdfull.today/", "https://hdfull.quest/"], 
              'host_verification': '%slogin', 
-             'host_black_list': ['https://hdfull.sbs/', 'https://hdfull.org/', 
-                                 'https://hdfull.store/', 
-                                 'https://hdfull.life/', 'https://hdfull.digital/', 'https://hdfull.work/', 
-                                 'https://hdfull.video/', 'https://hdfull.cloud/', 'https://hdfull.wtf/', 
-                                 'https://hdfull.fun/', 'https://hdfull.lol/', 'https://hdfull.one/', 
-                                 'https://new.hdfull.one/', 'https://hdfull.top/', 'https://hdfull.bz/'],
-             'pattern': '<meta\s*property="og:url"\s*content="([^"]+)"', 
+             "host_black_list": ["https://hd-full.one/", 
+                                 "https://hdfull.icu/", "https://hdfull.sbs/", "https://hdfull.org/", 
+                                 "https://hdfull.store/", 
+                                 "https://hdfull.life/", "https://hdfull.digital/", "https://hdfull.work/", 
+                                 "https://hdfull.video/", "https://hdfull.cloud/", "https://hdfull.wtf/", 
+                                 "https://hdfull.fun/", "https://hdfull.lol/", "https://hdfull.one/", 
+                                 "https://new.hdfull.one/", "https://hdfull.top/", "https://hdfull.bz/"],
+             'pattern': r'<meta\s*property="og:url"\s*content="([^"]+)"', 
              'set_tls': True, 'set_tls_min': False, 'retries_cloudflare': 1, 'expires': 365*24*60*60, 
              'forced_proxy_ifnot_assistant': forced_proxy_opt, 'CF_if_assistant': True if assistant else False, 
              'CF_stat': True if assistant else False, 'session_verify': True if assistant else False, 
@@ -57,7 +50,7 @@ host_save = host
 host_thumb = 'https://hdfullcdn.cc/'
 _silence = config.get_setting('silence_mode', channel=canonical['channel'])
 
-timeout = 10
+timeout = (5, 20)
 kwargs = {}
 debug = config.get_setting('debug_report', default=False)
 movie_path = "pelicula/"
@@ -74,14 +67,14 @@ finds = {'find': dict([('find', [{'tag': ['div'], 'class': ['container-flex', 'm
          'search': {}, 
          'get_language': dict([('find', [{'tag': ['div'], 'class': ['left']}]), 
                                ('find_all', [{'tag': ['img']}])]),
-         'get_language_rgx': '\/images\/(\w+)\.(?:png|jpg|jpeg|webp)', 
+         'get_language_rgx': r'\/images\/(\w+)\.(?:png|jpg|jpeg|webp)', 
          'get_quality': {}, 
          'get_quality_rgx': '', 
          'next_page': {}, 
-         'next_page_rgx': [['\/\d+$', '/%s']], 
+         'next_page_rgx': [[r'\/\d+$', '/%s']], 
          'last_page': dict([('find', [{'tag': ['div'], 'class': ['row-pages-wrapper']}]), 
                             ('find_all', [{'tag': ['a'], '@POS': [-2]}]), 
-                            ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': '(\d+)'}])]),  
+                            ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': r'(\d+)'}])]),  
          'year': {}, 
          'season_episode': {}, 
          'seasons': dict([('find', [{'tag': ['ul'], 'id': ['season-list']}]), 
@@ -99,9 +92,9 @@ finds = {'find': dict([('find', [{'tag': ['div'], 'class': ['container-flex', 'm
          'plot': {}, 
          'findvideos': dict([('find', [{'tag': ['div'], 'class': ['show-details']}]), 
                              ('find_all', [{'tag': ['a']}])]), 
-         'title_clean': [['(?i)TV|Online|(4k-hdr)|(fullbluray)|4k| - 4k|(3d)|miniserie|\s*\(\d{4}\)', ''],
-                         ['[\(|\[]\s*[\)|\]]', '']],
-         'quality_clean': [['(?i)proper|unrated|directors|cut|repack|internal|real|extended|masted|docu|super|duper|amzn|uncensored|hulu', '']],
+         'title_clean': [[r'(?i)TV|Online|(4k-hdr)|(fullbluray)|4k| - 4k|(3d)|miniserie|\s*\(\d{4}\)', ''],
+                         [r'[\(|\[]\s*[\)|\]]', '']],
+         'quality_clean': [[r'(?i)proper|unrated|directors|cut|repack|internal|real|extended|masted|docu|super|duper|amzn|uncensored|hulu', '']],
          'language_clean': [], 
          'url_replace': [], 
          'controls': {'duplicates': [], 'min_temp': False, 'url_base64': False, 'add_video_to_videolibrary': True, 'cnt_tot': 20, 
@@ -139,10 +132,9 @@ if not user_ or not pass_:
 credentials_req = True
 js_url = AlfaChannel.urljoin(host, "templates/hdfull/js/jquery.hdfull.view.min.js")
 data_js_url = AlfaChannel.urljoin(host, "js/providers.js")
-patron_sid = "<input\s*type='hidden'\s*name='__csrf_magic'\s*value=\"([^\"]+)\"\s*\/>"
+patron_sid = r"<input\s*type='hidden'\s*name='__csrf_magic'\s*value=\"([^\"]+)\"\s*\/>"
 
 try:
-    import xbmcgui
     window = None
     window = xbmcgui.Window(10000)
     user_status = jsontools.load(window.getProperty("AH_hdfull_user_status"), silence=True)
@@ -151,6 +143,17 @@ try:
     js_data = window.getProperty("AH_hdfull_js_data")
     data_js = window.getProperty("AH_hdfull_data_js")
     just_logout = window.getProperty("AH_hdfull_just_logout")
+    if window.getProperty("AH_hdfull_domain"):
+        host_alt = window.getProperty("AH_hdfull_domain")
+        if host_alt != host or host_alt != canonical['host_alt'][0]:
+            host = host_save = host_alt
+            if host_alt not in canonical['host_alt']: canonical['host_alt'] = [host_alt] + canonical['host_alt']
+            for host_alt_ in canonical['host_alt'][:]:
+                if host_alt_ == host_alt: break
+                if host_alt_ not in canonical['host_black_list']: canonical['host_black_list'] += [host_alt_]
+                if host_alt_ in canonical['host_alt']: canonical['host_alt'].remove(host_alt_)
+        if config.get_setting("current_host", canonical['channel'], default='') != host:
+            config.set_setting("current_host", host, canonical['channel'])
 except Exception:
     user_status = {}
     sid = ''
@@ -163,6 +166,7 @@ except Exception:
         window.setProperty("AH_hdfull_js_data", js_data)
         window.setProperty("AH_hdfull_data_js", data_js)
         window.setProperty("AH_hdfull_just_logout", str(just_logout))
+        window.setProperty("AH_hdfull_domain", "")
     except Exception:
         logger.error(traceback.format_exc())
 
@@ -246,12 +250,14 @@ def sub_menu_peliculas(item):
                          url=AlfaChannel.urljoin(host, "peliculas/date/1"), text_bold=True, plot=item.plot, 
                          thumbnail=get_thumb('movies', auto=True), c_type=item.c_type))
 
-    itemlist.append(Item(channel=item.channel, action="list_all", extra="fichas", title=" - [COLOR paleturquoise]Películas Estreno[/COLOR]",
+    itemlist.append(Item(channel=item.channel, action="list_all", title=" - [COLOR paleturquoise]Películas Estreno[/COLOR]",
                          url=AlfaChannel.urljoin(host, "peliculas-estreno"), plot=item.plot, 
+                         extra='estreno' if window and window.getProperty("AH_hdfull_preferred_proxy_ip") else 'fichas', 
                          thumbnail=get_thumb('premieres', auto=True), c_type=item.c_type))
 
-    itemlist.append(Item(channel=item.channel, action="list_all", extra="fichas", title=" - [COLOR paleturquoise]Películas Actualizadas[/COLOR]",
+    itemlist.append(Item(channel=item.channel, action="list_all",  title=" - [COLOR paleturquoise]Películas Actualizadas[/COLOR]",
                          url=AlfaChannel.urljoin(host, "peliculas-actualizadas"), plot=item.plot, 
+                         extra='actualizadas' if window and window.getProperty("AH_hdfull_preferred_proxy_ip") else 'fichas',
                          thumbnail=get_thumb('updated', auto=True), c_type=item.c_type))
 
     itemlist.append(Item(channel=item.channel, action="section", extra="Género", title=" - [COLOR paleturquoise]Películas por Género[/COLOR]",
@@ -450,10 +456,20 @@ def list_all(item):
         item.curr_page = int(item.curr_page) if item.curr_page else 1
         if str(cnt_tot_episodios) not in item.post and str(cnt_tot_items_usuario) not in item.post: 
             item.post = item.post % findS['controls']['cnt_tot']
-        item.post = re.sub('&start=\d+', '&start=%s' % ((item.curr_page - 1) * findS['controls']['cnt_tot']), item.post)
+        item.post = re.sub(r'&start=\d+', '&start=%s' % ((item.curr_page - 1) * findS['controls']['cnt_tot']), item.post)
 
     elif item.extra in ['Alfabético']:
         findS['controls'].update({'custom_pagination': True, 'jump_page': True})
+
+    elif item.extra in ['estreno']:
+        findS['find'] = dict([('find', [{'tag': ['div'], 'class': ['breakaway-wrapper-dark']}]), 
+                              ('find_all', [{'tag': ['div'], 'class': ['flickr']}])])
+        findS['controls'].update({'jump_page': False})
+
+    elif item.extra in ['actualizadas']:
+        findS['find'] = dict([('find_all', [{'tag': ['div'], 'class': ['main-wrapper-alt'], '@POS': [-1]}, 
+                                            {'tag': ['div'], 'class': ['flickr']}])])
+        findS['controls'].update({'jump_page': False})
 
     return AlfaChannel.list_all(item, matches_post=list_all_matches, finds=findS, **kwargs)
 
@@ -507,7 +523,7 @@ def list_all_matches(item, matches_int, **AHkwargs):
     # Pelícuas, series y episodios
     for elem in matches_int:
         elem_json = {}
-        #logger.error(elem)
+        # logger.error(elem)
 
         try:
             if item.extra in ['items_usuario']:                                 # funciones con login
@@ -566,6 +582,10 @@ def list_all_matches(item, matches_int, **AHkwargs):
                 elem_json['url'] += '/temporada-%s/episodio-%s' % (elem.get('season', '1'), elem.get('episode', '00').zfill(2))
                 elem_json['info'] = {elem.get('id', '0'): elem.get('show', {}).get('id', '0')}
 
+                if elem_json['url']:
+                    elem_json['go_serie'] = {'url': re.sub(r'\/temp\w*-?\d*\/epi\w*-?\d*\/?', '', elem_json['url']),
+                                             'info': {elem.get('show', {}).get('id', '0'): elem.get('show', {}).get('id', '0')}}
+
             elif not item.extra or item.extra in ['fichas', 'Género', 'Alfabético', 'listas_res'] or item.c_type == 'search':
                 if item.extra in ['Alfabético'] and AlfaChannel.last_page in [9999, 99999]:
                     AlfaChannel.last_page = int((float(len(matches_int)) / float(AlfaChannel.cnt_tot))  + 0.999999)
@@ -584,7 +604,7 @@ def list_all_matches(item, matches_int, **AHkwargs):
                     elem_json['info'] = elem.find("div", class_="seen-box").get('data-seen', '')
                 else:
                     elem_json['info'] = elem.find("span", class_="rating-pod-actions").find("a", class_="logged-req").get('onclick', '')
-                    elem_json['info'] = scrapertools.find_single_match(elem_json['info'], '\d+,\s*(\d+),\s*\d+')
+                    elem_json['info'] = scrapertools.find_single_match(elem_json['info'], r'\d+,\s*(\d+),\s*\d+')
                 elem_json['info'] = {elem_json['info']: elem_json['info']}
                 if not elem_json.get('mediatype'):
                     elem_json['mediatype'] = 'tvshow' if (tv_path in elem_json['url'] or "/tags-tv" in elem_json['url']) else 'movie'
@@ -595,6 +615,13 @@ def list_all_matches(item, matches_int, **AHkwargs):
                     if item.c_type and item.c_type == 'peliculas' and elem_json['mediatype'] != 'movie': continue
                     if item.c_type and item.c_type == 'series' and elem_json['mediatype'] != 'tvshow': continue
 
+            elif item.extra in ['estreno', 'actualizadas']:
+                elem_json['url'] = elem.a.get('href', '')
+                elem_json['thumbnail'] = elem.img.get('src', '')
+                elem_json['title'] = elem.img.get('alt', '') or elem.img.get('original-title', '')
+                elem_json['mediatype'] = 'tvshow' if (tv_path in elem_json['url'] or "/tags-tv" in elem_json['url']) else 'movie'
+                if item.c_type and item.c_type == 'peliculas' and elem_json['mediatype'] != 'movie': continue
+
             elem_json['quality'] = ''
 
             # items usuario en titulo (visto, pendiente, etc)
@@ -604,7 +631,7 @@ def list_all_matches(item, matches_int, **AHkwargs):
             if str_:
                 elem_json['plot_extend'] += str_.replace('[COLOR blue](Visto)[/COLOR]', '')
                 elem_json['playcount'] = 1 if 'Visto' in str_ else 0
-            if item.extra not in ['listas_res']: elem_json = add_context(elem_json, str_)
+            if item.extra not in ['listas_res', 'estreno', 'actualizadas']: elem_json = add_context(elem_json, str_)
 
         except Exception:
             logger.error(elem)
@@ -628,12 +655,16 @@ def list_all_matches(item, matches_int, **AHkwargs):
 
 def seasons(item):
     logger.info()
-    
+
+    findS = finds.copy()
+    if 'anim' in item.infoLabels['genre'].lower():
+        findS['controls']['season_TMDB_limit'] = False
+
     if "###" in item.url:
         item.info = {item.url.split("###")[1].split(";")[0]: item.url.split("###")[1].split(";")[0]}
         item.url = item.url.split("###")[0]
 
-    return AlfaChannel.seasons(item, matches_post=seasons_matches, **kwargs)
+    return AlfaChannel.seasons(item, matches_post=seasons_matches, finds=findS, **kwargs)
 
 
 def seasons_matches(item, matches_int, **AHkwargs):
@@ -644,7 +675,7 @@ def seasons_matches(item, matches_int, **AHkwargs):
     soup = AHkwargs.get('soup', {})
     status = check_user_status()                                                # Carga estados
 
-    sid = scrapertools.find_single_match(str(soup), "<\s*script\s*>\s*var\s*sid\s*=\s*'\s*(\d+)\s*'")
+    sid = scrapertools.find_single_match(str(soup), r"<\s*script\s*>\s*var\s*sid\s*=\s*'\s*(\d+)\s*'")
     if sid: 
         if not isinstance(item.info, _dict):
             item.info = {sid: sid}
@@ -714,7 +745,7 @@ def episodesxseason_matches(item, matches_int, **AHkwargs):
     soup = AHkwargs.get('soup', {})
 
     status = check_user_status()                                                # Carga estados
-    sid = scrapertools.find_single_match(str(soup), "<\s*script\s*>\s*var\s*sid\s*=\s*'\s*(\d+)\s*'")
+    sid = scrapertools.find_single_match(str(soup), r"<\s*script\s*>\s*var\s*sid\s*=\s*'\s*(\d+)\s*'")
     if not isinstance(item.info, _dict):
         logger.error('item.info ERRONEO: %s' % str(item.info))
         item.info = {sid: sid}
@@ -803,7 +834,6 @@ def findvideos(item):
             logger.info('Js_data DESCARGADO', force=True)
         else:
             logger.error('Js_data ERROR en DESCARGA')
-            return matches
         
         data_js = agrupa_datos(data_js_url, hide_infobox=True)
         if data_js:
@@ -811,7 +841,6 @@ def findvideos(item):
             logger.info('Data_js DESCARGADO', force=True)
         else:
             logger.error('Data_js ERROR en DESCARGA')
-            return matches
 
     return AlfaChannel.get_video_options(item, item.url, data='', matches_post=findvideos_matches, 
                                          verify_links=False, findvideos_proc=True, **kwargs)
@@ -829,7 +858,7 @@ def findvideos_matches(item, matches_int, langs, response, **AHkwargs):
     soup = AHkwargs.get('soup', {})
 
     if item.contentType == 'movie':
-        sid = scrapertools.find_single_match(str(soup), "<\s*script[^>]*>[^ª]+\s*var\s*mid\s*=\s*'\s*(\d+)\s*'")
+        sid = scrapertools.find_single_match(str(soup), r"<\s*script[^>]*>[^ª]+\s*var\s*mid\s*=\s*'\s*(\d+)\s*'")
         if sid: item.info = {sid: sid}
     
     try:
@@ -1166,6 +1195,8 @@ def agrupa_datos(url, post=None, referer=True, soup=False, json=False, force_che
         headers['Referer'] += 'episodios'
     if isinstance(referer, str):
         headers.update({'Referer': referer})
+    if len(canonical['host_alt']) > 1:
+        url = verify_domain_alt(url, post=post, headers=headers, soup=False, json=False)
 
     page = AlfaChannel.create_soup(url, post=post, headers=headers, ignore_response_code=True, timeout=timeout, 
                                    soup=False, json=False, canonical=canonical, hide_infobox=hide_infobox, alfa_s=alfa_s)
@@ -1178,6 +1209,7 @@ def agrupa_datos(url, post=None, referer=True, soup=False, json=False, force_che
         user_status = {}
         if window: window.setProperty("AH_hdfull_user_status", jsontools.dump(user_status))
         url = page.url_new
+        if window: window.setProperty("AH_hdfull_domain", AlfaChannel.host)
         return agrupa_datos(url, post=post, referer=referer, alfa_s=alfa_s, hide_infobox=hide_infobox, 
                             json=json, force_check=force_check, force_login=True)
 
@@ -1188,8 +1220,13 @@ def agrupa_datos(url, post=None, referer=True, soup=False, json=False, force_che
         sid = ''
         if window: window.setProperty("AH_hdfull_sid", sid)
         user_status = {}
-        if window: window.setProperty("AH_hdfull_user_status", jsontools.dump(user_status))
+        if window: 
+            window.setProperty("AH_hdfull_user_status", jsontools.dump(user_status))
+            window.setProperty("AH_hdfull_domain", "")
         return {} if json else ''
+
+    #dict_cookie = {'name': 'language' % AlfaChannel.obtain_domain(url), 'value': 'es', 'domain': AlfaChannel.response_preferred_proxy_ip.replace('https://', '.'), 'domain_initial_dot': True}
+    #AlfaChannel.httptools.set_cookies(dict_cookie, clear=False)
 
     if json:
         if not page.json and page.data:
@@ -1218,6 +1255,41 @@ def agrupa_datos(url, post=None, referer=True, soup=False, json=False, force_che
     
     return data
 
+def verify_domain_alt(url, post=None, headers={}, soup=False, json=False):
+    global host, host_save, canonical
+
+    host_alt = AlfaChannel.obtain_domain(url, scheme=True).rstrip('/') + '/'
+    if window and not window.getProperty("AH_hdfull_domain"):
+        url_rest = url.replace(host_alt, '')
+        canonical_alt = canonical.copy()
+    
+        for host_alt in canonical['host_alt']:
+            canonical_alt['host'] = host_alt
+            canonical_alt['host_alt'] = [host_alt]
+            page = AlfaChannel.create_soup(host_alt + url_rest, post=post, headers=headers, ignore_response_code=True, timeout=timeout, 
+                                           soup=soup, json=json, canonical=canonical_alt, alfa_s=True, proxy_retries=0, retries_cloudflare=0,
+                                           canonical_check=False)
+            if page.sucess:
+                url = host_alt + url_rest
+                break
+            logger.debug('Host dropped: %s - Code: %s' % (host_alt, page.code))
+        window.setProperty("AH_hdfull_domain", host_alt)
+        logger.debug('New Host: %s - Code: %s' % (host_alt, page.code))
+
+    elif window and window.getProperty("AH_hdfull_domain"):
+        host_alt = window.getProperty("AH_hdfull_domain")
+
+    if host_alt != host or host_alt != canonical['host_alt'][0]:
+        host = host_save = host_alt
+        for host_alt_ in canonical['host_alt'][:]:
+            if host_alt_ == host_alt: break
+            if host_alt_ not in canonical['host_black_list']: canonical['host_black_list'] += [host_alt_]
+            canonical['host_alt'].remove(host_alt_)
+        if config.get_setting("current_host", canonical['channel'], default='') != host:
+            config.set_setting("current_host", host, canonical['channel'])
+        
+    return url
+    
 
 """ USER's UTILITIES """
 def set_status__(item):
@@ -1481,7 +1553,7 @@ def find_hidden_seasons(item, matches, sid):
         if isinstance(sid, _dict): sid = list(sid.values())[0]
         try:
             high_json_season = matches[-1]['season']
-            url_season = re.sub('\d+$', '', matches[-1]['url'])
+            url_season = re.sub(r'\d+$', '', matches[-1]['url'])
         except Exception:
             high_json_season = 0
             url_season = item.url

@@ -192,7 +192,7 @@ def check_addon_updates(verbose=False, force=False):
 
         while not data['hash'] == hash_localfilename:
             if itt == 0:
-                if verbose: platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Acreditando fix... Espere...[/COLOR][/B]' % color_avis)
+                if verbose: platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Acreditando fix Espere...[/COLOR][/B]' % color_avis)
 
             itt += 1
 
@@ -212,14 +212,15 @@ def check_addon_updates(verbose=False, force=False):
                 if verbose: platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]No se pudo descargar la actualización[/COLOR][/B]' % color_alert)
                 return False
 
-            if verbose: platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Acreditando fix (itt %s)[/COLOR][/B]' % (color_avis, itt))
+            if verbose:
+                if itt > 1: platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Acreditando fix (itt %s Espere...)[/COLOR][/B]' % (color_avis, itt))
 
             hash_localfilename = check_zip_hash(localfilename)
             time.sleep(5)
 
             if itt == 5 and not data['hash'] == hash_localfilename: 
-                logger.info('No se pudo Acreditar la actualización')
-                if verbose: platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]No se pudo acreditar la actualización[/COLOR][/B]' % color_alert)
+                logger.info('No se pudo Acreditar el fix')
+                if verbose: platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]No se pudo acreditar el Fix[/COLOR][/B]' % color_alert)
                 return False
 
         if data['hash'] == hash_localfilename:
@@ -266,12 +267,19 @@ def get_last_chrome_list():
 
     ver_stable_chrome = config.get_setting("ver_stable_chrome", default=True)
 
+    web_last_ver_chrome = ''
+
     if ver_stable_chrome:
         try:
-            data = httptools.downloadpage('https://omahaproxy.appspot.com/all?csv=1').data
-            web_last_ver_chrome = scrapertools.find_single_match(data, "win64,stable,([^,]+),")
-        except:
-            web_last_ver_chrome = ''
+            data = httptools.downloadpage('https://versionhistory.googleapis.com/v1/chrome/platforms/win64/channels/extended/versions/all/releases?filter=endtime=none').data
+
+            matches = scrapertools.find_multiple_matches(data, '"version": "(.*?)"')
+
+            for last_version in matches:
+                if not last_version: continue
+
+                if last_version > web_last_ver_chrome: web_last_ver_chrome = last_version
+        except: pass
 
         if not web_last_ver_chrome == '': config.set_setting('chrome_last_version', web_last_ver_chrome)
 

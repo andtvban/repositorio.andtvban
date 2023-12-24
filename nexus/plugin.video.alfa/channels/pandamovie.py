@@ -16,19 +16,21 @@ from core import scrapertools
 from core import servertools
 from core.item import Item
 from core import httptools
-from channels import autoplay
+from modules import autoplay
 from bs4 import BeautifulSoup
 
 list_quality = ['default']
 list_servers = ['mangovideo']
 
-#  https://pandamovies.pw  'https://watchpornfree.info'   'https://xxxparodyhd.net'  
-#  https://www.netflixporno.net  https://xxxscenes.net  playpornx
+#  https://mangoporn.net   
+#  https://pandamovies.pw/ & https://xxxparodyhd.net & https://streamporn.pw/ & https://streamporn.li 
+#  https://www.netflixporno.net & https://watchpornfree.info & https://losporn.org/ 
+#  https://xxxscenes.net & https://watchfreexxx.net/ & https://speedporn.net &https://pornkino.cc/
 canonical = {
              'channel': 'pandamovie', 
              'host': config.get_setting("current_host", 'pandamovie', default=''), 
-             'host_alt': ["https://pandamovies.org/"], 
-             'host_black_list': [], 
+             'host_alt': ["https://pandamovies.pw/"], 
+             'host_black_list': ["https://pandamovies.org/", "https://streamporn.pw/"], 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'cf_assistant': False, 
              'CF': False, 'CF_test': False, 'alfa_s': True
             }
@@ -157,6 +159,7 @@ def findvideos(item):
     matches = soup.find('div', id='pettabs').find_all('a')
     for elem in matches:
         url = elem['href']
+        logger.debug(url)
         url = url.split("?link=")[-1]
         if not url in video_urls:
             video_urls += url

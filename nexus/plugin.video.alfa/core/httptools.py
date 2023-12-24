@@ -63,11 +63,12 @@ if HTTPTOOLS_DEFAULT_DOWNLOAD_TIMEOUT == 0: HTTPTOOLS_DEFAULT_DOWNLOAD_TIMEOUT =
 # Uso aleatorio de User-Agents, si no se especifica nada
 HTTPTOOLS_DEFAULT_RANDOM_HEADERS = False
 
-# Se activa desde Test
-TEST_ON_AIR = False
-
 # Se activa cuando se actualiza la Videoteca
 VIDEOLIBRARY_UPDATE = False
+
+# Se activa desde Test
+TEST_ON_AIR = False
+CACHING_DOMAINS = False
 
 # Activa DEBUG extendido cuando se extrae un Informe de error (log)
 DEBUG = config.get_setting('debug_report', default=False) if not TEST_ON_AIR else False
@@ -159,9 +160,10 @@ def get_cookie(url, name, follow_redirects=False):
             pass
         
     domain = obtain_domain(url, sub=True, point=True)
+    name_like = (name if '*' in name else '').replace('*', '')
 
     for cookie in cj:
-        if cookie.name == name and domain in cookie.domain:
+        if (cookie.name == name or (name_like and name_like in cookie.name)) and domain in cookie.domain:
             return cookie.value
     return False
 
@@ -228,11 +230,11 @@ def set_cookies(dict_cookie, clear=True, alfa_s=False):
             pass
 
     ck = cookielib.Cookie(version=0, name=name, value=value, port=None, 
-                    port_specified=False, domain=domain, 
-                    domain_specified=False, domain_initial_dot=domain_initial_dot,
-                    path='/', path_specified=True, secure=secure, 
-                    expires=expires, discard=True, comment=None, comment_url=None, 
-                    rest={'HttpOnly': None}, rfc2109=False)
+                          port_specified=False, domain=domain, 
+                          domain_specified=False, domain_initial_dot=domain_initial_dot,
+                          path='/', path_specified=True, secure=secure, 
+                          expires=expires, discard=True, comment=None, comment_url=None, 
+                          rest={'HttpOnly': None}, rfc2109=False)
     
     cj.set_cookie(ck)
     save_cookies()
@@ -325,39 +327,6 @@ def save_CF_list(domain, **opt):
         if alfa_caching:
            alfa_CF_list += [domain]
            window.setProperty("alfa_CF_list", str(alfa_CF_list))
-
-
-def random_useragent(browser='chrome'):
-    """
-    Python Method that generates fake user agents with a locally saved DB ('cloudscraper', 'user_agent', 'browsers.json').
-    This is useful for webscraping, and testing programs that identify devices based on the user agent.
-    """
-    try:
-        import random
-
-        UserAgentPath = os.path.join(config.get_runtime_path(), 'lib', 'cloudscraper', 'user_agent', 'browsers.json')
-        if os.path.exists(UserAgentPath):
-            with open(UserAgentPath, "r") as uap:
-                json_ua = json.loads(uap.read())
-                platform_ua = __platform.replace('raspberry', 'linux').replace('osx', 'darwin')\
-                                        .replace('xbox', 'windows').replace('tvos', 'ios')\
-                                        .replace('atv2', 'android').replace('unknown', 'windows')
-                if json_ua and (platform_ua in json_ua['user_agents']['desktop'] or platform_ua in json_ua['user_agents']['mobile']):
-                    if platform_ua in json_ua['user_agents']['desktop']:
-                        browser_json = json_ua['user_agents']['desktop'][platform_ua].get(browser, [])
-                    else:
-                        browser_json = json_ua['user_agents']['mobile'][platform_ua].get(browser, [])
-
-                    UserAgentIem = random.choice(browser_json).strip()
-                    logger.debug('Found %s' % UserAgentIem)
-                    if UserAgentIem:
-                        return UserAgentIem
-
-    except:
-        logger.error(traceback.format_exc())
-
-    logger.debug('NOT Found, default %s' % default_headers["User-Agent"])
-    return default_headers["User-Agent"]
 
 
 def channel_proxy_list(url, forced_proxy=None):
@@ -468,7 +437,8 @@ def proxy_post_processing(url, proxy_data, response, **opt):
     try:
         if response["code"] in NOT_FOUND_CODES:
             opt['proxy_retries'] = -1
-        elif response["code"] not in SUCCESS_CODES+REDIRECTION_CODES and opt.get('forced_proxy_opt', '') == 'ProxyJSON':
+        elif response["code"] not in SUCCESS_CODES+REDIRECTION_CODES and opt.get('forced_proxy_opt', '') == 'ProxyJSON' \
+                              and opt.get('error_check', True):
             opt['forced_proxy_opt'] = 'ProxyCF'
             opt['forced_proxy'] = opt['forced_proxy_opt']
 
@@ -507,7 +477,7 @@ def proxy_post_processing(url, proxy_data, response, **opt):
         elif response["code"] in REDIRECTION_CODES:
             response['sucess'] = True
 
-        if proxy_data.get('stat', '') and not response['sucess'] and \
+        if proxy_data.get('stat', '')  and opt.get('error_check', True) and not response['sucess'] and \
                 opt.get('proxy_retries_counter', 0) <= opt.get('proxy_retries', 1) and \
                 opt.get('count_retries_tot', 5) > 1:
             if not PY3: from . import proxytools
@@ -552,6 +522,7 @@ def proxy_post_processing(url, proxy_data, response, **opt):
 def blocking_error(url, req, proxy_data, **opt):
 
     if not opt.get('canonical_check', True): return False
+    if not opt.get('error_check', True): return False
     code = str(req.status_code) or ''
     data = ''
     if req.content: data = req.content[:5000]
@@ -627,9 +598,9 @@ def blocking_error(url, req, proxy_data, **opt):
             print_DEBUG(url, proxy_data, label='BLOCKING', **opt)
             if proxy and 'ProxyWeb' in proxy: url += ' / %s' % opt.get('url_save', '')
             try:
-                logger.error('Error: %s, Url: %s, Datos: %s' % (code, url, data[:500]))
+                if not CACHING_DOMAINS: logger.error('Error: %s, Url: %s, Datos: %s' % (code, url, data[:500]))
             except:
-                logger.error('Error: %s, Url: %s, Datos: NULL' % (code, url))
+                if not CACHING_DOMAINS: logger.error('Error: %s, Url: %s, Datos: NULL' % (code, url))
 
     return resp
 
@@ -922,7 +893,9 @@ def downloadpage(url, **opt):
                 HTTPResponse.canonical:| str     | Dirección actual de la página descargada
                 HTTPResponse.proxy__: | str      | Si la página se descarga con proxy, datos del proxy usado: proxy-type:addr:estado
     """
-    global CF_LIST, CS_stat, ssl_version, ssl_context
+    global CF_LIST, CS_stat, ssl_version, ssl_context, DEBUG
+    DEBUG = config.get_setting('debug_report', default=False) if not TEST_ON_AIR else False
+    #logger.error('alfa_s: %s; TEST_ON_AIR: %s; DEBUG: %s' % (opt.get('alfa_s', False), TEST_ON_AIR, DEBUG))
     
     if 'api.themoviedb' in url: opt['hide_infobox'] = True
 
@@ -1011,7 +984,11 @@ def downloadpage(url, **opt):
             req_headers = dict(opt('headers'))
 
     if opt.get('random_headers', False) or HTTPTOOLS_DEFAULT_RANDOM_HEADERS:
-        req_headers['User-Agent'] = random_useragent()
+        from cloudscraper.user_agent import User_Agent
+        platform = __platform.replace('raspberry', 'linux').replace('osx', 'darwin')\
+                                    .replace('xbox', 'windows').replace('tvos', 'ios')\
+                                    .replace('atv2', 'android').replace('unknown', 'windows')
+        req_headers['User-Agent'] = User_Agent(platform=platform).headers["User-Agent"]
 
     opt['proxy_retries_counter'] = 0
     opt['url_save'] = opt.get('url_save', '') or url
@@ -1278,9 +1255,10 @@ def downloadpage(url, **opt):
 
         # Si falla proxy SSL por timeout, sacarlo de proxy y reejecutarlo si está instalado Assistant, si no pasarlo a ProxyCF
         if ('timeout' in str(response_code).lower() or 'Detected a Cloudflare version 2' in str(response_code) \
-                                                    or response_code in CLOUDFLARE_CODES+NOT_FOUND_CODES) \
+                                                    or response_code in CLOUDFLARE_CODES) \
                                                     and ', Proxy Web' in proxy_data.get('stat', '') \
-                                                    and proxy_data.get('web_name') == 'croxyproxy.com':
+                                                    and proxy_data.get('web_name') == 'croxyproxy.com' \
+                                                    and opt.get('error_check', True):
             update_alfa_domain_web_list(url, 'Timeout=%s' % opt['timeout'], proxy_data, **opt)
 
             if not alfa_domain_web_list or not alfa_domain_web_list.get(proxy_data.get('web_name', ''), []):
@@ -1309,10 +1287,10 @@ def downloadpage(url, **opt):
                         opt['canonical']['proxy_addr_forced'] = opt['proxy_addr_forced']
                         opt['canonical']['forced_proxy'] = opt['forced_proxy']
                     proxytools.add_domain_retried(domain, proxy__type='', delete='forced')
-                    logger.debug("CF Assistant reTRY without SSL... for domain: %s" % domain)
+                    if not CACHING_DOMAINS: logger.debug("CF Assistant reTRY without SSL... for domain: %s" % domain)
                     return downloadpage(opt['url_save'], **opt)
 
-                logger.debug("reTRY without SSL... for domain: %s" % domain)
+                if not CACHING_DOMAINS: logger.debug("reTRY without SSL... for domain: %s" % domain)
                 proxytools.add_domain_retried(domain, proxy__type='ProxyCF', delete='SSL')
                 return downloadpage(opt['url_save'], **opt)
 
@@ -1325,7 +1303,7 @@ def downloadpage(url, **opt):
         # Retries Cloudflare errors
         if req.headers.get('Server', '').startswith('cloudflare') and response_code in CLOUDFLARE_CODES \
                         and (not opt.get('CF', False) or opt['retries_cloudflare'] > 0) and opt.get('CF_test', True) \
-                        and not opt.get('check_blocked_IP_save', {}):
+                        and not opt.get('check_blocked_IP_save', {}) and opt.get('error_check', True):
             domain = urlparse.urlparse(opt['url_save'])[1]
             if (domain not in CF_LIST and opt['retries_cloudflare'] >= 0) or opt['retries_cloudflare'] > 0:
                 if not '__cpo=' in url and domain not in CF_LIST:
@@ -1341,18 +1319,19 @@ def downloadpage(url, **opt):
                 opt['retries_cloudflare'] -= 1
                 if not "CF_save" in opt: opt["CF_save"] = opt["CF"] if "CF" in opt else None
                 if opt["CF_save"] is None: opt["CF"] = False if opt['retries_cloudflare'] > 0 else True
-                logger.debug("CF retry... for domain: %s, Retry: %s" % (domain, opt['retries_cloudflare']))
+                if not CACHING_DOMAINS: logger.debug("CF retry... for domain: %s, Retry: %s" % (domain, opt['retries_cloudflare']))
                 return downloadpage(opt['url_save'], **opt)
         
         # Retry con Assistant si falla proxy SSL
         if opt['retries_cloudflare'] <= 0 and response_code in CLOUDFLARE_CODES and opt.get('cf_assistant_if_proxy', True) \
-                        and not opt.get('cf_v2', False) and opt.get('CF_test', True) and ', Proxy Web' in proxy_data.get('stat', ''):
+                        and not opt.get('cf_v2', False) and opt.get('CF_test', True) and ', Proxy Web' in proxy_data.get('stat', '') \
+                        and opt.get('error_check', True) and opt.get('error_check', True):
             update_alfa_domain_web_list(url, response_code, proxy_data, **opt)
             url = opt['url_save']
             domain = obtain_domain(url, sub=True)
             opt['post'] = opt['post_save']
             opt['retries_cloudflare'] = 1
-            logger.debug("CF Assistant TRY... for domain: %s" % domain)
+            if not CACHING_DOMAINS: logger.debug("CF Assistant TRY... for domain: %s" % domain)
             from lib.cloudscraper import cf_assistant
             req = cf_assistant.get_cl(opt, req)
             response_code = req.status_code
@@ -1370,13 +1349,13 @@ def downloadpage(url, **opt):
             if not PY3: opt['proxy_retries'] = 0
             if opt['retries_cloudflare'] > 0: time.sleep(1)
             opt['retries_cloudflare'] -= 1
-            logger.debug("CF Assistant retry... for domain: %s" % urlparse.urlparse(url)[1])
+            if not CACHING_DOMAINS: logger.debug("CF Assistant retry... for domain: %s" % urlparse.urlparse(url)[1])
             return downloadpage(url, **opt)
 
         # Si hay bloqueo "cf_v2" y no hay Alfa Assistant, se reintenta con Proxy
         if opt.get('forced_proxy_ifnot_assistant', '') \
                            and ('Detected a Cloudflare version 2' in str(response_code) or response_code in CLOUDFLARE_CODES) \
-                           and not channel_proxy_list(opt['url_save']):
+                           and not channel_proxy_list(opt['url_save']) and opt.get('error_check', True):
             if opt.get('cf_v2', False):
                 response['code'] = response_code
                 response['headers'] = req.headers
@@ -1454,7 +1433,7 @@ def downloadpage(url, **opt):
 
         if req.headers.get('Content-Encoding', '') == 'br':
             try:
-                from lib.brotlipython.brotlipython import brotlidec
+                from brotlipython import brotlidec
                 response['data'] = brotlidec(response['data'], [])
             except Exception as e:
                 response['data'] = ''
@@ -1509,7 +1488,7 @@ def downloadpage(url, **opt):
         if not opt.get('alfa_s', False) and not 'api.themoviedb' in url and not '//127.' in url:
             if not response['sucess'] or opt.get("hide_infobox") is None:
                 show_infobox(info_dict, force=True)
-            elif not opt.get("hide_infobox"):
+            elif not opt.get("hide_infobox") and not CACHING_DOMAINS:
                 show_infobox(info_dict)
 
         # Si hay error del proxy, refresca la lista y reintenta el numero indicada en proxy_retries
@@ -1665,10 +1644,10 @@ def fill_fields_post(url, info_dict, req, response, req_headers, inicio, **opt):
         info_dict.append(('Response code', response['code']))
 
         if response['code'] in SUCCESS_CODES:
-            info_dict.append(('Success', 'True'))
+            info_dict.append(('Success', 'True - Error_check: %s' % opt.get('error_check', True)))
             response['sucess'] = True
         else:
-            info_dict.append(('Success', 'False'))
+            info_dict.append(('Success', 'False - Error_check: %s' % opt.get('error_check', True)))
             response['sucess'] = False
 
         info_dict.append(('Response data length', 0 if not response['data'] else len(response['data'])))
@@ -1709,7 +1688,8 @@ def obtain_domain(url, sub=False, point=False, scheme=False):
 
     if url and len(url) > 1:
         url = urlparse.urlparse(url).netloc
-        if sub:
+        ip = bool(scrapertools.find_single_match(url, '\d+\.\d+\.\d+\.\d+'))
+        if sub and not ip:
             split_lst = url.split(".")
             if len(split_lst) > 2:
                 if not point:
@@ -1746,7 +1726,7 @@ def build_response(HTTPResponse=False):
 def print_DEBUG(url, obj, label='', req={}, **opt):
 
     url_stat = ''
-    if DEBUG:
+    if DEBUG and not CACHING_DOMAINS:
         for exc in DEBUG_EXC:
             if exc in url: break
             if 'proxy' in label.lower():

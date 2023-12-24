@@ -4,24 +4,44 @@
     "ignore_urls": [],
     "patterns": [
       {
-        "pattern": "(https://(?:www.|)(?:nonktube|udvl|leslez|teenxy).com/video(?:s|)/[0-9]+/[A-z0-9-]+(?:/|))",
+        "pattern": "(https://(?:www.|)(?:nonktube|udvl|leslez|teenxy|sunporno).com/video(?:s|)/[0-9]+/[A-z0-9-]+(?:/|))",
         "url": "\\1"
       },
       {
-        "pattern": "(https://(?:www.|en.|)(?:fuqer|luxuretv|sextubefun|freehdporn).(?:com|xxx)/video(?:s|)/[A-z0-9-]+.html)",
+        "pattern": "(https://(?:www.|en.|)(?:fuqer|luxuretv|sextubefun|freehdporn|wanktv|iporntoo|hdporn-movies).(?:com|xxx)/video(?:s|)/[A-z0-9-]+.html)",
         "url": "\\1"
       },
       {
-        "pattern": "(https://(?:www.|)(?:justporn|pulpo69|fapmeifyoucan).(?:com|net)/video/[A-z0-9-]+(?:/|))",
+        "pattern": "(https://(?:www.|)(?:justporn|pulpo69).(?:com|net)/video/[A-z0-9-]+(?:/|))",
         "url": "\\1"
+      },
+      {
+        "pattern": "(https://(?:www.|)fapmeifyoucan.net/video/[A-z0-9-]+(?:/|))",
+        "url": "\\1/resolve"
       },
       {
         "pattern": "(https://(?:www.|)porn300.com(?:/es|)/video/[A-z0-9-]+(?:/|))",
         "url": "\\1"
       },
       {
-        "pattern": "(https://(?:www.|)send.cm/[A-z0-9-]+(?:/|))",
+        "pattern": "(https://xxk.mobi/video/[A-z0-9-]+(?:/|))",
         "url": "\\1"
+      },
+      {
+        "pattern": "(https://www.(?:porndroids|superporn).com/(?:es/|)video/[A-z0-9-]+(?:/|))",
+        "url": "\\1"
+      },
+      {
+        "pattern": "(https://(?:www.|)send.(?:cm|cam|net|site)/[A-z0-9-]+(?:/|))",
+        "url": "\\1"
+      },
+      {
+        "pattern": "(https://pornez.site/wp-content/plugins/clean-tube-player/public/player-x.php\\?q\\=[A-z0-9-=]+)",
+        "url": "\\1"
+      },
+      {
+        "pattern": "https://pornez.(?:cm|cam|net|site)/([A-z0-9-]+(?:/|))",
+        "url": "https://pornez.site/\\1"
       },
       {
         "pattern": "(https://(?:www.|)canalporno.com/ver/[A-z0-9-]+(?:/|))",
@@ -52,7 +72,15 @@
         "url": "\\1"
       },
      {
-        "pattern": "(https://(?:www.|)(?:yrprno|youcrazyx|trendyporn|yespornplease|hentaiprno|tubehentai|wetsins|pornyteen).(?:com|sexy)/video/[A-z0-9-]+.html)",
+        "pattern": "(https://(?:www.|)(?:tubehentai|wetsins|pornyteen).(?:com|sexy)/video/[A-z0-9-]+.html)",
+        "url": "\\1"
+      },
+     {
+        "pattern": "(https://(?:www.|)(?:yrprno|youcrazyx|trendyporn|yespornplease|hentaiprno|daftsextube).(?:com|sexy)/video/[A-z0-9-]+.html)",
+        "url": "\\1"
+      },
+      {
+        "pattern": "(https://www.trendyporn.com/embed/[0-9]+)",
         "url": "\\1"
       },
       {

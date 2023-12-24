@@ -7,34 +7,32 @@ import sys
 PY3 = False
 if sys.version_info[0] >= 3: PY3 = True; unicode = str; unichr = chr; long = int; _dict = dict
 
-import re
-import traceback
-if not PY3: _dict = dict; from collections import OrderedDict as dict
+from lib import AlfaChannelHelper
+if not PY3: _dict = dict; from AlfaChannelHelper import dict
+from AlfaChannelHelper import DictionaryAllChannel
+from AlfaChannelHelper import re, traceback, time, base64, xbmcgui
+from AlfaChannelHelper import Item, servertools, scrapertools, jsontools, get_thumb, config, logger, filtertools, autoplay
 
-from core.item import Item
-from core import servertools
-from core import scrapertools
-from core import jsontools
-from channelselector import get_thumb
-from platformcode import config, logger
-from channels import filtertools, autoplay
-from lib.AlfaChannelHelper import DictionaryAllChannel
-
-IDIOMAS = {'es': 'CAST', 'la': 'LAT', 'us': 'VOSE', 'ES': 'CAST', 'LA': 'LAT', 'US': 'VOSE', 
-           'Castellano': 'CAST', 'Latino': 'LAT', 'Version Original': 'VOSE'}
+IDIOMAS = AlfaChannelHelper.IDIOMAS_T
 list_language = list(set(IDIOMAS.values()))
-list_quality = []
-list_quality_movies = ['DVDR', 'HDRip', 'VHSRip', 'HD', '2160p', '1080p', '720p', '4K', '3D', 'Screener', 'BluRay']
-list_quality_tvshow = ['HDTV', 'HDTV-720p', 'WEB-DL 1080p', '4KWebRip']
-list_servers = ['torrent']
+list_quality_movies = AlfaChannelHelper.LIST_QUALITY_MOVIES_T
+list_quality_tvshow = AlfaChannelHelper.LIST_QUALITY_TVSHOW
+list_quality = list_quality_movies + list_quality_tvshow
+list_servers = AlfaChannelHelper.LIST_SERVERS_T
 forced_proxy_opt = 'ProxySSL'
+# Lista de proxies: https://donproxies.com/
 
 canonical = {
              'channel': 'dontorrent', 
              'host': config.get_setting("current_host", 'dontorrent', default=''), 
-             'host_alt': ["https://dontorrent.hair/", "https://todotorrents.net/", "https://dontorrent.in/", 
-                          "https://verdetorrent.com/", "https://tomadivx.net/", "https://donproxies.com/"], 
-             'host_black_list': ["https://dontorrent.foo/", "https://dontorrent.boo/", "https://dontorrent.day/", 
+             'host_alt': ["https://dontorrent.cymru/", "https://www2.dontorrent.fr/", "https://tomadivx.net/",
+                          "https://todotorrents.org/"], 
+             'host_black_list': ["https://dontorrent.contact/", 
+                                 "https://dontorrent.nagoya/", "https://dontorrent.wales/", "https://dontorrent.joburg/", 
+                                 "https://dontorrent.party/", "https://dontorrent.durban/", "https://dontorrent.rodeo/",
+                                 "https://dontorrent.boston/", "https://dontorrent.tokyo/", "https://dontorrent.bond/",
+                                 'https://dontorrent.nexus/', "https://dontorrent.quest/", "https://dontorrent.rsvp/", "https://dontorrent.hair/", 
+                                 "https://dontorrent.foo/", "https://dontorrent.boo/", "https://dontorrent.day/", 
                                  "https://dontorrent.mov/", 'https://dontorrent.zip/', 'https://dontorrent.dad/', 
                                  'https://dontorrent.discount/', 'https://dontorrent.company/', 'https://dontorrent.observer/', 
                                  'https://dontorrent.cash/', 'https://dontorrent.care/', 'https://dontorrent.ms/', 
@@ -55,8 +53,9 @@ canonical = {
                                  'https://dontorrent.cab/', 'https://dontorrent.bet/', 'https://dontorrent.cx/', 
                                  'https://dontorrent.nl/', 'https://dontorrent.tel/', 'https://dontorrent.pl/', 
                                  'https://dontorrent.cat/', 'https://dontorrent.run/', 'https://dontorrent.wf/', 
-                                 'https://dontorrent.pm/', 'https://dontorrent.top/', 'https://dontorrent.re/'], 
-             'pattern_proxy': '<a[^>]*class="text-white[^"]+"\s*style="font-size[^"]+"\s*href="([^"]+)"[^>]*>\s*Descargar\s*<\/a>', 
+                                 'https://dontorrent.pm/', 'https://dontorrent.top/', "https://dontorrent.re/",
+                                 "https://todotorrents.net/", "https://verdetorrent.com/", "https://dontorrent.in/"], 
+             'pattern_proxy': r'<a[^>]*class="text-white[^"]+"\s*style="font-size[^"]+"\s*href="([^"]+)"[^>]*>\s*Descargar\s*<\/a>', 
              'proxy_url_test': 'pelicula/25159/The-Batman', 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'forced_proxy_ifnot_assistant': forced_proxy_opt, 
              'CF': False, 'CF_test': False, 'alfa_s': True
@@ -70,7 +69,7 @@ host_torrent_referer = host
 modo_ultima_temp = config.get_setting('seleccionar_ult_temporadda_activa', channel)     # Actualización sólo últ. Temporada?
 min_temp = modo_ultima_temp if not modo_ultima_temp else 'continue'
 
-timeout = config.get_setting('timeout_downloadpage', channel)
+timeout = (5, config.get_setting('timeout_downloadpage', channel))
 kwargs = {}
 debug = config.get_setting('debug_report', default=False)
 movie_path = "/pelicula"
@@ -90,17 +89,17 @@ finds = {'find': {'find_all': [{'tag': ['div'], 'class': ['text-center']}]},
          'get_quality': {}, 
          'get_quality_rgx': [], 
          'next_page': {}, 
-         'next_page_rgx': [['\/page\/\d+', '/page/%s'], ['&pagina=\d+', '&pagina=%s']], 
+         'next_page_rgx': [[r'\/page\/\d+', '/page/%s'], [r'&pagina=\d+', '&pagina=%s']], 
          'last_page': dict([('find', [{'tag': ['ul'], 'class': ['pagination']}]), 
                             ('find_all', [{'tag': ['a'], '@POS': [-2]}]), 
-                            ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': '(\d+)'}])]), 
+                            ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': r'(\d+)'}])]), 
          'year': {}, 
          'season_episode': {}, 
          'seasons': {},
          'season_num': dict([('find', [{'tag': ['a']}]), 
-                             ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': '(\d+)'}])]), 
-         'seasons_search_num_rgx': [['(?i)-(\d+)-(?:Temporada|Miniserie)', None], ['(?i)(?:Temporada|Miniserie)-(\d+)', None]], 
-         'seasons_search_qty_rgx': [['(?i)(?:Temporada|Miniserie)(?:-(.*?)(?:\.|\/|-$|$))', None]], 
+                             ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': r'(\d+)'}])]), 
+         'seasons_search_num_rgx': [[r'(?i)-(\d+)-(?:Temporada|Miniserie)', None], [r'(?i)(?:Temporada|Miniserie)-(\d+)(?:\W|$)', None]], 
+         'seasons_search_qty_rgx': [[r'(?i)(?:Temporada|Miniserie)(?:-(.*?)(?:\.|\/|-$|$))', None]], 
          'episode_url': '', 
          'episodes': dict([('find', [{'tag': ['div'], 'class': ['card shadow-sm p-4']}]), 
                            ('find_all', [{'tag': ['tr']}])]), 
@@ -108,16 +107,16 @@ finds = {'find': {'find_all': [{'tag': ['div'], 'class': ['text-center']}]},
          'episode_clean': [], 
          'plot': {}, 
          'findvideos': {'find_all': [{'tag': ['div'], 'class': ['card shadow-sm p-4']}]}, 
-         'title_clean': [['(?i)TV|Online|(4k-hdr)|(fullbluray)|4k| - 4k|(3d)|miniserie|\s*imax|documental|completo', ''],
-                         ['(?i)[\[|\(]?\d{3,4}p[\]|\)]?|[\[|\(]?(?:4k|3d|uhd|hdr)[\]|\)]?', ''], 
-                         ['(?i)[-|\(]?\s*HDRip\)?|microHD|\(?BR-LINE\)?|\(?HDTS-SCREENER\)?', ''], 
-                         ['(?i)\(?BDRip\)?|\(?BR-Screener\)?|\(?DVDScreener\)?|\(?TS-Screener\)?|[\(|\[]\S*\.*$', ''],
-                         ['(?i)Castellano-*|Ingl.s|Trailer|Audio|\(*SBS\)*|\[*\(*dvd\s*r\d*\w*\]*\)*|[\[|\(]*dv\S*[\)|\]]*', ''], 
-                         ['(?i)Dual|Subt\w*|\(?Reparado\)?|\(?Proper\)?|\(?Latino\)?|saga(?:\s*del)?|\s+final', ''], 
-                         ['(?i)\s+\[*sub.*.*\s*int\w*\]*|poster', ''], 
-                         ['(?i)(?:\s*&#8211;)?\s*temp.*?\d+.*', ''], ['\d?\d?&#.*', ''], ['\d+[x|×]\d+.*', ''], 
-                         ['[\(|\[]\s*[\)|\]]', ''], ['(?i)\s*-*\s*\d{1,2}[^t]*\s*temp\w*\s*(?:\[.*?\])?', '']],
-         'quality_clean': [['(?i)proper|unrated|directors|cut|repack|internal|real|extended|masted|docu|super|duper|amzn|uncensored|hulu', '']],
+         'title_clean': [[r'(?i)TV|Online|(4k-hdr)|(fullbluray)|4k| - 4k|(3d)|miniserie|\s*imax|documental|completo', ''],
+                         [r'(?i)[\[|\(]?\d{3,4}p[\]|\)]?|[\[|\(]?(?:4k|3d|uhd|hdr)[\]|\)]?', ''], 
+                         [r'(?i)[-|\(]?\s*HDRip\)?|microHD|\(?BR-LINE\)?|\(?HDTS-SCREENER\)?', ''], 
+                         [r'(?i)\(?BDRip\)?|\(?BR-Screener\)?|\(?DVDScreener\)?|\(?TS-Screener\)?|[\(|\[]\S*\.*$', ''],
+                         [r'(?i)Castellano-*|Ingl.s|Trailer|Audio|\(*SBS\)*|\[*\(*dvd\s*r\d*\w*\]*\)*|[\[|\(]*dv\S*[\)|\]]*', ''], 
+                         [r'(?i)Dual|Subt\w*|\(?Reparado\)?|\(?Proper\)?|\(?Latino\)?|saga(?:\s*del)?|\s+final', ''], 
+                         [r'(?i)\s+\[*sub.*.*\s*int\w*\]*|poster', ''], 
+                         [r'(?i)(?:\s*&#8211;)?\s*temp.*?\d+.*', ''], [r'\d?\d?&#.*', ''], [r'\d+[x|×]\d+.*', ''], 
+                         [r'[\(|\[]\s*[\)|\]]', ''], [r'(?i)\s*-*\s*\d{1,2}[^t]*\s*temp\w*\s*(?:\[.*?\])?', '']],
+         'quality_clean': [[r'(?i)proper|unrated|directors|cut|repack|internal|real|extended|masted|docu|super|duper|amzn|uncensored|hulu', '']],
          'language_clean': [], 
          'url_replace': [], 
          'controls': {'min_temp': min_temp, 'url_base64': True, 'add_video_to_videolibrary': True, 'cnt_tot': 15, 
@@ -158,11 +157,16 @@ def mainlist(item):
                          url=host, thumbnail=get_thumb("search.png"), c_type="search", 
                          category=categoria))
 
+    if config.get_setting('find_alt_search', channel):
+        itemlist.append(Item(channel=item.channel, title=config.BTDIGG_LABEL + " búsqueda... (Pelis y Series)", action="search", 
+                             url=host, thumbnail=get_thumb("search.png"), c_type="search", 
+                             category=categoria, plot=AlfaChannelHelper.PLOT_BTDIGG, btdigg=True))
+
     itemlist.append(Item(channel=item.channel, url=host, title="[COLOR yellow]Configuración:[/COLOR]", 
                          folder=False, thumbnail=get_thumb("next.png")))
     itemlist.append(Item(channel=item.channel, action="configuracion", title="Configurar canal", 
                          thumbnail=get_thumb("setting_0.png")))
-    
+
     itemlist = filtertools.show_option(itemlist, item.channel, list_language, list_quality_tvshow, list_quality_movies)
     
     autoplay.show_option(item.channel, itemlist)
@@ -197,6 +201,11 @@ def submenu(item):
         itemlist.append(Item(channel=item.channel, title='Buscar...', action="search", 
                              url=host, thumbnail=get_thumb("search.png"), 
                              c_type="search", category=categoria))
+
+        if config.get_setting('find_alt_search', channel):
+            itemlist.append(Item(channel=item.channel, title=config.BTDIGG_LABEL + " búsqueda... (Pelis y Series)", action="search", 
+                                 url=host, thumbnail=get_thumb("search.png"), c_type="search", 
+                                 category=categoria, plot=AlfaChannelHelper.PLOT_BTDIGG, btdigg=True))
 
         itemlist = filtertools.show_option(itemlist, item.channel, list_language, list_quality_tvshow, list_quality_movies)
 
@@ -365,15 +374,15 @@ def list_all_matches(item, matches_int, **AHkwargs):
                     #logger.error(elem_a)
                     
                     elem_json['title'] = elem_a.get_text(strip=True)
-                    if scrapertools.find_single_match(elem_json['title'], '(?i)\:?\s*(\d+x\d+)'):
-                        elem_json['title_subs'] = ["Episodio %s" % scrapertools.find_single_match(elem_json['title'], '(?i)\:?\s*(\d+x\d+)')]
-                    elem_json['title'] = re.sub('(?i)\:?\s*\d+x\d+','', elem_json['title'])
+                    if scrapertools.find_single_match(elem_json['title'], r'(?i)\:?\s*(\d+x\d+)'):
+                        elem_json['title_subs'] = ["Episodio %s" % scrapertools.find_single_match(elem_json['title'], r'(?i)\:?\s*(\d+x\d+)')]
+                    elem_json['title'] = re.sub(r'(?i)\:?\s*\d+x\d+','', elem_json['title'])
 
                     if movie_path in elem_json['url']:
-                        elem_json['quality'] = '*%s' % re.sub('(?i)\(|\)|Ninguno', '', 
+                        elem_json['quality'] = '*%s' % re.sub(r'(?i)\(|\)|Ninguno', '', 
                                                 elem_a.find_next_sibling('span', class_='text-muted').get_text(strip=True))
                     elif tv_path in elem_json['url']:
-                        elem_json['quality'] = scrapertools.find_single_match(elem_json['title'], '\[([^\]]+)\]')
+                        elem_json['quality'] = scrapertools.find_single_match(elem_json['title'], r'\[([^\]]+)\]')
                         elem_json['quality'] = 'HDTV-720p' if '720p' in elem_json['quality'] else 'HDTV'
 
                 except Exception:
@@ -398,7 +407,7 @@ def list_all_matches(item, matches_int, **AHkwargs):
                     elem_json['url'] = elem_a.a.get("href", "")
                     elem_json['title'] = elem_a.get_text('|', strip=True)
                     elem_json['quality'] = '*%s' % (scrapertools.find_single_match(elem_a.get_text('|', strip=True), 
-                                                                '\[([^\]]+)\]').replace('Subs. integrados', '').strip() or 'HDTV')
+                                                                r'\[([^\]]+)\]').replace('Subs. integrados', '').strip() or 'HDTV')
                     elem_json['language'] = '*'
 
                 except Exception:
@@ -424,7 +433,7 @@ def list_all_matches(item, matches_int, **AHkwargs):
                     elem_json['title'] = info.find('p', class_='lead text-dark mb-0').get_text(strip=True)
                     elem_json['plot'] = info.find('hr', class_='my-2').find_next('p').get_text(strip=True)
                     elem_json['thumbnail'] = elem_a.img.get("src", "")
-                    elem_json['quality'] = '*%s' % re.sub('(?i)\(|\)|Ninguno', '', elem_a.get_text(strip=True))
+                    elem_json['quality'] = '*%s' % re.sub(r'(?i)\(|\)|Ninguno', '', elem_a.get_text(strip=True))
                     elem_json['language'] = '*'
 
                 except Exception:
@@ -457,10 +466,10 @@ def list_all_matches(item, matches_int, **AHkwargs):
                     if movie_path in elem_json['url']:
                         elem_json['title'] = elem_a.get_text('|').split('|')[0].rstrip('.')
                         elem_json['quality'] = '*%s' % scrapertools.find_single_match(elem_a.get_text('|').split('|')[-2], 
-                                                                                                      '\((.*?)\)').replace('Ninguno', '')
+                                                                                                      r'\((.*?)\)').replace('Ninguno', '')
                     else:
-                        elem_json['title'] = re.sub('(?i)\s*\(.*?\).*?$', '', elem_a.get_text()).rstrip('.')
-                        elem_json['quality'] = '*%s' % scrapertools.find_single_match(elem_a.get_text(), '\((.*?)\)').replace('Ninguno', '')
+                        elem_json['title'] = re.sub(r'(?i)\s*\(.*?\).*?$', '', elem_a.get_text()).rstrip('.')
+                        elem_json['quality'] = '*%s' % scrapertools.find_single_match(elem_a.get_text(), r'\((.*?)\)').replace('Ninguno', '')
                     elem_json['language'] = '*'
 
                 except Exception:
@@ -491,21 +500,21 @@ def list_all_matches(item, matches_int, **AHkwargs):
                     if movie_path in elem_json['url']:
                         # Si es Película obtenermos el título a partir del Thumbnail
                         elem_json['title'] = scrapertools.remove_htmltags(elem_json['title']).strip().strip('.')
-                        elem_json['title'] = re.sub('\d{3,7}[-|_|\/]+\d{3,10}[-|\/]', '', elem_json['title'].split('/')[-1])
-                        elem_json['title'] = re.sub('--[^\.|$]*|.jpg|.png|$', '', elem_json['title'])
-                        elem_json['title'] = re.sub('-\d{6,10}-mmed(?:.jpg|.png|$)', '', elem_json['title'])
+                        elem_json['title'] = re.sub(r'\d{3,7}[-|_|\/]+\d{3,10}[-|\/]', '', elem_json['title'].split('/')[-1])
+                        elem_json['title'] = re.sub(r'--[^\.|$]*|.jpg|.png|$', '', elem_json['title'])
+                        elem_json['title'] = re.sub(r'-\d{6,10}-mmed(?:.jpg|.png|$)', '', elem_json['title'])
                         elem_json['title'] = elem_json['title'].replace('-', ' ').replace('_', ' ').strip()
                     
                     else:
                         # Si es Serie o Documental obtenermos el título a partir de la url
-                        if scrapertools.find_single_match(elem_json['url'], '[-|\/]\d{3,10}[-|\/]\d{3,10}[-|\/]*(.*?)(?:.htm|$)'):
+                        if scrapertools.find_single_match(elem_json['url'], r'[-|\/]\d{3,10}[-|\/]\d{3,10}[-|\/]*(.*?)(?:.htm|$)'):
                             elem_json['title'] = scrapertools.find_single_match(elem_json['url'], 
-                                                 '[-|\/]\d{3,10}[-|\/]\d{3,10}[-|\/]*(.*?)(?:.htm|$)').replace('-', ' ').replace('_', ' ')
-                            elem_json['title'] = re.sub('\d+\s*[t|T]emporada', '', elem_json['title'])
+                                                 r'[-|\/]\d{3,10}[-|\/]\d{3,10}[-|\/]*(.*?)(?:.htm|$)').replace('-', ' ').replace('_', ' ')
+                            elem_json['title'] = re.sub(r'\d+\s*[t|T]emporada', '', elem_json['title'])
                         else:
                             elem_json['title'] = scrapertools.find_single_match(elem_json['url'], 
-                                                 '[-|\/]\d{3,10}[-|\/](.*?)(?:.htm|$)').replace('-', ' ').replace('_', ' ')
-                        elem_json['title'] = re.sub('(?i)\s*-\s*\d{1,2}.\s*temporada\s*(?:\[.*?\])?', '', elem_json['title']).rstrip('.')
+                                                 r'[-|\/]\d{3,10}[-|\/](.*?)(?:.htm|$)').replace('-', ' ').replace('_', ' ')
+                        elem_json['title'] = re.sub(r'(?i)\s*-\s*\d{1,2}.\s*temporada\s*(?:\[.*?\])?', '', elem_json['title']).rstrip('.')
                         if not elem_json['title']:
                             elem_json['title'] = elem_json['url']
                         elem_json['title'] = scrapertools.remove_htmltags(elem_json['title'])
@@ -573,25 +582,25 @@ def episodesxseason_matches(item, matches_int, **AHkwargs):
                 try:
                     sxe = td.get_text(strip=True)
                     if not sxe: break
-                    if scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)\s*al\s*\d+x(\d+)'):
+                    if scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)\s*al\s*\d+x(\d+)'):
                         elem_json['season'], elem_json['episode'], alt_epi = \
-                                scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)\s*al\s*\d+x(\d+)')
+                                scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)\s*al\s*\d+x(\d+)')
                         epi_rango = True
-                    elif scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)\s*al\s*(\d+)'):
+                    elif scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)\s*al\s*(\d+)'):
                         elem_json['season'], elem_json['episode'], alt_epi = \
-                                scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)\s*al\s*(\d+)')
+                                scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)\s*al\s*(\d+)')
                         epi_rango = True
-                    elif scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)\s*-\s*(\d+)'):
+                    elif scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)\s*-\s*(\d+)'):
                         elem_json['season'], elem_json['episode'], alt_epi = \
-                                scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)\s*-\s*(\d+)')
+                                scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)\s*-\s*(\d+)')
                         epi_rango = True
-                    elif scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)'):
+                    elif scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)'):
                         elem_json['season'], elem_json['episode'] = \
-                                scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)')
-                    elif scrapertools.find_single_match(sxe, '(\d+)'):
+                                scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)')
+                    elif scrapertools.find_single_match(sxe, r'(\d+)'):
                         elem_json['season'] = 1
-                        elem_json['episode'] = scrapertools.find_single_match(sxe, '^(\d+)')
-                    elif scrapertools.find_single_match(sxe, '(?i)\[cap\.(\d)(\d{2})\]'):
+                        elem_json['episode'] = scrapertools.find_single_match(sxe, r'^(\d+)')
+                    elif scrapertools.find_single_match(sxe, r'(?i)\[cap\.(\d)(\d{2})\]'):
                         continue
                     else:
                         break
@@ -615,7 +624,7 @@ def episodesxseason_matches(item, matches_int, **AHkwargs):
                 if elem_json['url'].startswith('//'):
                     elem_json['url'] = 'https:%s' % elem_json['url']
                 elem_json['quality'] = '*%s' % (scrapertools.find_single_match(elem_json['url'], 
-                                               '[-|_]\(?\[?((?:HDTV\d{3,4}p|720p|1080p|HDTV)(?:[-|_]\d+p)?)').replace('_', '-'))
+                                               r'[-|_]\(?\[?((?:HDTV\d{3,4}p|720p|1080p|HDTV)(?:[-|_]\d+p)?)').replace('_', '-') or item.quality)
 
             if x == 3:
                 if 'copiar' in td.a.get('title', ''):
@@ -724,6 +733,7 @@ def search(item, texto, **AHkwargs):
 
     try:
         if texto:
+            if item.btdigg: item.btdigg = texto
             item.url = item.referer = host + 'buscar/' + texto + '/page/1'
             item.c_type = "search"
             item.texto = texto

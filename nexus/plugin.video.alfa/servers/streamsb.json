@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "find_videos": {
     "ignore_urls": [],
     "patterns": [
@@ -12,7 +12,7 @@
         "url": "https://streamsb.net/play/\\1"
       },
       {
-        "pattern": "(?:sblona|likessb).com/(?:e/|d/|)([A-z0-9]+)",
+        "pattern": "(?:sblona|likessb|sbface).com/(?:e/|d/|)([A-z0-9]+)",
         "url": "https://streamsb.net/play/\\1"
       },
       {

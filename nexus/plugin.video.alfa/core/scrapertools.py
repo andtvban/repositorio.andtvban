@@ -116,7 +116,15 @@ def unescape(text):
     if PY3:
         text = text.replace(u'\xa0', ' ').replace('\xa0', ' ')
     else:
-        text = text.replace(u'\xa0', ' ')
+        try:
+            text = text.replace(u'\xa0', ' ')
+        except:
+            pass
+        try:
+            text = text.replace('\xa0', ' ')
+        except:
+            pass
+        
     return re.sub("&#?\w+;", fixup, str(text))
 
     # Convierte los codigos html "&ntilde;" y lo reemplaza por "ñ" caracter unicode utf-8
@@ -612,6 +620,10 @@ def decode_utf8_error(path):
         path = htmlparser(path)
         
     return path
+
+
+def unhex_text(text):
+    return re.sub('\\\\x([a-fA-F0-9][a-fA-F0-9])', lambda text_: str(chr(int(text_.group(1), 16))), text)
 
 
 def htmlparser(data):

@@ -11,7 +11,7 @@ else:
 
 import re
 
-from channels import autoplay
+from modules import autoplay
 from platformcode import config, logger, platformtools
 from core import scrapertools
 from core.item import Item
@@ -134,6 +134,9 @@ def findvideos(item):
             itemlist.append(Item(channel=item.channel, action="play", title= "%s", contentTitle = item.title, url=url))
         elif "tape" in ser:
             url = "https://streamtape.com/e/%s" % id
+            itemlist.append(Item(channel=item.channel, action="play", title= "%s", contentTitle = item.title, url=url))
+        elif "voe" in ser:
+            url = "https://voe.sx/e/%s" % id
             itemlist.append(Item(channel=item.channel, action="play", title= "%s", contentTitle = item.title, url=url))
         elif "ntu" in ser:
             continue

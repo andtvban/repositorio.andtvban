@@ -7,36 +7,29 @@ import sys
 PY3 = False
 if sys.version_info[0] >= 3: PY3 = True; unicode = str; unichr = chr; long = int; _dict = dict
 
-import re
-import traceback
-if not PY3: _dict = dict; from collections import OrderedDict as dict
+from lib import AlfaChannelHelper
+if not PY3: _dict = dict; from AlfaChannelHelper import dict
+from AlfaChannelHelper import DictionaryAllChannel
+from AlfaChannelHelper import re, traceback, time, base64, xbmcgui
+from AlfaChannelHelper import Item, servertools, scrapertools, jsontools, get_thumb, config, logger, filtertools, autoplay
 
-from core.item import Item
-from core import servertools
-from core import scrapertools
-from core import jsontools
-from channelselector import get_thumb
-from platformcode import config, logger
-from channels import filtertools, autoplay
-from lib.AlfaChannelHelper import DictionaryAllChannel
-
-IDIOMAS = {'es': 'CAST', 'la': 'LAT', 'us': 'VOSE', 'ES': 'CAST', 'LA': 'LAT', 'US': 'VOSE', 
-           'Castellano': 'CAST', 'Latino': 'LAT', 'Version Original': 'VOSE'}
+IDIOMAS = AlfaChannelHelper.IDIOMAS_T
 list_language = list(set(IDIOMAS.values()))
-list_quality = []
-list_quality_movies = ['DVDR', 'HDRip', 'VHSRip', 'HD', '2160p', '1080p', '720p', '4K', '3D', 'Screener', 'BluRay']
-list_quality_tvshow = ['HDTV', 'HDTV-720p', 'WEB-DL 1080p', '4KWebRip']
-list_servers = ['torrent']
-forced_proxy_opt = 'ProxyWeb'
+list_quality_movies = AlfaChannelHelper.LIST_QUALITY_MOVIES_T
+list_quality_tvshow = AlfaChannelHelper.LIST_QUALITY_TVSHOW
+list_quality = list_quality_movies + list_quality_tvshow
+list_servers = AlfaChannelHelper.LIST_SERVERS_T
+forced_proxy_opt = 'ProxySSL'
 
 canonical = {
              'channel': 'divxtotal', 
              'host': config.get_setting("current_host", 'divxtotal', default=''), 
-             'host_alt': ["https://www.divxtotal.win/"], 
-             'host_black_list': ["https://www.divxtotal.wf/", "https://www.divxtotal.pl/", "https://www.divxtotal.cat/", 
+             'host_alt': ["https://www2.divxtotal.mov/"], 
+             'host_black_list': ["https://www2.divxtotal.zip/", "https://www1.divxtotal.zip/", "https://www.divxtotal.win/", 
+                                 "https://www.divxtotal.wf/", "https://www.divxtotal.pl/", "https://www.divxtotal.cat/", 
                                  "https://www.divxtotal.fi/", "https://www.divxtotal.dev/", "https://www.divxtotal.ac/", 
                                  "https://www.divxtotal.re/", "https://www.divxtotal.pm/", "https://www.divxtotal.nl/"], 
-             'pattern': '<li>\s*<a\s*href="([^"]+)"\s*>\S*\/a><\/li>', 
+             'pattern': r'<li>\s*<a\s*href="([^"]+)"\s*>\S*\/a><\/li>', 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'forced_proxy_ifnot_assistant': forced_proxy_opt, 
              'CF': False, 'CF_test': False, 'alfa_s': True
             }
@@ -48,7 +41,7 @@ min_temp = modo_ultima_temp if not modo_ultima_temp else 'continue'
 movies_sufix = 'peliculas-hd/'
 series_sufix = 'series/'
 
-timeout = config.get_setting('timeout_downloadpage', channel) * 3
+timeout = (5, (config.get_setting('timeout_downloadpage', channel) * 3))
 kwargs = {}
 debug = config.get_setting('debug_report', default=False)
 movie_path = "/peliculas"
@@ -64,21 +57,21 @@ finds = {'find': dict([('find', [{'tag': ['table'], 'class': ['table']}]),
                              ('find_all', [{'tag': ['a']}])]),  
          'search': {}, 
          'get_language': {}, 
-         'get_language_rgx': '(?:flags\/|\/images\/)([^\.]+)\.(?:png|jpg|jpeg|webp)', 
+         'get_language_rgx': r'(?:flags\/|\/images\/)([^\.]+)\.(?:png|jpg|jpeg|webp)', 
          'get_quality': dict([('find', [{'tag': ['ul'], 'class': True}]), 
                               ('get_text', [{'tag': '', '@STRIP': True}])]), 
          'get_quality_rgx': [], 
          'next_page': {}, 
-         'next_page_rgx': [['\/page\/\d+', '/page/%s/']], 
+         'next_page_rgx': [[r'\/page\/\d+', '/page/%s/']], 
          'last_page': dict([('find', [{'tag': ['ul'], 'class': ['pagination']}]), 
-                            ('find_all', [{'tag': ['a'], '@POS': [-1], '@ARG': 'href', '@TEXT': '\/(\d+)\/'}])]), 
+                            ('find_all', [{'tag': ['a'], '@POS': [-1], '@ARG': 'href', '@TEXT': r'\/(\d+)\/'}])]), 
          'year': {}, 
          'season_episode': {}, 
          'seasons': {'find_all': [{'tag': ['h3'], 'string': re.compile('(?i)temporada')}]},
          'season_num': dict([('find', [{'tag': ['a']}]), 
-                             ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': '(\d+)'}])]), 
-         'seasons_search_num_rgx': [['(?i)-(\d+)-(?:Temporada|Miniserie)', None], ['(?i)(?:Temporada|Miniserie)-(\d+)', None]], 
-         'seasons_search_qty_rgx': [['(?i)(?:Temporada|Miniserie)(?:-(.*?)(?:\.|\/|-$|$))', None]], 
+                             ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': r'(\d+)'}])]), 
+         'seasons_search_num_rgx': [[r'(?i)-(\d+)-(?:Temporada|Miniserie)', None], [r'(?i)(?:Temporada|Miniserie)-(\d+)', None]], 
+         'seasons_search_qty_rgx': [[r'(?i)(?:Temporada|Miniserie)(?:-(.*?)(?:\.|\/|-$|$))', None]], 
          'episode_url': '', 
          'episodes': dict([('find', [{'tag': ['div'], 'class': ['row fichseriecapitulos']}]), 
                            ('find_all', [{'tag': ['tbody']}])]), 
@@ -86,15 +79,15 @@ finds = {'find': dict([('find', [{'tag': ['table'], 'class': ['table']}]),
          'episode_clean': [], 
          'plot': {}, 
          'findvideos': {'find_all': [{'tag': ['h3'], 'class': ['orange text-center']}]}, 
-         'title_clean': [['(?i)TV|Online|(4k-hdr)|(fullbluray)|4k| - 4k|(3d)|miniserie|\s*imax', ''],
-                         ['(?i)[\[|\(]?\d{3,4}p[\]|\)]?|[\[|\(]?(?:4k|3d|uhd|hdr)[\]|\)]?', ''], 
-                         ['(?i)[-|\(]?\s*HDRip\)?|microHD|\(?BR-LINE\)?|\(?HDTS-SCREENER\)?', ''], 
-                         ['(?i)\(?BDRip\)?|\(?BR-Screener\)?|\(?DVDScreener\)?|\(?TS-Screener\)?|[\(|\[]\S*\.*$', ''],
-                         ['(?i)Castellano-*|Ingl.s|Trailer|Audio|\(*SBS\)*|\[*\(*dvd\s*r\d*\w*\]*\)*|[\[|\(]*dv\S*[\)|\]]*', ''], 
-                         ['(?i)Dual|Subt\w*|\(?Reparado\)?|\(?Proper\)?|\(?Latino\)?|saga(?:\s*del)?|\s+final', ''], 
-                         ['(?i)(?:\s*&#8211;)?\s*temp.*?\d+.*', ''], ['\d?\d?&#.*', ''], ['\d+[x|×]\d+.*', ''], 
-                         ['[\(|\[]\s*[\)|\]]', '']],
-         'quality_clean': [['(?i)proper|unrated|directors|cut|repack|internal|real|extended|masted|docu|super|duper|amzn|uncensored|hulu', '']],
+         'title_clean': [[r'(?i)TV|Online|(4k-hdr)|(fullbluray)|4k| - 4k|(3d)|miniserie|\s*imax', ''],
+                         [r'(?i)[\[|\(]?\d{3,4}p[\]|\)]?|[\[|\(]?(?:4k|3d|uhd|hdr)[\]|\)]?', ''], 
+                         [r'(?i)[-|\(]?\s*HDRip\)?|microHD|\(?BR-LINE\)?|\(?HDTS-SCREENER\)?', ''], 
+                         [r'(?i)\(?BDRip\)?|\(?BR-Screener\)?|\(?DVDScreener\)?|\(?TS-Screener\)?|[\(|\[]\S*\.*$', ''],
+                         [r'(?i)Castellano-*|Ingl.s|Trailer|Audio|\(*SBS\)*|\[*\(*dvd\s*r\d*\w*\]*\)*|[\[|\(]*dv\S*[\)|\]]*', ''], 
+                         [r'(?i)Dual|Subt\w*|\(?Reparado\)?|\(?Proper\)?|\(?Latino\)?|saga(?:\s*del)?|\s+final', ''], 
+                         [r'(?i)(?:\s*&#8211;)?\s*temp.*?\d+.*', ''], [r'\d?\d?&#.*', ''], [r'\d+[x|×]\d+.*', ''], 
+                         [r'[\(|\[]\s*[\)|\]]', '']],
+         'quality_clean': [[r'(?i)proper|unrated|directors|cut|repack|internal|real|extended|masted|docu|super|duper|amzn|uncensored|hulu', '']],
          'language_clean': [], 
          'url_replace': [], 
          'controls': {'duplicates': [], 'min_temp': min_temp, 'url_base64': True, 'add_video_to_videolibrary': True, 'cnt_tot': 15, 
@@ -249,15 +242,15 @@ def list_all_matches(item, matches_int, **AHkwargs):
                 if host not in elem_json['url'] or (movie_path not in elem_json['url'] and tv_path not in elem_json['url']): continue
                 
                 elem_json['title'] = elem.a.get_text(strip=True)
-                if scrapertools.find_single_match(elem_json['title'], '(?i)\s*(\d+x\d+)'):
-                    elem_json['title_subs'] = ["Episodio %s" % scrapertools.find_single_match(elem_json['title'], '(?i)\s*(\d+x\d+)')]
-                elem_json['title'] = re.sub('(?i)\s*\d+x\d+','', elem_json['title'])
+                if scrapertools.find_single_match(elem_json['title'], r'(?i)\s*(\d+x\d+)'):
+                    elem_json['title_subs'] = ["Episodio %s" % scrapertools.find_single_match(elem_json['title'], r'(?i)\s*(\d+x\d+)')]
+                elem_json['title'] = re.sub(r'(?i)\s*\d+x\d+','', elem_json['title'])
 
-                elem_json['thumbnail'] = scrapertools.find_single_match(elem.a.get("onmouseover", ""), "javascript:cambia_[^\(]+\('([^']+)'")
+                elem_json['thumbnail'] = scrapertools.find_single_match(elem.a.get("onmouseover", ""), r"javascript:cambia_[^\(]+\('([^']+)'")
                 
                 if movie_path+'-' in elem_json['url']:
                     elem_json['quality'] = '*%s' % scrapertools.find_single_match(elem_json['url'], 
-                                                                                  '%s-([^\/]+)\/' % movie_path).upper().replace('-', '')
+                                                                                  r'%s-([^\/]+)\/' % movie_path).upper().replace('-', '')
             elif item.c_type in ['peliculas', 'search']:
                 for x, td in enumerate(elem.find_all('td')):
                     if x == 0:
@@ -271,7 +264,7 @@ def list_all_matches(item, matches_int, **AHkwargs):
                 elem_json['thumbnail'] = elem.find('p', class_="secconimagen").img.get("src", "")
                 #elem_json['year'] = scrapertools.find_single_match(elem.find('p', class_="seccontfetam").get_text(strip=True), '\d{4}')
 
-            elem_json['quality'] = elem_json.get('quality', '') or 'HDTV' if tv_path in elem_json['url'] else ''
+            elem_json['quality'] = elem_json.get('quality', '') or 'HDTV' if tv_path in elem_json.get('url', '') else ''
 
         except:
             logger.error(elem)
@@ -333,12 +326,12 @@ def episodesxseason_matches(item, matches_int, **AHkwargs):
                     try:
                         sxe = td.a.get_text(strip=True)
                         if not sxe: break
-                        if scrapertools.find_single_match(sxe, '(?i)(\d+)x(\d+)'):
-                            season = scrapertools.find_single_match(sxe, '(?i)(\d+)x\d+')
+                        if scrapertools.find_single_match(sxe, r'(?i)(\d+)x(\d+)'):
+                            season = scrapertools.find_single_match(sxe, r'(?i)(\d+)x\d+')
                             if len(season) > 2:
                                 pos = len(str(item.contentSeason)) * -1
                                 season = season[pos:]
-                            episode = scrapertools.find_single_match(sxe, '(?i)\d+x(\d+)')
+                            episode = scrapertools.find_single_match(sxe, r'(?i)\d+x(\d+)')
                         elem_json['season'] = int(season or 1)
                         elem_json['episode'] = int(episode or 1)
                         if elem_json['season'] != item.contentSeason: break
@@ -421,7 +414,7 @@ def findvideos_matches(item, matches_int, langs, response, **AHkwargs):
                                 AlfaChannel.get_language_and_set_filter(td, elem_json)
                                 if not elem_json['language']: elem_json['language'] = '*%s' % td.img.get('src', '').replace('N/A', '')
                             if x == 2: elem_json['quality'] = '*%s' % td.get_text().replace('-', '').replace('N/A', '')
-                            if x == 3: elem_json['torrent_info'] =  td.get_text().replace('-', '').replace('N/A', '')
+                            if x == 3: elem_json['size'] =  td.get_text().replace('-', '').replace('N/A', '')
                             if x == 4:
                                 elem_json['url'] = td.a.get('href', '')
                                 if host not in elem_json['url'] and elem.find('a', class_="opcion_2").get('href', ''):
@@ -435,12 +428,14 @@ def findvideos_matches(item, matches_int, langs, response, **AHkwargs):
                                 AlfaChannel.get_language_and_set_filter(td, elem_json)
                                 if not elem_json['language']: elem_json['language'] = '*'
                                 elem_json['quality'] = '*3D'
-                                elem_json['torrent_info'] = ''
+                                elem_json['size'] = ''
 
                         else:
                             break
 
                     elem_json['server'] = 'torrent'
+                    if elem_json.get('size', ''): 
+                        elem_json['size'] = re.sub(r'(\d+)GB', r'\1 GB', elem_json['size']).replace('.', ',')
 
                     if elem_json.get('url', ''):
                         elem_json['url'] = elem_json['url'].replace("download/torrent.php', {u: ", "download_tt.php?u=")

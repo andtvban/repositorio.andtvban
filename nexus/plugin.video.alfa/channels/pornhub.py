@@ -7,25 +7,18 @@ import sys
 PY3 = False
 if sys.version_info[0] >= 3: PY3 = True; unicode = str; unichr = chr; long = int; _dict = dict
 
-import re
-import traceback
-if not PY3: _dict = dict; from collections import OrderedDict as dict
+from lib import AlfaChannelHelper
+if not PY3: _dict = dict; from AlfaChannelHelper import dict
+from AlfaChannelHelper import DictionaryAdultChannel
+from AlfaChannelHelper import re, traceback, time, base64, xbmcgui
+from AlfaChannelHelper import Item, servertools, scrapertools, jsontools, get_thumb, config, logger, filtertools, autoplay
 
-from core.item import Item
-from core import servertools
-from core import scrapertools
-from core import jsontools
-from channelselector import get_thumb
-from platformcode import config, logger
-from channels import filtertools, autoplay
-from lib.AlfaChannelHelper import DictionaryAdultChannel
-
-IDIOMAS = {}
+IDIOMAS = AlfaChannelHelper.IDIOMAS_A
 list_language = list(set(IDIOMAS.values()))
-list_quality = []
-list_quality_movies = []
+list_quality_movies = AlfaChannelHelper.LIST_QUALITY_MOVIES_A
 list_quality_tvshow = []
-list_servers = []
+list_quality = list_quality_movies + list_quality_tvshow
+list_servers = AlfaChannelHelper.LIST_SERVERS_A
 forced_proxy_opt = 'ProxySSL'
 
 canonical = {
@@ -47,9 +40,9 @@ language = []
 url_replace = []
 
 
-finds = {'find': dict([ ('find', [{'tag': ['ul'], 'class': ['nf-videos', 'search-video-thumbs', 'row-5-thumbs']}]), 
-                         ('find_all', [{'tag': ['li'], 'data-video-id': re.compile(r"^\d+")}]) ]),
-         'categories': {'find_all': [{'tag': ['li'], 'class': ['pornstarLi', 'modelLi', 'wrap', 'catPic']}]}, 
+finds = {'find': dict([ ('find', [{'tag': ['ul'], 'class': ['videoList', 'search-video-thumbs', 'row-5-thumbs']}]), 
+                         ('find_all', [{'tag': ['li']}]) ]),
+         'categories': {'find_all': [{'tag': ['div'], 'class': ['pornstarWrap', 'channelsListWrapper', 'category-wrapper']}]}, 
          'search': {}, 
          'get_quality': {}, 
          'get_quality_rgx': '', 
@@ -59,7 +52,7 @@ finds = {'find': dict([ ('find', [{'tag': ['ul'], 'class': ['nf-videos', 'search
          'last_page': {}, 
          'plot': {}, 
          'findvideos': {}, 
-         'title_clean': [['[\(|\[]\s*[\)|\]]', ''], ['(?i)\s*videos*\s*', '']],
+         'title_clean': [['[\(|\[]\s*[\)|\]]', ''], ['(?i)\s*videos*\s*', ''], ['Porn Category', '']],
          'quality_clean': [['(?i)proper|unrated|directors|cut|repack|internal|real|extended|masted|docu|super|duper|amzn|uncensored|hulu', '']],
          'url_replace': [], 
          'controls': {'url_base64': False, 'cnt_tot': 30, 'reverse': False}, 
@@ -171,11 +164,11 @@ def list_all_matches(item, matches_int, **AHkwargs):
         try:    
             if elem.find('div', class_='thumbTextPlaceholder'): continue   
             elem_json['url'] = elem.a.get('href', '')
-            elem_json['title'] = elem.a.get('title', '')
+            elem_json['title'] = elem.img.get('alt', '')
             elem_json['thumbnail'] = elem.img.get('data-original', '') \
                                      or elem.img.get('data-src', '') \
                                      or elem.img.get('src', '')
-            elem_json['stime'] = elem.find('var', class_='duration').get_text(strip=True) if elem.find('var', class_='duration') else ''
+            elem_json['stime'] = elem.find(class_='duration').get_text(strip=True) if elem.find(class_='duration') else ''
             if elem.find('span', class_='views'):
                 elem_json['views'] = elem.find('span', class_='views').get_text(strip=True)
 

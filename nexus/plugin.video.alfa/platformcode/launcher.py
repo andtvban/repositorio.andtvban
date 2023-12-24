@@ -23,6 +23,7 @@ from core.item import Item
 from platformcode import config, logger
 from platformcode import platformtools
 from platformcode.logger import WebErrorException
+from platformcode import configurator
 
 
 def start():
@@ -31,6 +32,15 @@ def start():
     funciones que deseamos que se ejecuten nada mas abrir el plugin.
     """
     logger.info()
+    channel_language = config.get_setting("channel_language")
+    if isinstance(channel_language, str):
+        from channelselector import LANGUAGES
+        channel_language = channel_language.lower()
+        try:
+            channel_language = LANGUAGES.index(channel_language)
+        except ValueError:
+            channel_language = 0
+        config.set_setting("channel_language", channel_language)
     # if config.get_platform(True)['num_version'] >= 19:
     #     from core import filetools
     #     origin = filetools.join(config.get_runtime_path(), "resources", "settings_matrix.xml")
@@ -41,10 +51,12 @@ def start():
     # Test if all the required directories are created
     #config.verify_directories_created()
     
+    if not config.get_setting('show_once'):
+        configurator.show_window()
+    
 
 def load_item():
     from modules import side_menu
-    from platformcode import configurator
 
     # Extract item from sys.argv
     if sys.argv[2]:
@@ -74,10 +86,6 @@ def load_item():
                 item.startpage = True
         else:
             item = Item(module="channelselector", action="getmainlist", viewmode="movie")
-    
-    if not config.get_setting('show_once'):
-        if config.verify_settings_integrity() and not config.get_setting('show_once'):
-            configurator.show_window()
 
     return item
 
@@ -111,7 +119,7 @@ def monkey_patch_modules(item):
     ])
 
     if item.channel in modules:
-        item.module = item.channel
+        item.module = item.module or item.channel
 
     if item.module:
         if not item.channel:
@@ -302,6 +310,10 @@ def run(item=None):
                         (module_type["type"], module_name, module_file, os.path.exists(module_file), module))
                     return
 
+            if item.channel == "test" and item.contentChannel:
+                if item.parameters == "test_channel":
+                    getattr(module, item.action)(item.contentChannel)
+            
             # Calls redirection if Alfavorites findvideos, episodios, seasons
             if item.context and 'alfavorites' in str(item.context) \
                             and item.action in ['findvideos', 'episodios', 'seasons', 'play']:
@@ -365,7 +377,7 @@ def run(item=None):
                                 "executing core method")
                     itemlist = servertools.find_video_items(item)
 
-                if config.get_setting("max_links", "videolibrary") != 0:
+                if config.get_setting("videolibrary_max_links") != 0:
                     itemlist = limit_itemlist(itemlist)
 
                 from platformcode import subtitletools
@@ -401,7 +413,7 @@ def run(item=None):
                 from core import channeltools
 
                 # last_search = ""
-                # last_search_active = config.get_setting("last_search", "search")
+                # last_search_active = config.get_setting("search_remember_last")
                 # if last_search_active:
                 #     try:
                 #         current_saved_searches_list = list(config.get_setting("saved_searches_list", "search"))
@@ -411,7 +423,7 @@ def run(item=None):
 
                 last_search = channeltools.get_channel_setting('Last_searched', 'search', '')
 
-                tecleado = platformtools.dialog_input(last_search)
+                tecleado = item.texto or platformtools.dialog_input(last_search)
 
                 if tecleado is not None:
                     if "http" not in tecleado:
@@ -521,7 +533,6 @@ def run(item=None):
         platformtools.render_items(itemlist, item)
 
 
-
 def reorder_itemlist(itemlist):
     logger.info()
     # logger.debug("Inlet itemlist size: %i" % len(itemlist))
@@ -576,7 +587,7 @@ def limit_itemlist(itemlist):
     # logger.debug("Inlet itemlist size: %i" % len(itemlist))
 
     try:
-        opt = config.get_setting("max_links", "videolibrary")
+        opt = config.get_setting("videolibrary_max_links")
         if opt == 0:
             new_list = itemlist
         else:
@@ -608,7 +619,7 @@ def play_from_library(item):
     import xbmc
     from time import sleep, time
     from modules import nextep
-    from channels import autoplay
+    from modules import autoplay
     from channels import videolibrary
 
     # Intentamos reproducir una imagen (esto no hace nada y ademas no da error)
@@ -625,7 +636,7 @@ def play_from_library(item):
     check_next_ep = nextep.check(item)
 
 
-    window_type = config.get_setting("window_type", "videolibrary")
+    window_type = config.get_setting("videolibrary_window_type")
 
     # y volvemos a lanzar kodi
     if xbmc.getCondVisibility('Window.IsMedia') and not window_type == 1:
@@ -663,11 +674,11 @@ def play_from_library(item):
                 itemlist = servertools.filter_servers(itemlist)'''
 
             # Se limita la cantidad de enlaces a mostrar
-            if config.get_setting("max_links", "videolibrary") != 0:
+            if config.get_setting("videolibrary_max_links") != 0:
                 itemlist = limit_itemlist(itemlist)
 
             # Se "limpia" ligeramente la lista de enlaces
-            if config.get_setting("replace_VD", "videolibrary") == 1:
+            if config.get_setting("videolibrary_shorter_window_texts") == 1:
                 itemlist = reorder_itemlist(itemlist)
 
 

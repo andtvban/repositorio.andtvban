@@ -5,9 +5,6 @@ from platformcode import logger
 from lib import jsunpack
 
 
-# Si el servidor tarda en responder no funciona streaming pero sí la descarga. Si responde rápido sí funciona streaming.
-
-
 def get_video_url(page_url, url_referer=''):
     logger.info("url=" + page_url)
     video_urls = []

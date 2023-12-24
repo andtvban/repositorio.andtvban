@@ -29,7 +29,7 @@ def mainlist_series(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'serie-completa/', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Últimos episodios', action = 'last_epis', url = host + 'ver-serie/', search_type = 'tvshow', text_color = 'olive' ))
+    itemlist.append(item.clone( title = 'Últimos episodios', action = 'last_epis', url = host + 'ver-serie/', search_type = 'tvshow', text_color = 'cyan' ))
 
     itemlist.append(item.clone( title = 'Más vistas', action = 'list_all', url = host + 'tendencias/', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Más valoradas', action = 'list_all', url = host + 'ratings/', search_type = 'tvshow' ))
@@ -54,6 +54,9 @@ def generos(item):
     matches = scrapertools.find_multiple_matches(bloque, '<a href="(.*?)".*?>(.*?)</a>')
 
     for url, title in matches:
+        if config.get_setting('descartar_anime', default=False):
+            if title == 'Anime': continue
+
         itemlist.append(item.clone( action = 'list_all', title = title, url = url, text_color = 'hotpink' ))
 
     return sorted(itemlist, key=lambda it: it.title)
@@ -227,7 +230,9 @@ def temporadas(item):
         tempo = title.replace('Temporada ', '').strip()
 
         if len(seasons) == 1:
-            platformtools.dialog_notification(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), 'solo [COLOR tan]' + title + '[/COLOR]')
+            if config.get_setting('channels_seasons', default=True):
+                platformtools.dialog_notification(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), 'solo [COLOR tan]' + title + '[/COLOR]')
+
             item.page = 0
             item.data_id = data_id
             item.contentType = 'season'
@@ -270,7 +275,8 @@ def episodios(item):
             if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
-        if tvdb_id:
+        if config.get_setting('channels_charges', default=True): item.perpage = sum_parts
+        elif tvdb_id:
             if sum_parts > 50:
                 platformtools.dialog_notification('PelisPedia3', '[COLOR cyan]Cargando Todos los elementos[/COLOR]')
                 item.perpage = sum_parts
@@ -336,9 +342,6 @@ def findvideos(item):
     logger.info()
     itemlist = []
 
-    logger.info()
-    itemlist = []
-
     IDIOMAS = {'mx': 'Lat', 'es': 'Esp', 'en': 'Vose', 'jp': 'Vose'}
 
     data = do_downloadpage(item.url)
@@ -357,8 +360,6 @@ def findvideos(item):
 
         if 'trailer' in servidor: continue
 
-        elif 'hqq' in servidor or 'waaw' in servidor or 'netu' in servidor: continue
-
         if servertools.is_server_available(servidor):
             if not servertools.is_server_enabled(servidor): continue
         else:
@@ -371,41 +372,12 @@ def findvideos(item):
 
         if not dpost or not dnume: continue
 
-        itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', dpost = dpost, dnume = dnume, other = servidor.capitalize(), language = IDIOMAS.get(lang, lang) ))
+        if not servidor == 'directo': other = ''
+        else: other = servidor
 
-    # enlaces
-    matches = scrapertools.find_multiple_matches(data, "<tr id='link-'(.*?)</tr>")
+        itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, dpost = dpost, dnume = dnume, other = other, language = IDIOMAS.get(lang, lang) ))
 
-    for match in matches:
-        ses += 1
-
-        url = scrapertools.find_single_match(match, "<a href='(.*?)'")
-
-        if '/hqq.' in url or '/waaw.' in url or '/netu.' in url: continue
-
-        elif 'ul.to' in url: continue
-
-        servidor = servertools.get_server_from_url(url, disabled_servers=True)
-
-        if servidor is None: continue
-
-        servidor = servertools.corregir_servidor(servidor)
-
-        if servertools.is_server_available(servidor):
-            if not servertools.is_server_enabled(servidor): continue
-        else:
-            if not config.get_setting('developer_mode', default=False): continue
-
-        url = servertools.normalize_url(servidor, url)
-
-        url = servertools.normalize_url(servidor, url)
-
-        if url:
-            qlty = scrapertools.find_single_match(match, "<strong class='quality'>(.*?)</strong>")
-
-            lang = scrapertools.find_single_match(match, " src='.*?/flags/(.*?).png'")
-
-            itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, url = url, language = IDIOMAS.get(lang, lang), quality = qlty ))
+    # downloads recatpcha
 
     if not itemlist:
         if not ses == 0:

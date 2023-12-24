@@ -23,7 +23,8 @@ from core import jsontools
 from lib import jsunpack
 from channelselector import get_thumb
 from platformcode import config, logger
-from channels import filtertools, autoplay
+from channels import filtertools
+from modules import autoplay
 from bs4 import BeautifulSoup
 
 
@@ -45,7 +46,7 @@ canonical = {
              'host_alt': ["https://serieskao.top/"], 
              'host_black_list': ["https://serieskao.org/", "https://serieskao.net/"], 
              'pattern': ['<link\s*rel="shortcut\s*icon"\s*href="(\w+\:\/\/[^\/]+\/)'], 
-             'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 
+             'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1,
              'CF': False, 'CF_test': False, 'alfa_s': True
             }
 host = canonical['host'] or canonical['host_alt'][0]
@@ -168,7 +169,7 @@ def seasons(item):
 
     tmdb.set_infoLabels_itemlist(itemlist, True)
 
-    if config.get_videolibrary_support() and len(itemlist) > 0:
+    if config.get_videolibrary_support() and len(itemlist) > 0 and not item.add_videolibrary:
         itemlist.append(
             Item(channel=item.channel, title='[COLOR yellow]Añadir esta serie a la videoteca[/COLOR]', url=item.url,
                  action="add_serie_to_library", extra="episodios", contentSerieName=item.contentSerieName))
@@ -218,9 +219,35 @@ def findvideos(item):
         url = elem['onclick']
         lang = elem['data-lang']
         url = scrapertools.find_single_match(url, "go_to_player\('([^']+)")
-        url = "https://api.mycdn.moe/player/?id=%s" %url
-        soup = create_soup(url)
-        video_url = soup.iframe['src']
+        # url = "https://api.mycdn.moe/player/?id=%s" %url
+        # soup = create_soup(url)
+        # video_url = soup.iframe['src']
+        if url.startswith("http"):
+            video_url = url
+        elif url:
+            try:
+                video_url = base64.b64decode(url).decode()
+            except (ValueError, TypeError):
+                video_url = url
+
+        if "embedsito" in video_url:
+            continue
+        if "plusvip.net" in video_url:
+            continue
+            try:
+                url_pattern = "(?:[\w\d]+://)?[\d\w]+\.[\d\w]+/moe\?data=(.+)$"
+                source_pattern = "this\[_0x5507eb\(0x1bd\)\]='(.+?)'"
+
+                data = httptools.downloadpage(video_url).data
+                url = scrapertools.find_single_match(video_url, url_pattern)
+                source = scrapertools.find_single_match(data, source_pattern)
+
+                source_url = "https://plusvip.net{}".format(source)
+                data = httptools.downloadpage(source_url, post={'link': url},
+                                            referer=video_url)
+                video_url = data.json["link"]
+            except Exception as e:
+                logger.error(e)
         if "uptobox=" in video_url:
             url = scrapertools.find_single_match(video_url, 'uptobox=([A-z0-9]+)')
             video_url = "https://uptobox.com/%s" %url

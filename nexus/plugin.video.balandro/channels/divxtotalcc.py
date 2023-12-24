@@ -18,7 +18,7 @@ from lib import decrypters
 host = 'https://www.divxtotal.cc/'
 
 
-host_play = 'https://www.divxtotal.cat/'
+players = 'https://www.divxtotal.cat/'
 
 
 # ~ 11/2022 Para play en peliculas necesita proxies por bloqueo operadoras
@@ -57,10 +57,27 @@ def configurar_proxies(item):
 
 
 def do_downloadpage(url, post=None, headers=None):
-    if not url.startswith(host) and not url.startswith(host_play):
+    hay_proxies = False
+    if config.get_setting('channel_divxtotalcc_proxies', default=''): hay_proxies = True
+
+    if not url.startswith(host) and not url.startswith(players):
         data = httptools.downloadpage(url, post=post, headers=headers).data
     else:
-        data = httptools.downloadpage_proxy('divxtotalcc', url, post=post, headers=headers).data
+        if hay_proxies:
+            data = httptools.downloadpage_proxy('divxtotalcc', url, post=post, headers=headers).data
+        else:
+            data = httptools.downloadpage(url, post=post, headers=headers).data
+
+        if not data:
+            if not '?q=' in url:
+                if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('DivxTotalCc', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+
+                timeout = config.get_setting('channels_repeat', default=30)
+
+                if hay_proxies:
+                    data = httptools.downloadpage_proxy('divxtotalcc', url, post=post, headers=headers, timeout=timeout).data
+                else:
+                    data = httptools.downloadpage(url, post=post, headers=headers).data
 
     return data
 
@@ -103,7 +120,7 @@ def mainlist_pelis(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + '/peliculas/', search_type = 'movie' ))
 
-    itemlist.append(item.clone( title = 'Últimas', action = 'list_all', url = host, group = 'lasts', search_type = 'movie' ))
+    itemlist.append(item.clone( title = 'Últimas', action = 'list_all', url = host, group = 'lasts', search_type = 'movie', text_color='cyan' ))
 
     itemlist.append(item.clone( title = 'Españolas', action = 'list_all', url = host + 'peliculas/?category_name=espanolas', search_type = 'movie', text_color = 'moccasin' ))
 
@@ -123,7 +140,7 @@ def mainlist_series(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'series/', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Últimas', action = 'list_all', url = host, group = 'lasts', search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Últimas', action = 'list_all', url = host, group = 'lasts', search_type = 'tvshow', text_color='cyan' ))
 
     return itemlist
 
@@ -152,6 +169,9 @@ def generos(item):
     for url, title in matches:
         if title == 'Españolas': continue
 
+        if config.get_setting('descartar_anime', default=False):
+            if title == 'Anime': continue
+
         url = host[:-1] + url
 
         itemlist.append(item.clone( action='list_all', title=title, url=url, text_color = 'deepskyblue' ))
@@ -170,10 +190,9 @@ def list_all(item):
     if not bloque:
         if item.search_type == 'tvshow': bloque = data
 
-    if not bloque:
-        if item.group == 'lasts':
-            if item.search_type == 'movie': bloque = scrapertools.find_single_match(data, '<div class="panel panel-default peliculas-bloque bloque-home">(.*?)>Series</h2>')
-            else: bloque = scrapertools.find_single_match(data, '>Series</h2>(.*?)>Programas</h3>')
+    if item.group == 'lasts':
+        if item.search_type == 'movie': bloque = scrapertools.find_single_match(data, '>Películas</h2>(.*?)>Series</h2>')
+        else: bloque = scrapertools.find_single_match(data, '>Series</h2>(.*?)>Programas</h2>')
 
     matches = scrapertools.find_multiple_matches(bloque, '<tr>(.*?)</tr>')
     if not matches:
@@ -203,6 +222,8 @@ def list_all(item):
         tipo = 'movie' if '/peliculas/' in url or '/peliculas-' in url else 'tvshow'
         sufijo = '' if item.search_type != 'all' else tipo
 
+        title = title.replace("&#8217;", "'").replace("&#8230;", ':').replace("&#8211;", ':')
+
         if tipo == 'movie':
             if not item.search_type == 'all':
                 if item.search_type == 'tvshow': continue
@@ -218,10 +239,12 @@ def list_all(item):
 
             titulo = titulo.replace(' - serie', '').strip()
 
-            titulo = titulo.replace(' - serie', '').strip()
-
             if " - " in titulo: SerieName = titulo.split(" - ")[0]
             else: SerieName = titulo
+
+            if item.group == 'lasts':
+                SerieName = scrapertools.find_single_match(url, '/series/(.*?)/')
+                SerieName = SerieName.replace('-', ' ')
 
             itemlist.append(item.clone( action='temporadas', url=url, title=titulo, thumbnail=thumb, fmt_sufijo=sufijo,
                                         contentType = 'tvshow', contentSerieName = SerieName, infoLabels={'year': "-" } ))
@@ -256,7 +279,9 @@ def temporadas(item):
         title = 'Temporada ' + tempo
 
         if len(temporadas) == 1:
-            platformtools.dialog_notification(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), 'solo [COLOR tan]' + title + '[/COLOR]')
+            if config.get_setting('channels_seasons', default=True):
+                platformtools.dialog_notification(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), 'solo [COLOR tan]' + title + '[/COLOR]')
+
             item.contentType = 'season'
             item.contentSeason = tempo
             itemlist = episodios(item)
@@ -377,9 +402,12 @@ def play(item):
     logger.info()
     itemlist = []
 
+
+    if '/divxto.site/' in item.url or '/www.divxtotal.fi/': return itemlist
+
     if item.other == 'Directo':
         if not item.url.endswith('.torrent'):
-            item.url = host_play + 'download_tt.php?u=' + item.url
+            item.url = players + 'download_tt.php?u=' + item.url
 
             if PY3:
                 from core import requeststools
@@ -389,13 +417,15 @@ def play(item):
 
             if data:
                 try:
-                   if 'Página no encontrada</title>' in str(data) or 'no encontrada</title>' in str(data) or '<h1>403 Forbidden</h1>' in str(data):
+                   if '<!DOCTYPE html>' in str(data):
+                       return 'Archivo [COLOR red]Corrupto[/COLOR]'
+                   elif 'Página no encontrada</title>' in str(data) or 'no encontrada</title>' in str(data) or '<h1>403 Forbidden</h1>' in str(data):
                        return 'Archivo [COLOR red]No encontrado[/COLOR]'
-                   elif '<p>Por causas ajenas a ' in str(data):
+                   elif '<p>Por causas ajenas a' in str(data):
                        if not config.get_setting('proxies', item.channel, default=''):
                            return 'Archivo [COLOR cyan]bloqueado[/COLOR] [COLOR red]Configure los proxies[/COLOR]'
 
-                       return 'Archivo [COLOR red]bloqueado[/COLOR]'
+                       return 'Play archivo [COLOR red]Bloqueado[/COLOR]'
                 except:
                    pass
 
@@ -407,7 +437,7 @@ def play(item):
             return itemlist
 
     if not item.url.endswith('.torrent'):
-        host_torrent = host_play[:-1]
+        host_torrent = players[:-1]
         url_base64 = decrypters.decode_url_base64(item.url, host_torrent)
 
         if url_base64.endswith('.torrent'): item.url = url_base64
@@ -421,13 +451,15 @@ def play(item):
 
         if data:
             try:
-               if 'Página no encontrada</title>' in str(data) or 'no encontrada</title>' in str(data) or '<h1>403 Forbidden</h1>' in str(data):
+               if '<!DOCTYPE html>' in str(data):
+                   return 'Archivo [COLOR red]Corrupto[/COLOR]'
+               elif 'Página no encontrada</title>' in str(data) or 'no encontrada</title>' in str(data) or '<h1>403 Forbidden</h1>' in str(data):
                    return 'Archivo [COLOR red]No encontrado[/COLOR]'
                elif '<p>Por causas ajenas a ' in str(data):
                    if not config.get_setting('proxies', item.channel, default=''):
                        return 'Archivo [COLOR cyan]bloqueado[/COLOR] [COLOR red]Configure los proxies[/COLOR]'
 
-                   return 'Archivo [COLOR cyan]bloqueado[/COLOR]'
+                   return 'Play archivo [COLOR cyan]Bloqueado[/COLOR]'
             except:
                pass
 

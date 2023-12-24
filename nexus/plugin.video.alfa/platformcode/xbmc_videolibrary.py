@@ -33,7 +33,7 @@ def mark_auto_as_watched(item):
         logger.info()
         # logger.debug("item:\n" + item.tostring('\n'))
 
-        condicion = config.get_setting("watched_setting", "videolibrary")
+        condicion = config.get_setting("videolibrary_watched_setting")
 
         time_limit = time.time() + 30
         while not platformtools.is_playing() and time.time() < time_limit:
@@ -72,13 +72,13 @@ def mark_auto_as_watched(item):
 
         # Sincronizacion silenciosa con Trakt
         if sync_with_trakt:
-            if config.get_setting("sync_trakt_watched", "videolibrary"):
+            if config.get_setting("videolibrary_trakt_sync_after_watching"):
                 sync_trakt_kodi()
 
                 # logger.debug("Fin del hilo")
 
     # Si esta configurado para marcar como visto
-    if config.get_setting("mark_as_watched", "videolibrary"):
+    if config.get_setting("videolibrary_mark_as_watched"):
         threading.Thread(target=mark_as_watched_subThread, args=[item]).start()
 
 
@@ -211,7 +211,7 @@ def sync_trakt_kodi(silent=True):
     # Para que la sincronizacion no sea silenciosa vale con silent=False
     if xbmc.getCondVisibility('System.HasAddon("script.trakt")'):
         notificacion = True
-        if (not config.get_setting("sync_trakt_notification", "videolibrary") and
+        if (not config.get_setting("videolibrary_trakt_sync_notification") and
                 platformtools.is_playing()):
             notificacion = False
 
@@ -234,6 +234,10 @@ def mark_content_as_watched_on_kodi(item, value=1):
     @param value: >0 para visto, 0 para no visto
     """
     logger.info()
+
+    if not config.get_setting("videolibrary_auto_sync_kodi"):
+        return
+
     # logger.debug("item:\n" + item.tostring('\n'))
     payload_f = ''
 
@@ -309,11 +313,15 @@ def mark_season_as_watched_on_kodi(item, value=1):
         @param value: >0 para visto, 0 para no visto
         """
     logger.info()
+
+    if not config.get_setting("videolibrary_auto_sync_kodi"):
+        return
+
     # logger.debug("item:\n" + item.tostring('\n'))
 
     # Solo podemos marcar la temporada como vista en la BBDD de Kodi si la BBDD es local,
     # en caso de compartir BBDD esta funcionalidad no funcionara
-    if config.get_setting("db_mode", "videolibrary"):
+    if config.get_setting("videolibrary_xbmc_db_location"):
         return
 
     if value == 0:
@@ -392,11 +400,15 @@ def get_videos_watched_on_kodi(item, value=1, list_videos=False):
         @param Return: True si list_videos=False y todos tiene el estado "value".  Si list_videos=True, devuelve lista de vídeos
         """
     logger.info()
+
+    if not config.get_setting("videolibrary_auto_sync_kodi"):
+        return
+
     # logger.debug("item:\n" + item.tostring('\n'))
 
     # Solo podemos obtener los vídeos como vistos en la BBDD de Kodi si la BBDD es local,
     # en caso de compartir BBDD esta funcionalidad no funcionara
-    if config.get_setting("db_mode", "videolibrary"):
+    if config.get_setting("videolibrary_xbmc_db_location"):
         return
 
     request_season = ''
@@ -418,7 +430,8 @@ def get_videos_watched_on_kodi(item, value=1, list_videos=False):
         if item.contentType == 'tvshow':
             view = 'season'
             fields = 'season, playCount, episodes'
-            search = ' or showTitle like "*%s*" or strPath like "*%s*"' % (item.contentSerieName, item.contentSerieName)
+            search = ' or showTitle like "*%s*" or strPath like "*%s*" or strPath like "*%s*"' \
+                     % (item.contentSerieName, item.contentSerieName, item.infoLabels['originaltitle'])
             search = search.replace('*', '%')
         else:
             view = 'episode'
@@ -464,15 +477,19 @@ def get_videos_watched_on_kodi(item, value=1, list_videos=False):
 
 
 def mark_content_as_watched_on_alfa(path):
-    from channels.videolibrary import check_season_playcount
-    from core.videolibrarytools import read_nfo, write_nfo
-    
     """
         marca toda la serie o película como vista o no vista en la Videoteca de Alfa basado en su estado en la Videoteca de Kodi
         @type str: path
         @param path: carpeta de contenido a marcar
-        """
+    """
     logger.info()
+
+    if not config.get_setting("videolibrary_auto_sync_kodi"):
+        return
+
+    from channels.videolibrary import check_season_playcount
+    from core.videolibrarytools import read_nfo, write_nfo
+
     #logger.debug("path: " + path)
     
     FOLDER_MOVIES = config.get_setting("folder_movies")
@@ -483,7 +500,7 @@ def mark_content_as_watched_on_alfa(path):
 
     # Solo podemos marcar el contenido como vista en la BBDD de Kodi si la BBDD es local,
     # en caso de compartir BBDD esta funcionalidad no funcionara
-    #if config.get_setting("db_mode", "videolibrary"):
+    #if config.get_setting("videolibrary_xbmc_db_location"):
     #    return
     
     path2 = ''
@@ -553,8 +570,8 @@ def mark_content_as_watched_on_alfa(path):
     res = write_nfo(path, head_nfo, item)
     
     #logger.debug(item)
-    
-    
+
+
 def get_data(payload):
     """
     obtiene la información de la llamada JSON-RPC con la información pasada en payload
@@ -566,14 +583,14 @@ def get_data(payload):
     # Required header for XBMC JSON-RPC calls, otherwise you'll get a 415 HTTP response code - Unsupported media type
     headers = {'content-type': 'application/json'}
 
-    if config.get_setting("db_mode", "videolibrary"):
+    if config.get_setting("videolibrary_xbmc_db_location"):
         try:
             try:
-                xbmc_port = config.get_setting("xbmc_puerto", "videolibrary")
+                xbmc_port = config.get_setting("videolibrary_xbmc_db_port")
             except:
                 xbmc_port = 0
 
-            xbmc_json_rpc_url = "http://" + config.get_setting("xbmc_host", "videolibrary") + ":" + str(
+            xbmc_json_rpc_url = "http://" + config.get_setting("videolibrary_xbmc_db_host") + ":" + str(
                 xbmc_port) + "/jsonrpc"
             req = urllib2.Request(xbmc_json_rpc_url, data=jsontools.dump(payload), headers=headers)
             f = urllib2.urlopen(req)
@@ -611,6 +628,9 @@ def update(folder_content=config.get_setting("folder_tvshows"), folder=""):
     @param folder: nombre de la carpeta a escanear.
     """
     logger.info(folder)
+
+    if not config.get_setting("videolibrary_auto_sync_kodi"):
+        return
 
     payload = {
         "jsonrpc": "2.0",
@@ -653,6 +673,10 @@ def clean(mostrar_dialogo=False):
     @type mostrar_dialogo: bool
     """
     logger.info()
+
+    if not config.get_setting("videolibrary_auto_sync_kodi"):
+        return
+
     payload = {"jsonrpc": "2.0", "method": "VideoLibrary.Clean", "id": 1,
                "params": {"showdialogs": mostrar_dialogo}}
     data = get_data(payload)

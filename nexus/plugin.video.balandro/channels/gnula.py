@@ -58,19 +58,31 @@ def do_downloadpage(url, post=None):
     for ant in ant_hosts:
         url = url.replace(ant, host)
 
+    hay_proxies = False
+    if config.get_setting('channel_gnula_proxies', default=''): hay_proxies = True
+
     timeout = None
     if host in url:
-        if config.get_setting('channel_gnula_proxies', default=''): timeout = config.get_setting('channels_repeat', default=30)
+        if hay_proxies: timeout = config.get_setting('channels_repeat', default=30)
 
     if not url.startswith(host):
         data = httptools.downloadpage(url, post=post, timeout=timeout).data
     else:
-        data = httptools.downloadpage_proxy('gnula', url, post=post, timeout=timeout).data
+        if hay_proxies:
+            data = httptools.downloadpage_proxy('gnula', url, post=post, timeout=timeout).data
+        else:
+            data = httptools.downloadpage(url, post=post, timeout=timeout).data
 
         if not data:
             if '/lista-' in url or '/ver-' in url or '/generos/' in url:
-                platformtools.dialog_notification('Gnula', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
-                data = httptools.downloadpage_proxy('gnula', url, post=post, timeout=timeout).data
+                if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('Gnula', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+
+                timeout = config.get_setting('channels_repeat', default=30)
+
+                if hay_proxies:
+                    data = httptools.downloadpage_proxy('gnula', url, post=post, timeout=timeout).data
+                else:
+                    data = httptools.downloadpage(url, post=post, timeout=timeout).data
 
     return data
 
@@ -100,11 +112,11 @@ def mainlist_pelis(item):
 
     itemlist.append(item.clone( title = 'Buscar película ...', action = 'search', search_type = 'movie', text_color = 'deepskyblue' ))
 
-    itemlist.append(item.clone( title = 'Últimas', action = 'list_last', url = host, group = 'estrenos' ))
+    itemlist.append(item.clone( title = 'Últimas', action = 'list_last', url = host, group = 'estrenos', text_color = 'moccasin' ))
     itemlist.append(item.clone( title = 'Novedades', action = 'list_last', url = host, group = 'novedades' ))
     itemlist.append(item.clone( title = 'Más vistas', action = 'list_last', url = host, group = 'recomendadas' ))
 
-    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = url_estrenos ))
+    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = url_estrenos, text_color='cyan' ))
 
     itemlist.append(item.clone( title = 'Recomendadas', action = 'list_all', url = url_recomendadas ))
 

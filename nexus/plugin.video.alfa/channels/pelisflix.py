@@ -11,7 +11,7 @@ else:
 
 import re
 
-from channels import autoplay
+from modules import autoplay
 from platformcode import config, logger, platformtools
 from core.item import Item
 from core import httptools, scrapertools, jsontools, tmdb
@@ -31,8 +31,10 @@ list_servers = list(SERVER.values())
 canonical = {
              'channel': 'pelisflix', 
              'host': config.get_setting("current_host", 'pelisflix', default=''), 
-             'host_alt': ["https://pelisflix.hair/"], 
-             'host_black_list': ["https://pelisflix.store/", 
+             'host_alt': ["https://pelisflix.zone/"], 
+             'host_black_list': ['https://pelisflix.host/', 
+                                 'https://pelisflix.codes/', 'https://pelisflix.mom/', 'https://pelisflix.tools/', 
+                                 'https://pelisflix.quest/', 'https://pelisflix.hair/', 'https://pelisflix.store/'
                                  "https://pelis28.art/", "https://pelisflix2.fun/", "https://pelisflix.run/", 
                                  "https://pelisflix.pw/", "https://pelisflix.biz/", "https://ww2.pelisflix2.one/", 
                                  "https://pelisflix2.one/", "https://pelisflix.li/", "https://ww3.pelisflix2.one/"], 
@@ -52,6 +54,7 @@ def mainlist(item):
     
     autoplay.init(item.channel, list_servers, list_quality)
     
+    itemlist.append(item.clone(title="Estrenos" , action="lista", url= host + "categoria/pelis-estrenos-2022-2023", thumbnail=get_thumb("premieres", auto=True)))
     itemlist.append(item.clone(title="Peliculas" , action="lista", url= host + "peliculas-online/", thumbnail=get_thumb("movies", auto=True)))
     itemlist.append(item.clone(title="Genero" , action="categorias", url= host + "peliculas", thumbnail=get_thumb('genres', auto=True)))
     itemlist.append(item.clone(title="Series", action="lista", url= host + "series-online/", thumbnail=get_thumb("tvshows", auto=True)))
@@ -212,14 +215,13 @@ def alpha_list(item):
 
 def lista(item):
     logger.info()
-    
     itemlist = []
-    
     soup = create_soup(item.url, referer=host)
     matches = soup.find_all("li", class_=re.compile(r"^post-\d+"))
-    
     for elem in matches:
+        logger.debug(elem)
         url = elem.a['href']
+        title = elem.h2.text.strip()
         thumbnail = elem.figure.img['data-src']
         # lg = elem.find(class_='Lg')
         # if lg:
@@ -232,12 +234,13 @@ def lista(item):
                     # lang = l['src']
                 # lang = scrapertools.find_single_match(lang,'/([A-z-]+).png')
                 # language.append(IDIOMAS.get(lang, lang))
-        year = elem.find(class_='Date')
+        year = elem.find(class_='date')
         if year:
             year = year.text
+            if year in title:
+                title = title.replace(year, "")
         else:
             year = elem.find(class_='Date')
-        title = elem.h2.text.strip()
         if year == '':
             year = '-'
         
@@ -269,10 +272,10 @@ def lista(item):
                 
                 itemlist[a].title = title
                 a -= 1
-    
-    next_page = soup.find('a', class_='current')
-    if next_page and next_page.find_next_sibling("a"):
-        next_page = next_page.find_next_sibling("a")['href']
+
+    next_page = soup.find('div', class_='nav-previous')
+    if next_page and next_page.find("a"):
+        next_page = next_page.a['href']
         next_page = urlparse.urljoin(item.url,next_page)
         itemlist.append(item.clone(action="lista", title="[COLOR blue]Página Siguiente >>[/COLOR]", url=next_page) )
     

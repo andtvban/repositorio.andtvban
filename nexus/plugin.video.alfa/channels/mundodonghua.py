@@ -15,7 +15,8 @@ from core import servertools
 from core.item import Item
 from platformcode import config, logger
 from platformcode import platformtools
-from channels import filtertools, autoplay
+from channels import filtertools
+from modules import autoplay
 from modules import renumbertools
 from core import tmdb
 
@@ -186,7 +187,7 @@ def episodios(item):
         if not first_url and state:
             first_url = url
         epi_num = scrapertools.find_single_match(elem.text.strip(), "(\d+)$")
-        season, episode = renumbertools.numbered_for_tratk(item.channel, item.contentSerieName, 1, int(epi_num))
+        season, episode = renumbertools.numbered_for_trakt(item.channel, item.contentSerieName, 1, int(epi_num))
         infoLabels['season'] =  season
         infoLabels['episode'] = episode
         title = '%sx%s - Episodio %s' % (season, episode, episode)
@@ -200,7 +201,7 @@ def episodios(item):
     if first_url and state:
         epi_num = int(scrapertools.find_single_match(first_url, "(\d+)$"))+1
         url = re.sub("(\d+)$", str(epi_num), first_url)
-        season, episode = renumbertools.numbered_for_tratk(item.channel, item.contentSerieName, 1, int(epi_num))
+        season, episode = renumbertools.numbered_for_trakt(item.channel, item.contentSerieName, 1, int(epi_num))
         infoLabels['season'] =  season
         infoLabels['episode'] = episode
         title = '%sx%s - Episodio %s' % (season, episode, episode)

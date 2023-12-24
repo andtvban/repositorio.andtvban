@@ -143,6 +143,74 @@ def dialog_browse(_type, heading, shares='files', default=""):
     return d
 
 
+def dialog_qr_message(heading="", message="", qrdata=""):
+    from platformcode.custom_code import check_addon_installed
+    if not check_addon_installed('script.module.pyqrcode'):
+        '''
+        Por alguna razón no se puede hacer un import 
+        en la misma llamada a la funcion en la que se instala
+        por lo tanto vamos a devolver false, se instale o no.
+        '''
+        from platformcode.custom_code import install_addon
+        r = install_addon('script.module.pyqrcode')
+        return False
+
+    import hashlib
+    from core import filetools
+    import pyqrcode
+
+    try:
+        '''
+        En principio funcionaba bien en special://temp, 
+        pero en Android no parece reconocer las rutas completas, la imagen no cargaba.
+        Así que el único modo es usar una ruta relativa a la carpeta 'media' del directorio del skin.
+        '''
+        media_folder = filetools.join(config.get_runtime_path(), 'resources', 'skins', 'Default', 'media')
+        # logger.info(media_folder, True)
+    except:
+        logger.error('No se pudo ubicar la carpeta \'media\'.')
+        return False
+
+    if not filetools.exists(media_folder):
+        logger.error('No existe la carpeta \'media\': %s.' % media_folder)
+        return False
+
+    '''
+    Usando el mismo nombre para todas las imágenes se generaba una caché de la imagen
+    y no se mostraba el QR correcto porque Kodi la inyecta en Textures.xbt
+    https://kodi.wiki/view/Texture_Attributes
+    usando un hash, diferentes datos van a producir diferentes nombres, así no cargará la misma imagen
+    ni tampoco empacará un infinito número de imágenes como haría con un nombre aleatorio.
+    '''
+    file_name = '%s.png' % hashlib.md5(str(qrdata).encode('utf-8')).hexdigest()
+    img_path = filetools.join(media_folder, file_name)
+
+    try:
+        qr = pyqrcode.create(qrdata)
+        qr.png(img_path, scale=6, module_color='#000', background='#fff')
+    except:
+        logger.error('No se pudo generar el código QR')
+        return False
+
+    if filetools.exists(img_path):
+        try:
+            qrDialog = QRDialog('QRDialog.xml', config.get_runtime_path(), heading=heading, message=message, img_path=file_name)
+            qrDialog.show()
+        except:
+            logger.error('Hubo un error al mostrar la imagen del QR: %s' % img_path)
+            return False
+
+        try:
+            filetools.remove(img_path, vfs=False)
+        except:
+            logger.error('Hubo un error al eliminar la imagen QR generada: %s' % img_path)
+    else:
+        logger.error('No se guardó la imagen generada para el código QR')
+        return False
+
+    return True
+
+
 def itemlist_refresh():
     xbmc.executebuiltin("Container.Refresh")
 
@@ -189,8 +257,10 @@ def render_items(itemlist, parent_item):
 
     if parent_item.channel == 'videolibrary':
         channel_param = channeltools.get_channel_parameters(parent_item.contentChannel)
-    else:
+    elif not parent_item.module:
         channel_param = channeltools.get_channel_parameters(parent_item.channel)
+    else:
+        channel_param = {}
 
     genre = False
     if 'nero' in parent_item.title:
@@ -216,7 +286,7 @@ def render_items(itemlist, parent_item):
 
     # Recorremos el itemlist
     categories_channel = []
-    if itemlist and itemlist[0].channel:
+    if itemlist and not itemlist[0].module and itemlist[0].channel:
         categories_channel = channeltools.get_channel_parameters(itemlist[0].channel.lower()).get('categories', [])
 
     temp_list = list()
@@ -229,7 +299,7 @@ def render_items(itemlist, parent_item):
         if item.unify or item.unify == False:
             use_unify = item.unify
         else:
-            if channel_param.get('adult', ''):
+            if channel_param.get('adult', False):
                 use_unify = False
             else:
                 use_unify = channel_param.get('force_unify', False) or config.get_setting('unify', default=False)
@@ -316,8 +386,6 @@ def render_items(itemlist, parent_item):
         # Creamos el listitem
         if config.get_platform(True)['num_version'] >= 18.0:
             listitem = xbmcgui.ListItem(item.title, offscreen=True)
-            if config.get_platform(True)['num_version'] >= 20.0:
-                infotagvideo = xbmc.InfoTagVideo(offscreen=True)
         else:
             listitem = xbmcgui.ListItem(item.title)
 
@@ -402,12 +470,14 @@ def render_items(itemlist, parent_item):
             else:
                 breadcrumb = 'Similares (%s)' % parent_item.contentSerieName
         else:
-            breadcrumb = 'Busqueda'
+            breadcrumb = config.get_localized_string(60329)
     else:
         if parent_item.category != '':
             breadcrumb = parent_item.category.capitalize()
-        else:
+        elif not parent_item.module:
             breadcrumb = channeltools.get_channel_parameters(parent_item.channel).get('title', '')
+        else:
+            breadcrumb = parent_item.title
 
     xbmcplugin.setPluginCategory(handle=PLUGIN_HANDLE, category=breadcrumb)
 
@@ -664,65 +734,221 @@ def set_infolabels(listitem, item, player=False):
             logger.error(item.infoLabels)
     """
     infoLabels_kodi = {}
-    if config.get_platform(True)['num_version'] >= 20.0:
-        infotagvideo = xbmc.InfoTagVideo(offscreen=True)
+    platform_version = config.get_platform(True)['num_version']
+
+    if platform_version >= 20.0:
+        infotagvideo = listitem.getVideoInfoTag()
 
     if item.infoLabels:
         try:
-            if config.get_platform(True)['num_version'] < 18.0:
+            if platform_version < 18.0:
                 listitem.setUniqueIDs({"tmdb": item.infoLabels.get("tmdb_id", 0),
                                        "imdb": item.infoLabels.get("imdb_id", 0),
                                        "tvdb": item.infoLabels.get("tvdb_id", 0)})
-            elif config.get_platform(True)['num_version'] < 20.0:
+            elif platform_version < 20.0:
                 listitem.setUniqueIDs({"tmdb": item.infoLabels.get("tmdb_id", 0),
                                        "imdb": item.infoLabels.get("imdb_id", 0),
                                        "tvdb": item.infoLabels.get("tvdb_id", 0)}, "imdb")
-            else:                                                                               ### VERIFY
+            else:
                 infotagvideo.setUniqueIDs(str({"tmdb": item.infoLabels.get("tmdb_id", 0),
                                                "imdb": item.infoLabels.get("imdb_id", 0),
                                                "tvdb": item.infoLabels.get("tvdb_id", 0)}), "imdb")
-        except:
+
+        except Exception:
             import traceback
             logger.error(traceback.format_exc())
 
-        if 'mediatype' not in item.infoLabels:
-            item.infoLabels['mediatype'] = item.contentType
+        if not item.infoLabels.get("mediatype", None):
+            if item.contentType != 'list':
+                item.infoLabels["mediatype"] = item.contentType
+            else:
+                item.infoLabels["mediatype"] = "video"
+
         try:
-            for label_tag, label_value in list(item.infoLabels.items()):
+            for label_tag in item.infoLabels.keys():
                 try:
-                    #logger.debug(str(label_tag) + ': ' + str(infoLabels_dict[label_tag]))
                     if infoLabels_dict[label_tag] != 'None':
-                        infoLabels_kodi.update({infoLabels_dict[label_tag]: item.infoLabels[label_tag]})
-                except:
+                        key = infoLabels_dict[label_tag]
+                        infoLabels_kodi[key] = item.infoLabels[label_tag]
+                except Exception:
                     continue
 
-            # HACK: Arreglo para 'Invalid media type "list"'
-            # TODO: Investigar por qué no se puede arreglar antes
-            if infoLabels_kodi['mediatype'] == 'list':
-                infoLabels_kodi['mediatype'] = 'video'
+            if platform_version >= 20.0:
+                item2list = lambda x: x if isinstance(x, (list, tuple)) else [x]
+                
+                infotagvideo.setMediaType(infoLabels_kodi["mediatype"])
 
-            if config.get_platform(True)['num_version'] >= 20.0:
-                listitem.setInfo("video", infoLabels_kodi)                      ### TEMPORAL
+                if infoLabels_kodi.get("album", None):
+                    infotagvideo.setAlbum(infoLabels_kodi["album"])
+
+                if infoLabels_kodi.get("artist", None):
+                    artists = item2list(infoLabels_kodi["artist"])
+                    infotagvideo.setArtists(artists)
+
+                if infoLabels_kodi.get("castandrole", None) and \
+                        isinstance(infoLabels_kodi["castandrole"], list):
+                    cast = []
+                    for actor, role in infoLabels_kodi["castandrole"]:
+                        cast.append(xbmc.Actor(actor, role))
+                    infotagvideo.setCast(cast)
+                elif infoLabels_kodi.get("cast", None) and \
+                        isinstance(infoLabels_kodi["cast"], list):
+                    cast = [xbmc.Actor(x) for x in infoLabels_kodi["cast"]]
+                    infotagvideo.setCast(cast)
+
+                if infoLabels_kodi.get("code", None):
+                    infotagvideo.setProductionCode(infoLabels_kodi["code"])
+
+                if infoLabels_kodi.get("country", None):
+                    countries = item2list(infoLabels_kodi["country"])
+                    infotagvideo.setCountries(countries)
+
+                if infoLabels_kodi.get("dateadded", None):
+                    infotagvideo.setDateAdded(infoLabels_kodi["dateadded"])
+
+                if infoLabels_kodi.get("dbid", None):
+                    infotagvideo.setDbId(infoLabels_kodi["dbid"])
+
+                if infoLabels_kodi.get("director", None):
+                    directors = item2list(infoLabels_kodi["director"])
+                    infotagvideo.setDirectors(directors)
+
+                if infoLabels_kodi.get("duration", None):
+                    infotagvideo.setDuration(infoLabels_kodi["duration"])
+
+                if infoLabels_kodi.get("episode", None):
+                    infotagvideo.setEpisode(infoLabels_kodi["episode"])
+
+                # if infoLabels_kodi.get("episodio_air_date", None):
+                #     infotagvideo.setFirstAired(infoLabels_kodi["episodio_air_date"])
+
+                if infoLabels_kodi.get("episodeguide", None):
+                    infotagvideo.setEpisodeGuide(infoLabels_kodi["episodeguide"])
+
+                if infoLabels_kodi.get("genre", None):
+                    genres = item2list(infoLabels_kodi["genre"])
+                    infotagvideo.setGenres(genres)
+
+                if infoLabels_kodi.get("imdbnumber", None):
+                    infotagvideo.setIMDBNumber(infoLabels_kodi["imdbnumber"])
+
+                if infoLabels_kodi.get("lastplayed", None):
+                    infotagvideo.setLastPlayed(infoLabels_kodi["lastplayed"])
+
+                if infoLabels_kodi.get("mpaa", None):
+                    infotagvideo.setMpaa(infoLabels_kodi["mpaa"])
+
+                if infoLabels_kodi.get("originaltitle", None):
+                    infotagvideo.setOriginalTitle(infoLabels_kodi["originaltitle"])
+
+                if infoLabels_kodi.get("playcount", None):
+                    infotagvideo.setPlaycount(infoLabels_kodi["playcount"])
+
+                if infoLabels_kodi.get("plot", None):
+                    infotagvideo.setPlot(infoLabels_kodi["plot"])
+
+                if infoLabels_kodi.get("plotoutline", None):
+                    infotagvideo.setPlotOutline(infoLabels_kodi["plotoutline"])
+
+                if infoLabels_kodi.get("path", None):
+                    infotagvideo.setPath(infoLabels_kodi["path"])
+
+                if infoLabels_kodi.get("premiered", None):
+                    infotagvideo.setPremiered(infoLabels_kodi["premiered"])
+
+                if infoLabels_kodi.get("rating", None):
+                    infotagvideo.setRating(infoLabels_kodi["rating"])
+
+                if infoLabels_kodi.get("season", None):
+                    infotagvideo.setSeason(infoLabels_kodi["season"])
+
+                if infoLabels_kodi.get("set", None):
+                    infotagvideo.setSet(infoLabels_kodi["set"])
+
+                if infoLabels_kodi.get("setid", None):
+                    infotagvideo.setSetId(infoLabels_kodi["setid"])
+
+                if infoLabels_kodi.get("setoverview", None):
+                    infotagvideo.setSetOverview(infoLabels_kodi["setoverview"])
+
+                if infoLabels_kodi.get("showlink", None):
+                    showLinks = item2list(infoLabels_kodi["showlink"])
+                    infotagvideo.setShowLinks(showLinks)
+
+                if infoLabels_kodi.get("sortepisode", None):
+                    infotagvideo.setSortEpisode(infoLabels_kodi["sortepisode"])
+
+                if infoLabels_kodi.get("sortseason", None):
+                    infotagvideo.setSortSeason(infoLabels_kodi["sortseason"])
+
+                if infoLabels_kodi.get("sorttitle", None):
+                    infotagvideo.setSortTitle(infoLabels_kodi["sorttitle"])
+
+                if infoLabels_kodi.get("status", None):
+                    infotagvideo.setTvShowStatus(infoLabels_kodi["status"])
+
+                if infoLabels_kodi.get("studio", None):
+                    studios = item2list(infoLabels_kodi["studio"])
+                    infotagvideo.setStudios(studios)
+
+                if infoLabels_kodi.get("tag", None):
+                    tags = item2list(infoLabels_kodi["tag"])
+                    infotagvideo.setTags(tags)
+
+                if infoLabels_kodi.get("tagline", None):
+                    infotagvideo.setTagLine(infoLabels_kodi["tagline"])
+
+                if infoLabels_kodi.get("title", None):
+                    infotagvideo.setTitle(infoLabels_kodi["title"])
+
+                if infoLabels_kodi.get("top250", None):
+                    infotagvideo.setTop250(infoLabels_kodi["top250"])
+
+                if infoLabels_kodi.get("tracknumber", None):
+                    infotagvideo.setTrackNumber(infoLabels_kodi["tracknumber"])
+
+                if infoLabels_kodi.get("trailer", None):
+                    infotagvideo.setTrailer(infoLabels_kodi["trailer"])
+
+                if infoLabels_kodi.get("tvshowtitle", None):
+                    infotagvideo.setTvShowTitle(infoLabels_kodi["tvshowtitle"])
+
+                if infoLabels_kodi.get("userrating", None):
+                    infotagvideo.setUserRating(infoLabels_kodi["userrating"])
+
+                if infoLabels_kodi.get("votes", None):
+                    infotagvideo.setVotes(infoLabels_kodi["votes"])
+
+                if infoLabels_kodi.get("writer", None):
+                    writers = item2list(infoLabels_kodi["writer"])
+                    infotagvideo.setWriters(writers)
+
+                if infoLabels_kodi.get("year", None) and \
+                        isinstance(infoLabels_kodi["year"], int):
+                    infotagvideo.setYear(infoLabels_kodi["year"])
+
             else:
                 listitem.setInfo("video", infoLabels_kodi)
 
-        except:
-            if config.get_platform(True)['num_version'] >= 20.0:
-                listitem.setInfo("video", item.infoLabels)                      ### TEMPORAL
-            else:
-                listitem.setInfo("video", item.infoLabels)
+        except Exception:
+            import traceback
+            logger.error(traceback.format_exc())
             logger.error(item.infoLabels)
             logger.error(infoLabels_kodi)
+            if platform_version >= 20.0:
+                listitem.setInfo("video", item.infoLabels) # HACK: Solo en caso de excepción
+            else:
+                listitem.setInfo("video", item.infoLabels)
 
     if player and not item.contentTitle:
-        if config.get_platform(True)['num_version'] >= 20.0:
-            listitem.setInfo("video", {"Title": item.title})                    ### TEMPORAL
+        if platform_version >= 20.0:
+            infotagvideo.setTitle(item.title)
         else:
             listitem.setInfo("video", {"Title": item.title})
 
     elif not player:
-        if config.get_platform(True)['num_version'] >= 20.0:
-            listitem.setInfo("video", {"Title": item.title})                    ### TEMPORAL
+        if platform_version >= 20.0:
+            infotagvideo.setTitle(item.title)
         else:
             listitem.setInfo("video", {"Title": item.title})
 
@@ -779,24 +1005,29 @@ def set_context_commands(item, item_url, parent_item, categories_channel=[], **k
             # Los parametros del dict, se sobreescriben al nuevo context_item en caso de sobreescribir "action" y
             # "channel", los datos originales se guardan en "from_action" y "from_channel"
             if "action" in command:
-                command["from_action"] = item.action
+                command["from_action"] = command.get("from_action", "") or item.action
             if "channel" in command:
-                command["from_channel"] = item.channel
+                command["from_channel"] = command.get("from_channel", "") or item.channel
 
             # Si no se está dentro de Alfavoritos y hay los contextos de alfavoritos, descartarlos.
             # (pasa al ir a un enlace de alfavoritos, si este se clona en el canal)
             if parent_item.module != 'alfavorites' and 'i_perfil' in command and 'i_enlace' in command:
                 continue
 
+            item_from_url = item
+            if 'item_url' in command:
+                item_from_url = Item().fromurl(command['item_url'])
+                del command['item_url']
+
             if "goto" in command:
                 context_commands.append((command["title"], "Container.Refresh (%s?%s)" %
-                                         (sys.argv[0], item.clone(**command).tourl())))
+                                         (sys.argv[0], item_from_url.clone(**command).tourl())))
             if "switch_to" in command:
                 context_commands.append((command["title"], "Container.Update (%s?%s)" %
-                                         (sys.argv[0], item.clone(**command).tourl())))
+                                         (sys.argv[0], item_from_url.clone(**command).tourl())))
             else:
                 context_commands.append(
-                    (command["title"], "RunPlugin(%s?%s)" % (sys.argv[0], item.clone(**command).tourl())))
+                    (command["title"], "RunPlugin(%s?%s)" % (sys.argv[0], item_from_url.clone(**command).tourl())))
 
     # No añadir más opciones predefinidas si se está dentro de Alfavoritos
     if parent_item.module in ['alfavorites', 'info_popup']:
@@ -869,7 +1100,7 @@ def set_context_commands(item, item_url, parent_item, categories_channel=[], **k
                   'module=favorites&action=addFavourite&from_channel=' + item.channel + '&from_action=' + item.action)))
 
         # Añadir a Alfavoritos (Mis enlaces)
-        if item.module not in ["favorites", "videolibrary", "help", "search", ""] and parent_item.module != "favorites":
+        if item.module not in ["favorites", "videolibrary", "help", "search"] and parent_item.module != "favorites":
             context_commands.append(
                 ('[COLOR blue]%s[/COLOR]' % config.get_localized_string(70557), "RunPlugin(%s?%s&%s)" %
                  (sys.argv[0], item_url, urllib.urlencode({'module': "alfavorites", 'action': "addFavourite",
@@ -1008,7 +1239,7 @@ def set_context_commands(item, item_url, parent_item, categories_channel=[], **k
                                                   'module=downloads&action=save_download%s&from_channel=' % tc + channel_p +
                                                   '&from_action=' + item.action)))
                 # Descargar temporada
-                if item.contentType == "season" or parent_item.action in ["episodios", "episodesxseason"] or \
+                if item.contentType == "season" or parent_item.action in ["episodios", "episodesxseason", "seasons"] or \
                                                     (item.contentType == "episode" \
                                                     and item.server == 'torrent' and item.infoLabels[
                                                         'tmdb_id'] != 'None' and not item.channel_recovery):
@@ -2315,3 +2546,40 @@ def rar_control_mng(item, xlistitem, mediaurl, rar_files, torr_client, password,
 
 def log(texto):
     logger.info(texto, force=True)
+
+
+class QRDialog(xbmcgui.WindowXMLDialog):
+
+    def __init__(self, *args, **kwargs):
+        logger.info()
+        self.action_exitkeys_id = [xbmcgui.ACTION_BACKSPACE, xbmcgui.ACTION_PREVIOUS_MENU,
+                                   xbmcgui.ACTION_NAV_BACK]
+
+        self.heading = kwargs.get("heading")
+        self.message = kwargs.get("message")
+        self.img_path = kwargs.get("img_path")
+        self.doModal()
+
+    def onInit(self, *args, **kwargs):
+        self.setProperty("heading", self.heading)
+        self.setProperty("message", self.message)
+        self.setProperty("img_path", self.img_path)
+        # logger.info(self.img_path, True)
+
+    def onFocus(self, controlId):
+        pass
+
+    def doAction(self):
+        pass
+
+    def closeDialog(self):
+        self.close()
+
+    def onClick(self, controlId):
+        if controlId == 3012:  # Still watching
+            self.close()
+
+    def onAction(self, action):
+        logger.info()
+        if action in self.action_exitkeys_id:
+            self.close()

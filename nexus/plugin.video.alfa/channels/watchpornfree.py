@@ -17,13 +17,15 @@ from core import servertools
 from core.item import Item
 from core import httptools
 from bs4 import BeautifulSoup
-from channels import autoplay
+from modules import autoplay
 
 list_quality = []
 list_servers = ['mangovideo']
 
-# https://playpornfree.org/   https://streamporn.pw/  https://mangoporn.net/   https://watchfreexxx.net/   https://losporn.org/  
-# https://watchpornfree.info   https://xxxparodyhd.net      playpornx https://xxxstreams.me/  https://speedporn.net/
+#  https://mangoporn.net   
+#  https://pandamovies.pw/ & https://xxxparodyhd.net & https://streamporn.pw/ & https://streamporn.li 
+#  https://www.netflixporno.net & https://watchpornfree.info & https://losporn.org/ 
+#  https://xxxscenes.net & https://watchfreexxx.net/ & https://speedporn.net &https://pornkino.cc/
 canonical = {
              'channel': 'watchpornfree', 
              'host': config.get_setting("current_host", 'watchpornfree', default=''), 
@@ -42,23 +44,39 @@ def mainlist(item):
 
     autoplay.init(item.channel, list_servers, list_quality)
 
-    itemlist.append(Item(channel=item.channel, title="Videos" , action="lista", url=host + "scenes/"))
+    itemlist.append(Item(channel=item.channel, title="Videos" , action="submenu", url=host + "/scenes/"))
+    
     itemlist.append(Item(channel=item.channel, title="Peliculas" , action="lista", url=host))
-    itemlist.append(Item(channel=item.channel, title="Parodia" , action="lista", url=host + "category/parodies"))
+    itemlist.append(Item(channel=item.channel, title=".........Mas vistas" , action="lista", url=host + "?v_sortby=views"))
+    itemlist.append(Item(channel=item.channel, title=".........Mas valoradas" , action="lista", url=host + "?r_sortby=highest_rated"))
+    itemlist.append(Item(channel=item.channel, title="Parodia" , action="lista", url=host + "/category/parodies"))
     itemlist.append(Item(channel=item.channel, title="Canal" , action="categorias", url=host))
     itemlist.append(Item(channel=item.channel, title="Year" , action="categorias", url=host))
-    itemlist.append(Item(channel=item.channel, title="Categorias" , action="categorias", url=host))
-    itemlist.append(Item(channel=item.channel, title="Buscar", action="search"))
+    # itemlist.append(Item(channel=item.channel, title="Categorias" , action="categorias", url=host))
+    itemlist.append(Item(channel=item.channel, title="Buscar", action="search", url=host))
 
     autoplay.show_option(item.channel, itemlist)
 
     return itemlist
 
 
+def submenu(item):
+    logger.info()
+    itemlist = []
+    itemlist.append(Item(channel=item.channel, title="Nuevos" , action="lista", url=item.url))
+    itemlist.append(Item(channel=item.channel, title="Mas vistos" , action="lista", url=item.url + "?v_sortby=views"))
+    itemlist.append(Item(channel=item.channel, title="Mas valorados" , action="lista", url=item.url + "?r_sortby=highest_rated"))
+    itemlist.append(Item(channel=item.channel, title="Destacados" , action="lista", url=item.url + "category/featured-scenes/"))
+    itemlist.append(Item(channel=item.channel, title="Canal" , action="categorias", url=item.url))
+    # itemlist.append(Item(channel=item.channel, title="Categorias" , action="categorias", url=host, vid = "vid"))
+    itemlist.append(Item(channel=item.channel, title="Buscar", action="search", url=item.url))
+    return itemlist
+
+
 def search(item, texto):
     logger.info("")
     texto = texto.replace(" ", "+")
-    item.url = "%s?s=%s" % (host, texto)
+    item.url = "%s?s=%s" % (item.url, texto)
     try:
         return lista(item)
     except:

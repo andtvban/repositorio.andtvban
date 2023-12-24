@@ -20,7 +20,8 @@ from core import scrapertools
 from core import servertools
 from core.item import Item
 from platformcode import config, logger
-from channels import filtertools, autoplay
+from channels import filtertools
+from modules import autoplay
 from modules import renumbertools
 from core import tmdb
 
@@ -43,6 +44,7 @@ canonical = {
             }
 host = canonical['host'] or canonical['host_alt'][0]
 
+home = 'zerotwo'
 
 def mainlist(item):
     logger.info()
@@ -57,7 +59,7 @@ def mainlist(item):
             channel = item.channel,
             thumbnail = get_thumb("channels_anime.png"),
             title = "Nuevos Capítulos",
-            url = host + 'nino'
+            url = host + home
         )
     )
 
@@ -77,7 +79,7 @@ def mainlist(item):
             channel = item.channel,
             thumbnail = get_thumb("channels_anime.png"),
             title = "Recientes",
-            url = host
+            url = host + home
         )
     )
 
@@ -324,7 +326,7 @@ def findvideos(item):
 
         pl = soup.find("div", class_="player-container")
 
-        script = pl.find("script").text
+        script = pl.find("script").string
         urls = scrapertools.find_multiple_matches(script, "src='([^']+)'")
 
         for url in urls:
@@ -398,6 +400,6 @@ def newest(categoria):
     itemlist = []
     item = Item()
     if categoria == 'anime':
-        item.url=host
+        item.url=host + home
         itemlist = new_episodes(item)
     return itemlist

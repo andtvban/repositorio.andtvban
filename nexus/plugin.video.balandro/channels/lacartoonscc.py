@@ -39,7 +39,7 @@ def mainlist_pelis(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'pelicula/', search_type = 'movie' ))
 
-    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + 'genre/estrenos/', search_type = 'movie' ))
+    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + 'genre/estrenos/', search_type = 'movie', text_color='cyan' ))
 
     itemlist.append(item.clone( title = 'Más vistas', action = 'list_all', url = host + 'tendencias/', search_type = 'movie' ))
     itemlist.append(item.clone( title = 'Más valoradas', action = 'list_all', url = host + 'ratings/', search_type = 'movie' ))
@@ -58,7 +58,7 @@ def mainlist_series(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'serie/', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + 'genre/estrenos/', search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + 'genre/estrenos/', search_type = 'tvshow', text_color='cyan' ))
 
     itemlist.append(item.clone( title = 'Más vistas', action = 'list_all', url = host + 'tendencias/', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Más valoradas', action = 'list_all', url = host + 'ratings/', search_type = 'tvshow' ))
@@ -85,6 +85,9 @@ def generos(item):
     matches = scrapertools.find_multiple_matches(bloque, '<a href="(.*?)">(.*?)</a>')
 
     for url, title in matches:
+        if config.get_setting('descartar_anime', default=False):
+            if title == 'Anime': continue
+
         itemlist.append(item.clone( action = 'list_all', title = title, url = url, text_color = text_color ))
 
     return sorted(itemlist, key=lambda it: it.title)
@@ -236,7 +239,9 @@ def temporadas(item):
         tempo = title.replace('Temporada ', '').strip()
 
         if len(seasons) == 1:
-            platformtools.dialog_notification(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), 'solo [COLOR tan]' + title + '[/COLOR]')
+            if config.get_setting('channels_seasons', default=True):
+                platformtools.dialog_notification(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), 'solo [COLOR tan]' + title + '[/COLOR]')
+
             item.page = 0
             item.contentType = 'season'
             item.contentSeason = tempo
@@ -262,7 +267,7 @@ def episodios(item):
     bloque = scrapertools.find_single_match(data, "<div class='se-q'>.*?<span class='title'>" + str(item.title) + "(.*?)</div></div>")
     if not bloque: bloque = scrapertools.find_single_match(data, "<div class='se-q'>.*?<span class='title'>Temporada(.*?)</div></div>")
 
-    patron = "<div class='imagen'.*?data-id='(.*?)'.*?src='(.*?)'.*?<div class='numerando'(.*?)</div>.*?<a href='(.*?)'>(.*?)</a>.*?</span>(.*?)</div></li>"
+    patron = "<div class='imagen'.*?data-id='(.*?)'.*?src='(.*?)'.*?<div class='numerando'(.*?)</div>.*?<a href='(.*?)'.*?>(.*?)</a>.*?</span>(.*?)</div></li>"
 
     episodes = scrapertools.find_multiple_matches(bloque, patron)
 
@@ -274,7 +279,8 @@ def episodios(item):
             if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
-        if tvdb_id:
+        if config.get_setting('channels_charges', default=True): item.perpage = sum_parts
+        elif tvdb_id:
             if sum_parts > 50:
                 platformtools.dialog_notification('LaCartoonsCc', '[COLOR cyan]Cargando Todos los elementos[/COLOR]')
                 item.perpage = sum_parts
@@ -309,10 +315,10 @@ def episodios(item):
 
     for data_id, thumb, temp_epis, url, title, idiomas in episodes[item.page * item.perpage:]:
         langs = []
-        if '<img title="Español"' in idiomas: langs.append('Esp')
-        if '<img title="Latino"' in idiomas: langs.append('Lat')
-        if '<img title="Subtitulado"' in idiomas: langs.append('Vose')
-        if '<img title="Ingles"' in idiomas: langs.append('VO')
+        if 'title="Español"' in idiomas: langs.append('Esp')
+        if 'title="Latino"' in idiomas: langs.append('Lat')
+        if 'title="Subtitulado"' in idiomas: langs.append('Vose')
+        if 'title="Ingles"' in idiomas: langs.append('VO')
 
         epis = scrapertools.find_single_match(temp_epis, ".*?-(.*?)$").strip()
 
@@ -358,8 +364,6 @@ def findvideos(item):
 
         if 'trailer' in servidor: continue
 
-        elif 'hqq' in servidor or 'waaw' in servidor or 'netu' in servidor: continue
-
         if servertools.is_server_available(servidor):
             if not servertools.is_server_enabled(servidor): continue
         else:
@@ -372,8 +376,14 @@ def findvideos(item):
 
         if not dpost or not dnume: continue
 
-        itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', dpost = dpost, dnume = dnume, other = servidor.capitalize(),
-                              language = IDIOMAS.get(lang, lang) ))
+        other = servertools.corregir_other(servidor)
+       
+        servidor = servertools.corregir_servidor(servidor)
+
+        if not servidor == 'directo':
+            if not servidor == 'various': other = ''
+
+        itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, dpost = dpost, dnume = dnume, language = IDIOMAS.get(lang, lang), other = other ))
 
     # enlaces
     matches = scrapertools.find_multiple_matches(data, "<tr id='link-'(.*?)</tr>")
@@ -382,8 +392,6 @@ def findvideos(item):
         ses += 1
 
         url = scrapertools.find_single_match(match, "<a href='(.*?)'")
-
-        if '/hqq.' in url or '/waaw.' in url or '/netu.' in url: continue
 
         servidor = servertools.get_server_from_url(url)
         servidor = servertools.corregir_servidor(servidor)
