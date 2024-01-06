@@ -18,6 +18,14 @@
 					<default>true</default>
 					<control type="toggle"/>
 				</setting>
+				<setting id="hide_watched" type="boolean" label="30058" help="" parent="follow-up3">
+					<level>0</level>
+					<dependencies>
+						<dependency type="visible" operator="is" setting="follow-up3">true</dependency>
+					</dependencies>
+					<default>true</default>
+					<control type="toggle"/>
+				</setting>
 			</group>
 			<group id="2" label="30002">
 				<setting id="MenuColor" type="string" label="30003" help="">
@@ -1190,6 +1198,15 @@
 					</dependencies>
 					<default>true</default>
 					<control type="toggle"/>
+				</setting>
+				<setting id="trakt_access_token" type="string" label="" help="">
+					<visible>False</visible>
+					<level>0</level>
+					<default/>
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
+					<control type="edit" format="string" />
 				</setting>
 			</group>
 			<group id="parental" label="">

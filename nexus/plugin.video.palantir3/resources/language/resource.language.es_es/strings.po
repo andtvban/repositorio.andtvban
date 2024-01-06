@@ -191,6 +191,10 @@ msgctxt "#30057"
 msgid "Sorry, Palantir 3 is not compatible with your Kodi"
 msgstr "Lo sentimos, Palantir 3 no es compatible con su Kodi"
 
+msgctxt "#30058"
+msgid "Hide watched shows"
+msgstr "Ocultar series ya vistas"
+
 msgctxt "#30059"
 msgid "Error playing video. Try again later"
 msgstr "Error al reproducir el vídeo. Inténtalo más tarde"
@@ -259,7 +263,25 @@ msgctxt "#30078"
 msgid "Time exceeded"
 msgstr "Tiempo excedido"
 
-# empty strings from id 30082 to 30099
+msgctxt "#30079"
+msgid "Mark show as unwatched"
+msgstr "Marcar serie como no vista"
+
+msgctxt "#30080"
+msgid "Mark show as watched"
+msgstr "Marcar serie como vista"
+
+msgctxt "#30081"
+msgid "Mark season as unwatched"
+msgstr "Marcar temporada como no vista"
+
+msgctxt "#30082"
+msgid "Mark season as watched"
+msgstr "Marcar temporada como vista"
+
+msgctxt "#30083"
+msgid "Do not follow this show here"
+msgstr "No seguir esta serie aquí"
 
 # moria
 
