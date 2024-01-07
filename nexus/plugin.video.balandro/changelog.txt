@@ -1,173 +1,187 @@
 [COLOR coral][B]Versiones de Balandro[/B][/COLOR]
 
+[COLOR yellow][B]2024[/B][/COLOR]
+
+4.0.00 [COLOR darkorange] 7 de Enero de 2024[/COLOR]
+    Correcciones: Errores detectados
+
+    Nuevo Repo 4.0.0
+
+    Generos: Re-configurados
+    Canales y Servidores: Sin variaciones
+
 [COLOR yellow][B]2023[/B][/COLOR]
 
 3.1.05 [COLOR darkorange] 20 de Diciembre de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.1.04 [COLOR darkorange] 1 de Diciembre de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.1.03  [COLOR darkorange] 8 de Noviembre de 2023[/COLOR]
     Patch: Bug Ubuntu con Python 3
 
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.1.02  [COLOR darkorange] 24 de Octubre de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.1.01  [COLOR darkorange] 26 de Septiembre de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.1.00  [COLOR darkorange] 1 de Septiembre de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.9  [COLOR darkorange] 4 de Agosto de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.8  [COLOR darkorange] 7 de Julio de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.7  [COLOR darkorange] 12 de Junio de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.6  [COLOR darkorange] 1 de Junio de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.5  [COLOR darkorange] 12 de Mayo de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.4  [COLOR darkorange] 27 de Abril de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.3  [COLOR darkorange] 13 de Abril de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.2  [COLOR darkorange] 16 de Marzo de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.1  [COLOR darkorange] 11 de Febrero de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 3.0.0  [COLOR darkorange] 1 de Febrero de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.5.6  [COLOR darkorange] 19 de Enero de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
+
+    Nuevo Repo 3.0.0
+
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.5.5  [COLOR darkorange] 9 de Enero de 2023[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 [COLOR yellow][B]2022[/B][/COLOR]
 
 2.5.4  [COLOR darkorange] 22 de Diciembre 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.5.3  [COLOR darkorange] 16 de Diciembre 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.5.2  [COLOR darkorange] 28 de Noviembre 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.5.1  [COLOR darkorange] 11 de Noviembre 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
-    Configuracion:
-       Sistema:
-          Nueva opcion para comprobar Balandro Repo
+    Ajustes:
+       Sistema: Opcion para comprobar Balandro Repo
 
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.5.0  [COLOR darkorange] 28 de Octubre 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.4.2  [COLOR darkorange] 8 de Octubre 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.4.1  [COLOR darkorange]29 de Septiembre 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.4.0  [COLOR darkorange]1 de Septiembre 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.3.9  [COLOR darkorange]13 de Agosto 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.3.8  [COLOR darkorange]8 de Agosto 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.3.7  [COLOR darkorange]1 de Agosto 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.3.6  [COLOR darkorange]14 de Julio 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.3.5  [COLOR darkorange]1 de Julio 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.3.4  [COLOR darkorange]16 de Junio 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
+
+    Nuevo Repo 2.0.0
 
     Ajustes:
        Menu: Nuevas opciones
@@ -178,7 +192,7 @@
     Canales y Servidores: Sin variaciones
 
 2.3.3  [COLOR darkorange]1 de Junio 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Ajustes:
        Menu: Nuevas opciones
@@ -189,22 +203,21 @@
     Canales y Servidores: Sin variaciones
 
 2.3.2  [COLOR darkorange]10 de Mayo 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.3.1  [COLOR darkorange]5 de Mayo 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Ajustes:
-       Cuentas:
-          Dominio HdFull
+       Cuentas: Dominio HdFull
 
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.3.0  [COLOR darkorange]30 de Mayo 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Ajustes:
        Torrents:
@@ -214,10 +227,10 @@
           Descartar canales con enlaces Torrent exclusivamente
 
     Menus:
-        Nuevas Opciones:
-           Peliculas,  Series,  Torrents,
-           Infantiles, Novelas
-           Doramas,  Animes,  Adultos
+       Nuevas Opciones:
+          Peliculas,  Series,  Torrents,
+          Infantiles, Novelas
+          Doramas,  Animes,  Adultos
 
     Generos: Re-configurados
 
@@ -230,21 +243,20 @@
        Nuevos: Varios
 
 2.2.5  [COLOR darkorange]1 de Abril 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.2.4  [COLOR darkorange]1 de Marzo 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.2.3  [COLOR darkorange]22 de Febrero 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Ajustes:
-       Proxies:
-          Nuevas Opciones
+       Proxies: Nuevas Opciones
 
     Proxies: Busqueda Global Optimizada
     Generos: Re-configurados
@@ -256,18 +268,16 @@
     Servidores Modificados: Revision generalizada
 
 2.2.2  [COLOR darkorange]31 de Enero 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Generos: Re-configurados
     Canales y Servidores: Sin variaciones
 
 2.2.1  [COLOR darkorange]17 de Enero 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
-    Ajustes: 
-       Nuevos proveedores de proxies
+    Ajustes: Nuevos proveedores de proxies
 
-    Menus:
-       Nueva opcion Doramas
+    Menus: Nueva opcion Doramas
 
     Generos: Re-configurados
 
@@ -282,14 +292,13 @@
     Servidores modificados: Revision generalizada
 
 2.2.0  [COLOR darkorange]2 de Enero 2022[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Ajustes:
        Nuevo apartado Parental
        Nuevos Proveedores de proxies
 
-    Menus:
-       Nueva opcion Sugeridos
+    Menus: Nueva opcion Sugeridos
 
     Generos: Re-configurados
 
@@ -305,20 +314,16 @@
 [COLOR yellow][B]2021[/B][/COLOR]
 
 2.1.3  [COLOR darkorange]20 de Noviembre 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Ajustes:
-       Cuentas:
-          Comprobacion ultimo dominio vigente
-       Proxies:
-          Cantidad maxima de proxies a memorizar
-       Buscar:
-           Presentar canales que requeriran nuevos proxies
+       Cuentas: Comprobacion ultimo dominio vigente
+       Proxies: Cantidad maxima de proxies a memorizar
+       Buscar: Presentar canales que requeriran nuevos proxies
 
     Menus:
        Primeras Opciones extras en funcion de mes natural
-       Buscar:
-          Habilitado menu contextual en el nombre del canal
+       Buscar: Habilitado menu contextual en el nombre del canal
 
     Generos: Re-configurados
 
@@ -345,15 +350,13 @@
           Streamsb, Streamtape, Upvideo, Vidoza
 
 2.1.2  [COLOR darkorange]23 de Octubre 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
     Implementado nuevo sistema de Fixes
 
     Ajustes:
-       Buscar:
-          En que canales nunca se buscara
+       Buscar: En que canales nunca se buscara
     Menus:
-       Ayuda:
-          En que canales nunca se buscara
+       Ayuda: En que canales nunca se buscara
 
     Generos: Re-configurados
 
@@ -378,25 +381,18 @@
           Streamon, Vidhd
 
 2.1.1  [COLOR darkorange]12 de Octubre 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Ajustes:
-        Menus:
-           Opcion Idiomas
-        Sub-Menus:
-           Opcion Especiales
-        Canales:
-           Eliminar credenciales
-        Canales:
-           Nuevas opciones personalizacion
+        Menus: Opcion Idiomas
+        Sub-Menus: Opcion Especiales
+        Canales: Eliminar credenciales
+        Canales: Nuevas opciones personalizacion
 
     Menus:
-        Buscar:
-           Personalizacion busquedas
-        Sub-Menus:
-           Especiales
-        Ayuda:
-           Nuevas opciones personalizacion
+        Buscar: Personalizacion busquedas
+        Sub-Menus: Especiales
+        Ayuda: Nuevas opciones personalizacion
 
     Generos: Re-configurados
 
@@ -413,25 +409,18 @@
        Modificados: Doodstream, Okru, Uptobox, Uqload
 
 2.1.0  [COLOR darkorange]30 de Septiembre 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Ajustes:
-        Menus:
-           Opcion Idiomas
-        Sub-Menus:
-           Opcion Especiales
-        Canales:
-           Eliminar credenciales
-        Canales:
-           Nuevas opciones personalizacion
+        Menus: Opcion Idiomas
+        Sub-Menus: Opcion Especiales
+        Canales: Eliminar credenciales
+        Canales: Nuevas opciones personalizacion
 
     Menus:
-        Buscar:
-           Personalizacion busquedas
-        Sub-Menus:
-           Especiales
-        Ayuda:
-           Nuevas opciones personalizacion
+        Buscar: Personalizacion busquedas
+        Sub-Menus: Especiales
+        Ayuda: Nuevas opciones personalizacion
 
     Generos: Re-configurados
 
@@ -449,13 +438,11 @@
           Doodstream, Okru, Uptobox, Uqload
 
 2.0.6  [COLOR darkorange]3 de Septiembre 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
-    Ajustes:
-       Nuevo apartado Cuentas
+    Ajustes: Nuevo apartado Cuentas
 
-    Grupos:
-       Nuevo apartado Especiales
+    Grupos: Nuevo apartado Especiales
 
     Generos: Re-configurados
 
@@ -495,12 +482,12 @@
           Viwol, Voe
 
 2.0.5  [COLOR darkorange]6 de Agosto 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Descargas
 
 2.0.4  [COLOR darkorange]4 de Agosto 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
     Canales:
        Modificados:
@@ -511,12 +498,10 @@
           Evoload, Fastream
 
 2.0.3  [COLOR darkorange]4 de Agosto 2021[/COLOR]
-    Correcciones: Bugs version anterior
-
+    Correcciones: Errores detectados
     Trailers
 
-    Menu: 
-       Torrents
+    Menu: Torrents
 
     Generos: Re-configurados
 
@@ -550,19 +535,17 @@
           Sbembed, Streamsb, Streamz, YourUpload,, YouTube, Zplayer
 
 2.0.2  [COLOR darkorange]26 de Mayo 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
-    Ajustes:
-       Opcion Descartar busquedas en canales torrent
+    Ajustes: Opcion Descartar busquedas en canales torrent
 
     Generos: Re-configurados
 
     Buscar:
-       Filmaffinitylists - cambio estructura
+       Filmaffinitylists: Cambio estructura
        Descartar busquedas en canales que pueden contener archivos torrent
 
-    Proxies:
-       Nuevo proveedor Silverproxies
+    Proxies: Nuevo proveedor Silverproxies
 
     Canales:
        Modificados:
@@ -591,16 +574,13 @@
           ShareVid
 
 2.0.1  [COLOR darkorange]25 de Abril 2021[/COLOR]
-    Correcciones: Bugs version anterior
+    Correcciones: Errores detectados
 
-    Ajustes:
-       Habilitar colores personalizados notificaciones
+    Ajustes: Habilitar colores personalizados notificaciones
 
-    Menu:
-      Nueva opcion Premios Oscars
+    Menu: Nueva opcion Premios Oscars
 
-    Menus:
-      Habilitar menus contextuales adicionales
+    Menus: Habilitar menus contextuales adicionales
 
     Generos: Re-configurados
 
@@ -633,7 +613,9 @@
           Amazon, Fastream, Highstream, Sbembed, Wolfstream
 
 2.0.0  [COLOR darkorange]6 de Marzo 2021[/COLOR]
-    Compatible con Python 3
+    [COLOR cyan][B]Compatible con Python 3[/B][/COLOR]
+
+    Nuevo Repo 1.0.5
 
     Nuevo Menu
     Nueva gestion de Proxies, Torrents y Busquedas
@@ -668,6 +650,8 @@
 [COLOR cyan][B]Versiones NO compatibles con Python 3[/B][/COLOR]
 
 1.5.2  [COLOR darkorange]13 Febrero 2021[/COLOR]
+    Incorporado nuevo proveedor de proxies
+
     Canales modificados:
        Cinecalidad, Hdfull, Seriesmetro, SeriesFlix, Pelispedia, Repelis,
        Seriesblanco, Newpct1, Seriemega, Seriez, Cliver, Seriespapaya,
@@ -675,9 +659,9 @@
     Servidores modificados:
        Filesim, Gamovideo, Clipwatching, Vidtodo, Easyload
 
-    Incorporado nuevo proveedor de proxies
-
 1.5.1  [COLOR darkorange]9 de Enero 2021[/COLOR]
+    Incorporado cliente Torrest para torrents
+
     Canales modificados:
        Cuevana3, Playview, Inkapelis, Cinecalidad, Hdfull, Movidy, 
        Seriesmetro, Serieflix, Newpct1, Grantorrent, Descargacineclasico,
@@ -686,19 +670,17 @@
        Doodstream, Vidia, Gounlimited, Youtube, Videossh, 
        Streamtape, Gamovideo, Yourupload
 
-    Incorporado cliente Torrest para torrents
-
 [COLOR yellow][B]2020[/B][/COLOR]
 
 1.5.0  [COLOR darkorange]17 de Noviembre 2020[/COLOR]
+    Correccion bug por cambios de tmdb
+    Opcion en Settings para forzar actualizaciones de tipo fixes
+
     Canales modificados:
        Hdfull, Seriesdanko, Seriespapaya, Estrenoscinesaa, Allpeliculas,
        Playview, Dospelis, Inkapelis, Cinecalidad
     Servidores modificados:
        Youtube, Gamovideo, Streamtape
-
-    Correccion bug por cambios de tmdb
-    Opcion en Settings para forzar actualizaciones de tipo fixes
 
 1.4.23  [COLOR darkorange]30 de Octubre 2020[/COLOR]
     Canales modificados:
@@ -707,12 +689,12 @@
        Gamovideo, Fembed, Playtube, Upstream
 
 1.4.22  [COLOR darkorange]15 de Octubre 2020[/COLOR]
+    Imagenes de Tmdb con https para evitar errores en ciertos dispositivos
+
     Canales modificados:
        Hdfull, Torrentdivx, Pelispedia, Tupelihd, Retroseriestv
     Servidores modificados:
        Gamovideo, Streamtape
-
-    Imagenes de Tmdb con https para evitar errores en ciertos dispositivos
 
 1.4.21  [COLOR darkorange]5 de Octubre 2020[/COLOR]
     Canales modificados:
@@ -818,12 +800,12 @@
        Powvideo, Streamplay
 
 1.4.6  [COLOR darkorange]14 de Marzo 2020[/COLOR]
+    Incorporada nueva opcion para buscar proxies
+
     Canales modificados:
        Descargacineclasico, Grantorrent, Inkapelis, Xdede, Allpeliculas, Cinetux
     Servidores modificados:
        Mystream, Streamz, Gamovideo, Digiload, Fembed
-
-    Incorporada nueva opcion para buscar proxies
 
 1.4.5  [COLOR darkorange]28 de Febrero 2020[/COLOR]
     Canales modificados:
@@ -846,12 +828,12 @@
        Fembed, Powvideo, Streamplay, Sendvid, Netutv
 
 1.4.2  [COLOR darkorange]17 de Enero 2020[/COLOR]
+    Nueva opcion en Ajustes para descartar listas eroticas/xxx
+
     Canales modificados:
        Cuevana3, Xdede, Dospelis, Pelisplay, Hdfull
     Servidores modificados:
        Powvideo, Streamplay, Upstream, Netutv, Youtube, Videomega
-
-    Nueva opcion en Ajustes para descartar listas eroticas/xxx
 
 1.4.1  [COLOR darkorange]10 de Enero 2020[/COLOR]
     Canales nuevos:
@@ -864,13 +846,13 @@
        Cloudvideo, Upstream
 
 1.4.0  [COLOR darkorange]3 de Enero 2020[/COLOR]
+    Contemplado indeterminado en Ajustes filtrar/ordenar enlaces por servidores
+
     Canales modificados:
        Cinecalidad, Seriesdanko, Pelisplay, Cinetux, Cineonline, Hdfull
     Servidores modificados:
        Vidoza, Mystream, Jetload, Powvideo, Streamplay, Mixdrop, 
        Yourupload, Thevideobee, Videobin, Gvideo
-
-    Contemplado indeterminado en Ajustes filtrar/ordenar enlaces por servidores
 
 [COLOR yellow][B]2019[/B][/COLOR]
 
@@ -882,29 +864,30 @@
        Youtube, Upvid, Vivo, Mixdrop
 
 1.3.14  [COLOR darkorange]13 de Diciembre 2019[/COLOR]
+    Descargas: 
+       Incorporada opcion para guardar una copia del video a otra carpeta, usb
+
     Canales modificados:
        Pepecine, Clasicofilm, Retroseriestv, Cliver, Cinecalidad
     Servidores modificados:
        Mixdrop, Vidcloud, Thevid, Netutv, Jetload, Openplay
-    En Descargas: 
-       Incorporada opcion para guardar una copia del video a otra carpeta, usb
 
 1.3.13  [COLOR darkorange]7 de Diciembre 2019[/COLOR]
+    Corregido bug en enlaces guardados con ciertos servidores
+
     Canales modificados:
        Pelisplay, InkaSeries, Cinecalidad, Playview, Grantorrent, Cuevana3
     Servidores modificados:
        Powvideo, Streamplay, JetLoad, Gounlimited, Videomega, Upstream
 
-    Corregido bug en enlaces guardados con ciertos servidores
-
 1.3.12  [COLOR darkorange]29 de Noviembre 2019[/COLOR]
+    Ayuda:
+       Incorporado apartado explicando la Utilizacion de proxies
+
     Canales modificados:
        Cinecalidad, Wikiseries
     Servidores modificados:
        Jetload, Upvid, Mixdrop, Prostream, Vidia, Powvideo, Vidfast
-
-    En Ayuda:
-       Incorporado apartado explicando la Utilizacion de proxies
 
 1.3.11  [COLOR darkorange]24 de Noviembre 2019[/COLOR]
     Canales modificados:
@@ -952,13 +935,13 @@
        PowVideo, JetLoad
 
 1.3.5  [COLOR darkorange]2019[/COLOR]
+    Retoques en Buscar / Listas Tmdb
+
     Canales modificados:
        Dilo, Cuevana3, Cliver
     Servidores modificados:
        OnlyStream, RapidVideo, JetLoad
        Servidores desactivados: StreamCloud, NetuTv
-
-    Retoques en Buscar / Listas Tmdb
 
 1.3.4  [COLOR darkorange]2019[/COLOR]
     Canales modificados:
@@ -968,12 +951,12 @@
        StreamPlay, OnlyStream, TheVid
 
 1.3.3  [COLOR darkorange]2019[/COLOR]
+    En Ajustes se puede desactivar el pitido en las notificaciones
+
     Canales modificados:
        CanalPelis, GranTorrent, Gnula, Cuevana3, RetroSeriesTv
     Servidores modificados:
        NetuTv
-
-    En Ajustes se puede desactivar el pitido en las notificaciones
 
 1.3.2  [COLOR darkorange]2019[/COLOR]
     Canales nuevos:
@@ -1002,12 +985,12 @@
        DailyMotion, Vk, Vimeo
 
 1.2.17  [COLOR darkorange]2019[/COLOR]
+    Opcion en los Ajustes para ordenar por calidades
+
     Canales modificados:
        SeriesPapaya, CanalPelis, WikiSeries, GranTorrent, CineTux
     Servidores modificados:
        JawCloud, StreamPlay
-
-    Opcion en los Ajustes para ordenar por calidades
 
 1.2.16  [COLOR darkorange]2019[/COLOR]
     Canales nuevos:
@@ -1021,6 +1004,8 @@
        Openload
 
 1.2.15  [COLOR darkorange]2019[/COLOR]
+    En busquedas globales los canales sin resultados se muestran al final
+
     Canales modificados:
        Cinefox, GnulaBiz, CanalPelis
     Canales nuevos:
@@ -1028,10 +1013,9 @@
     Servidores modificados:
        Vidtodo, Powvideo, Streamplay, Cloudvideo, Vshare
 
-    En busquedas globales los canales sin resultados se muestran al final
-
 1.2.14  [COLOR darkorange]2019[/COLOR]
     Dentro del menu Buscar, consultas a TMDB por personas, pelis y series
+
     Canales modificados:
        NewPct1, Gnula, InkaPelis, InkaSeries, DescargaCineClasico
     Canales desactivados:
@@ -1042,22 +1026,21 @@
        Vevio, TheVideoMe
 
 1.2.13  [COLOR darkorange]2019[/COLOR]
+    Las ultimas busquedas se guardan por peliculas y series por separado
+
     Canales modificados:
        PeliculasHd, CineCalidad, Tv-Vip, PelisIpad, Dilo, Yape
     Servidores modificados:
        Flashx, MegaUp, Vimple, GamoVideo
 
-    Las ultimas busquedas se guardan por peliculas y series por separado
-
 1.2.12  [COLOR darkorange]2019[/COLOR]
+    Modificacion general en todos los servidores
+    Acceso por canales configurable
+
     Canales modificados:
        Pepecine, NewPct1, PeliculasHd, InkaPelis
     Canales desactivados:
        Pelis123
-
-    Modificacion general en todos los servidores
-
-    Acceso por canales configurable
 
 1.2.11  [COLOR darkorange]2019[/COLOR]
     Canales modificados:
@@ -1086,15 +1069,16 @@
        Incorporadas series y subcategorias de peliculas
 
 1.2.8  [COLOR darkorange]2019[/COLOR]
+    Dialogo para resolucion de recaptcha
+
     Canales modificados:
        Seriez
     Servidores modificados:
        Flix555, Vidtodo, Jetload, Netutv
 
-    Dialogo para resolucion de recaptcha
-
 1.2.7  [COLOR darkorange]2019[/COLOR]
     Corregido bug en las actualizaciones automaticas
+
     Canales modificados:
        InkaSeries, InkaPelis y Cuevana3
     Servidores modificados:
@@ -1104,7 +1088,6 @@
 
 1.2.6  [COLOR darkorange]2019[/COLOR]
     Ajustes de proxies manual o con buscador
-
     Correccion para webs que usan cloudflare
 
     Canales reactivados:
@@ -1114,12 +1097,12 @@
 
 1.2.5  [COLOR darkorange]2019[/COLOR]
     Opcion en los Ajustes para desactivar autoplay en canales concretos
+    Correccion para webs que usan cloudflare
+
     Canales modificados:
        Tv-Vip
     Canales desactivados:
        Pelis123, Cinecalidad
-
-    Correccion para webs que usan cloudflare
 
 1.2.4  [COLOR darkorange]2019[/COLOR]
     Opcion en los Ajustes para recordar la ultima busqueda realizada
@@ -1132,14 +1115,14 @@
        Netutv por necesitar recaptcha
 
 1.2.3  [COLOR darkorange]2019[/COLOR]
+    Retoques internos (opciones para proxys y cache)
+
     Canales modificados:
        Cinecalidad, SeriesBlanco
     Servidores modificados:
        TheVid, GamoVideo, PowVideo
     Nuevo canal:
        Tv-Vip (en fase experimental)
-
-    Retoques internos (opciones para proxys y cache)
 
 1.2.2  [COLOR darkorange]2019[/COLOR]
     Opcion para desactivar las llamadas a tmdb y explicacion en la ayuda
@@ -1153,6 +1136,7 @@
 
 1.2.1  [COLOR darkorange]2019[/COLOR]
     Se pueden copiar listas de enlaces guardados de otros dispositivos
+    Correcciones en el buscador y en el lanzado de torrents
 
     Canales nuevos:
        InkaPelis, InkaSeries
@@ -1162,8 +1146,6 @@
        Xdrive
     Servidores nuevos:
        Vshare
-
-    Correcciones en el buscador y en el lanzado de torrents
 
 [COLOR yellow][B]2018[/B][/COLOR]
 
@@ -1177,7 +1159,6 @@
 
 1.1.21  [COLOR darkorange]2018[/COLOR]
     Formateo de titulos configurable para los listados de peliculas y series en canales
-
     Colores del menu contextual configurables
 
     Canales nuevos:
