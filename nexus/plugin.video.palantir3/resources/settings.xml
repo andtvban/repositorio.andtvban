@@ -2,18 +2,27 @@
 <settings version="1">
 	<section id="plugin.video.palantir3">
 		<category id="interfaz" label="30000" help="">
-			<group id="1">
+			<group id="General" label="30094">
 				<setting id="RemenberQuery" type="boolean" label="30049" help="">
 					<level>0</level>
 					<default>true</default>
 					<control type="toggle"/>
 				</setting>
+
+				<setting id="IdiomaCalidad" type="boolean" label="30095" help="">
+					<level>0</level>
+					<default>true</default>
+					<control type="toggle"/>
+				</setting>
+			</group>
+
+			<group id="series" label="30101">
 				<setting id="NextEpisode" type="boolean" label="30061" help="">
 					<level>0</level>
 					<default>true</default>
 					<control type="toggle"/>
 				</setting>
-				<setting id="follow-up3" type="boolean" label="30062" help="">
+				<setting id="follow-up3" type="boolean" label="30092" help="">
 					<level>0</level>
 					<default>true</default>
 					<control type="toggle"/>
@@ -27,7 +36,34 @@
 					<control type="toggle"/>
 				</setting>
 			</group>
-			<group id="2" label="30002">
+
+			<group id="peliculas" label="30100">
+				<setting id="moviesUnfinished" type="boolean" label="30084" help="">
+					<level>0</level>
+					<default>true</default>
+					<control type="toggle"/>
+				</setting>
+				<setting id="hideUnfinished" type="integer" label="30085" parent="MoviesUnfinished">
+					<level>0</level>
+					<dependencies>
+						<dependency type="visible" operator="is" setting="MoviesUnfinished">true</dependency>
+					</dependencies>
+					<default>30</default>
+					<constraints>
+						<options>
+							<option label="30087">7</option>
+							<option label="30088">14</option>
+							<option label="30089">30</option>
+							<option label="30090">180</option>
+						</options>
+					</constraints>
+					<control type="spinner" format="string"/>
+				</setting>
+
+			</group>
+		</category>
+		<category id="colores" label="30002" help="">
+			<group id="1">
 				<setting id="MenuColor" type="string" label="30003" help="">
 					<level>0</level>
 					<default>30251</default>
@@ -1273,9 +1309,13 @@
 				</setting>
 			</group>
 			<group id="3" label="30025">
-				<visible>False</visible>
+				<setting id="debug_enabled" type="boolean" label="30025" help="">
+					<level>3</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
 				<setting id="reset_resolveurl_cache" type="action" label="30026" help="">
-					<level>0</level>
+					<level>3</level>
 					<data>RunPlugin(plugin://script.module.resolveurl/?mode=reset_cache)</data>
 					<constraints>
 						<allowempty>true</allowempty>

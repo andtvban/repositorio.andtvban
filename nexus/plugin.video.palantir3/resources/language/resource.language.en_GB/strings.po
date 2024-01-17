@@ -660,6 +660,10 @@ msgid "More..."
 msgstr ""
 
 msgctxt "#30025"
+msgid "Only debug"
+msgstr ""
+
+msgctxt "#30025"
 msgid "Maintenance"
 msgstr ""
 
@@ -866,6 +870,45 @@ msgctxt "#30083"
 msgid "Do not follow this show here"
 msgstr ""
 
+msgctxt "#30084"
+msgid "Show unfinished movies"
+msgstr ""
+
+msgctxt "#30085"
+msgid "Remove from this list"
+msgstr ""
+
+msgctxt "#30087"
+msgid "After a week"
+msgstr ""
+
+msgctxt "#30088"
+msgid "After two weeks"
+msgstr ""
+
+msgctxt "#30089"
+msgid "After a month"
+msgstr ""
+
+msgctxt "#30090"
+msgid "After six months"
+msgstr ""
+
+msgctxt "#30092"
+msgid "Show series in follow-up"
+msgstr ""
+
+msgctxt "#30093"
+msgid "Unfinished movies"
+msgstr ""
+
+msgctxt "#30094"
+msgid "General"
+msgstr ""
+
+msgctxt "#30095"
+msgid "Include extra information in titles"
+msgstr ""
 
 # moria
 
@@ -945,6 +988,9 @@ msgctxt "#30120"
 msgid "New series"
 msgstr ""
 
+msgctxt "#30121"
+msgid "Unfinished movies"
+msgstr ""
 
 msgctxt "#30124"
 msgid "Latest updates "
@@ -1092,7 +1138,7 @@ msgstr ""
 
 msgctxt "#30510"
 msgid "Enter a new password"
-msgid ""
+msgstr ""
 
 msgctxt "#30511"
 msgid "New password"

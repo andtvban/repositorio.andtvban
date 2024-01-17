@@ -283,6 +283,46 @@ msgctxt "#30083"
 msgid "Do not follow this show here"
 msgstr "No seguir esta serie aquí"
 
+msgctxt "#30084"
+msgid "Show unfinished movies"
+msgstr "Mostrar películas no finalizadas"
+
+msgctxt "#30085"
+msgid "Remove from this list"
+msgstr "Eliminar de esta lista"
+
+msgctxt "#30087"
+msgid "After a week"
+msgstr "Después de una semana"
+
+msgctxt "#30088"
+msgid "After two weeks"
+msgstr "Después de dos semana"
+
+msgctxt "#30089"
+msgid "After a month"
+msgstr "Después de un mes"
+
+msgctxt "#30090"
+msgid "After six months"
+msgstr "Después de seis meses"
+
+msgctxt "#30092"
+msgid "Show series in follow-up"
+msgstr "Mostrar series en seguimiento"
+
+msgctxt "#30093"
+msgid "Unfinished movies"
+msgstr "Películas no finalizadas"
+
+msgctxt "#30094"
+msgid "General"
+msgstr "General"
+
+msgctxt "#30095"
+msgid "Include extra information in titles"
+msgstr "Incluir información extra en los títulos"
+
 # moria
 
 msgctxt "#30100"
@@ -361,6 +401,9 @@ msgctxt "#30120"
 msgid "New series"
 msgstr "Nuevas series"
 
+msgctxt "#30121"
+msgid "Unfinished movies"
+msgstr "Películas no finalizadas"
 
 msgctxt "#30124"
 msgid "Latest updates "
