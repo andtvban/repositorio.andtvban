@@ -486,7 +486,7 @@ def manto_params(item):
         config.set_setting('channels_repeat', '30')
         config.set_setting('servers_waiting', '6')
 
-        config.set_setting('chrome_last_version', '120.0.6099.130')
+        config.set_setting('chrome_last_version', '120.0.6099.268')
 
         config.set_setting('debug', '0')
 
@@ -1222,10 +1222,10 @@ def adults_password_del(item):
 
     try:
        if int(password) == int(config.get_setting('adults_password')):
-           txt = 'Si es afirmativa su repuesta a la pregunta formulada, deberá salir y volver a acceder a los Ajustes y si lo desea establecer un nuevo Pin parental.'
+           txt = '[COLOR yellow][B]Si es afirmativa su repuesta a la pregunta formulada, deberá salir y volver a acceder a los Ajustes y si lo desea establecer un nuevo Pin parental.[/B][/COLOR]'
            if item.erase: txt = ''
 
-           if platformtools.dialog_yesno(config.__addon_name, txt, '[B][COLOR %s]¿ Desea eliminar el Pin parental memorizado ?[/COLOR][/B]' % color_adver):
+           if platformtools.dialog_yesno(config.__addon_name + ' Eliminar PIN Parental', txt, '[B][COLOR %s]¿ Desea eliminar el Pin parental memorizado ?[/COLOR][/B]' % color_alert):
                config.set_setting('adults_password', '')
                platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Pin anulado[/COLOR][/B]' % color_exec)
        else:

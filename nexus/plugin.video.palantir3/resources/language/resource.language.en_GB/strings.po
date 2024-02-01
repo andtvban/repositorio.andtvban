@@ -910,6 +910,22 @@ msgctxt "#30095"
 msgid "Include extra information in titles"
 msgstr ""
 
+msgctxt "#30096"
+msgid "Nivel del control parental"
+msgstr ""
+
+msgctxt "#30097"
+msgid "bajo +18"
+msgstr ""
+
+msgctxt "#30098"
+msgid "medio 18"
+msgstr ""
+
+msgctxt "#30099"
+msgid "alto 16"
+msgstr ""
+
 # moria
 
 msgctxt "#30100"

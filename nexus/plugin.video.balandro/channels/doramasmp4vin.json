@@ -3,7 +3,7 @@
   "name": "DoramasMp4Vin",
   "thumbnail": "doramasmp4vin.jpg",
 
-  "active": true,
+  "active": false,
 
   "searchable": false,
   "search_types": ["all", "movie", "tvshow"],
