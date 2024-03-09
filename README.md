@@ -8,6 +8,7 @@
 # Kodi 20 Nexus
 <p align="center">
 <img src="https://i.imgur.com/19lQWCN.png">
+<img src="https://img.shields.io/badge/TVBAN-LA%20ORIGINAL-green">  
 </p>
 
 <h1 align="left"> Kodi 21 Omega </h1>
