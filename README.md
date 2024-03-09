@@ -1,6 +1,4 @@
 <tspan># ${This\ is\ a\ {\color{red}Big}}\ Title$ </tspan>
-$\color{green}{test}$
-<tspan color="red">Hello</tspan>
 # ${\color{red}Repositorio \space andtvban: \space \color{green}Matrix \space \color{indigo}Nexus}$
 # Repositorio andtvban: ${\color{green}Matrix},\space ${\color{8A2BE2}Nexus}.$
 
