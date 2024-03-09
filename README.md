@@ -1,7 +1,7 @@
 # $\colorbox{green}{{\color{white}{This\ is\ a\ Big\ Title}}}$
 $\color{green}{test}$
 <tspan color="red">Hello</tspan>
-# Repositorio andtvban: <tspan ${\color{green}Matrix}, Nexus.$</tspan>
+# Repositorio andtvban: ${\color{green}Matrix},${\color{8A2BE2} Nexus.$
 
 # Tu Repo andtvban que no puede faltar para tu Kodi.
 
