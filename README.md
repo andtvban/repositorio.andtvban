@@ -6,8 +6,9 @@
 ![img](https://i.imgur.com/FmHatKc.png)
 
 # Kodi 20 Nexus
-<p align="center">
+<p align="left">
 <img src="https://img.shields.io/badge/TVBAN-LA%20ORIGINAL-8A2BE2">  
+<p align="center">
 <img src="https://i.imgur.com/19lQWCN.png">  
 </p>
 
