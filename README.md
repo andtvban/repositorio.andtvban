@@ -1,4 +1,4 @@
- # $\Large{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus}}}}$
+ # $\text{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus}}}}$
 
 # $\mathbb{Tu\ Repo\ andtvban\ que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}$
 
