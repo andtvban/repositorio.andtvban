@@ -1,9 +1,7 @@
-# ${This\ is\ a\ {\color{red}Big}}\ Title$ 
-# $\Large{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus}}}}$
-# Repositorio andtvban: ${\color{green}Matrix},\space ${\color{8A2BE2}Nexus}.$
+ # $\Large{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus}}}}$
 
-$\mathbb{Tu\ Repo\ andtvban\ que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}$
-# Tu Repo andtvban que no puede faltar para tu Kodi.
+# $\mathbb{Tu\ Repo\ andtvban\ que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}$
+
 
 # Kodi 19 Matrix
 ![img](https://i.imgur.com/FmHatKc.png)
