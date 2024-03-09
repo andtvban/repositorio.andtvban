@@ -1,5 +1,5 @@
 # ${This\ is\ a\ {\color{red}Big}}\ Title$ 
-# $\textit{Repositorio\ andtvban:\ {\color{green}Matrix\ ,\ {\color{indigo}Nexus}}}$
+# $\mathcal{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus}}}}$
 # Repositorio andtvban: ${\color{green}Matrix},\space ${\color{8A2BE2}Nexus}.$
 
 # Tu Repo andtvban que no puede faltar para tu Kodi.
