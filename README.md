@@ -1,4 +1,4 @@
-# $\colorbox{green}{{\color{white}{This\ is\ a\ Big\ Title}}}$
+# ${This\ is\ a\ {\color{red}Big}}\ Title$
 $\color{green}{test}$
 <tspan color="red">Hello</tspan>
 # ${\color{red}Repositorio \space andtvban: \space \color{green}Matrix \space \color{indigo}Nexus}$
