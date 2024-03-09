@@ -2,7 +2,7 @@
 # $\Large{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus}}}}$
 # Repositorio andtvban: ${\color{green}Matrix},\space ${\color{8A2BE2}Nexus}.$
 
-${Tu\ Repo\ andtvban\ \que \no \puede \faltar\ \para \tu {\color{teal}Big}}\ Title$
+$\texting{Tu\ Repo\ andtvban\ que\ no\ \puede\ faltar\ \para \tu {\color{teal}Big}}\ Title$
 # Tu Repo andtvban que no puede faltar para tu Kodi.
 
 # Kodi 19 Matrix
