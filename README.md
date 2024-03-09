@@ -12,7 +12,7 @@
 
 <h1 align="left"> Kodi 21 Omega </h1>
 <p align="left">
-<img src="https://img.shields.io/badge/ESTADO-EN%20DESARROLLO-green">
+<img src="https://img.shields.io/badge/ESTADO%ANDTVBAN-EN%20DESARROLLO-green">
 </p>
 
 
