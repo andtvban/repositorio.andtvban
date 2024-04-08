@@ -15,7 +15,7 @@
 <img src="https://i.imgur.com/19lQWCN.png">  
 </p>
 
-<h1 align="left"> Kodi 21 Omega $\textbf{\color{blue}Omega}$ </h1>
+<h1 align="left"> Kodi 21 Omega $\textbf{\color{dodgerblue}Omega}$ </h1>
 <p align="left">
 <img src="https://img.shields.io/badge/ESTADO%20ANDTVBAN-EN%20DESARROLLO%20PROXIMAMENTE-green">
 </p>
