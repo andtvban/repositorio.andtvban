@@ -3,7 +3,7 @@
 # $\mathbb{Tu\ Repo\ andtvban\ que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}$
 
 
-# $\text{Kodi\ 19\ {\color{green}Matrix\}}}$
+# $\text{Kodi\ 19\ {\color{green}Matrix\}}}}$
 ![img](https://i.imgur.com/FmHatKc.png)
 
 # $\text{Kodi\ 20 Nexus
