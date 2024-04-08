@@ -5,7 +5,7 @@
 
 # $ Kodi 19 Matrix
 ![img](https://i.imgur.com/FmHatKc.png)
-# $\text{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus}}}}$
+# $\text{Kodi\ 19:\ {\color{green}Matrix\ {\color{white}\ {\color{indigo}}}}}$
 <img src="https://i.imgur.com/19lQWCN.png">
 
 # Kodi 20 Nexus
