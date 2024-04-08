@@ -3,11 +3,10 @@
 # $\mathbb{Tu\ Repo\ andtvban\ que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}$
 
 
-# $\text{Kodi\ 19\ {\color{green}Matrix\ }}}$
-$\text{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white}\ {\color{indigo}}}}}$
+# $ Kodi 19 Matrix
 ![img](https://i.imgur.com/FmHatKc.png)
 
-# $\text{Kodi\ 20 Nexus
+# Kodi 20 Nexus
 <p align="left">
 <img src="https://img.shields.io/badge/TVBAN-LA%20ORIGINAL-8A2BE2">  
 <p align="center">
