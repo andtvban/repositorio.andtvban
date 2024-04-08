@@ -40,7 +40,7 @@ context_buscar.append({'title': tit, 'channel': 'helper', 'action': 'show_play_p
 tit = '[COLOR powderblue][B]Preferencias Buscar[/B][/COLOR]'
 context_buscar.append({'title': tit, 'channel': 'search', 'action': 'show_help_parameters'})
 
-tit = '[COLOR red][B]Preferencias Proxies[/B][/COLOR]'
+tit = '[COLOR darkcyan][B]Preferencias Proxies[/B][/COLOR]'
 context_buscar.append({'title': tit, 'channel': 'helper', 'action': 'show_prx_parameters'})
 
 tit = '[COLOR %s]Información Dominios[/COLOR]' % color_infor
@@ -135,6 +135,30 @@ context_proxy_channels.append({'title': tit, 'channel': 'actions', 'action': 'ma
 tit = '[COLOR %s]Ajustes categorías Menú, Canales, Dominios y Proxies[/COLOR]' % color_exec
 context_proxy_channels.append({'title': tit, 'channel': 'actions', 'action': 'open_settings'})
 
+context_generos = []
+
+tit = '[COLOR tan][B]Preferencias Menús[/B][/COLOR]'
+context_generos.append({'title': tit, 'channel': 'helper', 'action': 'show_menu_parameters'})
+
+tit = '[COLOR mediumaquamarine][B]Últimos Cambios Dominios[/B][/COLOR]'
+context_generos.append({'title': tit, 'channel': 'actions', 'action': 'show_latest_domains'})
+
+tit = '[COLOR powderblue][B]Global Configurar Proxies[/B][/COLOR]'
+context_generos.append({'title': tit, 'channel': 'proxysearch', 'action': 'proxysearch_all'})
+
+if config.get_setting('proxysearch_excludes', default=''):
+    tit = '[COLOR %s]Anular canales excluidos de Proxies[/COLOR]' % color_adver
+    context_generos.append({'title': tit, 'channel': 'proxysearch', 'action': 'channels_proxysearch_del'})
+
+tit = '[COLOR %s]Información Proxies[/COLOR]' % color_infor
+context_generos.append({'title': tit, 'channel': 'helper', 'action': 'show_help_proxies'})
+
+tit = '[COLOR %s][B]Quitar Proxies Actuales[/B][/COLOR]' % color_list_proxies
+context_generos.append({'title': tit, 'channel': 'actions', 'action': 'manto_proxies'})
+
+tit = '[COLOR %s]Ajustes categorías Menú, Canales, Dominios y Proxies[/COLOR]' % color_exec
+context_generos.append({'title': tit, 'channel': 'actions', 'action': 'open_settings'})
+
 context_cfg_search = []
 
 tit = '[COLOR tan][B]Preferencias Menús[/B][/COLOR]'
@@ -208,6 +232,50 @@ context_parental.append({'title': tit, 'channel': 'actions', 'action': 'manto_pr
 tit = '[COLOR %s]Ajustes categorías Canales, Parental, Dominios y Proxies[/COLOR]' % color_exec
 context_parental.append({'title': tit, 'channel': 'actions', 'action': 'open_settings'})
 
+context_config = []
+
+tit = '[COLOR tan][B]Preferencias Canales[/B][/COLOR]'
+context_config.append({'title': tit, 'channel': 'helper', 'action': 'show_channels_parameters'})
+
+tit = '[COLOR %s]Información Dominios[/COLOR]' % color_infor
+context_config.append({'title': tit, 'channel': 'helper', 'action': 'show_help_domains'})
+
+tit = '[COLOR %s][B]Últimos Cambios Dominios[/B][/COLOR]' % color_exec
+context_config.append({'title': tit, 'channel': 'actions', 'action': 'show_latest_domains'})
+
+tit = '[COLOR %s][B]Quitar Dominios Memorizados[/B][/COLOR]' % color_alert
+context_config.append({'title': tit, 'channel': 'actions', 'action': 'manto_domains'})
+
+tit = '[COLOR green][B]Información Plataforma[/B][/COLOR]'
+context_config.append({'title': tit, 'channel': 'helper', 'action': 'show_plataforma'})
+
+tit = '[COLOR %s][B]Quitar Proxies Memorizados[/B][/COLOR]' % color_alert
+context_config.append({'title': tit, 'channel': 'actions', 'action': 'manto_proxies'})
+
+tit = '[COLOR olive][B]Limpiezas[/B][/COLOR]'
+context_config.append({'title': tit, 'channel': 'actions', 'action': 'manto_limpiezas'})
+
+tit = '[COLOR darkorange][B]Borrar Carpeta Caché[/B][/COLOR]'
+context_config.append({'title': tit, 'channel': 'actions', 'action': 'manto_folder_cache'})
+
+tit = '[COLOR %s][B]Sus Ajustes Personalizados[/B][/COLOR]' % color_avis
+context_config.append({'title': tit, 'channel': 'helper', 'action': 'show_sets'})
+
+tit = '[COLOR %s][B]Cookies Actuales[/B][/COLOR]' % color_infor
+context_config.append({'title': tit, 'channel': 'helper', 'action': 'show_cook'})
+
+tit = '[COLOR %s][B]Eliminar Cookies[/B][/COLOR]' % color_alert
+context_config.append({'title': tit, 'channel': 'actions', 'action': 'manto_cookies'})
+
+tit = '[COLOR %s]Sus Advanced Settings[/COLOR]' % color_adver
+context_config.append({'title': tit, 'channel': 'helper', 'action': 'show_advs'})
+
+tit = '[COLOR %s][B]Eliminar Advanced Settings[/B][/COLOR]' % color_alert
+context_config.append({'title': tit, 'channel': 'actions', 'action': 'manto_advs'})
+
+tit = '[COLOR mediumaquamarine][B]Restablecer Parámetros Internos[/B][/COLOR]'
+context_config.append({'title': tit, 'channel': 'actions', 'action': 'manto_params'})
+
 context_usual = []
 
 tit = '[COLOR tan][B]Preferencias Canales[/B][/COLOR]'
@@ -215,6 +283,9 @@ context_usual.append({'title': tit, 'channel': 'helper', 'action': 'show_channel
 
 tit = '[COLOR mediumaquamarine][B]Últimos Cambios Dominios[/B][/COLOR]'
 context_usual.append({'title': tit, 'channel': 'actions', 'action': 'show_latest_domains'})
+
+tit = '[COLOR yellow][B]Preferencias Buscar[/B][/COLOR]'
+context_usual.append({'title': tit, 'channel': 'search', 'action': 'show_help_parameters'})
 
 tit = '[COLOR powderblue][B]Global Configurar Proxies[/B][/COLOR]'
 context_usual.append({'title': tit, 'channel': 'proxysearch', 'action': 'proxysearch_all'})
@@ -246,12 +317,8 @@ def mainlist(item):
         itemlist.append(item.clone( channel='submnuctext', action='submnu_search', title= '[B]Personalizar búsquedas[/B]', context=context_cfg_search, thumbnail=config.get_thumb('help'), text_color='moccasin', extra = 'all' ))
 
     if not item.mnu_lang:
-        itemlist.append(Item( channel='search', action='mainlist', title='[B]Buscar[/B]', context=context_buscar, thumbnail=config.get_thumb('search'), text_color='yellow' ))
-
-        if not config.get_setting('mnu_simple', default=False): tit_mnu = '[B][I]Menú Grupos:[/I][/B]'
-        else: tit_mnu = '[B][I]Menú Grupos Simplificado:[/I][/B]'
-
-        itemlist.append(item.clone( action='', title=tit_mnu, context=context_cfg_search, text_color='tan', folder=False ))
+        if config.get_setting('sub_mnu_favoritos', default=False):
+            itemlist.append(item.clone( channel='favoritos', action='mainlist', title='[B]Favoritos[/B]', context=context_cfg_search, thumbnail=config.get_thumb('star'), text_color='plum' ))
 
         if config.get_setting('sub_mnu_news', default=True):
             presentar = False
@@ -260,8 +327,22 @@ def mainlist(item):
             elif config.get_setting('mnu_series', default=True): presentar = True
             elif config.get_setting('channels_link_pyse', default=False): presentar = True
 
-            if presentar:
-                itemlist.append(item.clone( title = ' - [B]Novedades[/B]', action = 'submnu_news', context=context_usual, thumbnail=config.get_thumb('novedades'), text_color='darksalmon' ))
+        if presentar:
+            itemlist.append(item.clone( channel='submnuctext', action='submnu_news', title='[B]Novedades[/B]', context=context_cfg_search, thumbnail=config.get_thumb('novedades'), text_color='darksalmon' ))
+
+        if not config.get_setting('mnu_simple', default=False):
+            if config.get_setting('mnu_generos', default=True):
+               itemlist.append(item.clone( channel='submnuctext', action='submnu_genres', title= 'Géneros', context=context_generos, thumbnail=config.get_thumb('genres'), text_color='thistle' ))
+
+        itemlist.append(Item( channel='search', action='mainlist', title='[B]Buscar[/B]', context=context_buscar, thumbnail=config.get_thumb('search'), text_color='yellow' ))
+
+        if not config.get_setting('mnu_simple', default=False): tit_mnu = '[B][I]Menú Grupos:[/I][/B]'
+        else: tit_mnu = '[B][I]Menú Grupos Simplificado:[/I][/B]'
+
+        itemlist.append(item.clone( action='', title=tit_mnu, context=context_cfg_search, text_color='tan', folder=False ))
+
+        if presentar:
+            itemlist.append(item.clone( title = ' - [B]Novedades[/B]', action = 'submnu_news', context=context_usual, thumbnail=config.get_thumb('novedades'), text_color='darkcyan' ))
 
         itemlist.append(item.clone( title = ' - [B]Películas y/ó Series[/B]', action = 'submnu_alls', context=context_usual, thumbnail=config.get_thumb('booklet'), text_color='goldenrod' ))
 
@@ -309,20 +390,23 @@ def mainlist(item):
 
         itemlist.append(item.clone( channel='helper', action='show_help_audios', title= ' - [COLOR green][B]Información[/B][/COLOR] [COLOR cyan][B]Idiomas[/B][/COLOR] en los Audios de los Vídeos', thumbnail=config.get_thumb('news') ))
 
-        itemlist.append(item.clone( channel='helper', action='show_play_parameters', title=' - Qué [COLOR chocolate][B]Ajustes[/B][/COLOR] tiene en preferencias [COLOR fuchsia][B]Play[/B][/COLOR]', thumbnail=config.get_thumb('settings') ))
+        itemlist.append(item.clone( channel='helper', action='show_play_parameters', title=' - Qué [COLOR chocolate][B]Ajustes[/B][/COLOR] tiene en preferencias [COLOR fuchsia][B]Play[/B][/COLOR]', thumbnail=config.get_thumb('news') ))
 
-        itemlist.append(item.clone( title = ' - Audio Múltiple', action = 'ch_groups', group = 'all', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
-        itemlist.append(item.clone( title = ' - Audio solo en Castellano', action = 'ch_groups', group = 'cast', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
-        itemlist.append(item.clone( title = ' - Audio solo en Latino', action = 'ch_groups', group = 'lat', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
-        itemlist.append(item.clone( title = ' - Audio solo en Vose', action = 'ch_groups', group = 'vose', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
-        itemlist.append(item.clone( title = ' - Audio solo en Vo ó Vos', action = 'ch_groups', group = 'vo', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+        itemlist.append(item.clone( title = ' - Audio [COLOR goldenrod][B]Múltiple[/B][/COLOR]', action = 'ch_groups', group = 'all', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+        itemlist.append(item.clone( title = ' - Audio solo en [COLOR chartreuse][B]Castellano[/B][/COLOR]', action = 'ch_groups', group = 'cast', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+        itemlist.append(item.clone( title = ' - Audio solo en [COLOR limegreen][B]Latino[/B][/COLOR]', action = 'ch_groups', group = 'lat', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+        itemlist.append(item.clone( title = ' - Audio solo en [COLOR red][B]Vose[/B][/COLOR]', action = 'ch_groups', group = 'vose', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+        itemlist.append(item.clone( title = ' - Audio solo en [COLOR indianred][B]Vo ó Vos[/B][/COLOR]', action = 'ch_groups', group = 'vo', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
 
         if item.mnu_lang:
-            itemlist.append(item.clone( channel='actions', action = 'open_settings', title= '[COLOR chocolate][B]Ajustes[/B][/COLOR] preferencias (categoría [COLOR fuchsia][B]Play[/B][/COLOR])', thumbnail=config.get_thumb('settings') ))
+            itemlist.append(item.clone( channel='actions', action = 'open_settings', title= '[COLOR chocolate][B]Ajustes[/B][/COLOR] preferencias (categoría [COLOR fuchsia][B]Play[/B][/COLOR])', context=context_config, folder=False, thumbnail=config.get_thumb('settings') ))
 
     else:
         if config.get_setting('mnu_idiomas', default=True):
             itemlist.append(item.clone( title = ' - [B]Audios[/B]', action = 'submnu_audios', thumbnail=config.get_thumb('idiomas'), text_color='violet' ))
+
+    if not presentar:
+        itemlist.append(item.clone( channel='actions', action='open_settings', title='[COLOR chocolate][B]Ajustes[/B][/COLOR] preferencias (categoría [COLOR tan][B]Menú)[/B][/COLOR]', context=context_config, folder=False, thumbnail=config.get_thumb('settings') ))
 
     return itemlist
 
@@ -331,7 +415,7 @@ def submnu_news(item):
     logger.info()
     itemlist = []
 
-    itemlist.append(item.clone( title = '[B]NOVEDADES[/B]', thumbnail=config.get_thumb('novedades'), action = '', text_color='yellowgreen' ))
+    itemlist.append(item.clone( action = '', title = '[B]NOVEDADES[/B]', thumbnail=config.get_thumb('novedades'), text_color='darkcyan' ))
 
     presentar = False
 
@@ -374,8 +458,7 @@ def submnu_alls(item):
     cliente_torrent = config.get_setting('cliente_torrent', default='Seleccionar')
 
     if cliente_torrent == 'Seleccionar' or cliente_torrent == 'Ninguno':
-        itemlist.append(item.clone( channel='actions', action='open_settings', title='[COLOR chocolate][B]Ajustes[/B][/COLOR] preferencias (categoría [COLOR blue][B]Torrents)[/B][/COLOR]' + ' [COLOR fuchsia][B]Motor:[/B][/COLOR][COLOR goldenrod][B] ' + cliente_torrent.capitalize() + '[/B][/COLOR]',
-                                    folder=False, thumbnail=config.get_thumb('settings') ))
+        itemlist.append(item.clone( channel='actions', action='open_settings', title='[COLOR chocolate][B]Ajustes[/B][/COLOR] preferencias (categoría [COLOR blue][B]Torrents)[/B][/COLOR]' + ' [COLOR fuchsia][B]Motor:[/B][/COLOR][COLOR goldenrod][B] ' + cliente_torrent.capitalize() + '[/B][/COLOR]', folder=False, thumbnail=config.get_thumb('settings') ))
 
     itemlist.append(item.clone( title = '[B][I]Canales:[/I][/B]', action = '', context=context_usual, thumbnail=config.get_thumb('stack'), text_color='tan' ))
 
@@ -604,28 +687,41 @@ def submnu_diversos(item):
 
     itemlist.append(item.clone( title = '[B][I]Canales:[/I][/B]', action = '', context=context_usual, thumbnail=config.get_thumb('stack'), text_color='tan' ))
 
-    itemlist.append(item.clone( title = '   - Con Categorías', action = 'ch_groups', group = 'categories', extra = 'mixed' ))
-    itemlist.append(item.clone( title = '   - Con Intérpretes', action = 'ch_groups', group = 'stars', extra = 'mixed' ))
-    itemlist.append(item.clone( title = '   - Con Directores/as', action = 'ch_groups', group = 'directors', extra = 'mixed' ))
-    itemlist.append(item.clone( title = '   - Con Productoras, Plataformas, y/ó Estudios', action = 'ch_groups', group = 'producers', extra = 'mixed' ))
-    itemlist.append(item.clone( title = '   - Con Listas, Sagas, Colecciones, y/ó Otros', action = 'ch_groups', group = 'lists', extra = 'mixed' ))
+    itemlist.append(item.clone( title = '   - Con Categorías', action = 'ch_groups', group = 'categories', extra = 'mixed', thumbnail=config.get_thumb('stack') ))
+    itemlist.append(item.clone( title = '   - Con Intérpretes', action = 'ch_groups', group = 'stars', extra = 'mixed', thumbnail=config.get_thumb('stack') ))
+    itemlist.append(item.clone( title = '   - Con Directores/as', action = 'ch_groups', group = 'directors', extra = 'mixed', thumbnail=config.get_thumb('stack') ))
+    itemlist.append(item.clone( title = '   - Con Productoras, Plataformas, y/ó Estudios', action = 'ch_groups', group = 'producers', extra = 'mixed', thumbnail=config.get_thumb('stack') ))
+    itemlist.append(item.clone( title = '   - Con Listas, Sagas, Colecciones, y/ó Otros', action = 'ch_groups', group = 'lists', extra = 'mixed', thumbnail=config.get_thumb('stack') ))
 
-    if config.get_setting('search_extra_main', default=False):
-        itemlist.append(item.clone( title = '[B]Búsqueda a través de personas en [COLOR violet]TMDB[/COLOR]:[/B]', action = '', thumbnail=thumb_tmdb, text_color='violet' ))
+    if not config.get_setting('mnu_simple', default=False):
+        if config.get_setting('search_extra_main', default=False):
+            itemlist.append(item.clone( action='', title= '[B]Búsquedas por Título en TMDB:[/B]', folder=False, text_color='pink', thumbnail=thumb_tmdb ))
 
-        itemlist.append(item.clone( channel='tmdblists', action='personas', search_type='cast', title='   - Buscar [COLOR aquamarine]intérprete[/COLOR] ...', thumbnail=config.get_thumb('search'), plot = 'Escribir el nombre de un actor o una actriz para listar todas las películas y series en las que ha intervenido.' ))
+            itemlist.append(item.clone( channel='tmdblists', action='search', search_type='movie', title= ' - Buscar [COLOR deepskyblue]Película[/COLOR] ...', thumbnail = config.get_thumb('movie') ))
 
-        itemlist.append(item.clone( channel='tmdblists', action='personas', search_type='crew', title='   - Buscar [COLOR springgreen]dirección[/COLOR] ...', thumbnail=config.get_thumb('search'), plot = 'Escribir el nombre de una persona para listar todas las películas y series que ha dirigido.' ))
+            itemlist.append(item.clone( channel='tmdblists', action='search', search_type='tvshow', title= ' - Buscar [COLOR hotpink]Serie[/COLOR] ...', thumbnail = config.get_thumb('tvshow') ))
 
-        itemlist.append(item.clone( title = '[B]Búsquedas a través de Listas en TMDB:[/B]', action = '', thumbnail=config.get_thumb('booklet'), text_color='violet' ))
+            itemlist.append(item.clone( action='', title= '[B]Búsquedas por Título en Filmaffinity:[/B]', folder=False, text_color='pink', thumbnail=thumb_filmaffinity ))
 
-        itemlist.append(item.clone( channel='tmdblists', action='networks', title='   - Por productora', thumbnail=thumb_tmdb, search_type = 'movie' ))
+            itemlist.append(item.clone( channel='filmaffinitylists', action='listas', search_type='all', stype='title', title=' - Buscar [COLOR yellow]Película y/ó Serie[/COLOR] ...', thumbnail=config.get_thumb('search') ))
 
-        itemlist.append(item.clone( title = '[B]Búsquedas a través de Listas en Filmaffinity:[/B]', action = '', thumbnail=config.get_thumb('booklet'), text_color='violet' ))
+            itemlist.append(item.clone( action = '', title = '[B]Búsqueda a través de Personas en [COLOR violet]TMDB[/COLOR]:[/B]', thumbnail=thumb_tmdb, text_color='violet' ))
 
-        itemlist.append(item.clone( channel='filmaffinitylists', action='plataformas', title='   - Por plataforma', thumbnail=thumb_filmaffinity, search_type = 'all' ))
-        itemlist.append(item.clone( channel='filmaffinitylists', action='_themes', title='   - Por tema', thumbnail=config.get_thumb('listthemes'), search_type = 'all' ))
-        itemlist.append(item.clone( channel='filmaffinitylists', action='_sagas', title='   - Sagas y colecciones', thumbnail=config.get_thumb('bestsagas'), search_type = 'movie' ))
+            itemlist.append(item.clone( channel='tmdblists', action='personas', search_type='cast', title='   - Buscar [COLOR aquamarine]intérprete[/COLOR] ...', thumbnail=config.get_thumb('search'), plot = 'Escribir el nombre de un actor o una actriz para listar todas las películas y series en las que ha intervenido.' ))
+
+            itemlist.append(item.clone( channel='tmdblists', action='personas', search_type='crew', title='   - Buscar [COLOR springgreen]dirección[/COLOR] ...', thumbnail=config.get_thumb('search'), plot = 'Escribir el nombre de una persona para listar todas las películas y series que ha dirigido.' ))
+
+            itemlist.append(item.clone( channel='tmdblists', action='listado_personas', search_type='person', extra = 'popular', title=' - [COLOR limegreen]Más populares[/COLOR]', thumbnail=config.get_thumb('search') ))
+
+            itemlist.append(item.clone( action = '', title = '[B]Búsquedas a través de Listas en TMDB:[/B]', thumbnail=thumb_tmdb, text_color='violet' ))
+
+            itemlist.append(item.clone( channel='tmdblists', action='networks', title='   - Por productora', search_type = 'movie', thumbnail=config.get_thumb('booklet') ))
+
+            itemlist.append(item.clone( title = '[B]Búsquedas a través de Listas en Filmaffinity:[/B]', action = '', thumbnail=thumb_filmaffinity, text_color='violet' ))
+
+            itemlist.append(item.clone( channel='filmaffinitylists', action='plataformas', title='   - Por plataforma', search_type = 'all', thumbnail=config.get_thumb('booklet') ))
+            itemlist.append(item.clone( channel='filmaffinitylists', action='_themes', title='   - Por tema', thumbnail=config.get_thumb('listthemes'), search_type = 'all' ))
+            itemlist.append(item.clone( channel='filmaffinitylists', action='_sagas', title='   - Sagas y colecciones', thumbnail=config.get_thumb('bestsagas'), search_type = 'movie' ))
 
     return itemlist
 
@@ -636,13 +732,13 @@ def submnu_audios(item):
 
     itemlist.append(item.clone( title = '[B]AUDIOS EN LOS CANALES:[/B]', action = '', thumbnail=config.get_thumb('idiomas'), text_color='violet' ))
 
-    itemlist.append(item.clone( channel='helper', action='show_play_parameters', title=' - Qué [COLOR chocolate][B]Ajustes[/B][/COLOR] tiene en preferencias [COLOR fuchsia][B]Play[/B][/COLOR]', thumbnail=config.get_thumb('settings') ))
+    itemlist.append(item.clone( channel='helper', action='show_play_parameters', title=' - Qué [COLOR chocolate][B]Ajustes[/B][/COLOR] tiene en preferencias [COLOR fuchsia][B]Play[/B][/COLOR]', thumbnail=config.get_thumb('news') ))
 
-    itemlist.append(item.clone( title = ' - Audio Múltiple', action = 'ch_groups', group = 'all', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
-    itemlist.append(item.clone( title = ' - Audio solo en Castellano', action = 'ch_groups', group = 'cast', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
-    itemlist.append(item.clone( title = ' - Audio solo en Latino', action = 'ch_groups', group = 'lat', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
-    itemlist.append(item.clone( title = ' - Audio solo en Vose', action = 'ch_groups', group = 'vose', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
-    itemlist.append(item.clone( title = ' - Audio solo en Vo ó Vos', action = 'ch_groups', group = 'vo', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+    itemlist.append(item.clone( title = ' - Audio [COLOR goldenrod][B]Múltiple[/B][/COLOR]', action = 'ch_groups', group = 'all', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+    itemlist.append(item.clone( title = ' - Audio solo en [COLOR chartreuse][B]Castellano[/B][/COLOR]', action = 'ch_groups', group = 'cast', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+    itemlist.append(item.clone( title = ' - Audio solo en [COLOR limegreen][B]Latino[/B][/COLOR]', action = 'ch_groups', group = 'lat', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+    itemlist.append(item.clone( title = ' - Audio solo en [COLOR red][B]Vose[/B][/COLOR]', action = 'ch_groups', group = 'vose', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
+    itemlist.append(item.clone( title = ' - Audio solo en [COLOR indianred][B]Vo ó Vos[/B][/COLOR]', action = 'ch_groups', group = 'vo', extra = 'mixed', thumbnail=config.get_thumb('stack'), langs = True ))
 
     return itemlist
 
@@ -848,6 +944,9 @@ def ch_groups(item):
             elif 'anime' in agrupaciones: continue
             elif 'adults' in agrupaciones: continue
 
+        if not config.get_setting('mnu_torrents', default=True):
+            if 'enlaces torrent exclusivamente' in ch['notes'].lower(): continue
+
         action = accion
 
         if item.group == 'documentaries':
@@ -857,12 +956,12 @@ def ch_groups(item):
         elif item.group == 'dorama':
             if item.only == 'doramas':
                 if 'dorama' in ch['clusters']:
-                    if not 'Web dedicada exclusivamente al dorama' in ch['notes']: continue
+                    if not 'dedicada exclusivamente al dorama' in ch['notes'].lower(): continue
 
         elif item.group == 'anime':
             if item.only == 'animes':
                 if 'anime' in ch['clusters']:
-                    if not 'Web dedicada exclusivamente al anime' in ch['notes']: continue
+                    if not 'dedicada exclusivamente al anime' in ch['notes'].lower(): continue
 
             if 'anime' in ch['notes'].lower(): action = 'mainlist_anime'
             else:
@@ -1111,7 +1210,7 @@ def ch_groups(item):
 
             if 'movie' in ch['categories']:
                 if "tvshow" in ch['categories']:
-                    titulo += '[B][I][COLOR teal] películas[/COLOR] [COLOR hotpink]series[/COLOR][/I][/B]'
+                    titulo += '[B][I][COLOR deepskyblue] películas[/COLOR] [COLOR hotpink]series[/COLOR][/I][/B]'
                     if 'tales' in ch['clusters']: titulo += '[B][I][COLOR limegreen] novelas[/COLOR][/I][/B]'
                 else:
                     if '+18' in ch['notes']: titulo += '[B][I][COLOR orange] +18[/COLOR][/I][/B]'
@@ -1140,20 +1239,24 @@ def ch_groups(item):
     if itemlist:
         buscar_only_group = True
 
-        if item.group == 'adults': buscar_only_group = False
+        if item.group == 'adults':
+            buscar_only_group = False
+	
+            itemlist.append(item.clone( action='', title = '[COLOR goldenrod][B]ADULTOS[/B][/COLOR]', sort = 'A' ))
+
+            if not config.get_setting('adults_password'):
+                itemlist.append(item.clone( channel='helper', action='show_help_adults', title='[COLOR green][B]Información [COLOR yellow]Parental[/B][/COLOR]', sort = 'A', thumbnail=config.get_thumb('news') ))
+                itemlist.append(item.clone( channel='actions', action='adults_password', title= '[COLOR yellow][B]Establecer[/B][/COLOR] un PIN Parental', sort = 'A', thumbnail=config.get_thumb('pencil') ))
+            else:
+                itemlist.append(item.clone( channel='helper', action='show_pin_parental', title= '[COLOR springgreen][B]Ver[/B][/COLOR] el PIN Parental', sort = 'A', thumbnail=config.get_thumb('pencil') ))
+                itemlist.append(item.clone( channel='actions', action='adults_password_del', title= '[COLOR red][B]Eliminar[/B][/COLOR] PIN parental', sort = 'A', erase = True, folder=False, thumbnail=config.get_thumb('pencil') ))
 
         if buscar_only_group:
-            if len(itemlist) > 1:
-                if config.get_setting('mnu_search_proxy_channels', default=False):
-                    itemlist.append(item.clone( channel='submnuctext', action='submnu_search', title='[B]Buscar Nuevos Proxies[/B]', context=context_proxy_channels, only_options_proxies = True, sort = 'A', thumbnail=config.get_thumb('flame'), text_color='red' ))
-
-                if config.get_setting('sub_mnu_cfg_search', default=True):
-                    itemlist.append(item.clone( channel='submnuctext', action='submnu_search', title= '[B]Personalizar búsquedas[/B]', context=context_cfg_search, extra = item.extra, sort = 'A', thumbnail=config.get_thumb('help'), text_color='moccasin' ))
-
+            if len(itemlist) > 0:
                 search_type = 'all'
                 if item.extra == 'documentaries': search_type = 'documentary'
 
-                tipo = '[COLOR coral]Título[/COLOR]'
+                tipo = '[COLOR chartreuse]Título[/COLOR]'
                 if item.group == 'docs': tipo = '[COLOR cyan]Documental[/COLOR]'
                 elif item.group == 'kids': tipo = '[COLOR lightyellow]Infantil[/COLOR]'
                 elif item.group == 'tales': tipo = '[COLOR limegreen]Novela[/COLOR]'
@@ -1163,34 +1266,66 @@ def ch_groups(item):
                 elif item.group == 'adults': tipo = '[COLOR orange]+18[/COLOR]'
 
                 grupo = ''
-                if item.group == 'all': grupo = '[COLOR goldenrod]Audio Múltiple[/COLOR]'
-                elif item.group == 'cast': grupo = '[COLOR goldenrod]Castellano[/COLOR]'
-                elif item.group == 'Lat': grupo = '[COLOR goldenrod]Latino[/COLOR]'
-                elif item.group == 'vose': grupo = '[COLOR goldenrod]Vose[/COLOR]'
-                elif item.group == 'vo': grupo = '[COLOR goldenrod]Vo[/COLOR]'
-                elif item.group == 'vos': grupo = '[COLOR goldenrod]Vos[/COLOR]'
-                elif item.group == 'news': grupo = '[COLOR goldenrod]Novedades Películas[/COLOR]'
-                elif item.group == 'lasts': grupo = '[COLOR goldenrod]Novedades Series[/COLOR]'
-                elif item.group == 'classic': grupo = '[COLOR goldenrod]Clásicos[/COLOR]'
-                elif item.group == 'rankings': grupo = '[COLOR goldenrod]Rankings[/COLOR]'
-                elif item.group == '4k': grupo = '[COLOR goldenrod]4K[/COLOR]'
-                elif item.group == '3d': grupo = '[COLOR goldenrod]3D[/COLOR]'
-                elif item.group == 'genres': grupo = '[COLOR goldenrod]Géneros[/COLOR]'
-                elif item.group == 'languages': grupo = '[COLOR goldenrod]Idiomas[/COLOR]'
-                elif item.group == 'years': grupo = '[COLOR goldenrod]Años[/COLOR]'
-                elif item.group == 'epochs': grupo = '[COLOR goldenrod]Épocas[/COLOR]'
-                elif item.group == 'qualityes': grupo = '[COLOR goldenrod]Calidades[/COLOR]'
-                elif item.group == 'countries': grupo = '[COLOR goldenrod]Países[/COLOR]'
-                elif item.group == 'categories': grupo = '[COLOR goldenrod]Categorías[/COLOR]'
-                elif item.group == 'stars': grupo = '[COLOR goldenrod]Intérpretes[/COLOR]'
-                elif item.group == 'directors': grupo = '[COLOR goldenrod]Directores/as[/COLOR]'
-                elif item.group == 'producers': grupo = '[COLOR goldenrod]Productoras[/COLOR]'
-                elif item.group == 'lists': grupo = '[COLOR goldenrod]Diversos[/COLOR]'
+                if item.group == 'all': grupo = 'Audio Múltiple'
+                elif item.group == 'cast': grupo = 'Castellano'
+                elif item.group == 'lat': grupo = 'Latino'
+                elif item.group == 'vose': grupo = 'Vose'
+                elif item.group == 'vo': grupo = 'Vo'
+                elif item.group == 'vos': grupo = 'Vos'
+                elif item.group == 'news': grupo = 'Novedades Películas'
+                elif item.group == 'lasts': grupo = 'Novedades Series'
+                elif item.group == 'classic': grupo = 'Clásicos'
+                elif item.group == 'rankings': grupo = 'Rankings'
+                elif item.group == '4k': grupo = '4K'
+                elif item.group == '3d': grupo = '3D'
+                elif item.group == 'genres': grupo = 'Géneros'
+                elif item.group == 'languages': grupo = 'Idiomas'
+                elif item.group == 'years': grupo = 'Años'
+                elif item.group == 'epochs': grupo = 'Épocas'
+                elif item.group == 'qualityes': grupo = 'Calidades'
+                elif item.group == 'countries': grupo = 'Países'
+                elif item.group == 'categories': grupo = 'Categorías'
+                elif item.group == 'stars': grupo = 'Intérpretes'
+                elif item.group == 'directors': grupo = 'Directores/as'
+                elif item.group == 'producers': grupo = 'Productoras'
+                elif item.group == 'lists': grupo = 'Diversos'
 
-                itemlist.append(Item( channel='search', action='search', search_type=search_type, title='[B]Buscar ' + tipo + ' ... [/B][COLOR gold](Solo en los canales de esta Lista [B]' + grupo + '[/B][COLOR gold])',
+                if grupo:
+                    itemlist.append(item.clone( action='', title = '[COLOR goldenrod][B]' + grupo.upper() + '[/B][/COLOR]', sort = 'A' ))
+
+                    grupo = ''
+                else:
+                    if not tipo == '[COLOR chartreuse]Título[/COLOR]':
+                        cab = ''
+                        if item.group == 'docs': cab = 'Documentales'
+                        elif item.group == 'kids': cab = 'Infantiles'
+                        elif item.group == 'tales': cab = 'Novelas'
+                        elif item.group == 'torrents': cab = 'Torrents'
+                        elif item.group == 'dorama': cab = 'Doramas'
+                        elif item.group == 'anime': cab = 'Animes'
+                        elif item.group == 'adults': cab = 'Adultos (+18)'
+
+                        if cab:
+                            itemlist.append(item.clone( action='', title = '[COLOR goldenrod][B]' + cab.upper() + '[/B][/COLOR]', sort = 'A' ))
+
+                            if cab == 'Animes':
+                                if not config.get_setting('adults_password'):
+                                    itemlist.append(item.clone( channel='helper', action='show_help_adults', title='[COLOR green][B]Información [COLOR yellow]Parental[/B][/COLOR]', sort = 'A', thumbnail=config.get_thumb('news') ))
+                                    itemlist.append(item.clone( channel='actions', action='adults_password', title= '[COLOR yellow][B]Establecer[/B][/COLOR] un PIN Parental', sort = 'A', thumbnail=config.get_thumb('pencil') ))
+                                else:
+                                    itemlist.append(item.clone( channel='helper', action='show_pin_parental', title= '[COLOR springgreen][B]Ver[/B][/COLOR] el PIN Parental', sort = 'A', thumbnail=config.get_thumb('pencil') ))
+                                    itemlist.append(item.clone( channel='actions', action='adults_password_del', title= '[COLOR red][B]Eliminar[/B][/COLOR] PIN parental', sort = 'A', erase = True, folder=False, thumbnail=config.get_thumb('pencil') ))
+
+                if config.get_setting('mnu_search_proxy_channels', default=False):
+                    itemlist.append(item.clone( channel='submnuctext', action='submnu_search', title='[B]Buscar Nuevos Proxies[/B]', context=context_proxy_channels, only_options_proxies = True, sort = 'A', thumbnail=config.get_thumb('flame'), text_color='red' ))
+
+                if config.get_setting('sub_mnu_cfg_search', default=True):
+                    itemlist.append(item.clone( channel='submnuctext', action='submnu_search', title= '[B]Personalizar búsquedas[/B]', context=context_cfg_search, extra = item.extra, sort = 'A', thumbnail=config.get_thumb('help'), text_color='moccasin' ))
+
+                itemlist.append(Item( channel='search', action='search', search_type=search_type, title='[B]Buscar ' + tipo + ' ... [COLOR gold](solo en los canales de esta Lista ' + grupo + '[/B][COLOR gold])',
 	                                  context=context_buscar, only_channels_group = canales, group = item.group, only = item.only, search_special = item.search_special, sort = 'B', thumbnail=config.get_thumb('search'), text_color='yellow' ))
 
-                itemlist.append(item.clone( title = '[B][I]Canales:[/I][/B]', action = '', sort = 'C', context=context_usual, thumbnail=config.get_thumb('stack'), text_color='tan' ))
+                itemlist.append(item.clone( title = '[B][I]- Canales:[/I][/B]', action = '', sort = 'C', context=context_usual, thumbnail=config.get_thumb('stack'), text_color='tan' ))
 
     return sorted(itemlist, key=lambda it: it.sort)
 

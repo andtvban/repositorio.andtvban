@@ -498,7 +498,7 @@
     <extension point="xbmc.service" library="videolibrary_service.py" start="login|startup"></extension>
 </addon>
 
-<addon id="plugin.video.balandro" name="Balandro" version="4.0.01" provider-name="Team Balandro">
+<addon id="plugin.video.balandro" name="Balandro" version="4.0.04" provider-name="Team Balandro">
   <requires>
      <import addon="script.module.requests"/>
   </requires>
@@ -511,9 +511,14 @@
     <summary>Balandro es un Navegador de páginas Webs</summary>
     <assets>
       <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+      <screenshot>resources/screenshots/1.jpg</screenshot>
+      <screenshot>resources/screenshots/2.jpg</screenshot>
+      <screenshot>resources/screenshots/3.jpg</screenshot>
+      <screenshot>resources/screenshots/4.jpg</screenshot>
     </assets>
     <news>
-    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]4.0.01[/COLOR][COLOR chartreuse]  Enero de 2024[/B][/COLOR]
+    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]4.0.04[/COLOR][COLOR chartreuse]  Marzo de 2024[/B][/COLOR]
 
     [COLOR goldenrod][B]Media Centers:[/B][/COLOR]
         [COLOR tan][B]Kodi Versiones Oficiales Soportadas:[/B][/COLOR]
@@ -532,6 +537,10 @@
     [COLOR blue][B]Agradecimientos:[/B][/COLOR]
         Cita destacada a los miembros de Balandro Team
         Mención especial al grupo de Balandro Checkers
+
+    [COLOR yellowgreen][B]Reconocimientos:[/B][/COLOR]
+        A los creadores de Elementum,  InputStream adaptive,
+        ResolveUrl  y  YouTube plugin
 
     [COLOR cyan][B]Canales:[/B][/COLOR]
         Revisión Generalizada

@@ -1,6 +1,6 @@
 {
   "id": "uphd",
-  "name": "Uphd",
+  "name": "UpHd",
   "thumbnail": "uphd.jpg",
 
   "active": true,
@@ -11,7 +11,7 @@
   "categories": ["movie"],
   "language": ["cast", "lat", "vose"],
 
-  "clusters": ["producers", "lasts", "kids", "vos"],
+  "clusters": ["producers", "news", "rankings", "kids", "vos", "4k"],
 
   "notes": "Películas por géneros."
 }

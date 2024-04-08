@@ -354,7 +354,6 @@ def manto_params(item):
         config.set_setting('channel_divxtotal_dominio', '')
         config.set_setting('channel_dontorrents_dominio', '')
         config.set_setting('channel_dontorrentsin_dominio', '')
-        config.set_setting('channel_doramedplay_dominio', '')
 
         config.set_setting('channel_elifilms_dominio', '')
         config.set_setting('channel_elitetorrent_dominio', '')
@@ -368,7 +367,6 @@ def manto_params(item):
         config.set_setting('channel_gnula24_dominio', '')
         config.set_setting('channel_gnula24h_dominio', '')
         config.set_setting('channel_grantorrent_dominio', '')
-        config.set_setting('channel_grantorrents_dominio', '')
 
         config.set_setting('channel_hdfull_dominio', '')
         config.set_setting('channel_hdfull_hdfull_login', False)
@@ -412,12 +410,10 @@ def manto_params(item):
         config.set_setting('channel_seriesantiguas_dominio', '')
         config.set_setting('channel_serieskao_dominio', '')
         config.set_setting('channel_seriesmetro_dominio', '')
-        config.set_setting('channel_seriesyonkis_dominio', '')
         config.set_setting('channel_srnovelas_dominio', '')
         config.set_setting('channel_subtorrents_dominio', '')
 
         config.set_setting('channel_todotorrents_dominio', '')
-        config.set_setting('channel_torrentpelis_dominio', '')
         config.set_setting('channel_tupelihd_dominio', '')
 
         config.set_setting('channel_yestorrent_dominio', '')
@@ -486,7 +482,7 @@ def manto_params(item):
         config.set_setting('channels_repeat', '30')
         config.set_setting('servers_waiting', '6')
 
-        config.set_setting('chrome_last_version', '120.0.6099.268')
+        config.set_setting('chrome_last_version', '123.0.6312.58')
 
         config.set_setting('debug', '0')
 
@@ -1402,10 +1398,6 @@ def opciones_dontorrentsin(item):
     item.from_channel = 'dontorrentsin'
     opciones_domains_common(item)
 
-def opciones_doramedplay(item):
-    item.from_channel = 'doramedplay'
-    opciones_domains_common(item)
-
 def opciones_elifilms(item):
     item.from_channel = 'elifilms'
     opciones_domains_common(item)
@@ -1448,10 +1440,6 @@ def opciones_gnula24h(item):
 
 def opciones_grantorrent(item):
     item.from_channel = 'grantorrent'
-    opciones_domains_common(item)
-
-def opciones_grantorrents(item):
-    item.from_channel = 'grantorrents'
     opciones_domains_common(item)
 
 def opciones_hdfull(item):
@@ -1550,10 +1538,6 @@ def opciones_seriesmetro(item):
     item.from_channel = 'seriesmetro'
     opciones_domains_common(item)
 
-def opciones_seriesyonkis(item):
-    item.from_channel = 'seriesyonkis'
-    opciones_domains_common(item)
-
 def opciones_srnovelas(item):
     item.from_channel = 'srnovelas'
     opciones_domains_common(item)
@@ -1564,10 +1548,6 @@ def opciones_subtorrents(item):
 
 def opciones_todotorrents(item):
     item.from_channel = 'todotorrents'
-    opciones_domains_common(item)
-
-def opciones_torrentpelis(item):
-    item.from_channel = 'torrentpelis'
     opciones_domains_common(item)
 
 def opciones_tupelihd(item):
@@ -1660,8 +1640,6 @@ def opciones_domains_common(item):
 
             elif item.from_channel == 'dontorrentsin': domains.manto_domain_dontorrentsin(item)
 
-            elif item.from_channel == 'doramedplay': domains.manto_domain_doramedplay(item)
-
             elif item.from_channel == 'elifilms': domains.manto_domain_elifilms(item)
 
             elif item.from_channel == 'elitetorrent': domains.manto_domain_elitetorrent(item)
@@ -1683,8 +1661,6 @@ def opciones_domains_common(item):
             elif item.from_channel == 'gnula24h': domains.manto_domain_gnula24h(item)
 
             elif item.from_channel == 'grantorrent': domains.manto_domain_grantorrent(item)
-
-            elif item.from_channel == 'grantorrents': domains.manto_domain_grantorrents(item)
 
             elif item.from_channel == 'hdfull': domains.manto_domain_hdfull(item)
 
@@ -1736,15 +1712,11 @@ def opciones_domains_common(item):
 
             elif item.from_channel == 'seriesmetro': domains.manto_domain_seriesmetro(item)
 
-            elif item.from_channel == 'seriesyonkis': domains.manto_domain_seriesyonkis(item)
-
             elif item.from_channel == 'srnovelas': domains.manto_domain_srnovelas(item)
 
             elif item.from_channel == 'subtorrents': domains.manto_domain_subtorrents(item)
 
             elif item.from_channel == 'todotorrents': domains.manto_domain_todotorrents(item)
-
-            elif item.from_channel == 'torrentpelis': domains.manto_domain_torrentpelis(item)
 
             elif item.from_channel == 'tupelihd': domains.manto_domain_tupelihd(item)
 
@@ -1784,8 +1756,6 @@ def opciones_domains_common(item):
 
             elif item.from_channel == 'dontorrentsin': domains.test_domain_dontorrentsin(item)
 
-            elif item.from_channel == 'doramedplay': domains.test_domain_doramedplay(item)
-
             elif item.from_channel == 'elifilms': domains.test_domain_elifilms(item)
 
             elif item.from_channel == 'elitetorrent': domains.test_domain_elitetorrent(item)
@@ -1807,8 +1777,6 @@ def opciones_domains_common(item):
             elif item.from_channel == 'gnula24h': domains.test_domain_gnula24h(item)
 
             elif item.from_channel == 'grantorrent': domains.test_domain_grantorrent(item)
-
-            elif item.from_channel == 'grantorrents': domains.test_domain_grantorrents(item)
 
             elif item.from_channel == 'hdfull': domains.test_domain_hdfull(item)
 
@@ -1860,15 +1828,11 @@ def opciones_domains_common(item):
 
             elif item.from_channel == 'seriesmetro': domains.test_domain_seriesmetro(item)
 
-            elif item.from_channel == 'seriesyonkis': domains.test_domain_seriesyonkis(item)
-
             elif item.from_channel == 'srnovelas': domains.test_domain_srnovelas(item)
 
             elif item.from_channel == 'subtorrents': domains.test_domain_subtorrents(item)
 
             elif item.from_channel == 'todotorrents': domains.test_domain_todotorrents(item)
-
-            elif item.from_channel == 'torrentpelis': domains.test_domain_torrentpelis(item)
 
             elif item.from_channel == 'tupelihd': domains.test_domain_tupelihd(item)
 
@@ -1911,5 +1875,3 @@ def opciones_domains_common(item):
             elif item.from_channel == 'srnovelas': helper.show_help_srnovelas(item)
 
             elif item.from_channel == 'subtorrents': helper.show_help_subtorrents(item)
-
-            elif item.from_channel == 'torrentpelis': helper.show_help_torrentpelis(item)

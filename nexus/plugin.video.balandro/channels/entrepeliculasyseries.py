@@ -217,6 +217,10 @@ def mainlist_series(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'series/', search_type = 'tvshow' ))
 
+    itemlist.append(item.clone( title = 'Doramas', action = 'list_all', url = host + 'genero/dorama/', search_type = 'tvshow', text_color = 'firebrick' ))
+
+    itemlist.append(item.clone( title = 'Animes', action = 'list_all', url = host + 'genero/animacion/', search_type = 'tvshow', text_color = 'springgreen' ))
+
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'tvshow' ))
 
     return itemlist
@@ -244,6 +248,9 @@ def generos(item):
 
         if config.get_setting('descartar_anime', default=False):
             if title == 'Anime': continue
+
+        if not config.get_setting('mnu_doramas', default=False):
+            if title == 'Dorama': continue
 
         title = title.replace('&amp;', '&')
 
@@ -293,7 +300,7 @@ def list_all(item):
         if year: title = title.replace('(' + year + ')', '').strip()
         else: year = '-'
 
-        title = title.replace('&#8211;', '').replace('&#039;', "'").strip()
+        title = title.replace('&#8211;', '').replace('&#039;', "'").replace('&#8230;', ' &').replace('&amp;', '&').replace('&#8217;s', "'").strip()
 
         tipo = 'movie' if '/movies/' in url else 'tvshow'
         sufijo = '' if item.search_type != 'all' else tipo
@@ -478,6 +485,8 @@ def findvideos(item):
            url = scrapertools.find_single_match(data1, '<a href="(.*?)"')
 
         if not url: continue
+        elif url == '#': continue
+
         elif '/1fichier.' in url: continue
         elif '/short.' in url: continue
 
@@ -492,6 +501,11 @@ def findvideos(item):
         other = ''
 
         if servidor == 'various': other = servertools.corregir_other(url)
+
+        if servidor == 'directo':
+            if config.get_setting('developer_mode', default=False):
+                other = url.split("/")[2]
+                other = other.replace('https:', '').strip()
 
         itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = url, language = lang, other = other ))
 

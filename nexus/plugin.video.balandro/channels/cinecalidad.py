@@ -21,7 +21,7 @@ if PY3:
        import xbmc
        if xbmc.getCondVisibility("system.platform.Linux.RaspberryPi") or xbmc.getCondVisibility("System.Platform.Linux"): LINUX = True
     except: pass
- 
+
 try:
    if LINUX:
        try:
@@ -152,6 +152,11 @@ def do_downloadpage(url, post=None, headers=None):
             except:
                 pass
 
+    if '<title>Just a moment...</title>' in data:
+        if not '?s=' in url:
+            platformtools.dialog_notification(config.__addon_name, '[COLOR red][B]CloudFlare[COLOR orangered] Protection[/B][/COLOR]')
+        return ''
+
     return data
 
 
@@ -177,6 +182,8 @@ def acciones(item):
     itemlist.append(item.clone( channel='domains', action='manto_domain_cinecalidad', title=title, desde_el_canal = True, folder=False, text_color='darkorange' ))
 
     itemlist.append(item_configurar_proxies(item))
+
+    itemlist.append(Item( channel='helper', action='show_help_cinecalidad', title='[COLOR aquamarine][B]Aviso[/COLOR] [COLOR green]Información[/B][/COLOR] canal', thumbnail=config.get_thumb('help') ))
 
     platformtools.itemlist_refresh()
 
@@ -316,7 +323,7 @@ def list_all(item):
 
         url = url.replace('\\/', '/')
 
-        if '-1-ano' in url or '-premium-12-meses' in url or '/netflix/a-day-without-a-mexican/' in url: continue
+        if '-premium-12-meses' in url or '-premium-1-ano' in url or '-12-meses' in url or '/netflix/o/' in url or '/product/' in url: continue
 
         if not url or not title: continue
 
@@ -578,10 +585,10 @@ def findvideos(item):
             elif servidor == 'google': servidor = 'gvideo'
             elif servidor == 'drive': servidor = 'gvideo'
             elif servidor == 'google drive': servidor = 'gvideo'
+            elif servidor == 'netu' or servidor == 'hqq': servidor = 'waaw'
 
-            elif servidor == 'streamwish':
-                  other = servidor.capitalize()
-                  servidor = 'various'
+            elif servidor == 'goodstream': servertools.corregir_other(servidor)
+            elif servidor == 'streamwish': servertools.corregir_other(servidor)
 
             if servertools.is_server_available(servidor):
                 if not servertools.is_server_enabled(servidor): continue
@@ -619,6 +626,8 @@ def findvideos(item):
             if servidor == "subtítulos" or servidor == 'subtitulos': continue
 
             elif servidor == 'veri': continue
+
+            elif servidor == 'utorrent': servidor = 'torrent'
 
             elif servidor == 'bittorrent': servidor = 'torrent'
 
@@ -691,32 +700,36 @@ def play(item):
     else: host_player = host
 
     if item.server == 'directo':
-        data = do_downloadpage(item.url)
+        url = ''
 
-        url = scrapertools.find_single_match(data, '<a target="_blank".*?href="(.*?)"')
+        if item.url:
+            data = do_downloadpage(item.url)
 
-        if url.endswith('.torrent'):
-            if config.get_setting('proxies', item.channel, default=''):
-                import os
+            url = scrapertools.find_single_match(data, '<a target="_blank".*?href="(.*?)"')
 
-                data = do_downloadpage(url)
-                file_local = os.path.join(config.get_data_path(), "temp.torrent")
-                with open(file_local, 'wb') as f: f.write(data); f.close()
+            if url.endswith('.torrent'):
+                if config.get_setting('proxies', item.channel, default=''):
+                    import os
 
-                itemlist.append(item.clone( url = file_local, server = 'torrent' ))
-            else:
-                itemlist.append(item.clone( url = url, server = 'torrent' ))
+                    data = do_downloadpage(url)
+                    file_local = os.path.join(config.get_data_path(), "temp.torrent")
+                    with open(file_local, 'wb') as f: f.write(data); f.close()
+
+                    itemlist.append(item.clone( url = file_local, server = 'torrent' ))
+                else:
+                    itemlist.append(item.clone( url = url, server = 'torrent' ))
+
+                return itemlist
+
+        if url:
+            servidor = servertools.get_server_from_url(url)
+            servidor = servertools.corregir_servidor(servidor)
+
+            url = servertools.normalize_url(servidor, url)
+
+            itemlist.append(item.clone(url = url, server = servidor))
 
             return itemlist
-
-        servidor = servertools.get_server_from_url(url)
-        servidor = servertools.corregir_servidor(servidor)
-
-        url = servertools.normalize_url(servidor, url)
-
-        itemlist.append(item.clone(url = url, server = servidor))
-
-        return itemlist
 
     url = base64.b64decode(item.data_url).decode("utf-8")
 
@@ -790,6 +803,8 @@ def play(item):
 
         if servidor == 'directo':
             if not url.startswith('http'): return itemlist
+
+            if '/okru.' in url: servidor = 'okru'
 
         elif servidor == 'zplayer': url = url + '|' + host_player
 

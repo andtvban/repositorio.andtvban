@@ -3,7 +3,7 @@
   "name": "Various",
 
   "active": true,
-  "notes": "Alternative vía: Script.Module.ResolveUrl (Azipcdn,  Desiupload,  Doodporn,  Dropl  Dropload,  Embedgram,  Embedrise,  Emturbovid,  Fastupload,  Filelions,  Filemoon,  Fileupload,  Hxfile,  Hexupload,  Krakenfiles,  Lulustream,  Mvidoo,  Rutube,  Streamhub,  Streamvid,  Streamwish,  Tubeload,  Turboviplay,  Twitch,  Uploaddo,  Uploadever,  Uploadraja,  Userload,  Vidello,  Videowood,  Vidguard,  Vidhidepro,  Vidspeed,  Vkspeed,  Vudeo,  Yandex,  Youdbox)",
+  "notes": "Alternative vía: Script.Module.ResolveUrl (Azipcdn,  Desiupload,  Doodporn,  Drop  Dropload,  Embedgram,  Embedrise,  Emturbovid,  Fastupload,  Filelions,  Filemoon,  Fileupload,  Goodstream,  Hxfile,  Hexupload,  Krakenfiles,  Lulustream,  Moonplayer, Mvidoo,  Rutube,  Streamhub,  Streamvid,  Streamwish,  Tubeload,  Turboviplay,  Twitch,  Uploaddo,  Uploadever,  Uploadraja,  Userload,  Vidello,  Videowood,  Vidguard,  Vidhidepro,  Vidspeed,  Vkspeed,  Vudeo,  Yandex,  Youdbox)",
 
   "find_videos": {
     "ignore_urls": [],
@@ -59,6 +59,18 @@
       {
         "pattern": "(https://filemoon.top/(?:e/|d/)[0-9a-zA-Z]+)",
         "url": "\\1"
+      },
+      {
+        "pattern": "https://fmoonembed.pro/(?:e/|d/)([0-9a-zA-Z]+)",
+        "url": "https://filemoon.sx/e/\\1"
+      },
+      {
+        "pattern": "https://embedmoon.xyz/(?:e/|d/)([0-9a-zA-Z]+)",
+        "url": "https://filemoon.sx/e/\\1"
+      },
+      {
+        "pattern": "https://moonjscdn.info/(?:e/|d/)([0-9a-zA-Z]+)",
+        "url": "https://filemoon.sx/e/\\1"
       },
       {
         "pattern": "https://moonmov.pro/e/([0-9a-zA-Z]+)",
@@ -189,11 +201,11 @@
         "url": "https://streamwish.to/\\1"
       },
       {
-        "pattern": "https://wishfast.top/([0-9a-zA-Z]+)",
+        "pattern": "https://wishfast.top/(?:e/|f/)([0-9a-zA-Z]+)",
         "url": "https://streamwish.to/\\1"
       },
       {
-        "pattern": "https://wishfast.top/(?:e/|f/)([0-9a-zA-Z]+)",
+        "pattern": "https://wishfast.top/([0-9a-zA-Z]+)",
         "url": "https://streamwish.to/\\1"
       },
       {
@@ -210,6 +222,18 @@
       },
       {
         "pattern": "https://obeywish.com/(?:e/|f/)([0-9a-zA-Z]+)",
+        "url": "https://streamwish.to/\\1"
+      },
+      {
+        "pattern": "https://cdnwish.com/(?:e/|f/)([0-9a-zA-Z]+)",
+        "url": "https://streamwish.to/\\1"
+      },
+      {
+        "pattern": "https://asnwish.com/(?:e/|f/|d/)([0-9a-zA-Z]+)",
+        "url": "https://streamwish.to/\\1"
+      },
+      {
+        "pattern": "https://jodwish.com/(?:e/|f/|d/)([0-9a-zA-Z]+)",
         "url": "https://streamwish.to/\\1"
       },
       {
@@ -293,6 +317,10 @@
         "url": "https://filelions.to/f/\\1"
       },
       {
+        "pattern": "https://filelions.top/(?:v/|f/|d/)([0-9a-zA-Z]+)",
+        "url": "https://filelions.to/f/\\1"
+      },
+      {
         "pattern": "https://youdbox.com/(?:embed-|)([0-9a-zA-Z]+)",
         "url": "https://youdbox.site/\\1"
       },
@@ -326,6 +354,10 @@
       },
       {
         "pattern": "https://vudeo.co/(?:embed-|)([0-9a-zA-Z]+)",
+        "url": "https://vudeo.co/\\1"
+      },
+      {
+        "pattern": "https://vudeo.ws/(?:embed-|)([0-9a-zA-Z]+)",
         "url": "https://vudeo.co/\\1"
       },
       {
@@ -457,6 +489,10 @@
         "url": "https://vidhidepro.com/s/\\1"
       },
       {
+        "pattern": "https://vidhidevip.com/(?:s/|v/|f/|d/|embed/)([0-9a-zA-Z]+)",
+        "url": "https://vidhidepro.com/s/\\1"
+      },
+      {
         "pattern": "https://hxfile.co/(?:embed-|)([0-9a-zA-Z]+)",
         "url": "https://hxfile.co/\\1"
       },
@@ -471,6 +507,14 @@
       {
         "pattern": "https://uploadraja.com/([0-9a-zA-Z]+)",
         "url": "https://uploadraja.com/\\1"
+      },
+      {
+        "pattern": "https://goodstream.uno/(?:video/embed/)([0-9a-zA-Z]+)",
+        "url": "https://goodstream.uno/\\1"
+      },
+      {
+        "pattern": "https://goodstream.uno/([0-9a-zA-Z]+)",
+        "url": "https://goodstream.uno/\\1"
       }
     ]
   }

@@ -119,7 +119,8 @@ def mainlist(item):
     if not config.get_setting('descartar_anime', default=False):
         itemlist.append(item.clone( title = 'Animes', action = 'mainlist_animes', text_color = 'springgreen' ))
 
-    itemlist.append(item.clone( title = 'Doramas', action = 'mainlist_series', text_color = 'firebrick' ))
+    if config.get_setting('mnu_doramas', default=False):
+        itemlist.append(item.clone( title = 'Doramas', action = 'mainlist_series', text_color = 'firebrick' ))
 
     return itemlist
 
@@ -161,7 +162,8 @@ def mainlist_series(item):
     if not config.get_setting('descartar_anime', default=False):
         itemlist.append(item.clone( title = 'Animes', action = 'mainlist_animes', search_type = 'tvshow', text_color = 'springgreen' ))
 
-    itemlist.append(item.clone( title = 'Doramas', action = 'list_all', url = host + 'generos/dorama/series?page=', search_type = 'tvshow', text_color = 'firebrick' ))
+    if config.get_setting('mnu_doramas', default=False):
+        itemlist.append(item.clone( title = 'Doramas', action = 'list_all', url = host + 'generos/dorama/series?page=', search_type = 'tvshow', text_color = 'firebrick' ))
 
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Por año', action = 'anios', search_type = 'tvshow' ))
@@ -416,6 +418,7 @@ def episodios(item):
         if url.startswith('/'): url = host[:-1] + url
 
         episode = scrapertools.find_single_match(url, "/capitulo/(.*?)$").strip()
+        if not episode: episode = scrapertools.find_single_match(url, "-episodio-(.*?)$").strip()
 
         ord_epis = str(episode)
 
@@ -511,6 +514,8 @@ def findvideos(item):
 
         link_other = ''
 
+        if servidor == 'directo': link_other = normalize_other(url)
+
         if servidor == 'various': link_other = servertools.corregir_other(url)
 
         itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, url = url, language = lang, other = link_other ))
@@ -527,6 +532,7 @@ def normalize_other(url):
     if 'pelisplus' in url: link_other = 'plus'
     elif 'damedamehoy' in url: link_other = 'dame'
     elif 'tomatomatela' in url: link_other = 'dame'
+    elif 'plustream' in url: link_other = 'plustream'
     else:
        if config.get_setting('developer_mode', default=False): link_other = url
        else: link_other = ''

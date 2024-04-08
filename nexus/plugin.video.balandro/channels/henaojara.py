@@ -44,14 +44,15 @@ except:
    except: pass
 
 
-host = 'https://www.henaojara.com/'
+host = 'https://wvw.henaojara.com/'
 
 
 _players = ['.henaojara.']
 
 
 # ~ por si viene de enlaces guardados
-ant_hosts = ['https://henaojara.com/', 'https://henaojara2.com/', 'https://www1.henaojara.com/']
+ant_hosts = ['https://henaojara.com/', 'https://henaojara2.com/', 'https://www1.henaojara.com/',
+             'https://www.henaojara.com/']
 
 
 domain = config.get_setting('dominio', 'henaojara', default='')
@@ -106,9 +107,7 @@ def do_downloadpage(url, post=None, headers=None):
 
     timeout = None
     if host in url or _players[0] in url:
-        if hay_proxies:
-            # ~ timeout = config.get_setting('channels_repeat', default=30)
-            timeout = 40
+        if hay_proxies: timeout = config.get_setting('channels_repeat', default=30)
 
     if not url.startswith(host) and not _players[0] in url:
         data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
@@ -122,8 +121,7 @@ def do_downloadpage(url, post=None, headers=None):
             if not '?s=' in url:
                 if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('HenaOjara', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
 
-                # ~ timeout = config.get_setting('channels_repeat', default=30)
-                timeout = 40
+                timeout = config.get_setting('channels_repeat', default=30)
 
                 if hay_proxies:
                     data = httptools.downloadpage_proxy('henaojara', url, post=post, headers=headers, timeout=timeout).data
@@ -489,7 +487,9 @@ def temporadas(item):
             title = 'Temporada ' + season
 
             if len(matches) == 1:
-                platformtools.dialog_notification(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), 'solo [COLOR tan]Una Temporada[/COLOR]')
+                if config.get_setting('channels_seasons', default=True):
+                    platformtools.dialog_notification(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), 'solo [COLOR tan]Una Temporada[/COLOR]')
+
                 item.page = 0
                 item.contentType = 'season'
                 item.contentSeason = season
@@ -563,12 +563,20 @@ def episodios(item):
                 else: item.perpage = 50
 
     for epis, url, thumb, title in matches[item.page * item.perpage:]:
+        next_cap = ''
+        if '">Proximo Capitulo' in title:
+            next_cap = scrapertools.find_single_match(str(title), '.*?">(.*?)</b>')
+            title = scrapertools.find_single_match(title, "(.*?)- <b").strip()
+
         titulo = '%sx%s - %s' % (str(item.contentSeason), epis, title)
 
         itemlist.append(item.clone( action='findvideos', url = url, title = titulo, thumbnail = thumb,
                                     contentType = 'episode', contentSeason = item.contentSeason, contentEpisodeNumber = epis ))
 
         if len(itemlist) >= item.perpage:
+            if next_cap:
+                next_cap = next_cap.replace('Proximo Capitulo', 'Próximo Capítulo')
+                itemlist.append(item.clone( action='', title = next_cap, thumbnail = item.thumbnail, text_color='cyan'))
             break
 
     if itemlist:
@@ -641,8 +649,9 @@ def findvideos(item):
 
                     if srv == 'fembed': continue
                     elif srv == 'streamsb': continue
+                    elif srv == 'nyuu': continue
 
-                    if srv == 'netuplayer': servidor = 'waaw'
+                    if srv == 'netuplayer' or srv == 'netu' or srv == 'hqq': servidor = 'waaw'
 
                     elif srv == 'streamwish': servidor = 'various'
                     elif srv == 'filelions': servidor = 'various'
@@ -669,7 +678,7 @@ def findvideos(item):
             if other == 'fembed': continue
             elif other == 'streamsb': continue
 
-            if other == 'netuplayer': servidor = 'waaw'
+            if other == 'netuplayer' or other == 'netu' or other == 'hqq': servidor = 'waaw'
 
             elif other == 'streamwish': servidor = 'various'
             elif other == 'filelions': servidor = 'various'
@@ -704,7 +713,7 @@ def findvideos(item):
         if srv == 'fembed': continue
         elif srv == 'streamsb': continue
 
-        if srv == 'netuplayer': other = 'waaw'
+        if srv == 'netuplayer' or srv == 'netu' or srv == 'hqq': other = 'waaw'
 
         elif srv == 'streamwish': other = 'various'
         elif srv == 'filelions': other = 'various'
@@ -754,9 +763,7 @@ def play(item):
         try:
            timeout = None
            if host_player in url or _players[0] in url:
-               if config.get_setting('channel_henaojara_proxies', default=''):
-                   # ~ timeout = config.get_setting('channels_repeat', default=30)
-                   timeout = 40
+               if config.get_setting('channel_henaojara_proxies', default=''): timeout = config.get_setting('channels_repeat', default=30)
 
            if not url.startswith(host_player) and not _players[0] in url:
                url = httptools.downloadpage(url, follow_redirects=False, timeout=timeout).headers['location']
@@ -771,7 +778,7 @@ def play(item):
            url = ''
 
     elif '/go.php?v=' in url:
-        url = scrapertools.find_single_match(url, 'v=(.*?)$')
+          url = scrapertools.find_single_match(url, 'v=(.*?)$')
 
     else:
         data = do_downloadpage(url)
@@ -796,7 +803,6 @@ def play(item):
                     itemlist.append(item.clone( url=url, server='directo'))
                     return itemlist
 
-               
             elif '/player/go.php?v=' in new_url:
                 new_url = new_url.replace('/player/go.php?v=', '/player/go-player.php?v=')
 
@@ -811,16 +817,16 @@ def play(item):
     elif '/descargas/' in url: url = ''
 
     if url:
-        if '/vidhidepro.' in url:
-            return 'Requiere verificación [COLOR red]reCAPTCHA[/COLOR]'
-
-        elif '.mystream.' in url:
+        if '.mystream.' in url:
             return 'Servidor [COLOR tan]Cerrado[/COLOR]'
+
+        if '/player.streamhj.top/' in url: url = url.replace('/player.streamhj.top/', '/netu.to/')
 
         servidor = servertools.get_server_from_url(url)
         servidor = servertools.corregir_servidor(servidor)
 
         other = servertools.corregir_other(url)
+
         if other == 'Streamwish': servidor = 'various'
         elif other == 'Filelions': servidor = 'various'
         elif other == 'Filemoon': servidor = 'various'
