@@ -6,7 +6,7 @@
 # $ Kodi 19 Matrix
 ![img](https://i.imgur.com/FmHatKc.png)
 # $\text{Kodi\ 19:\ {\color{green}Matrix\ {\color{white}\ {\color{indigo}}}}}$
-<img src="https://i.imgur.com/19lQWCN.png">
+<img src="[https://i.imgur.com/19lQWCN.png](https://i.imgur.com/FmHatKc.png)">
 
 # Kodi 20 Nexus
 <p align="left">
