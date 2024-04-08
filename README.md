@@ -16,7 +16,7 @@
 </p>
 
 <h1 align="left"> Kodi 21 $\textbf{\color{dodgerblue}Omega}$ </h1>
-<p align="below">
+<p align="left">
 <img src="https://img.shields.io/badge/ESTADO_ANDTVBAN-EN_DESARROLLO_PROXIMAMENTE-dodgerblue">
 
 </p>
