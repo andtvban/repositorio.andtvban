@@ -3,8 +3,8 @@
 # $\mathbb{Tu\ Repo\ andtvban\ que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}$
 
 
-# $ Kodi 19 Matrix
-![img](https://i.imgur.com/FmHatKc.png)
+
+![img](https://)
 # Kodi 19 $\textbf{\color{green}Matrix\ {\color{white}\ {\color{indigo}}}}$
 <img src="https://i.imgur.com/FmHatKc.png">
 
@@ -17,7 +17,7 @@
 
 <h1 align="left"> Kodi 21 $\textbf{\color{dodgerblue}Omega}$ </h1>
 <p align="left">
-<img src="https://img.shields.io/badge/ESTADO_ANDTVBAN-EN_DESARROLLO_PROXIMAMENTE-dodgerblue">
+<img src="https://img.shields.io/badge/ESTADO_ANDTVBAN-EN_PR%C3%93XIMOS_D%C3%8DAS-dodgerblue">
 
 </p>
 
