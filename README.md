@@ -1,6 +1,6 @@
  # $\textbf{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus\ {\color{white},\ {\color{dodgerblue}Omega}}}}}}$
 
-# $\mathbb{Tu\ Repo\ andtvban\ que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}$
+# $\mathbb{Tu\ Repo\ {\color{dodgerblue}andtvban\ {\color{white}que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}}}$
 
 
 
