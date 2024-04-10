@@ -30,9 +30,10 @@ assistant = False
 canonical = {
              'channel': 'hdfull', 
              'host': config.get_setting("current_host", 'hdfull', default=''), 
-             "host_alt": ["https://hd-full.im/", "https://hdfull.today/", "https://hdfull.quest/"], 
+             "host_alt": ["https://hd-full.lol/", "https://hdfull.today/", "https://hdfull.quest/"], 
              'host_verification': '%slogin', 
-             "host_black_list": ["https://hd-full.one/", 
+             "host_black_list": ["https://hd-full.co/", "https://hd-full.biz/", 
+                                 "https://hd-full.in/", "https://hd-full.im/", "https://hd-full.one/", 
                                  "https://hdfull.icu/", "https://hdfull.sbs/", "https://hdfull.org/", 
                                  "https://hdfull.store/", 
                                  "https://hdfull.life/", "https://hdfull.digital/", "https://hdfull.work/", 
@@ -445,7 +446,7 @@ def list_all(item):
 
     findS = finds.copy()
 
-    verify_credentials(force_login=False)
+    verify_credentials(force_login=not account)
 
     if item.extra in ["items_usuario", "listas", "episodios"]:
         findS['find'] = dict([('find', [{'tag': ['body']}]), 
@@ -812,7 +813,7 @@ def findvideos(item):
     logger.info()
     global js_data, data_js
 
-    verify_credentials(force_login=True if item.contentChannel == 'videolibrary' else False)
+    verify_credentials(force_login=True if item.contentChannel == 'videolibrary' else not account)
 
     kwargs['matches_post_episodes'] = episodesxseason_matches
 
@@ -915,6 +916,7 @@ def findvideos_matches(item, matches_int, langs, response, **AHkwargs):
 
 
 def play(item):
+    global user_status, account, sid
     
     if "###" in item.url:
         item.info = {item.url.split("###")[1].split(";")[0]: item.url.split("###")[1].split(";")[0]}
@@ -936,6 +938,14 @@ def play(item):
             item.url = devuelve[0][1]
             item.server = devuelve[0][2]
     item.thumbnail = item.contentThumbnail
+
+    #Forzar Login después de la reproducción
+    account = False
+    config.set_setting("logged", account, channel=canonical['channel'])
+    sid = ''
+    if window: window.setProperty("AH_hdfull_sid", sid)
+    user_status = {}
+    if window: window.setProperty("AH_hdfull_user_status", jsontools.dump(user_status))
     
     return [item]
 

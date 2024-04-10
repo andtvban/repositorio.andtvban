@@ -25,9 +25,12 @@ forced_proxy_opt = 'ProxySSL'
 canonical = {
              'channel': 'dontorrent', 
              'host': config.get_setting("current_host", 'dontorrent', default=''), 
-             'host_alt': ["https://dontorrent.cymru/", "https://www2.dontorrent.fr/", "https://tomadivx.net/",
+             'host_alt': ["https://dontorrent.directory/", "https://www9.dontorrent.link/", "https://tomadivx.net/",
                           "https://todotorrents.org/"], 
-             'host_black_list': ["https://dontorrent.contact/", 
+             'host_black_list': ["https://dontorrent.skin/", "https://dontorrent.agency/", "https://www2.dontorrent.fr/", 
+                                 "https://dontorrent.cyou/", "https://dontorrent.cooking/", "https://dontorrent.center/", 
+                                 "https://dontorrent.band/", "https://dontorrent.makeup/", "https://dontorrent.yokohama/", 
+                                 "https://dontorrent.capetown/", "https://dontorrent.cymru/", "https://dontorrent.contact/", 
                                  "https://dontorrent.nagoya/", "https://dontorrent.wales/", "https://dontorrent.joburg/", 
                                  "https://dontorrent.party/", "https://dontorrent.durban/", "https://dontorrent.rodeo/",
                                  "https://dontorrent.boston/", "https://dontorrent.tokyo/", "https://dontorrent.bond/",
@@ -121,7 +124,7 @@ finds = {'find': {'find_all': [{'tag': ['div'], 'class': ['text-center']}]},
          'url_replace': [], 
          'controls': {'min_temp': min_temp, 'url_base64': True, 'add_video_to_videolibrary': True, 'cnt_tot': 15, 
                       'get_lang': False, 'reverse': False, 'videolab_status': True, 'tmdb_extended_info': True, 'seasons_search': True, 
-                      'host_torrent': host_torrent, 'btdigg': True, 'duplicates': [], 'dup_list': 'title', 
+                      'host_torrent': host_torrent, 'btdigg': True, 'btdigg_search': True, 'duplicates': [], 'dup_list': 'title', 
                       'force_find_last_page': [5, 999, 'url'], 'btdigg_quality_control': True},
          'timeout': timeout}
 AlfaChannel = DictionaryAllChannel(host, movie_path=movie_path, tv_path=tv_path, canonical=canonical, finds=finds, 
@@ -699,9 +702,10 @@ def findvideos_matches(item, matches_int, langs, response, **AHkwargs):
                 elem_json['quality'] = elem.find('b', class_='bold', string=re.compile('Formato:'))\
                                            .find_previous('p').get_text('|', strip=True).split('|')[1]
 
-                if  elem.find('b', class_='bold', string=re.compile('Clave:')):
-                    elem_json['password'] = elem.find('b', class_='bold', string=re.compile('Clave:'))\
-                                                .find_previous('p').get('data-clave', '')
+                if  elem.find('b', class_='bold', string=re.compile('Clave:\s*')):
+                    elem_json['password'] = elem.find('b', class_='bold', string=re.compile('Clave:\s*'))\
+                                                .find_next('a').get('data-content', '')
+                    elem_json['password'] = item.password = scrapertools.find_single_match(elem_json['password'], "value='([^']+)'")
             except Exception:
                 logger.error(elem)
                 logger.error(traceback.format_exc())

@@ -24,8 +24,9 @@ forced_proxy_opt = 'ProxySSL'
 canonical = {
              'channel': 'divxtotal', 
              'host': config.get_setting("current_host", 'divxtotal', default=''), 
-             'host_alt': ["https://www2.divxtotal.mov/"], 
-             'host_black_list': ["https://www2.divxtotal.zip/", "https://www1.divxtotal.zip/", "https://www.divxtotal.win/", 
+             'host_alt': ["https://www3.divxtotal.mov/"], 
+             'host_black_list': ["https://www2.divxtotal.mov/", 
+                                 "https://www2.divxtotal.zip/", "https://www1.divxtotal.zip/", "https://www.divxtotal.win/", 
                                  "https://www.divxtotal.wf/", "https://www.divxtotal.pl/", "https://www.divxtotal.cat/", 
                                  "https://www.divxtotal.fi/", "https://www.divxtotal.dev/", "https://www.divxtotal.ac/", 
                                  "https://www.divxtotal.re/", "https://www.divxtotal.pm/", "https://www.divxtotal.nl/"], 
@@ -92,7 +93,7 @@ finds = {'find': dict([('find', [{'tag': ['table'], 'class': ['table']}]),
          'url_replace': [], 
          'controls': {'duplicates': [], 'min_temp': min_temp, 'url_base64': True, 'add_video_to_videolibrary': True, 'cnt_tot': 15, 
                       'get_lang': False, 'reverse': False, 'videolab_status': True, 'tmdb_extended_info': True, 'seasons_search': False, 
-                      'host_torrent': host, 'btdigg': True},
+                      'host_torrent': host, 'btdigg': True, 'btdigg_search': True},
          'timeout': timeout}
 AlfaChannel = DictionaryAllChannel(host, movie_path=movie_path, tv_path=tv_path, canonical=canonical, finds=finds, 
                                    idiomas=IDIOMAS, language=language, list_language=list_language, list_servers=list_servers, 
@@ -176,7 +177,7 @@ def submenu(item):
         #logger.error(elem)
 
         title = '[B]%s[/B]' % elem.a.get_text(strip=True).title()
-        url = AlfaChannel.urljoin(host, elem.a.get('href', ''))
+        url = AlfaChannel.urljoin(host, elem.a.get('href', '')).replace('hd-5/', 'hd/')
         contentType = 'movie' if item.c_type == "peliculas" else 'tvshow'
 
         if item.title in title:

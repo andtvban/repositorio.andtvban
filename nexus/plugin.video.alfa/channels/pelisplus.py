@@ -76,7 +76,7 @@ def mainlist(item):
                          thumbnail=get_thumb('anime', auto=True)))
     itemlist.append(Item(channel=item.channel, title="Doramas", action="list_all", url=host + "doramas",
                          content="serie", thumbnail=get_thumb('doramas', auto=True)))
-    itemlist.append(Item(channel=item.channel, title="Buscar", action="search", url=host + 'search?buscar=',
+    itemlist.append(Item(channel=item.channel, title="Buscar", action="search",
                          thumbnail=get_thumb('search', auto=True)))
     
     autoplay.show_option(item.channel, itemlist)
@@ -230,8 +230,8 @@ def findvideos(item):
     matches = soup.find_all("li", role="presentation") #re.compile(r"^pitem\d+")
     for elem in matches:
         url = elem['data-server']
-        url = base64.b64decode(url).decode('utf-8')
-        data = httptools.downloadpage(url, canonical=canonical).data
+        url = base64.b64encode(url.encode("utf-8")).decode('utf-8')
+        data = httptools.downloadpage(host + "/player/" + url, canonical=canonical).data
         url = scrapertools.find_single_match(data,"(?i)Location.href = '([^']+)'")
         if "up.asdasd" in url:
             url = "https://netu.to/"
@@ -258,11 +258,12 @@ def findvideos(item):
 
 def search(item, texto):
     logger.info()
-    texto = texto.replace(" ", "+")
-    item.url += texto
 
     try:
         if texto != '':
+            texto = urlparse.quote_plus(texto)
+            item.url = urlparse.urljoin('search/', texto)
+            item.url = urlparse.urljoin(host, item.url)
             return list_all(item)
         else:
             return []

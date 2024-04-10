@@ -16,7 +16,7 @@
         "url": "\\1"
       },
       {
-        "pattern": "(https://(?:www.|)(?:ballzdeep|pornxpert|hoes|bigtitslust|mondetube|watchporn|faapy|pornvase|sortporn|4wank|porncaper|camstreams|celebsroulette|pornve).(?:com|xxx|tube|to|tv)/video(?:s|)/[0-9]+/[A-z0-9-]+(?:/|))",
+        "pattern": "(https://(?:www.|)(?:ballzdeep|pornxpert|hoes|bigtitslust|mondetube|watchporn|faapy|pornvase|sortporn|4wank|porncaper|camstreams|celebsroulette|pornve|xhand).(?:com|xxx|tube|to|tv)/video(?:s|)/[0-9]+/[A-z0-9-]+(?:/|))",
         "url": "\\1"
       },
       {
@@ -24,15 +24,31 @@
         "url": "\\1"
       },
       {
+        "pattern": "(https://(?:www.|)adptube.com/videos/[A-z0-9-]+/[A-z0-9-]+(?:/|))",
+        "url": "\\1"
+      },
+      {
         "pattern": "(https://www.analdin.com/es/videos/[0-9]+/[A-z0-9-]+(?:/|))",
         "url": "\\1"
       },
       {
-        "pattern": "(https://www.inxxx.com/v/[A-z0-9-]+(?:/|))",
+        "pattern": "(https://www.inxxx.com/v/[A-z0-9-.]+(?:/|))",
         "url": "\\1"
       },
       {
-        "pattern": "(https://porngrey.com/video/[A-z0-9-]+(?:/|))",
+        "pattern": "(https://trahkino.(?:cc|me)/(?:embed|video)/[0-9]+(?:/|))",
+        "url": "\\1"
+      },
+      {
+        "pattern": "(https://onlineporno.cc/video[0-9]+(?:/|))",
+        "url": "\\1"
+      },
+      {
+        "pattern": "(https://familyporn.tv/video(?:s|)/[A-z0-9-]+(?:/|))",
+        "url": "\\1"
+      },
+      {
+        "pattern": "(https://(?:www.|)porngrey.(?:com|net)/video/[A-z0-9-]+(?:/|))",
         "url": "\\1"
       },
       {
@@ -40,11 +56,19 @@
         "url": "\\1"
       },
       {
-        "pattern": "(http(?:s|)://(?:www.|)(?:camwhores|camwhorescloud|camwhoreshd|lesbianbliss|goodporn|porntrex|tonicporn|whoreshub|familyporn).(?:tv|com|org|to|lol)/video(?:s|)/[0-9]+/[A-z0-9-]+(?:/|))",
+        "pattern": "(http(?:s|)://(?:www.|)(?:camwhores|camwhorescloud|camwhoreshd|lesbianbliss|goodporn|porntrex|tonicporn|whoreshub).(?:tv|com|org|to|lol)/video(?:s|)/[0-9]+/[A-z0-9-]+(?:/|))",
         "url": "\\1"
       },
       {
         "pattern": "(http(?:s|)://www.(?:camwhores|camwhoreshd|camvideos|cwtvembeds|lesbianbliss).(?:tv|com|org)/embed/[A-z0-9-]+(?:/|))",
+        "url": "\\1"
+      },
+      {
+        "pattern": "(http(?:s|)://(?:www.|)(?:ezporn|fullporno|pornwex|cremz|4wank|xxam|faptor|crazyporn|porndr|pornkinky|pornbimbo).(?:tv|com|org|to|lol|xxx)/video(?:s|)/[0-9]+/[A-z0-9-]+(?:/|))",
+        "url": "\\1"
+      },
+      {
+        "pattern": "(http(?:s|)://(?:www.|)(?:sloppyfans|nudes7|hornyfap|mypornhere|asianviralhub|viralpornhub|amateurest|in35|thothub|thothd).(?:tv|com|org|to|lol|xxx)/video(?:s|)/[0-9]+/[A-z0-9-]+(?:/|))",
         "url": "\\1"
       },
       {
@@ -96,7 +120,7 @@
         "url": "https://frprn.com/videos/\\1/"
       },
       {
-        "pattern": "(https://(?:www.|)(?:ok|perfectgirls|pornstars).(?:xxx|tube)/video(?:s|)/[0-9]+(?:/|))",
+        "pattern": "(https://(?:www.|)(?:perfectgirls|pornstars).(?:xxx|tube)/video(?:s|)/[0-9]+(?:/|))",
         "url": "\\1"
       },
       {
@@ -132,7 +156,7 @@
         "url": "https://www.sexvid.xxx/\\1"
       },
       {
-        "pattern": "(https://freshporno.net/videos/[A-z0-9-]+(?:/|))",
+        "pattern": "(https://freshporno.net/(?:videos|embed)/[A-z0-9-]+(?:/|))",
         "url": "\\1"
       },
       {
