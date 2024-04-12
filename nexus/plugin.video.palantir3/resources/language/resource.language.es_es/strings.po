@@ -107,6 +107,10 @@ msgctxt "#30033"
 msgid "No results found for"
 msgstr "No se han encontrado resultados para"
 
+msgctxt "#30035"
+msgid "Rating on Trakt.tv"
+msgstr "Valorar en Trakt.tv"
+
 msgctxt "#30036"
 msgid "Select a link"
 msgstr "Selecciona un enlace"
@@ -323,6 +327,10 @@ msgctxt "#30095"
 msgid "Include extra information in titles"
 msgstr "Incluir información extra en los títulos"
 
+msgctxt "#30096"
+msgid "Reset api key..."
+msgstr "Restablecer clave API..."
+
 # moria
 
 msgctxt "#30100"
@@ -508,6 +516,26 @@ msgstr "Establecer esta vista para menús"
 msgctxt "#30152"
 msgid "To resolve this link it is necessary to install ResolveUrl"
 msgstr "Para resolver este enlace es necesario instalar ResolveUrl"
+
+msgctxt "#30153"
+msgid "Ask what you thought"
+msgstr "Preguntar que te parecio"
+
+msgctxt "#30154"
+msgid "Almost never"
+msgstr "Casi nunca"
+
+msgctxt "#30155"
+msgid "Rarely"
+msgstr "Pocas veces"
+
+msgctxt "#30156"
+msgid "Often"
+msgstr "A menudo"
+
+msgctxt "#30157"
+msgid "Almost always"
+msgstr "Casi siempre"
 
 msgctxt "#30500"
 msgid "your search"

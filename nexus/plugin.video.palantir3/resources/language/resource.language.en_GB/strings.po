@@ -694,6 +694,10 @@ msgctxt "#30033"
 msgid "No results found for"
 msgstr ""
 
+msgctxt "#30035"
+msgid "Rating on Trakt.tv"
+msgstr ""
+
 msgctxt "#30036"
 msgid "Select a link"
 msgstr ""
@@ -911,19 +915,7 @@ msgid "Include extra information in titles"
 msgstr ""
 
 msgctxt "#30096"
-msgid "Nivel del control parental"
-msgstr ""
-
-msgctxt "#30097"
-msgid "bajo +18"
-msgstr ""
-
-msgctxt "#30098"
-msgid "medio 18"
-msgstr ""
-
-msgctxt "#30099"
-msgid "alto 16"
+msgid "Reset api key..."
 msgstr ""
 
 # moria
@@ -1111,6 +1103,26 @@ msgstr ""
 msgctxt "#30152"
 msgid "To resolve this link it is necessary to install ResolveUrl"
 msgstr ""
+
+msgctxt "#30153"
+msgid "Ask what you thought"
+msgid ""
+
+msgctxt "#30154"
+msgid "Almost never"
+msgid ""
+
+msgctxt "#30155"
+msgid "Rarely"
+msgid ""
+
+msgctxt "#30156"
+msgid "Often"
+msgid ""
+
+msgctxt "#30157"
+msgid "Almost always"
+msgid ""
 
 msgctxt "#30500"
 msgid "your search"
