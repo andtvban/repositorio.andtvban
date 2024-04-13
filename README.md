@@ -16,7 +16,7 @@
 <img src="https://i.imgur.com/FmHatKc.png">
 </p>
 
-# Kodi 20 $\textbf{\color{indigo}Nexus}$
+# `Kodi 20` $\textbf{\color{indigo}Nexus}$
 <p align="left">
 <img src="https://img.shields.io/badge/TVBAN-LA%20ORIGINAL-8A2BE2">  
 <p align="center">
