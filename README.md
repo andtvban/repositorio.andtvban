@@ -1,5 +1,9 @@
- # $\textbf{Repositorio\ andtvban:\ {\color{green}Matrix\ {\color{white},\ {\color{indigo}Nexus\ {\color{white},\ {\color{dodgerblue}Omega}}}}}}$
-
+<p align="left">
+<img src="https://img.shields.io/badge/REPOSITORIO_ANDTVBAN%20-Matrix-yellogreen"> 
+<img src="https://img.shields.io/badge/Nexus-indigo">
+<img src="https://img.shields.io/badge/Omega-dodgerblue">
+</p>
+ 
 # $\mathbb{Tu\ Repo\ {\color{dodgerblue}andtvban\ {\color{white}que\ no\ puede\ faltar\ para\ tu\ {\color{teal}Kodi.}}}}$
 
 
