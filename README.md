@@ -9,7 +9,7 @@
 
 
 ![img](https://)
-# Kodi 19 $\textbf{\color{green}Matrix\ {\color{white}\ {\color{indigo}}}}$
+# `Kodi 19` $\textbf{\color{green}Matrix\ {\color{white}\ {\color{indigo}}}}$
 <p align="left">
 <img src="https://img.shields.io/badge/ANDTV-Matrix-yellogreen">
 <p align="center">
