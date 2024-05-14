@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.tvbanwizard" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR dodgerblue]WIZARD[/COLOR][/B]" version="13.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvbanwizard" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR tan]WIZARD[/COLOR][/B]" version="13.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.1" />
         <import addon="script.module.requests" />
@@ -14,8 +14,8 @@
     
     <extension point="xbmc.addon.metadata">
         <summary lang="en">
-	[COLOR azure]andtv[/COLOR] [COLOR dodgerblue]tvban[/COLOR], 
-	tu [COLOR azure]tvban[COLOR dodgerblue]Wizard[/COLOR] para [COLOR teal]KODI 21[/COLOR]	
+	[COLOR azure]andtv[/COLOR][COLOR darkturquoise]tvban[/COLOR], 
+	tu [COLOR azure]tvban[COLOR tan]Wizard[/COLOR] para [COLOR teal]KODI 21[/COLOR]	
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B] 
