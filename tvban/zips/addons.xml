@@ -1251,9 +1251,9 @@ provider-name="jurialmunkey">
             <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
         </dir>
         <dir minversion="21.0" maxversion="21.9.9">
-            <info compressed="false">https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/omega/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/omega/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/omega/zips</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/tvban/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/tvban/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/tvban/zips</datadir>
         </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
