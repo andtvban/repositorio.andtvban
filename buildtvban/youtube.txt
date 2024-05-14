@@ -25,3 +25,11 @@ url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 icon="http://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
 fanart="http://"
 description="Rick Astley."
+
+name="[B][COLOR red]Mark Knopfler[/COLOR] [COLOR white]A Night In London, 1996 (FULL CONCERT)[/COLOR][/B]"
+section="no"
+url="https://youtu.be/XOlrUi3BSVg?si=5WFNR-Zhx7chJ4Od"
+icon="https://i.ytimg.com/vi/XOlrUi3BSVg/sddefault.jpg?v=661ffcf1"
+fanart="http://"
+description="Mark Knopfler."
+
