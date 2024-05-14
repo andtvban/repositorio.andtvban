@@ -18,19 +18,19 @@ ADDONTITLE = '[COLOR azure][B]Tvban[/B][/COLOR] [COLOR dodgerblue][B]Wizard[/B][
 BUILDERNAME = 'JoseAndTEBA & AndTVban'
 EXCLUDES = [ADDON_ID, 'repository.andTVban']
 # Text File with build info in it.
-BUILDFILE = 'https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/buildtvban/builds.txt'
+BUILDFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildtvban/builds.txt'
 # How often you would like it to check for build updates in days
 # 0 being every startup of kodi
 UPDATECHECK = 0
 # Text File with apk info in it.  Leave as 'http://' to ignore
-APKFILE = 'https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/buildtvban/apks.txt'
+APKFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildtvban/apks.txt'
 # Text File with Youtube Videos urls.  Leave as 'http://' to ignore
 YOUTUBETITLE = '[B]Conciertos ANDTV[/B]'
-YOUTUBEFILE = 'https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/buildtvban/youtube.txt'
+YOUTUBEFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildtvban/youtube.txt'
 # Text File for addon installer.  Leave as 'http://' to ignore
 ADDONFILE = 'http://'
 # Text File for advanced settings.  Leave as 'http://' to ignore
-ADVANCEDFILE = 'https://raw.githubusercontent.com/tvbanteam/tvbanteam.github.io/master/andtvban/wizard/json/advanced.json'
+ADVANCEDFILE = 'https://raw.githubusercontent.com/andtvban/andtvban.github.io/master/andtvban/wizard/json/advanced.json'
 #########################################################
 
 #########################################################
@@ -102,7 +102,7 @@ CONTACTFANART = 'http://'
 # Enable Auto Update 'Yes' or 'No'
 AUTOUPDATE = 'Yes'
 # Url to wizard version
-buildtvban = 'https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/buildtvban/builds.txt' 
+buildtvban = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildtvban/builds.txt' 
 #########################################################
 
 #########################################################
@@ -113,9 +113,9 @@ AUTOINSTALL = 'Yes'
 # Addon ID for the repository
 REPOID = 'repository.andTVban'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
-REPOADDONXML = 'https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/omega/zips/addons.xml'
+REPOADDONXML = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/tvban/zips/addons.xml'
 # Url to folder zip is located in
-REPOZIPURL = 'https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/omega/zips/repository.andTVban/'
+REPOZIPURL = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/tvban/zips/repository.andTVban/'
 #########################################################
 
 #########################################################
@@ -124,7 +124,7 @@ REPOZIPURL = 'https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam
 # Enable Notification screen Yes or No
 ENABLE = 'Yes'
 # Url to notification file
-NOTIFICATION = 'https://raw.githubusercontent.com/tvbanteam/repositorio.tvbandteam/master/buildtvban/andtv/Notify.txt'
+NOTIFICATION = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildtvban/andtv/Notify.txt'
 # Use either 'Text' or 'Image'
 HEADERTYPE = 'Image'
 # Font size of header
