@@ -1,0 +1,1 @@
+["add", ["addison timlin", "address", "adderall", "additio", "add", "addison rae", "addams family", "addis ababa", "adidas", "address in spanish"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512, 10], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

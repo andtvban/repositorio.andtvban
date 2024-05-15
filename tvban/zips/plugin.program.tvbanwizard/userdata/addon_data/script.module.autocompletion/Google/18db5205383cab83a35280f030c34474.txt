@@ -1,0 +1,1 @@
+["[CO2004[COLOR]", ["co2004 color code"], [], {"google:suggestsubtypes": [[160]], "google:suggesttype": ["TAIL"]}]

@@ -1,0 +1,1 @@
+["https://tvbanteam/and", ["https //tvbanteam/android", "https //tvbanteam/anderson"], [], {"google:suggestsubtypes": [[160], [160]], "google:suggesttype": ["TAIL", "TAIL"]}]

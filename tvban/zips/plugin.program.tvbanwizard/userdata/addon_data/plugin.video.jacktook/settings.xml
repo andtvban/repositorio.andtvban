@@ -1,0 +1,48 @@
+<settings version="2">
+    <setting id="client_player">Elementum</setting>
+    <setting id="auto_play" default="true">false</setting>
+    <setting id="cache_enabled">true</setting>
+    <setting id="cache_expiration">24</setting>
+    <setting id="indexer" default="true">Torrentio</setting>
+    <setting id="torrentio_host">https://torrentio.strem.fun</setting>
+    <setting id="torrentio_desc_length">100</setting>
+    <setting id="torrentio_results_per_page">25</setting>
+    <setting id="torrentio_sort_by">Quality</setting>
+    <setting id="torrentio_priority_lang">ES</setting>
+    <setting id="elfhosted_host" default="true" />
+    <setting id="elfhosted_desc_length">100</setting>
+    <setting id="elfhosted_results_per_page">25</setting>
+    <setting id="elfhosted_sort_by" default="true">Seeds</setting>
+    <setting id="jackett_host" default="true" />
+    <setting id="jackett_apikey" default="true" />
+    <setting id="jackett_desc_length">100</setting>
+    <setting id="jackett_results_per_page">25</setting>
+    <setting id="jackett_timeout">25</setting>
+    <setting id="jackett_sort_by" default="true">Seeds</setting>
+    <setting id="prowlarr_host" default="true" />
+    <setting id="prowlarr_apikey" default="true" />
+    <setting id="prowlarr_indexer_ids" default="true" />
+    <setting id="prowlarr_desc_length">100</setting>
+    <setting id="prowlarr_results_per_page">25</setting>
+    <setting id="prowlarr_timeout">25</setting>
+    <setting id="prowlarr_sort_by" default="true">Seeds</setting>
+    <setting id="real_debrid_enabled" default="true">false</setting>
+    <setting id="real_debrid_token" default="true" />
+    <setting id="premiumize_enabled" default="true">false</setting>
+    <setting id="premiumize_token" default="true" />
+    <setting id="torbox_enabled" default="true">false</setting>
+    <setting id="torbox_token" default="true" />
+    <setting id="show_uncached">true</setting>
+    <setting id="label5" default="true" />
+    <setting id="plex_user" default="true" />
+    <setting id="plex_token" default="true" />
+    <setting id="label7" default="true" />
+    <setting id="plex_server_name" default="true" />
+    <setting id="plex_discovery_url" default="true" />
+    <setting id="plex_streaming_url" default="true" />
+    <setting id="plex_server_token" default="true" />
+    <setting id="tmdb_apikey" default="true" />
+    <setting id="anilist_client_id" default="true" />
+    <setting id="anilist_client_secret" default="true" />
+    <setting id="fanarttv_client_id" default="true" />
+</settings>

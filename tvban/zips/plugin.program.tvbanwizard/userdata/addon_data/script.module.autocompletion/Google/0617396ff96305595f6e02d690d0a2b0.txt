@@ -1,0 +1,1 @@
+["pru", ["prune", "prue leith", "prueba de velocidad", "prussia", "prunella scales", "prurito", "prueba", "pruna", "prudent meaning", "prueba de embarazo"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

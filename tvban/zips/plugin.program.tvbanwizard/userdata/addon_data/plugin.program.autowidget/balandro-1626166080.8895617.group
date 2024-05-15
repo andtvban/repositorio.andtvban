@@ -1,0 +1,113 @@
+{
+    "label": "Balandro Peliculas",
+    "type": "widget",
+    "paths": [
+        {
+            "label": "Estrenos",
+            "content": "movies",
+            "file": {
+                "file": "plugin://plugin.video.balandro/?ewogICAgImFjdGlvbiI6ICJsaXN0X2FsbCIsCiAgICAiY2F0ZWdvcnkiOiAiQ2xpdmVyU2l0ZSIsCiAgICAiY2hhbm5lbCI6ICJjbGl2ZXJzaXRlIiwKICAgICJpbmZvTGFiZWxzIjoge30sCiAgICAicGFnaW5hIjogMSwKICAgICJwbG90IjogIltDYXN0ZWxsYW5vLCBMYXRpbm8sIFZvc2VdW0NSXVtDUl1QZWzDrWN1bGFzIHBvciBnw6luZXJvcywgYcOxby4gU2VyaWVzIHBvciBHw6luZXJvcy4gUHVlZGUgcmVxdWVyaXIgZWwgdXNvIGRlIHByb3hpZXMgZW4gZnVuY2nDs24gZGVsIHBhw61zL29wZXJhZG9yYSBkZXNkZSBlbCBxdWUgc2UgYWNjZWRlLiIsCiAgICAic2VhcmNoX3R5cGUiOiAibW92aWUiLAogICAgInRodW1ibmFpbCI6ICJEOlxcQSBBQlVJTERTXFxrb2RpIDIwLjJcXEtvZGlcXHBvcnRhYmxlX2RhdGFcXGFkZG9uc1xccGx1Z2luLnZpZGVvLmJhbGFuZHJvXFxyZXNvdXJjZXNcXG1lZGlhXFxjaGFubmVsc1xcdGh1bWJcXGNsaXZlcnNpdGUuanBnIiwKICAgICJ0aXBvIjogImVzdHJlbm9zIiwKICAgICJ0aXRsZSI6ICJFc3RyZW5vcyIsCiAgICAidXJsIjogImh0dHBzOi8vd3d3Mi5jbGl2ZXIubWUvcGVsaWN1bGFzL2VzdHJlbm9zIgp9",
+                "filetype": "directory",
+                "art": {
+                    "icon": "special://home/addons\\plugin.video.balandro\\resources\\media\\channels\\thumb\\cliversite.jpg",
+                    "poster": "special://home/addons\\plugin.video.balandro\\resources\\media\\channels\\thumb\\cliversite.jpg",
+                    "thumb": "special://home/addons\\plugin.video.balandro\\resources\\media\\channels\\thumb\\cliversite.jpg"
+                },
+                "title": "Estrenos",
+                "plot": "[Castellano, Latino, Vose][CR][CR]Pel\u00edculas por g\u00e9neros, a\u00f1o. Series por G\u00e9neros. Puede requerir el uso de proxies en funci\u00f3n del pa\u00eds/operadora desde el que se accede.",
+                "votes": "0"
+            },
+            "color": "white",
+            "window": "videos",
+            "target": "widget",
+            "id": "estrenos-1702925223.185212",
+            "version": "3.6.1"
+        },
+        {
+            "label": "[COLOR coral]Siguientes ...[/COLOR]",
+            "content": "videos",
+            "target": "widget",
+            "file": {
+                "album": "",
+                "art": {
+                    "icon": "DefaultFolder.png",
+                    "poster": "special://home/addons\\plugin.video.balandro\\resources\\media\\channels\\thumb\\cliversite.jpg",
+                    "thumb": "special://home/addons\\plugin.video.balandro\\resources\\media\\channels\\thumb\\cliversite.jpg"
+                },
+                "artist": [],
+                "cast": [],
+                "country": [],
+                "dateadded": "",
+                "director": [],
+                "episode": -1,
+                "episodeguide": "",
+                "fanart": "",
+                "file": "plugin://plugin.video.balandro/?ewogICAgImFjdGlvbiI6ICJsaXN0X2FsbCIsCiAgICAiY2F0ZWdvcnkiOiAiQ2xpdmVyU2l0ZSIsCiAgICAiY2hhbm5lbCI6ICJjbGl2ZXJzaXRlIiwKICAgICJpbmZvTGFiZWxzIjoge30sCiAgICAicGFnZSI6IDEsCiAgICAicGFnaW5hIjogMSwKICAgICJwbG90IjogIltDYXN0ZWxsYW5vLCBMYXRpbm8sIFZvc2VdW0NSXVtDUl1QZWzDrWN1bGFzIHBvciBnw6luZXJvcywgYcOxby4gU2VyaWVzIHBvciBHw6luZXJvcy4gUHVlZGUgcmVxdWVyaXIgZWwgdXNvIGRlIHByb3hpZXMgZW4gZnVuY2nDs24gZGVsIHBhw61zL29wZXJhZG9yYSBkZXNkZSBlbCBxdWUgc2UgYWNjZWRlLiIsCiAgICAic2VhcmNoX3R5cGUiOiAibW92aWUiLAogICAgInRodW1ibmFpbCI6ICJEOlxcQSBBQlVJTERTXFxrb2RpIDIwLjJcXEtvZGlcXHBvcnRhYmxlX2RhdGFcXGFkZG9uc1xccGx1Z2luLnZpZGVvLmJhbGFuZHJvXFxyZXNvdXJjZXNcXG1lZGlhXFxjaGFubmVsc1xcdGh1bWJcXGNsaXZlcnNpdGUuanBnIiwKICAgICJ0aXBvIjogImVzdHJlbm9zIiwKICAgICJ0aXRsZSI6ICJbQ09MT1IgY29yYWxdU2lndWllbnRlcyAuLi5bL0NPTE9SXSIsCiAgICAidXJsIjogImh0dHBzOi8vd3d3Mi5jbGl2ZXIubWUvcGVsaWN1bGFzL2VzdHJlbm9zIgp9",
+                "filetype": "directory",
+                "firstaired": "",
+                "genre": [],
+                "imdbnumber": "",
+                "label": "[COLOR coral]Siguientes ...[/COLOR]",
+                "lastmodified": "",
+                "lastplayed": "",
+                "mimetype": "x-directory/normal",
+                "mpaa": "",
+                "originaltitle": "",
+                "playcount": 0,
+                "plot": "[Castellano, Latino, Vose][CR][CR]Pel\u00edculas por g\u00e9neros, a\u00f1o. Series por G\u00e9neros. Puede requerir el uso de proxies en funci\u00f3n del pa\u00eds/operadora desde el que se accede.",
+                "plotoutline": "",
+                "premiered": "",
+                "productioncode": "",
+                "rating": 0.0,
+                "resume": {
+                    "position": 0.0,
+                    "total": 0.0
+                },
+                "runtime": 0,
+                "season": -1,
+                "set": "",
+                "setid": -1,
+                "showlink": [],
+                "showtitle": "",
+                "size": 0,
+                "sorttitle": "",
+                "specialsortepisode": -1,
+                "specialsortseason": -1,
+                "streamdetails": {
+                    "audio": [],
+                    "subtitle": [],
+                    "video": []
+                },
+                "studio": [],
+                "tag": [],
+                "tagline": "",
+                "thumbnail": "image://D%3a%5cA%20ABUILDS%5ckodi%2020.2%5cKodi%5cportable_data%5caddons%5cplugin.video.balandro%5cresources%5cmedia%5cchannels%5cthumb%5ccliversite.jpg/",
+                "title": "[COLOR coral]Siguientes ...[/COLOR]",
+                "top250": 0,
+                "track": -1,
+                "trailer": "",
+                "tvshowid": -1,
+                "type": "unknown",
+                "userrating": 0,
+                "votes": "0",
+                "writer": [],
+                "year": 0
+            },
+            "color": "white",
+            "window": "videos",
+            "id": "color_coralsiguientes_...color-1702925440.2195342",
+            "version": "3.6.1"
+        }
+    ],
+    "id": "balandro-1626166080.8895617",
+    "art": {
+        "banner": "special://home/addons\\plugin.program.autowidget\\resources\\media\\banner\\folder-sync.png",
+        "fanart": "special://home/addons\\plugin.program.autowidget\\resources\\media\\fanart\\folder-sync.png",
+        "icon": "special://home/addons\\plugin.program.autowidget\\resources\\media\\icon\\folder-sync.png",
+        "poster": "special://home/addons\\plugin.program.autowidget\\resources\\media\\poster\\folder-sync.png",
+        "thumb": "special://home/addons\\plugin.program.autowidget\\resources\\media\\icon\\folder-sync.png"
+    },
+    "version": "3.6.1",
+    "sort_order": "3",
+    "content": ""
+}

@@ -1,0 +1,1 @@
+["k", ["kahoot", "kate middleton", "kayak", "killers of the flower moon", "klm", "koora live", "kfc", "kylie jenner", "kanye west", "kindle"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

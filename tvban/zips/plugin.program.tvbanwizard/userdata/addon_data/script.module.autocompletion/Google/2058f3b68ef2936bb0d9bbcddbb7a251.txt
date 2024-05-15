@@ -1,0 +1,1 @@
+["[COLOR redApagado[/COLOR]", ["color redapagado /color azul", "color redapagado /color windows", "color redapagado /color windows 7"], [], {"google:suggestsubtypes": [[160], [160], [160]], "google:suggesttype": ["TAIL", "TAIL", "TAIL"]}]

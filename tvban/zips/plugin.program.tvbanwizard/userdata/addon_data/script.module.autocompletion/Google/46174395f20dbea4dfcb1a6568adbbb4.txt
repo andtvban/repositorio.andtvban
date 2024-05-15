@@ -1,0 +1,1 @@
+["[COLApagado[/COLOR]", ["colapagado /color #", "colapagado /color 3d", "colapagado /color 20"], [], {"google:suggestsubtypes": [[160], [160], [160]], "google:suggesttype": ["TAIL", "TAIL", "TAIL"]}]

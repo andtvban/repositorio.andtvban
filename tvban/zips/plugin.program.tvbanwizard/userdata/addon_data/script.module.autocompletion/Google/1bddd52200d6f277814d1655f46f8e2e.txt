@@ -1,0 +1,1 @@
+["prueba pea widg", ["prueba para widgets", "prueba para widget android", "prueba para widget flutter"], [], {"google:suggestsubtypes": [[10, 160, 10], [10, 160, 10], [10, 160, 10]], "google:suggesttype": ["TAIL", "TAIL", "TAIL"]}]

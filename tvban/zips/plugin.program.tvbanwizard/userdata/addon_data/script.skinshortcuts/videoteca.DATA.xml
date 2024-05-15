@@ -1,0 +1,58 @@
+<shortcuts>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR lawngreen]FAVORITOS[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(Favourites)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]ALL[COLOR gold]DEBRID[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>noop</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]PELICULAS [COLOR gold]BALANDRO[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.video.balandro/?ewogICAgImFjdGlvbiI6ICJtYWlubGlzdF9wZWxpcyIsCiAgICAiY2F0ZWdvcnkiOiAiZGVmYXVsdCIsCiAgICAiY2hhbm5lbCI6ICJ0cmFja2luZyIsCiAgICAiaW5mb0xhYmVscyI6IHt9LAogICAgInRodW1ibmFpbCI6ICJDOlxcVXNlcnNcXGRhdmlqXFxPbmVEcml2ZVxcRXNjcml0b3Jpb1xcS29kaVBvcnRhYmxlXFxBcHBcXEtvZGlcXHBvcnRhYmxlX2RhdGFcXGFkZG9uc1xccGx1Z2luLnZpZGVvLmJhbGFuZHJvXFxyZXNvdXJjZXNcXG1lZGlhXFx0aGVtZXNcXGRlZmF1bHRcXGNsYXBib2FyZC5wbmciLAogICAgInRpdGxlIjogIlBlbMOtY3VsYXMgKDEpIgp9",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]SERIES [COLOR gold]BALANDRO[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.video.balandro/?ewogICAgImFjdGlvbiI6ICJtYWlubGlzdF9zZXJpZXMiLAogICAgImNhdGVnb3J5IjogImRlZmF1bHQiLAogICAgImNoYW5uZWwiOiAidHJhY2tpbmciLAogICAgImluZm9MYWJlbHMiOiB7fSwKICAgICJ0aHVtYm5haWwiOiAiQzpcXFVzZXJzXFxkYXZpalxcT25lRHJpdmVcXEVzY3JpdG9yaW9cXEtvZGlQb3J0YWJsZVxcQXBwXFxLb2RpXFxwb3J0YWJsZV9kYXRhXFxhZGRvbnNcXHBsdWdpbi52aWRlby5iYWxhbmRyb1xccmVzb3VyY2VzXFxtZWRpYVxcdGhlbWVzXFxkZWZhdWx0XFx0di5wbmciLAogICAgInRpdGxlIjogIlNlcmllcyAoMSkiCn0%3D",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]ACT. VIDEOTECA [COLOR gold]BALANDRO[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>RunPlugin(plugin.video.balandro/?channel=actions&amp;action=comprobar_nuevos_episodios)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]ACT. VIDEOTECA [COLOR deepskyblue]KODI[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>UpdateLibrary(video,,true)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]LIMPIAR [COLOR white]VIDEOTECA [COLOR deepskyblue]KODI[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>CleanLibrary(video,true)</action>
+		</shortcut>
+	</shortcuts>

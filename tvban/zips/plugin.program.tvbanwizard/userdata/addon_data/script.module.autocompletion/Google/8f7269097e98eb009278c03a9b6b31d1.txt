@@ -1,0 +1,1 @@
+["ActivateWindow(LiSettings)", ["activate window settings", "how to activate settings windows 10", "activate windows 10 pro permanently"], [], {"google:suggestsubtypes": [[30, 13], [512, 650, 390], [512, 546]], "google:suggesttype": ["QUERY", "QUERY", "QUERY"]}]

@@ -1,0 +1,38 @@
+{
+    "label": "Alfa Series",
+    "type": "widget",
+    "paths": [
+        {
+            "label": "Todas las Series",
+            "content": "movies",
+            "file": {
+                "file": "plugin://plugin.video.alfa/?ewogICAgImFjdGlvbiI6ICJsaXN0X2FsbCIsCiAgICAiY190eXBlIjogInNlcmllcyIsCiAgICAiY2hhbm5lbCI6ICJwZWxpdG9ycmVudCIsCiAgICAiaW5mb0xhYmVscyI6IHt9LAogICAgInRodW1ibmFpbCI6ICJEOlxca29kaSAyMVxcS29kaVxccG9ydGFibGVfZGF0YVxcYWRkb25zXFxwbHVnaW4udmlkZW8uYWxmYVxccmVzb3VyY2VzXFxtZWRpYVxcdGhlbWVzXFxkZWZhdWx0XFx0aHVtYl9jaGFubmVsc190dnNob3cucG5nIiwKICAgICJ0aXRsZSI6ICJUb2RhcyBsYXMgU2VyaWVzIiwKICAgICJ1cmwiOiAiaHR0cHM6Ly9wZWxpdG9ycmVudC5jb20vdG9ycmVudHMtc2VyaWVzLyIKfQ%3d%3d",
+                "filetype": "directory",
+                "art": {
+                    "fanart": "special://home/addons\\plugin.video.alfa\\resources\\fanart.jpg",
+                    "icon": "special://home/addons\\plugin.video.alfa\\resources\\media\\themes\\default\\thumb_channels_tvshow.png",
+                    "poster": "special://home/addons\\plugin.video.alfa\\resources\\media\\themes\\default\\thumb_channels_tvshow.png",
+                    "thumb": "special://home/addons\\plugin.video.alfa\\resources\\media\\themes\\default\\thumb_channels_tvshow.png"
+                },
+                "title": "Todas las Series",
+                "votes": "0"
+            },
+            "color": "white",
+            "window": "videos",
+            "target": "widget",
+            "id": "todas_las_series-1715715163.1414638",
+            "version": "3.7.0"
+        }
+    ],
+    "id": "alfa_series-1715715157.5908337",
+    "art": {
+        "banner": "special://home/addons\\plugin.program.autowidget\\resources\\media\\banner\\folder-sync.png",
+        "fanart": "special://home/addons\\plugin.program.autowidget\\resources\\media\\fanart\\folder-sync.png",
+        "icon": "special://home/addons\\plugin.program.autowidget\\resources\\media\\icon\\folder-sync.png",
+        "poster": "special://home/addons\\plugin.program.autowidget\\resources\\media\\poster\\folder-sync.png",
+        "thumb": "special://home/addons\\plugin.program.autowidget\\resources\\media\\icon\\folder-sync.png"
+    },
+    "version": "3.7.0",
+    "content": "",
+    "sort_order": "8"
+}

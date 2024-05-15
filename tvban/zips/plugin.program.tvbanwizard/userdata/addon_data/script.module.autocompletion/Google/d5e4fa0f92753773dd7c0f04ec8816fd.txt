@@ -1,0 +1,1 @@
+["For", ["formula 1", "fortnite", "fortnite tracker", "ford", "forrest gump", "forocoches", "formentera", "formigal", "fortnite item shop", "forms"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

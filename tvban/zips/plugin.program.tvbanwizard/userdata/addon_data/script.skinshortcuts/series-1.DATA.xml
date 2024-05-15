@@ -1,0 +1,18 @@
+<shortcuts>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR khaki]Todas las Series[/COLOR]</label>
+		<label2>Add-on de Vídeo</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>image://special%3a%2f%2fhome%2faddons%5cplugin.program.autowidget%5cresources%5cmedia%5cicon%5cfolder.png/</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.program.autowidget/?mode=path&amp;action=static&amp;group=alfa_series-1715715157.5908337&amp;id=c406442f-7884-499e-b72d-15a14a016cdf&amp;refresh=$INFO[Window(10000).Property(autowidget-c406442f-7884-499e-b72d-15a14a016cdf-refresh)]&amp;reload=",return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR red]• [COLOR white]2024[/COLOR]</label>
+		<label2>Add-on de Vídeo</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>image://special%3a%2f%2fhome%2faddons%5cplugin.program.autowidget%5cresources%5cmedia%5cicon%5cfolder.png/</thumb>
+		<action>ActivateWindow(Videos,"plugin://plugin.program.autowidget/?mode=path&amp;action=static&amp;group=color_redtacones_seriescolor-1715358352.363541&amp;id=594fc130-ecab-4d9e-a195-883f086ceca2&amp;refresh=$INFO[Window(10000).Property(autowidget-594fc130-ecab-4d9e-a195-883f086ceca2-refresh)]&amp;reload=",return)</action>
+		</shortcut>
+	</shortcuts>

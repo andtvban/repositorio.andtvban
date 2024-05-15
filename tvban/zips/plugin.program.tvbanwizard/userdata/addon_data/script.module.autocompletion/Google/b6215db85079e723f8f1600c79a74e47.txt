@@ -1,0 +1,1 @@
+["[COLOR red]TACONES SERIES[/COLOR", ["color red tacones series /colores"], [], {"google:suggestsubtypes": [[160]], "google:suggesttype": ["TAIL"]}]

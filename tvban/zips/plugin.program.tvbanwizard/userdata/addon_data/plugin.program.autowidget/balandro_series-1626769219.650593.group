@@ -1,0 +1,38 @@
+{
+    "label": "Balandro Series",
+    "type": "widget",
+    "paths": [
+        {
+            "label": "PelisMaraton Cat\u00e1logo",
+            "content": "movies",
+            "file": {
+                "file": "plugin://plugin.video.balandro/?ewogICAgImFjdGlvbiI6ICJsaXN0X2FsbCIsCiAgICAiY2F0ZWdvcnkiOiAiUGVsaXNNYXJhdG9uIiwKICAgICJjaGFubmVsIjogInBlbGlzbWFyYXRvbiIsCiAgICAiaW5mb0xhYmVscyI6IHt9LAogICAgInBsb3QiOiAiW0Nhc3RlbGxhbm8sIExhdGlubywgVm9zZV1bQ1JdW0NSXVBlbMOtY3VsYXMgcG9yIGfDqG5lcm9zIHkgYcOxb3MsIFNlcmllcy4iLAogICAgInNlYXJjaF90eXBlIjogInR2c2hvdyIsCiAgICAidGh1bWJuYWlsIjogIkM6XFxVc2Vyc1xcZGF2aWpcXERlc2t0b3BcXE1BVFJJWC1SZXBvUHJ1ZWJhIFBvcnRhYmxlXFxwb3J0YWJsZV9kYXRhXFxhZGRvbnNcXHBsdWdpbi52aWRlby5iYWxhbmRyb1xccmVzb3VyY2VzXFxtZWRpYVxcY2hhbm5lbHNcXHRodW1iXFxwZWxpc21hcmF0b24ucG5nIiwKICAgICJ0aXRsZSI6ICJDYXTDoWxvZ28iLAogICAgInVybCI6ICJodHRwczovL3BlbGlzbWFyYXRvbi5jb20vc2VyaWUvIgp9",
+                "filetype": "directory",
+                "art": {
+                    "icon": "special://home/addons\\plugin.video.balandro\\resources\\media\\channels\\thumb\\pelismaraton.png",
+                    "poster": "special://home/addons\\plugin.video.balandro\\resources\\media\\channels\\thumb\\pelismaraton.png",
+                    "thumb": "special://home/addons\\plugin.video.balandro\\resources\\media\\channels\\thumb\\pelismaraton.png"
+                },
+                "title": "Cat\u00e1logo",
+                "plot": "[Castellano, Latino, Vose][CR][CR]Pel\u00edculas por g\u00e8neros y a\u00f1os, Series.",
+                "votes": "0"
+            },
+            "color": "white",
+            "window": "videos",
+            "target": "widget",
+            "id": "pelismaraton_catalogo-1626769299.5788407",
+            "version": "3.3.2"
+        }
+    ],
+    "id": "balandro_series-1626769219.650593",
+    "art": {
+        "banner": "special://home/addons\\plugin.program.autowidget\\resources\\media\\banner\\folder-sync.png",
+        "fanart": "special://home/addons\\plugin.program.autowidget\\resources\\media\\fanart\\folder-sync.png",
+        "icon": "special://home/addons\\plugin.program.autowidget\\resources\\media\\icon\\folder-sync.png",
+        "poster": "special://home/addons\\plugin.program.autowidget\\resources\\media\\poster\\folder-sync.png",
+        "thumb": "special://home/addons\\plugin.program.autowidget\\resources\\media\\icon\\folder-sync.png"
+    },
+    "version": "3.6.1",
+    "content": "files",
+    "sort_order": "4"
+}

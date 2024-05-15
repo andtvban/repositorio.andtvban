@@ -1,0 +1,220 @@
+[
+    [
+        "::PROFILELIST::",
+        [
+            [
+                "D:\\kodi 21\\Kodi\\portable_data\\userdata\\",
+                "String.IsEqual(System.ProfileName,Master user)",
+                "Master user"
+            ]
+        ]
+    ],
+    [
+        "::SCRIPTVER::",
+        "2.0.3"
+    ],
+    [
+        "::XBMCVER::",
+        "21"
+    ],
+    [
+        "::HIDEPVR::",
+        "false"
+    ],
+    [
+        "::SHARED::",
+        "true"
+    ],
+    [
+        "::SKINDIR::",
+        "skin.auramod.andtvban"
+    ],
+    [
+        "::FULLMENU::",
+        "True"
+    ],
+    [
+        "::SKINVER::",
+        "1.1.11"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\series-1.DATA.xml",
+        "7114296b88aaa257a99b20f7659ed541"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\x1108.DATA.xml",
+        "b24d1d986ccaed963d17df250ee88f6d"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\music.DATA.xml",
+        "1b4665a18b4a50b9a64d1eab8caf09d2"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\livetv.DATA.xml",
+        "db5e27b14ec17a3dc4df8b9364963b6f"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\pvrspot.DATA.xml",
+        "f9aef06ea1f26507d59927bff62635cb"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\overrides.xml",
+        "13c628dbe239991086625371870fc259"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\script.skinshortcuts\\resources\\shortcuts\\movies.DATA.xml",
+        "4997634763cceea26b3e7ed557b130e2"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\script.skinshortcuts\\resources\\shortcuts\\tvshows.DATA.xml",
+        "a86ff5cfeb2ecd934ccf77a45b7a0deb"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\colorred-apagado-color.DATA.xml",
+        "379c0cb0f0c8c3963235d19fe6e1308b"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\x1109.DATA.xml",
+        "bab7bf56fff1d5ea8e60168739737c9c"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\television.DATA.xml",
+        "ac209c0a4d02d68280726da7ced07757"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\movies.DATA.xml",
+        "7c5d592d7f621a0cd279f00f2dce0896"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\x1103.DATA.xml",
+        "feccfb5c45a4670007f414032d1ba7d5"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\31103.DATA.xml",
+        "870e4b60609c5ee4fe1dc328eda1176f"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\tvshows.DATA.xml",
+        "4af422fbb99abab7a9c32271fb58fa7c"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\videoteca.DATA.xml",
+        "ec380b826ba255577ad80b00e4fdbe7c"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\template.xml",
+        "cba4023bc2a4c627d48a410c8729d39d"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\script.skinshortcuts\\resources\\shortcuts\\livetv.DATA.xml",
+        "fb7cefbdccd70e243187cce2cb0e385c"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\searchmenus.DATA.xml",
+        "e1276d8d1bd942c286c99eabdd38b2c9"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\1080i\\script-skinshortcuts-includes.xml",
+        "e2775d4db25473efd428c74af8d931bb"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\mainmenu.DATA.xml",
+        "079c24b60d39688365fb5d8be8e28be0"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\script.skinshortcuts\\resources\\shortcuts\\mainmenu.DATA.xml",
+        "8523f5b50afc14f67af449ca99ee21f8"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\pvrspot.DATA.xml",
+        "29e29694ddf8f710554c029b24af1d61"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\script.skinshortcuts\\resources\\shortcuts\\overrides.xml",
+        "5d367b4cf434ffcb86069273d402dc28"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\music.DATA.xml",
+        "3d319b9f1f69163330478093a2aca44b"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\powermenu.DATA.xml",
+        "bbfce0d37169c3b243727bfbbf3c7650"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\moviehubmenu.DATA.xml",
+        "1d7c1ce6e57a56953a4cc7b3839f84ce"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\powermenu.DATA.xml",
+        "77278da456d49771bf4515756343055e"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\television-1.DATA.xml",
+        "9e69cdbfd6bb9eddf75f1d8e8ec7e380"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\ajustes.DATA.xml",
+        "bf83263f224c52a7c892da885288eec0"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\peliculas.DATA.xml",
+        "ba53a85737c5a328a65c0e3f4042f890"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\script.skinshortcuts\\resources\\shortcuts\\settings.DATA.xml",
+        "e644f923a418932143ed842e4231cc0c"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\x1101.DATA.xml",
+        "c3cce6984875195cd275ef01ca4313d1"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\videoteca-1.DATA.xml",
+        "b45adda1a6158f43982e4c8a2c4a6c62"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\24001-1.DATA.xml",
+        "97d51cf17673a96dca47b224dc98afe9"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\tvhubmenu.DATA.xml",
+        "d6256d22b1bdc96441e8c373134ae982"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\busqueda.DATA.xml",
+        "76a71156793eba0bbfc40588704d5220"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\series.DATA.xml",
+        "7e46000c4cf99035d8f5525eb0a680e2"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\peliculas-1.DATA.xml",
+        "76bd4403f0961f30027f3566e757aee6"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\add-ons.DATA.xml",
+        "01fb59f8f44e1b7ae212067bda18378a"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\script.skinshortcuts\\resources\\shortcuts\\music.DATA.xml",
+        "4298ef1d05ab4baf46890fc30c2a3b10"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\skin.auramod.andtvban.properties",
+        "ce46c754d848e47a8795db9d9872c48d"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\script.skinshortcuts\\24001.DATA.xml",
+        "25b840f69e46c1fe2126cb27cdfb42ba"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\addons.DATA.xml",
+        "4866d4c859f84660f75c91b2eba748ef"
+    ],
+    [
+        "D:\\kodi 21\\Kodi\\portable_data\\addons\\skin.auramod.andtvban\\shortcuts\\mainmenu.DATA.xml",
+        "7761fcc7dad924126fab41e088f00bba"
+    ]
+]

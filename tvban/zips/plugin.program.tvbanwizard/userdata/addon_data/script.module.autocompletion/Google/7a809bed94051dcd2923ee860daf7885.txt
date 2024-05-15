@@ -1,0 +1,1 @@
+["prueba addo", ["prueba ados", "prueba de adson"], [], {"google:suggestsubtypes": [[22, 30, 10], [22, 30, 10]], "google:suggesttype": ["QUERY", "QUERY"]}]

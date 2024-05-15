@@ -1,0 +1,4 @@
+<settings version="2">
+    <setting id="download_path" default="true" />
+    <setting id="addon_version" default="true">0.2.1</setting>
+</settings>

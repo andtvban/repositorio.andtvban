@@ -1,0 +1,1 @@
+["http://konect", ["konekt.com.au", "http://konectas.es/repo/", "konekt.com.pl", "konekt group companies house", "http://konectas.es/repo/apks", "http://konectas.es"], [], {"google:suggestsubtypes": [[512, 13], [22, 30], [30, 13], [8, 30, 13], [22, 30], [22, 30]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

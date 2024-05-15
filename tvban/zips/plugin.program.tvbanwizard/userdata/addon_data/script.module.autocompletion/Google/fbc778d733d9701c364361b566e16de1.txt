@@ -1,0 +1,1 @@
+["[col", ["colombia", "columbia", "coldplay", "color picker", "cold culture", "colin farrell", "columbus", "colon", "collagen", "color wheel"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

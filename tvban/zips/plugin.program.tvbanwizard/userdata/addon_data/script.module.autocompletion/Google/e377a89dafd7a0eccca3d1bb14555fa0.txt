@@ -1,0 +1,1 @@
+["a", ["amazon", "airbnb", "amazon uk", "alhambra", "aliexpress", "amazon prime", "apple", "anyone but you", "adidas", "aldi"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

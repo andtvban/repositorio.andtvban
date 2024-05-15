@@ -1,0 +1,1 @@
+["ActivateWindow(LibrSettings)", ["activar windows 10 con licencia digital", "quitar activar windows 11", "activar windows 11 gratis"], [], {"google:suggestsubtypes": [[512, 546], [512, 546], [512, 546]], "google:suggesttype": ["QUERY", "QUERY", "QUERY"]}]

@@ -1,0 +1,1 @@
+["https://tvbanteam.git/andtvban", ["https //tvbanteam.git/andtvbank", "https //tvbanteam.git/andtvband"], [], {"google:suggestsubtypes": [[160], [160]], "google:suggesttype": ["TAIL", "TAIL"]}]

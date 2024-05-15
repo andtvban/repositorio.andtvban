@@ -1,0 +1,1 @@
+["PPr", ["pprune", "ppr", "ppro", "ppr meaning", "pprint python", "primor", "ppr pipe", "pprof", "pprom", "pprof golang"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512, 10], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

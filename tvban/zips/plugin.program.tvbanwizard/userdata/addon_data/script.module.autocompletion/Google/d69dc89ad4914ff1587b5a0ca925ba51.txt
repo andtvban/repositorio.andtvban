@@ -1,0 +1,1 @@
+["Salir de Kodi", ["salir de kodi", "como salir de kodi", "como salir de kodivertido", "salir de pantalla completa en kodi", "salir del armario"], [], {"google:suggestsubtypes": [[22, 30], [22, 30], [22, 30], [22, 30], [512, 546]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

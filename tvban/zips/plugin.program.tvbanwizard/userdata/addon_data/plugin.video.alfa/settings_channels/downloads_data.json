@@ -1,0 +1,20 @@
+{
+    "settings": {
+        "DOWNLOADER_in_use": false,
+        "RESTART_DOWNLOADS": false,
+        "torrent_paths_list": [
+            [
+                "BT",
+                "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\plugin.video.alfa\\downloads"
+            ],
+            [
+                "MCT",
+                "D:\\kodi 21\\Kodi\\portable_data\\userdata\\addon_data\\plugin.video.alfa\\downloads"
+            ],
+            [
+                "elementum",
+                "Memory"
+            ]
+        ]
+    }
+}

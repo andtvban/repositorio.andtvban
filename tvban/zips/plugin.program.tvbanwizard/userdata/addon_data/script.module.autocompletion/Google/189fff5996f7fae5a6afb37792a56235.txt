@@ -1,0 +1,1 @@
+["MOE\u00b4S TV[/COL", ["moe \u0301s tv /collection", "moe \u0301s tv /color"], [], {"google:suggestsubtypes": [[160], [160]], "google:suggesttype": ["TAIL", "TAIL"]}]

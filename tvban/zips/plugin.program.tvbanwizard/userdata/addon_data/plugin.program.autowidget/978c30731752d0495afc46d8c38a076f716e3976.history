@@ -1,0 +1,57 @@
+{
+    "history": [
+        [
+            1715721019.207332,
+            "43a02f55cf5784b968c96e5628c4bd994e7fbc26"
+        ],
+        [
+            1715724099.3654635,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715724876.0317879,
+            "ab8b6d02b6499ace1d5a4d51e4aac112cec7d926"
+        ],
+        [
+            1715725615.8375447,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715725947.0285637,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715725957.5071514,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715725983.2947114,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715726364.2615721,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715727047.240583,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715761793.8140254,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715762459.2140024,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ],
+        [
+            1715762801.6699848,
+            "16734109a7fd0c91b1a71bb27e94ffc1d087115c"
+        ]
+    ],
+    "widgets": [
+        "2cd10f47-d106-4d8d-b289-158a8c06bec4",
+        null
+    ],
+    "path": "plugin://plugin.video.balandro/?ewogICAgImFjdGlvbiI6ICJsaXN0X2FsbCIsCiAgICAiY2F0ZWdvcnkiOiAiQ2xpdmVyU2l0ZSIsCiAgICAiY2hhbm5lbCI6ICJjbGl2ZXJzaXRlIiwKICAgICJpbmZvTGFiZWxzIjoge30sCiAgICAicGFnaW5hIjogMSwKICAgICJwbG90IjogIltDYXN0ZWxsYW5vLCBMYXRpbm8sIFZvc2VdW0NSXVtDUl1QZWzDrWN1bGFzIHBvciBnw6luZXJvcywgYcOxby4gU2VyaWVzIHBvciBHw6luZXJvcy4gUHVlZGUgcmVxdWVyaXIgZWwgdXNvIGRlIHByb3hpZXMgZW4gZnVuY2nDs24gZGVsIHBhw61zL29wZXJhZG9yYSBkZXNkZSBlbCBxdWUgc2UgYWNjZWRlLiIsCiAgICAic2VhcmNoX3R5cGUiOiAibW92aWUiLAogICAgInRodW1ibmFpbCI6ICJEOlxcQSBBQlVJTERTXFxrb2RpIDIwLjJcXEtvZGlcXHBvcnRhYmxlX2RhdGFcXGFkZG9uc1xccGx1Z2luLnZpZGVvLmJhbGFuZHJvXFxyZXNvdXJjZXNcXG1lZGlhXFxjaGFubmVsc1xcdGh1bWJcXGNsaXZlcnNpdGUuanBnIiwKICAgICJ0aXBvIjogImVzdHJlbm9zIiwKICAgICJ0aXRsZSI6ICJFc3RyZW5vcyIsCiAgICAidXJsIjogImh0dHBzOi8vd3d3Mi5jbGl2ZXIubWUvcGVsaWN1bGFzL2VzdHJlbm9zIgp9"
+}

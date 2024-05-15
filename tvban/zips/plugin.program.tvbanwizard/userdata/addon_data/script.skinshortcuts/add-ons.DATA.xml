@@ -1,0 +1,50 @@
+<shortcuts>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]ADDONS DE [COLOR lawngreen]VIDEOS[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(Videos,Addons,return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]ADDONS DE [COLOR dodgerblue]PROGRAMAS[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(Programs,Addons,return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]ADDONS DE [COLOR hotpink]MUSICA[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(Music,addons://sources/audio,return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]ADDONS DE [COLOR orange]IMAGENES[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(Pictures,addons://sources/image,return))</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR white]TODOS LOS ADDONS[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(AddonBrowser,addons://user/all,return)</action>
+		</shortcut>
+	<shortcut>
+		<defaultID />
+		<label>[COLOR gold]METEO[COLOR white]ROLOGIA[/COLOR]</label>
+		<label2>Elemento Personalizado</label2>
+		<icon>DefaultShortcut.png</icon>
+		<thumb>special://skin/extras/icons/Modificados/VACIO.png</thumb>
+		<action>ActivateWindow(Weather)</action>
+		</shortcut>
+	</shortcuts>

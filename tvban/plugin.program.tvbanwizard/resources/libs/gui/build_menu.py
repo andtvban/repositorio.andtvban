@@ -83,7 +83,7 @@ class BuildMenu:
         if response:
             link = tools.clean_text(response.text)
         else:
-            directory.add_file('[B]Kodi Version:[/B] [COLOR azure]{0}[/COLOR] {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
+            directory.add_file('[B]Kodi Version:[/B] [COLOR red]{0}[/COLOR] {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
                                themeit=CONFIG.THEME3)
             directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
             directory.add_separator()
@@ -105,7 +105,7 @@ class BuildMenu:
                 self.view_build(match[0][0])
                 return
 
-        directory.add_file('[B]Kodi Version: [/B] [COLOR azure]{0}[/COLOR]'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
+        directory.add_file('[B]Kodi Version: [/B] [COLOR red]{0}[/COLOR]'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
         directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
         directory.add_separator()
 
@@ -115,7 +115,7 @@ class BuildMenu:
             else:
                 if count21 > 0:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW21 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS [COLOR azure]- [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN[/COLOR] [COLOR dodgerblue]OMEGA[/B][/COLOR]'.format(state, count21), {'mode': 'togglesetting',
+                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS [COLOR azure]- [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN[/COLOR] [COLOR cyan]OMEGA[/B][/COLOR]'.format(state, count21), {'mode': 'togglesetting',
                                        'name': 'show21'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW21 == 'true':
                         self._list_all(match, kodiv=21)
@@ -166,7 +166,7 @@ class BuildMenu:
             link)
             
         for version, url, gui, kodi, themefile, icon, fanart, preview, adult, info, description in match:
-            build = '[COLOR azure]{0}[/COLOR] [COLOR white]- v{1}[/COLOR]'.format(name, version)
+            build = '[COLOR yellowgreen]{0}[/COLOR] [COLOR khaki]- v{1}[/COLOR]'.format(name, version)
             
             updatecheck = CONFIG.BUILDNAME == name and version > CONFIG.BUILDVERSION
             versioncheck = True if float(CONFIG.KODIV) == float(kodi) else False
@@ -175,7 +175,7 @@ class BuildMenu:
             themecheck = tools.open_url(themefile, check=True)
             
             if updatecheck:
-                build = '{0} [COLOR red][ACTUAL v{1}][/COLOR]'.format(build, CONFIG.BUILDVERSION)
+                build = '[COLOR yellowgreen]{0}[/COLOR] [COLOR khaki]- v{1}[/COLOR]'.format(build, CONFIG.BUILDVERSION)
                 
             directory.add_file(build, description=description, fanart=fanart, icon=icon, themeit=CONFIG.THEME4)
             directory.add_separator()
@@ -204,7 +204,7 @@ class BuildMenu:
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon)
+                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME7)
 
                 response = tools.open_url(themefile)
                 theme = response.text

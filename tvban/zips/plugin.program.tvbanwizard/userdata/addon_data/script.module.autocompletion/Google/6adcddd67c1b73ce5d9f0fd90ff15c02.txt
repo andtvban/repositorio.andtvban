@@ -1,0 +1,1 @@
+["[c", ["chatgpt", "canva", "carrefour", "calculator", "classroom", "caminito del rey", "champions league", "calculadora", "cnn", "currency converter"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

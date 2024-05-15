@@ -1,0 +1,1 @@
+["prueba widg", ["prueba de widget", "que es widgets", "widget schedule"], [], {"google:suggestsubtypes": [[22, 30, 15], [512, 650, 390], [512, 650, 390]], "google:suggesttype": ["QUERY", "QUERY", "QUERY"]}]
