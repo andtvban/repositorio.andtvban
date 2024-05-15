@@ -1,1 +1,0 @@
-["ActivateWindow(MediSettings)", ["activate windows 10 pro permanently", "media.windows-media-foundation.enabled"], [], {"google:suggestsubtypes": [[512, 546], [512, 546]], "google:suggesttype": ["QUERY", "QUERY"]}]

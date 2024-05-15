@@ -1,1 +1,0 @@
-["Salir de Kod", ["como salir de kodivertido", "salir de in english", "salir de vi", "como salir de un clan en call of duty mobile"], [], {"google:suggestsubtypes": [[22, 30], [512, 650, 390], [512, 650, 390], [512, 650, 390]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY"]}]

@@ -1,1 +1,0 @@
-["T", ["translate", "traductor", "twitter", "temu", "taylor swift", "tiktok", "twitch", "trainline", "tripadvisor", "tv guide"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

@@ -1,1 +1,0 @@
-["[COLOR white]SERIES [COLOR gold]BALANDRO[/COLOR]", ["gold white or black blue dress", "primary colors and secondary colors", "primary and secondary colors"], [], {"google:suggestsubtypes": [[512, 546], [512, 546], [512, 546]], "google:suggesttype": ["QUERY", "QUERY", "QUERY"]}]

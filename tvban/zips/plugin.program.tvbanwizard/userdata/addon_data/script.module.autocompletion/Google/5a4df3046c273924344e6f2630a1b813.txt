@@ -1,1 +1,0 @@
-["ActivateWindow(LibraSettings)", ["activar windows 10 con licencia digital"], [], {"google:suggestsubtypes": [[512, 546]], "google:suggesttype": ["QUERY"]}]

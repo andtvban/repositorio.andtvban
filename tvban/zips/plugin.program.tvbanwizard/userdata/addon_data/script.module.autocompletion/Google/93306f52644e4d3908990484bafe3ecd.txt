@@ -1,1 +1,0 @@
-["Fo", ["football today", "fotocasa", "food near me", "fool me once", "formula 1", "fortnite", "football", "football on tv today", "footlocker", "fox news"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

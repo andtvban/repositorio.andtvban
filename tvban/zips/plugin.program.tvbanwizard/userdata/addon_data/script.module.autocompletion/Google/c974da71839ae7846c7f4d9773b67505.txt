@@ -1,1 +1,0 @@
-["[CApagado[/COLOR]", ["capagado /color 20"], [], {"google:suggestsubtypes": [[160]], "google:suggesttype": ["TAIL"]}]

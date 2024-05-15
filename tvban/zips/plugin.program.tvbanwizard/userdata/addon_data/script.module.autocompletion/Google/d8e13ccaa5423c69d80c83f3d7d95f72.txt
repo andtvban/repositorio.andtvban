@@ -1,1 +1,0 @@
-["F", ["facebook", "flight tracker", "football today", "flights", "f1", "food near me", "fool me once", "fc barcelona", "fnac", "flixbus"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

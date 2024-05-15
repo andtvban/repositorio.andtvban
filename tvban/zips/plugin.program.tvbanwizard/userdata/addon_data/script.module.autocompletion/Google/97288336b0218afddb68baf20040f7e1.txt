@@ -1,1 +1,0 @@
-["http://konectas.es/rep", ["http://konectas.es/repo/", "http://konectas.es/repo/apks"], [], {"google:suggestsubtypes": [[22, 30], [22, 30]], "google:suggesttype": ["QUERY", "QUERY"]}]

@@ -1,1 +1,0 @@
-["N", ["netflix", "nike", "news", "nba", "new balance", "nfl", "nintendo switch", "notion", "noon", "napoleon"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

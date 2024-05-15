@@ -1,1 +1,0 @@
-["ko", ["koora live", "kobe bryant", "kooora", "kombucha", "kosovo", "koenigsegg", "koala", "kourtney kardashian", "kora online", "koko"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

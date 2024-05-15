@@ -1,1 +1,0 @@
-["[COLO", ["colombia", "colomares castle", "color picker", "colon", "color wheel", "colorado", "cologne", "colon cancer symptoms", "color palette", "colosseum"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

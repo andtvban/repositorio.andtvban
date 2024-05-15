@@ -1,1 +1,0 @@
-["https://tvbandb", ["https tvbandby", "https tvbandbaby", "https tvbandboom", "https tvbandbx"], [], {"google:suggestsubtypes": [[10, 160], [10, 160], [10, 160], [10, 160]], "google:suggesttype": ["TAIL", "TAIL", "TAIL", "TAIL"]}]

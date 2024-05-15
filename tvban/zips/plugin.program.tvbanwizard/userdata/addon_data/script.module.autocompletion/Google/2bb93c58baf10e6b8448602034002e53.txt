@@ -1,1 +1,0 @@
-["Prueba VIDEOTEC", ["prueba videoteca", "prueba videotecnica"], [], {"google:suggestsubtypes": [[160], [160]], "google:suggesttype": ["TAIL", "TAIL"]}]

@@ -1,1 +1,0 @@
-["MOE\u00b4S TV[/CO", ["moe \u0301s tv /code", "moe \u0301s tv /com"], [], {"google:suggestsubtypes": [[160], [160]], "google:suggesttype": ["TAIL", "TAIL"]}]

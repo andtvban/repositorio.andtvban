@@ -1,1 +1,0 @@
-["ad", ["adidas", "adidas samba", "adobe", "adolfo dominguez", "adidas gazelle", "adhd", "adele", "adam sandler", "adidas campus", "adriana lima"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

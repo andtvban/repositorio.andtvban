@@ -1,1 +1,0 @@
-["[COLOR white]SERIES [COLOR pl]BALANDRO[/COLOR]", ["color white series color pl balandro /color rojo", "color white series color pl balandro /color azul", "color white series color pl balandro /color #"], [], {"google:suggestsubtypes": [[160], [160], [160]], "google:suggesttype": ["TAIL", "TAIL", "TAIL"]}]

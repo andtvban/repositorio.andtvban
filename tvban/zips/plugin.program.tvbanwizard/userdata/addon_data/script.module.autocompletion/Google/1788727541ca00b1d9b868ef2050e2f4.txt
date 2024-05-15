@@ -1,1 +1,0 @@
-["prueba addon", ["prueba de adson"], [], {"google:suggestsubtypes": [[22, 30, 10]], "google:suggesttype": ["QUERY"]}]

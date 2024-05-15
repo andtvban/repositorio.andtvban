@@ -1,1 +1,0 @@
-["[co", ["cordoba", "connections", "copa del rey", "costa del sol", "companies house", "copilot", "converse", "coinmarketcap", "coffee near me", "coinbase"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

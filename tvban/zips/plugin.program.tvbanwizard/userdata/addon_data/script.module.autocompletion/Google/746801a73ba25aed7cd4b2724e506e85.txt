@@ -1,1 +1,0 @@
-["p", ["premier league", "pinterest", "premier league standings", "paypal", "poor things", "pound to euro", "prime video", "primark", "pandora", "pull and bear"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

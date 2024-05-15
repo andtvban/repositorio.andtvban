@@ -1,1 +1,0 @@
-["ActivateWindow(MeSettings)", ["activate window settings", "how to activate settings windows 10"], [], {"google:suggestsubtypes": [[30, 13], [512, 650, 390]], "google:suggesttype": ["QUERY", "QUERY"]}]

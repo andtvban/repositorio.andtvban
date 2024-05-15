@@ -1,1 +1,0 @@
-["PO", ["poor things", "pound to euro", "poki", "pobres criaturas", "portugal", "porsche", "postcode finder", "pokemon", "porto", "popeyes"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

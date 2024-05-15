@@ -1,1 +1,0 @@
-["https://and.github.io/andtvban/", [], [], {"google:suggesttype": []}]

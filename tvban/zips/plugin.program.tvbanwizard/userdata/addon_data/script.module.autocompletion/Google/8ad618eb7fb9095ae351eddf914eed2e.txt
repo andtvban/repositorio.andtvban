@@ -1,1 +1,0 @@
-["v", ["vueling", "vida laboral", "vinted", "valencia", "vodafone", "volkswagen", "victoria secret", "vpn", "vrbo", "vans"], [], {"google:suggestsubtypes": [[512], [512], [512], [512], [512], [512], [512], [512], [512], [512]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

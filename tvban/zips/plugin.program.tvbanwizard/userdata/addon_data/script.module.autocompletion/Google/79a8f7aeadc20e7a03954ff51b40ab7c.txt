@@ -1,1 +1,0 @@
-["prueba pa widg", ["prueba pa widget", "prueba pa widget android"], [], {"google:suggestsubtypes": [[10, 160], [10, 160]], "google:suggesttype": ["TAIL", "TAIL"]}]

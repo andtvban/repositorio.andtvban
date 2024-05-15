@@ -1,1 +1,0 @@
-["[COLOR reApagado[/COLOR]", ["color reapagado /color rojo", "color reapagado /color blanco"], [], {"google:suggestsubtypes": [[160], [160]], "google:suggesttype": ["TAIL", "TAIL"]}]

@@ -1,1 +1,0 @@
-["https://tvban", ["https://tvbanywherena.com/cantonese", "tvb anywhere", "https://tvbanywherena.com/viet", "https//www.tvbanywhere.com/tc/l/tvb", "http://www.tvbanywhere.com"], [], {"google:suggestsubtypes": [[512], [22, 30, 10], [22, 30], [22, 30], [22, 30, 10]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY", "QUERY"]}]

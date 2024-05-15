@@ -1,1 +1,0 @@
-["[COApagado[/COLOR]", ["coapagado /color 3d"], [], {"google:suggestsubtypes": [[160]], "google:suggesttype": ["TAIL"]}]

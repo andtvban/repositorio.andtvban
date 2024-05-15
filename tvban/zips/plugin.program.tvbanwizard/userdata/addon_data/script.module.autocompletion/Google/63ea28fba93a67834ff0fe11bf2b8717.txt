@@ -1,1 +1,0 @@
-["[COLOR red]TACONES S", ["color red tacones stradivarius", "color red tacones suela", "color red tacones sandalias", "color red tacones suela roja"], [], {"google:suggestsubtypes": [[160], [160], [160], [160]], "google:suggesttype": ["TAIL", "TAIL", "TAIL", "TAIL"]}]

@@ -1,1 +1,0 @@
-["ActivateWindow(MediaSettings)", ["activate windows 10 pro permanently", "go to settings to activate windows", "windows media settings", "system.windows.media"], [], {"google:suggestsubtypes": [[512, 546], [512, 546], [512, 546], [512, 546]], "google:suggesttype": ["QUERY", "QUERY", "QUERY", "QUERY"]}]

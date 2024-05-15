@@ -1,1 +1,0 @@
-["[MOE\u00b4S TV[/COLOR]", ["moe \u0301s tv /color /", "moe \u0301s tv /color 20", "moe \u0301s tv /color 1080", "moe \u0301s tv /color 24"], [], {"google:suggestsubtypes": [[160], [160], [160], [160]], "google:suggesttype": ["TAIL", "TAIL", "TAIL", "TAIL"]}]

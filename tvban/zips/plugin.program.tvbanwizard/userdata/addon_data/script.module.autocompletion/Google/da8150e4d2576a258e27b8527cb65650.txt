@@ -1,1 +1,0 @@
-["[COLOR white]PELICULAS [COLOR gold]BALANDRO[/COLOR]", ["yellow black and white", "yellow filter black and white film"], [], {"google:suggestsubtypes": [[512, 546], [512, 546]], "google:suggesttype": ["QUERY", "QUERY"]}]

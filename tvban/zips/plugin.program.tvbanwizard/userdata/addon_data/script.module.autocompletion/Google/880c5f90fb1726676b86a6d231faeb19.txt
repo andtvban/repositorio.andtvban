@@ -1,1 +1,0 @@
-["ActivateWindow(MedSettings)", ["ms-settings"], [], {"google:suggestsubtypes": [[512, 546]], "google:suggesttype": ["QUERY"]}]
