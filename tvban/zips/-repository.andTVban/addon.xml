@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.andTVban" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR cyan]and[COLOR azure]TV[COLOR blueviolet]ban[/B][/COLOR]" version="19.4.24" provider-name="andTVban, JoseaTeba">
+<addon id="repository.andTVban" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR green]and[COLOR azure]TV[COLOR blueviolet]ban[/B][/COLOR]" version="19.4.24" provider-name="andTVban, JoseaTeba">
     <extension point="xbmc.addon.repository" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR green]and[COLOR azure]TV[COLOR blueviolet]ban[/B][/COLOR]">
 		<dir minversion="20.0" maxversion="20.9.0">
             <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml</info>
@@ -18,11 +18,11 @@
         </dir>		
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary>[COLOR steelblue]Repo[/COLOR] [COLOR  cyan]and[COLOR azure]TV[/COLOR] [COLOR blueviolet]ban[/COLOR]</summary>
+        <summary>[COLOR steelblue]Repo[/COLOR] [COLOR green]and[COLOR azure]TV[/COLOR] [COLOR blueviolet]ban[/COLOR]</summary>
         <description>Repositorio de addons para [COLOR azure]TVBAN[/COLOR].
 [B][COLOR lime]CREDITOS:
 [COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseaTeba[/COLOR]</description> 		             
-        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons externos válidos para [COLOR steelblue]KODI 20 [COLOR blueviolet]NEXUS, KODI 21 [COLOR cyan]OMEGA [/COLOR]</disclaimer>
+        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons externos válidos para [COLOR azure]KODI 20 [COLOR blueviolet]NEXUS, KODI 21 [COLOR dodgerblue]OMEGA [/COLOR]</disclaimer>
         <platform>all</platform>
         <assets>
             <icon>icon.png</icon>
