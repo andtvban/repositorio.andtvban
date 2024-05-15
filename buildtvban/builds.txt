@@ -1,6 +1,6 @@
 name="TVBan MANEXOM"
 version="1.0"
-url="https://github.com/andtvban/repositorio.andtvban/releases/download/1.0/B.Tvban_Full.zip"
+url="https://github.com/andtvban/repositorio.andtvban/releases/download/1.0/B.Tvban.Om.zip"
 minor="http://"
 gui="http://"
 kodi="21.0"
