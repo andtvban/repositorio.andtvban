@@ -522,51 +522,6 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvbanwizard" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR tan]WIZARD[/COLOR][/B]" version="13.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
-    <requires>
-        <import addon="xbmc.python" version="3.0.1" />
-        <import addon="script.module.requests" />
-        <import addon="script.module.six" />
-    </requires>
-
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>executable</provides>
-    </extension>
-
-    <extension point="xbmc.service" library="startup.py" start="startup" />
-
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">
-	[COLOR azure]andtv[/COLOR][COLOR darkturquoise]tvban[/COLOR],
-	tu [COLOR azure]tvban[COLOR tan]Wizard[/COLOR] para [COLOR teal]KODI 2..[/COLOR]
-	    </summary>
-    	<description lang="en">
-[COLOR lime][B]CREDITOS:[/COLOR][/B]
-[COLOR white][B]• Developers:[/B]      [COLOR darkorange]JoseAnd[/COLOR]
-[COLOR white][B]• Testers:[/B]             [COLOR darkorange]JoseAnd, [COLOR tan]AndTVban[/COLOR]
-[COLOR white][B]• Telegram:[/B]         [COLOR dodgerblue]t.me/+andTvban[/COLOR]</description>
-        <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por AndTVban y Protegidos por los Derechos del Autor y Editor.[/B][/COLOR]</disclaimer>
-		<platform>all</platform>
-		<reuselanguageinvoker>false</reuselanguageinvoker>
-        <source>https://andtvban.github.io/tvban/</source>
-		<news>
-• [COLOR darkorange]12/04/2024[/COLOR]
-- Nuevo Logo
-- Inciada la compatibilidad con Versiones de Kodi.
-- Nuevo Instalador a la versión  14.4.24
-- Añadido nuevos arreglos:
-¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
-</news>
-	<assets>
-	    <icon>icon.png</icon>
-        <fanart>fanart.jpg</fanart>
-	</assets>
-	<license>GNU GENERAL PUBLIC LICENSE Version 21</license>
-		<email></email>
-		<website></website>
-    </extension>
-</addon>
-
 <addon id="plugin.program.tvban_manexom" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR limegreen]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM[/COLOR][/B]" version="13.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.1" />
@@ -1798,7 +1753,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
     </extension>
 </addon>
 
-<addon id="skin.auramod.andtvban" version="1.1.11" name="[COLOR azure]Auramod[/COLOR][COLOR darkviolet]TVBAN[/COLOR]" provider-name="Auramod, [COLOR darkviolet]andTVban, JoseAnd[/COLOR]">
+<addon id="skin.auramod.andtvban" version="1.1.11" name="[COLOR azure]Auramod[COLOR darkviolet]TVBAN[/COLOR]" provider-name="Auramod, [COLOR tan]andTVban, JoseAnd[/COLOR]">
     <requires>
         <import addon="xbmc.gui" version="5.17.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>
@@ -1816,10 +1771,10 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
         <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i"/>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="es">[COLOR azure]Mod[/COLOR] [COLOR darkviolet]TVBAN[/COLOR] [COLOR azure]de Auramod.andtvban para Kodi 21 / Omega Minimalista, Personalizable, Multiple Widgets.[/COLOR] </summary>
+        <summary lang="es">[COLOR azure]Mod [COLOR darkviolet]TVBAN [COLOR azure]de Auramod.andtvban para Kodi 21 / Omega Minimalista, Personalizable, Multiple Widgets.[/COLOR] </summary>
         <description lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de AuraMod. Esta versión de Aura está basada para todos los usuarios. Editado por José Andrés</description>
 		<news>[COLOR tan]Nuevos cambios:[/COLOR]
-		- Skin modificada por [COLOR darkviolet]JoseAnd[/COLOR] para Kodi 21 Omega andTVban.
+		- Skin modificada por [COLOR tan]JoseAnd[/COLOR] para Kodi 21 Omega andTVban.
 		</news>
         <platform>all</platform>
         <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>

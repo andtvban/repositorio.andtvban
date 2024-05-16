@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<addon id="skin.auramod.andtvban" version="1.1.11" name="[COLOR azure]Auramod[/COLOR][COLOR darkviolet]TVBAN[/COLOR]" provider-name="Auramod, [COLOR darkviolet]andTVban, JoseAnd[/COLOR]">
+<addon id="skin.auramod.andtvban" version="1.1.11" name="[COLOR azure]Auramod[COLOR darkviolet]TVBAN[/COLOR]" provider-name="Auramod, [COLOR tan]andTVban, JoseAnd[/COLOR]">
     <requires>
         <import addon="xbmc.gui" version="5.17.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>
@@ -17,10 +17,10 @@
         <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i"/>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="es">[COLOR azure]Mod[/COLOR] [COLOR darkviolet]TVBAN[/COLOR] [COLOR azure]de Auramod.andtvban para Kodi 21 / Omega Minimalista, Personalizable, Multiple Widgets.[/COLOR] </summary>
+        <summary lang="es">[COLOR azure]Mod [COLOR darkviolet]TVBAN [COLOR azure]de Auramod.andtvban para Kodi 21 / Omega Minimalista, Personalizable, Multiple Widgets.[/COLOR] </summary>
         <description lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de AuraMod. Esta versión de Aura está basada para todos los usuarios. Editado por José Andrés</description>
 		<news>[COLOR tan]Nuevos cambios:[/COLOR]
-		- Skin modificada por [COLOR darkviolet]JoseAnd[/COLOR] para Kodi 21 Omega andTVban.
+		- Skin modificada por [COLOR tan]JoseAnd[/COLOR] para Kodi 21 Omega andTVban.
 		</news> 
         <platform>all</platform>
         <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>
