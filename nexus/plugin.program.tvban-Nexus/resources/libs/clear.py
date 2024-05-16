@@ -474,7 +474,7 @@ def clear_crash():
             logging.log_notify(CONFIG.ADDONTITLE,
                                '[COLOR {0}][COLOR gold]Eliminar Crash Logs Cancelado[/COLOR]'.format(CONFIG.COLOR2))
     else:
-        logging.log_notify('[COLOR {0}] [COLOR white]Eliminar Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
+        logging.log_notify('[COLOR {0}][COLOR white]Eliminar Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
                            '[COLOR {0}][COLOR gold]No se Encontraron Crash Logs[/COLOR]'.format(CONFIG.COLOR2))
 
 
@@ -577,7 +577,7 @@ def remove_addon(addon, name, over=False, data=True):
         
         sqldb = sqlite3.connect(os.path.join(CONFIG.DATABASE, db.latest_db('Addons')))
         sqlexe = sqldb.cursor()
-        query = "DELETE FROM {0} WHERE addonID = '{1}'"
+        query = "BORRAR DE {0} DONDE addonID = '{1}'"
         
         for table in ['addons', 'installed', 'package']:
             sqlexe.execute(query.format(table, addon))

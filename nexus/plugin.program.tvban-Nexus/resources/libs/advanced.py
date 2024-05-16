@@ -75,7 +75,7 @@ def _write_setting(category, tag, value):
 
     tree = ElementTree.ElementTree(root)
 
-    logging.log('Writing {0} - {1}: {2} to advancedsettings.xml'.format(category, tag, value), level=xbmc.LOGDEBUG)
+    logging.log('Escribiendo {0} - {1}: {2} a advancedsettings.xml'.format(category, tag, value), level=xbmc.LOGDEBUG)
     tree.write(CONFIG.ADVANCED)
 
     xbmc.executebuiltin('Container.Refresh()')
@@ -137,10 +137,10 @@ class AdvancedMenu:
                         description = preset.get('description', '')
 
                         if not name:
-                            logging.log('[Advanced Settings] Missing tag \'name\'', level=xbmc.LOGDEBUG)
+                            logging.log('[Advanced Settings] Etiqueta faltante \'name\'', level=xbmc.LOGDEBUG)
                             continue
                         if not preseturl:
-                            logging.log('[Advanced Settings] Missing tag \'url\'', level=xbmc.LOGDEBUG)
+                            logging.log('[Advanced Settings] Etiqueta faltante \'url\'', level=xbmc.LOGDEBUG)
                             continue
                         
                         if section:

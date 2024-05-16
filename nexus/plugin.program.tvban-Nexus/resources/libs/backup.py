@@ -61,14 +61,14 @@ def cleanup_backup():
         elif os.path.isfile(item):
             list.append(base)
     list = ['--- Quitar Todos los elementos ---'] + list
-    selected = dialog.select("{0}: Seleccione los elementos que desee eliminar de la carpeta '⁫Mis_Builds'.".format(CONFIG.ADDONTITLE),
+    selected = dialog.select("{0}: Seleccione los elementos que desee eliminar de la carpeta 'Mis_Builds'.".format(CONFIG.ADDONTITLE),
                              list)
 
     if selected == -1:
         logging.log_notify(CONFIG.ADDONTITLE,
                            "[COLOR {0}]Limpieza Cancelada![/COLOR]".format(CONFIG.COLOR2))
     elif selected == 0:
-        if dialog.yesno(CONFIG.ADDONTITLE, "[COLOR {0}]Le gustaría limpiar todos los elementos en su carpeta '⁫Mis_Builds'?[/COLOR]".format(CONFIG.COLOR2) + '\n' + "[COLOR {0}]{1}[/COLOR]".format(CONFIG.COLOR1, CONFIG.MYBUILDS),
+        if dialog.yesno(CONFIG.ADDONTITLE, "[COLOR {0}]Le gustaría limpiar todos los elementos en su carpeta 'Mis_Builds'?[/COLOR]".format(CONFIG.COLOR2) + '\n' + "[COLOR {0}]{1}[/COLOR]".format(CONFIG.COLOR1, CONFIG.MYBUILDS),
                         yeslabel="[B][COLOR cyan]Limpiar[/COLOR][/B]",
                         nolabel="[B][COLOR red]No, Cancelar[/COLOR][/B]"):
             clearedfiles, clearedfolders = tools.clean_house(CONFIG.MYBUILDS)

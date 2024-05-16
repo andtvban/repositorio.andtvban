@@ -44,8 +44,7 @@ class BuildMenu:
             if not kodiv or kodiv == int(float(kodi)):
                 menu = self.create_install_menu(name)
                 directory.add_dir('[B][COLOR azure]•[/COLOR][COLOR yellowgreen] {1} - [COLOR khaki]v{2}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
-               #directory.add_dir('[B][COLOR azure]•[/COLOR][COLOR yellowgreen] {0} - {v{1}}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
-               #directory.add_dir('[B][COLOR azure]•[/COLOR][COLOR yellowgreen] {0} - [COLOR khaki]v{2}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2) 
+
     def theme_count(self, name, count=True):
         from resources.libs import check
         from resources.libs.common import tools
@@ -84,7 +83,7 @@ class BuildMenu:
         if response:
             link = tools.clean_text(response.text)
         else:
-            directory.add_file('[B]Kodi Version:[/B] [COLOR azure]{0}[/COLOR] {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
+            directory.add_file('[B]Kodi Version:[/B] [COLOR red]{0}[/COLOR] {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
                                themeit=CONFIG.THEME3)
             directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
             directory.add_separator()
@@ -92,7 +91,7 @@ class BuildMenu:
             directory.add_file('{0}'.format(CONFIG.BUILDFILE), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
             return
 
-        total, count20, adultcount, hidden = check.build_count()
+        total, count21, count20, count19, adultcount, hidden = check.build_count()
 
         match = re.compile('name="(.+?)".+?ersion="(.+?)".+?rl="(.+?)".+?ui="(.+?)".+?odi="(.+?)".+?heme="(.+?)".+?con="(.+?)".+?anart="(.+?)".+?dult="(.+?)".+?escription="(.+?)"').findall(link)
         
@@ -106,7 +105,7 @@ class BuildMenu:
                 self.view_build(match[0][0])
                 return
 
-        directory.add_file('[B]Kodi Version: [/B] [COLOR azure]{0}[/COLOR]'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
+        directory.add_file('[B]Kodi Version: [/B] [COLOR red]{0}[/COLOR]'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
         directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
         directory.add_separator()
 
@@ -114,12 +113,24 @@ class BuildMenu:
             if CONFIG.SEPARATE == 'true':
                 self._list_all(match)
             else:
+                if count21 > 0:
+                    state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW21 == 'false' else '[COLOR azure]-[/COLOR]'
+                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS [COLOR azure]- [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN[/COLOR] [COLOR cyan]OMEGA[/B][/COLOR]'.format(state, count21), {'mode': 'togglesetting',
+                                       'name': 'show21'}, themeit=CONFIG.THEME3)
+                    if CONFIG.SHOW21 == 'true':
+                        self._list_all(match, kodiv=21)
                 if count20 > 0:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW20 == 'false' else '[COLOR azure]-[/COLOR]'
                     directory.add_file('[B][COLOR dodgerblue]{0} BUILDS [COLOR azure]- [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting',
                                        'name': 'show20'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW20 == 'true':
                         self._list_all(match, kodiv=20)
+                if count19 > 0:
+                    state = '+' if CONFIG.SHOW19 == 'false' else '-'
+                    directory.add_file('[B]{0} Matrix Builds ({1})[/B]'.format(state, count19), {'mode': 'togglesetting',
+                                       'name': 'show19'}, themeit=CONFIG.THEME3)
+                    if CONFIG.SHOW19 == 'true':
+                        self._list_all(match, kodiv=19)
 
         elif hidden > 0:
             if adultcount > 0:
@@ -155,7 +166,7 @@ class BuildMenu:
             link)
             
         for version, url, gui, kodi, themefile, icon, fanart, preview, adult, info, description in match:
-            build = '[COLOR azure]{0}[/COLOR] [COLOR white]- v{1}[/COLOR]'.format(name, version)
+            build = '[COLOR yellowgreen]{0}[/COLOR] [COLOR khaki]- v{1}[/COLOR]'.format(name, version)
             
             updatecheck = CONFIG.BUILDNAME == name and version > CONFIG.BUILDVERSION
             versioncheck = True if float(CONFIG.KODIV) == float(kodi) else False
@@ -164,7 +175,7 @@ class BuildMenu:
             themecheck = tools.open_url(themefile, check=True)
             
             if updatecheck:
-                build = '{0} [COLOR red][ACTUAL v{1}][/COLOR]'.format(build, CONFIG.BUILDVERSION)
+                build = '[COLOR yellowgreen]{0}[/COLOR] [COLOR khaki]- v{1}[/COLOR]'.format(build, CONFIG.BUILDVERSION)
                 
             directory.add_file(build, description=description, fanart=fanart, icon=icon, themeit=CONFIG.THEME4)
             directory.add_separator()
@@ -182,7 +193,8 @@ class BuildMenu:
                     fanart=fanart, icon=icon, themeit=CONFIG.THEME3)
                 directory.add_file(
                     '[I][COLOR azure]Soporte[/COLOR] [COLOR dodgerblue]TELEGRAM:[/COLOR] [I][COLOR azure]t.me/+andTvban[/COLOR][/I]'.format(str(kodi), str(CONFIG.KODIV)),
-                    fanart=fanart, icon=icon, themeit=CONFIG.THEME3)    
+                    fanart=fanart, icon=icon, themeit=CONFIG.THEME3)
+                    
             directory.add_separator('[B]INSTALACION BUILD[/B]')
             directory.add_file('[B][COLOR azure]• INSTALAR TVBAN[/COLOR][/B]', {'mode': 'install', 'action': 'build', 'name': name}, description=description, fanart=fanart,
                                icon=icon, themeit=CONFIG.THEME1)
@@ -192,7 +204,7 @@ class BuildMenu:
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME2)
+                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME7)
 
                 response = tools.open_url(themefile)
                 theme = response.text
@@ -262,7 +274,7 @@ class BuildMenu:
             else:
                 logging.log("Nombre Inválido de la Build!")
         else:
-            logging.log("[B][COLOR azure]La Build del archivo de texto no funciona:[/COLOR][/B] [COLOR darkcyan][B]{0}[//B][/COLOR]".format(CONFIG.BUILDFILE))
+            logging.log("[B][COLOR azure]El archivo de texto de la Build no funciona:[/COLOR][/B] [COLOR darkcyan][B]{0}[//B][/COLOR]".format(CONFIG.BUILDFILE))
 
     def build_video(self, name):
         from resources.libs import check
@@ -279,7 +291,7 @@ class BuildMenu:
             else:
                 logging.log("[{0}]No se puede encontrar la URL para la vista previa del video".format(name))
         else:
-            logging.log("[B][COLOR azure]La Build del archivo de texto no funciona:[/COLOR][/B] [COLOR blue]{0}[/COLOR]".format(CONFIG.BUILDFILE))
+            logging.log("[B][COLOR azure]El archivo de texto de la Build no funciona:[/COLOR][/B] [COLOR darkcyan][B]{0}[//B][/COLOR]".format(CONFIG.BUILDFILE))
 
     def create_install_menu(self, name):
         menu_items = []

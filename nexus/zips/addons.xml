@@ -1,31 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.105" provider-name="gujal">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="17.9.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
+        <import addon="script.module.requests" />
         <import addon="script.module.six" />
-        <import addon="script.module.kodi-six" />
-        <import addon="plugin.video.youtube" optional="true" />
-        <import addon="script.module.python.twitch" optional="true" />
-        <import addon="plugin.googledrive" optional="true" />
     </requires>
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.python.pluginsource" library="lib/default.py" />
+
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+    </extension>
+
+    <extension point="xbmc.service" library="startup.py" start="startup" />
+
     <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary lang="en_GB">Resolve common video host URL's to be playable in XBMC/Kodi.</summary>
-        <summary lang="es_ES">Resolver enlaces a videos de sitios populares para poder reproducirlos en XBMC/Kodi.</summary>
-        <summary lang="hr_HR">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju.</summary>
-        <summary lang="el_GR">Επίλυση συνδέσμων κοινών εξυπηρετητών σε μορφή βίντεο ικανό για αναπαραγωγή στο XBMC/Kodi.</summary>
-        <description lang="en_GB">Resolve common video host URL's to be playable in XBMC/Kodi, simplify addon development of video plugins requiring multi video hosts.</description>
-        <description lang="el_GR">Επίλυση συνδέσμων κοινών εξυπηρετητών σε μορφή βίντεο ικανό για αναπαραγωγή στο XBMC/Kodi, απλοποίηση της ανάπτυξης των προσθέτων που χρησιμοποιούν πολλαπλούς εξυπηρετητές για υλικό βίντεο</description>
-        <description lang="hr_HR">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju, pojednostavnjuje razvoj priključaka za video dodatke koji zahtjevaju višestruke video izvore.</description>
-        <disclaimer lang="en_GB">This script only resolves video content from legitimate file lockers without prejudice. If this script is being used by 3rd parties to resolve content that you feel infringes upon your Intellectual Property then please take your complaints to the actual website or developer linking to such content and not here. This script in no way searches for any content whatsoever.</disclaimer>
-        <disclaimer lang="el_GR">Το ανωτέρο σενάριο το μόνο που κάνει είναι να επιλύει οπτικοακουστικό περιεχόμενο από νόμιμες πηγές χωρίς προκατάληψη. Εάν το ανωτέρο σενάριο χρησιμοποιηθεί από τρίτους ώστε να επιλύσει περιεχόμενο το οποίο σας προκαλεί αντίδραση ότι παραβιάζει την πνευματική σας ιδιοκτησία παρακαλώ μεταφέρετε τα παραπονά σας στον ιστότοπο τον οποίο βρίσκεται το εν λόγω περιεχόμενο η τον δημιουργό ο οποίος πραγματοποιεί την σύνδεση και όχι εδω. Το σενάριο αυτό ουδεμία περίπτωση πραγματοποιεί αναζήτηση περιεχομένου.</disclaimer>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-        </assets>
+        <summary lang="en">
+	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
+	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]
+	    </summary>
+    	<description lang="en">
+[COLOR lime][B]CREDITOS:[/COLOR][/B]
+[COLOR white][B]• Developers:[/B]      [COLOR darkorange]JoseAnd[/COLOR]
+[COLOR white][B]• Testers:[/B]             [COLOR darkorange]JoseAnd, [COLOR tan]AndTVban[/COLOR]
+[COLOR white][B]• Telegram:[/B]         [COLOR dodgerblue]t.me/+andTvban[/COLOR]</description>
+        <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por AndTVban y Protegidos por los Derechos del Autor y Editor.[/B][/COLOR]</disclaimer>
+		<platform>all</platform>
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+        <source>https://andtvban.github.io/tvban/</source>
+		<news>
+• [COLOR darkorange]8/08/2023[/COLOR]
+- Nuevo Logo
+
+• [COLOR darkorange]24/07/2023[/COLOR]
+- Corregir
+
+• [COLOR darkorange]20/07/2023[/COLOR]
+- Corregido la Notificación al iniciar la instalación.
+
+• [COLOR darkorange]15/07/2023[/COLOR]
+- Corregido Wizard para Kodi 20 Nexus
+
+• [COLOR darkorange]10/06/2023[/COLOR]
+- Editado nuevo png para Nexus.
+
+• [COLOR darkorange]04/06/2023[/COLOR]
+- Actualizados los scripts.
+- Editar nuevos textos.
+
+• [COLOR darkorange]22/05/2023[/COLOR]
+- Editar nuevos textos.
+
+• [COLOR darkorange]07/05/2023[/COLOR]
+- Añadido nuevos arreglos.
+
+• [COLOR darkorange]05/02/2023[/COLOR]
+- Inciada la compatibilidad con Versiones de Kodi.
+- Nuevo Instalador a la versión  5.2.23
+- Añadido nuevos arreglos:
+¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
+</news>
+	<assets>
+	    <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+	</assets>
+	<license>GNU GENERAL PUBLIC LICENSE Version 20</license>
+		<email></email>
+		<website></website>
     </extension>
 </addon>
 
@@ -390,7 +430,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="17.9.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR limegreen]mat[COLOR darkviolet]nex[COLOR dodgerblue]om[/COLOR][/B]" version="17.9.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
@@ -405,8 +445,8 @@
 
     <extension point="xbmc.addon.metadata">
         <summary lang="en">
-	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
-	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]
+	[COLOR azure]andtv[/COLOR][COLOR darkturquoise]TVBAN[/COLOR],
+	tu [COLOR azure]TVban[/COLOR] [COLOR limegreen]mat[COLOR darkviolet]nex[COLOR dodgerblue]om[/COLOR] para [COLOR teal]KODI 2..[/COLOR]
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
@@ -418,34 +458,10 @@
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtvban.github.io/tvban/</source>
 		<news>
-• [COLOR darkorange]8/08/2023[/COLOR]
+• [COLOR darkorange]12/04/2024[/COLOR]
 - Nuevo Logo
-
-• [COLOR darkorange]24/07/2023[/COLOR]
-- Corregir
-
-• [COLOR darkorange]20/07/2023[/COLOR]
-- Corregido la Notificación al iniciar la instalación.
-
-• [COLOR darkorange]15/07/2023[/COLOR]
-- Corregido Wizard para Kodi 20 Nexus
-
-• [COLOR darkorange]10/06/2023[/COLOR]
-- Editado nuevo png para Nexus.
-
-• [COLOR darkorange]04/06/2023[/COLOR]
-- Actualizados los scripts.
-- Editar nuevos textos.
-
-• [COLOR darkorange]22/05/2023[/COLOR]
-- Editar nuevos textos.
-
-• [COLOR darkorange]07/05/2023[/COLOR]
-- Añadido nuevos arreglos.
-
-• [COLOR darkorange]05/02/2023[/COLOR]
 - Inciada la compatibilidad con Versiones de Kodi.
-- Nuevo Instalador a la versión  5.2.23
+- Nuevo Instalador a la versión  14.4.24
 - Añadido nuevos arreglos:
 ¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
 </news>
