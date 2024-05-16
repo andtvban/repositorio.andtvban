@@ -102,7 +102,7 @@ CONTACTFANART = 'http://'
 # Enable Auto Update 'Yes' or 'No'
 AUTOUPDATE = 'Yes'
 # Url to wizard version
-buildtvban = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/builds.txt' 
+BUILDFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/builds.txt' 
 #########################################################
 
 #########################################################
