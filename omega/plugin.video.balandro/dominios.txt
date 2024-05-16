@@ -1,4 +1,4 @@
-[COLOR coral][B]Balandro [/COLOR][COLOR goldenrod] Situacion Dominios [/COLOR][COLOR aqua]  24 de Marzo de 2024 [/COLOR][COLOR limegreen]  Hora  8:00  [/COLOR][COLOR yellow]Version 4.0.04[/B][/COLOR]
+[COLOR coral][B]Balandro [/COLOR][COLOR goldenrod]Dominios [/COLOR][COLOR aqua]  15 de Abril de 2024 [/COLOR][COLOR limegreen]  Hora  8:00  [/COLOR][COLOR yellow]Version 4.0.04 Fix-13[/B][/COLOR]
 
  [COLOR yellow][B]CONTACTO:[/B][/COLOR]
    Foro  [COLOR dodgerblue][B][I]www.mimediacenter.info/foro/[/I][/B][/COLOR]  Instalaciones, Novedades, Sugerencias, etc.
@@ -18,7 +18,9 @@
  [COLOR red][B]PROXIES[COLOR deepskyblue] GESTION LISTAS PERSONALIZADAS:[/B][/COLOR] 
    [B][COLOR moccasin] Lista-proxies.zip [COLOR dodgerblue] Descarga desde el Foro [COLOR limegreen][I] Revision 12/11/2023 [/I][/B][/COLOR]
 
- [COLOR yellowgreen][B]SITUACION CANALES:[/B][/COLOR] [B][COLOR darkorange] Sin Novedades[/B][/COLOR]
+ [COLOR yellowgreen][B]SITUACION CANALES:[/B][/COLOR]
+   [B][COLOR moccasin] EnNovelasOnline [COLOR lime] c.ennovelas.online [I][COLOR indianred] No Sponsors [/I][/B][/COLOR]
+   [B][COLOR moccasin] SinPeli [COLOR lime] sinpeli.com [I][COLOR red] Domain Not Found [/I][/B][/COLOR]
 
  [COLOR darkcyan][B]CANALES TEMPORALMENTE DES-ACTIVADOS:[/B][/COLOR] [COLOR powderblue][B][I] Pdtes. Re-Activar o Anular [/I][/B][/COLOR]
    [B][COLOR moccasin] DocumaniaTv [COLOR lime] www.documaniatv.com [I][COLOR olivedrab] Player [/I][/B][/COLOR]

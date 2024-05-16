@@ -3,7 +3,7 @@
   "name": "Various",
 
   "active": true,
-  "notes": "Alternative vía: Script.Module.ResolveUrl (Azipcdn,  Desiupload,  Doodporn,  Drop  Dropload,  Embedgram,  Embedrise,  Emturbovid,  Fastupload,  Filelions,  Filemoon,  Fileupload,  Goodstream,  Hxfile,  Hexupload,  Krakenfiles,  Lulustream,  Moonplayer, Mvidoo,  Rutube,  Streamhub,  Streamvid,  Streamwish,  Tubeload,  Turboviplay,  Twitch,  Uploaddo,  Uploadever,  Uploadraja,  Userload,  Vidello,  Videowood,  Vidguard,  Vidhidepro,  Vidspeed,  Vkspeed,  Vudeo,  Yandex,  Youdbox)",
+  "notes": "Alternative vía: Script.Module.ResolveUrl (Azipcdn,  Bembed,  Desiupload,  Doodporn,  Drop,  Dropload,  Embedgram,  Embedrise,  Emturbovid,  Fastupload,  Filelions,  Filemoon,  Fileupload,  Goodstream,  Hxfile,  Hexupload,  Krakenfiles,  Lulustream,  Moonplayer,  Mvidoo,  Rumble,  Rutube,  Streamhub,  Streamvid,  Streamwish,  Tubeload,  Turboviplay,  Twitch,  Uploaddo,  Uploadever,  Uploadraja,  Userload,  Vidello,  Videowood,  Vidguard,  Vidhide,  Vidspeed,  Vkspeed,  Vudeo,  Yandex,  Youdbox)",
 
   "find_videos": {
     "ignore_urls": [],
@@ -317,7 +317,7 @@
         "url": "https://filelions.to/f/\\1"
       },
       {
-        "pattern": "https://filelions.top/(?:v/|f/|d/)([0-9a-zA-Z]+)",
+        "pattern": "https://filelions.top/(?:v/|f/|d/|embed/)([0-9a-zA-Z]+)",
         "url": "https://filelions.to/f/\\1"
       },
       {
@@ -485,6 +485,10 @@
         "url": "https://www.twitch.tv/\\1"
       },
       {
+        "pattern": "https://vidhide.com/(?:s/|v/|f/|embed/)([0-9a-zA-Z]+)",
+        "url": "https://vidhidepro.com/s/\\1"
+      },
+      {
         "pattern": "https://vidhidepro.com/(?:s/|v/|f/|embed/)([0-9a-zA-Z]+)",
         "url": "https://vidhidepro.com/s/\\1"
       },
@@ -515,6 +519,14 @@
       {
         "pattern": "https://goodstream.uno/([0-9a-zA-Z]+)",
         "url": "https://goodstream.uno/\\1"
+      },
+      {
+        "pattern": "https://rumble.com/(?:embed/)([0-9a-zA-Z]+)",
+        "url": "https://rumble.com/\\1"
+      },
+      {
+        "pattern": "https://bembed.net/(?:e/|v/|d/)([0-9a-zA-Z]+)",
+        "url": "https://vgembed.com/e/\\1"
       }
     ]
   }

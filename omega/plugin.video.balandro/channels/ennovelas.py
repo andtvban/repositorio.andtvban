@@ -116,6 +116,18 @@ def do_downloadpage(url, post=None, headers=None):
         else:
             data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
 
+        if not data:
+            if not '/search/' in url:
+                if not '/temp/ajax/iframe.php?id=' in url:
+                    if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('EnNovelas', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+
+                    timeout = config.get_setting('channels_repeat', default=30)
+
+                    if hay_proxies:
+                        data = httptools.downloadpage_proxy('ennovelas', url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
+                    else:
+                        data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
+
     if '<title>You are being redirected...</title>' in data or '<title>Just a moment...</title>' in data:
         if BR or BR2:
             try:

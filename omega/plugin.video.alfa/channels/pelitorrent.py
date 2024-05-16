@@ -26,8 +26,8 @@ forced_proxy_opt = 'ProxySSL'
 canonical = {
              'channel': 'pelitorrent', 
              'host': config.get_setting("current_host", 'pelitorrent', default=''), 
-             'host_alt': ["https://pelitorrent.xyz/"], 
-             'host_black_list': ["https://pelitorrent.com/", "https://www.pelitorrent.com/"], 
+             'host_alt': ["https://pelitorrent.com/"], 
+             'host_black_list': ["https://pelitorrent.xyz/", "https://www.pelitorrent.com/"], 
              'pattern': "<link\s*rel='stylesheet'\s*id='menu-icons-extra-css'\s*href='([^']+)'", 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'forced_proxy_ifnot_assistant': forced_proxy_opt, 
              'CF': False, 'CF_test': False, 'alfa_s': True
@@ -92,7 +92,7 @@ finds = {'find': dict([('find', [{'tag': ['div'], 'class': ['aa-cn']}]),
          'controls': {'min_temp': min_temp, 'url_base64': True, 'add_video_to_videolibrary': True, 'cnt_tot': 24, 
                       'get_lang': False, 'reverse': False, 'videolab_status': True, 'tmdb_extended_info': True, 'seasons_search': False, 
                       'host_torrent': host_torrent, 'duplicates': [], 'join_dup_episodes': False},
-         'timeout': timeout * 3}
+         'timeout': timeout * 5}
 AlfaChannel = DictionaryAllChannel(host, movie_path=movie_path, tv_path=tv_path, canonical=canonical, finds=finds, 
                                    idiomas=IDIOMAS, language=language, list_language=list_language, list_servers=list_servers, 
                                    list_quality_movies=list_quality_movies, list_quality_tvshow=list_quality_tvshow, 

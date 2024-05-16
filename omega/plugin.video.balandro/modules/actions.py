@@ -234,8 +234,17 @@ def search_trailers(item):
             if len(video_urls) > 0:
                 xbmc.Player().play(video_urls[0][1])
                 xbmc.sleep(1000)
-                while not xbmc.Monitor().abortRequested() and xbmc.Player().isPlaying():
-                    xbmc.sleep(1000)
+
+                # ~ 5/4/24
+                # ~ while not xbmc.Monitor().abortRequested() and xbmc.Player().isPlaying():
+                # ~       xbmc.sleep(1000)
+
+                while not xbmc.Monitor().abortRequested():
+                      xbmc.sleep(1000)
+                      if xbmc.Player().isPlaying():
+                         if len(video_urls) == 1: break
+                         else: xbmc.sleep(1000)
+                      else: xbmc.sleep(1000)
             else:
                 la_notif = ('[B][COLOR %s]') % color_alert
                 la_notif += ('No se pudo reproducir el tráiler[/B][/COLOR]')
@@ -243,7 +252,6 @@ def search_trailers(item):
                 platformtools.dialog_notification(resultados[ret]['name'], la_notif, time=3000, sound=False)
 
             if len(resultados) == 1: break
-
 
 def global_proxies(item):
     logger.info()

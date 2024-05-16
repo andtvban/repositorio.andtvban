@@ -10,11 +10,11 @@ from core import httptools, scrapertools, servertools, tmdb
 # ~ pelis No hay 24/12/2023
 
 
-host = 'https://d.ennovelas-tv.com/'
+host = 'https://e.ennovelas-tv.com/'
 
 
 # ~ por si viene de enlaces guardados
-ant_hosts = ['https://c.ennovelas-tv.com/']
+ant_hosts = ['https://c.ennovelas-tv.com/', 'https://d.ennovelas-tv.com/']
 
 
 domain = config.get_setting('dominio', 'ennovelastv', default='')
@@ -30,6 +30,15 @@ def do_downloadpage(url, post=None, headers=None):
         url = url.replace(ant, host)
 
     data = httptools.downloadpage(url, post=post, headers=headers).data
+
+    if not data:
+        if not '/search/' in url:
+            if not '/temp/ajax/iframe.php?id=' in url:
+                if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('EnNovelasTv', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+
+                timeout = config.get_setting('channels_repeat', default=30)
+
+                data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
 
     return data
 

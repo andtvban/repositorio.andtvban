@@ -63,9 +63,9 @@ def do_downloadpage(url, post=None, headers=None, raise_weberror=True):
                 timeout = config.get_setting('channels_repeat', default=30)
 
                 if hay_proxies:
-                    data = httptools.downloadpage_proxy('plushd', url, post=post, headers=headers, timeout=timeout).data
+                    data = httptools.downloadpage_proxy('plushd', url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
                 else:
-                    data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
+                    data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
 
     return data
 
@@ -448,16 +448,21 @@ def findvideos(item):
     for opt, srv in matches:
         ses += 1
 
-        url = base64.b64encode(opt.encode("utf-8")).decode('utf-8')
+        link = base64.b64encode(opt.encode("utf-8")).decode('utf-8')
 
-        if not url: continue
+        if not link: continue
 
-        if not 'http' in url: url = host + 'player/' + url
+        if not 'http' in link: link = host + 'player/' + link
 
-        data = do_downloadpage(url)
+        data = do_downloadpage(link)
 
         url = scrapertools.find_single_match(data, "(?i)Location.href = '([^']+)'")
+
         if not url: continue
+
+        if 'Estas saturando la red se te dará un bloqueo temporal' in str(data) or '&quot;' in str(url):
+            if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('PlusHd Saturado', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+            data = do_downloadpage(link)
 
         if 'up.asdasd' in url:
             url = scrapertools.find_single_match(url, '.site(.*?)$')
@@ -466,6 +471,8 @@ def findvideos(item):
             url = 'https://netu.to' + url
 
         if url.startswith('/'): url = host[:-1] + url
+
+        if not 'http' in url: continue
 
         servidor = servertools.get_server_from_url(url)
         servidor = servertools.corregir_servidor(servidor)
@@ -481,7 +488,13 @@ def findvideos(item):
 
     if not itemlist:
         if not ses == 0:
-            platformtools.dialog_notification(config.__addon_name, '[COLOR tan][B]Sin enlaces Soportados[/B][/COLOR]')
+            if ses == len(matches):
+                platformtools.dialog_notification(config.__addon_name, '[COLOR cyan][B] Sin Localizados [COLOR yellow]Re-Intentelo[/B][/COLOR]')
+            else:
+                if 'Estas saturando la red se te dará un bloqueo temporal' in str(data):
+                    platformtools.dialog_notification(config.__addon_name, '[COLOR yellowgreen][B]Red Saturada [COLOR yellow]Re-Intentelo[/B][/COLOR]')
+                else:
+                    platformtools.dialog_notification(config.__addon_name, '[COLOR tan][B]Sin enlaces Soportados[/B][/COLOR]')
             return
 
     return itemlist

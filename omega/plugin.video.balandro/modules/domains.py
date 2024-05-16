@@ -38,6 +38,7 @@ channels_currents = [
         ]
 
 dominioshdfull = [
+         'https://hd-full.vip/',
          'https://hd-full.lol/',
          'https://hd-full.co/',
          'https://hd-full.biz/',

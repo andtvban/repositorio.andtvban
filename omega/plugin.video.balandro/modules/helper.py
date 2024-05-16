@@ -18,6 +18,8 @@ import os, re, time, xbmcaddon, glob
 
 import xbmc, xbmcgui, platform
 
+from datetime import datetime
+
 from platformcode import config, logger, platformtools, updater
 from core.item import Item
 from core import channeltools, filetools, servertools, httptools, scrapertools, trackingtools
@@ -445,6 +447,8 @@ def mainlist(item):
 
     itemlist.append(item.clone( action='', title= title, context=context_temas, text_color='lightyellow', folder=False ))
 
+    itemlist.append(item.clone( action='', title= ' - [B]Fecha [COLOR powderblue][I]' + str(datetime.today()) + '[/I][/B]', text_color='aquamarine' ))
+
     itemlist.append(item.clone( action='submnu_contacto', title= ' - [B]Contacto[/B]', text_color='limegreen', thumbnail=config.get_thumb('news') ))
     itemlist.append(item.clone( action='submnu_fuente', title= ' - [B]Fuentes [COLOR powderblue][I]Add-Ons[/I][/B]', text_color='coral', thumbnail=config.get_thumb('pencil') ))
     itemlist.append(item.clone( action='show_help_miscelanea', title= ' - [B]Miscelánea[/B]', text_color='goldenrod', thumbnail=config.get_thumb('booklet') ))
@@ -468,7 +472,7 @@ def mainlist(item):
             matches = bloque.count('[COLOR lime]')
 
             if matches:
-                itemlist.append(item.clone( channel='actions', action='show_latest_domains', title=' - [COLOR tomato][B]ÚLTIMOS CAMBIOS DOMINIOS[/B][/COLOR]', thumbnail=config.get_thumb('stack') ))
+                itemlist.append(item.clone( channel='actions', action='show_latest_domains', title=' - [B]Últimos Cambios Dominios[/B]', text_color='tomato', thumbnail=config.get_thumb('stack') ))
 
     if not config.get_setting('mnu_simple', default=False): tit_mnu = '[B][I]Menú Ayuda:[/I][/B]'
     else: tit_mnu = '[B][I]Menú Ayuda Simplificado:[/I][/B]'
@@ -726,6 +730,8 @@ def submnu_canales(item):
     itemlist.append(item.clone( action='', title= '[B][I]CANALES SITUACIÖN:[/I][/B]', text_color='goldenrod', folder=False ))
 
     itemlist.append(item.clone( action='submnu_avisinfo_channels', title= '    - [COLOR aquamarine][B]Avisos[/COLOR] [COLOR green]Información[/B][/COLOR] canales' ))
+
+    itemlist.append(item.clone( action='show_help_resto', title= ' - ¿ Qué significa el Aviso [COLOR red][B]CloudFlare[/COLOR][COLOR orangered] Protection[/B][/COLOR] ?' ))
 
     itemlist.append(item.clone( action='channels_with_notice', title= '    - Qué canales tienen [COLOR green][B]Aviso[/COLOR][COLOR red] CloudFlare [COLOR orangered]Protection[/B][/COLOR]' ))
 
@@ -1589,7 +1595,7 @@ def show_help_miscelanea(item):
 
     txt = '[COLOR gold][B]KODI MEDIA CENTER:[/B][/COLOR][CR]'
     txt += '  [B][COLOR tan]Kodi Versiones Oficiales Soportadas:[/COLOR][/B][CR]'
-    txt += '  [COLOR darkorange][B]21.x Omega,  20.x Nexus,  19.x Matrix,  18.x Leia y  17.x Krypton[/B][/COLOR][CR][CR]'
+    txt += '  [COLOR darkorange][B]21.x Omega,  20.x Nexus,  19.x Matrix,  18.x Leia  y  17.x Krypton[/B][/COLOR][CR][CR]'
 
     txt += '  Kodi [COLOR yellow]Oficial[/COLOR]:  [COLOR plum][B]kodi.tv/download/[/B][/COLOR][CR]'
     txt += '  para obtener la [COLOR yellowgreen]Última versión[/COLOR] de este Media Center[CR][CR]'
@@ -1712,6 +1718,10 @@ def show_help_animeonline(item):
     item.notice = 'animeonline'
     show_help_canales(item)
 
+def show_help_cine24h(item):
+    item.notice = 'cine24h'
+    show_help_canales(item)
+
 def show_help_cinecalidad(item):
     item.notice = 'cinecalidad'
     show_help_canales(item)
@@ -1754,6 +1764,10 @@ def show_help_homecine(item):
 
 def show_help_jkanime(item):
     item.notice = 'jkanime'
+    show_help_canales(item)
+
+def show_help_latanime(item):
+    item.notice = 'latanime'
     show_help_canales(item)
 
 def show_help_megaserie(item):
@@ -5123,6 +5137,8 @@ def get_plataforma(txt):
 
     txt += '[CR][CR][COLOR fuchsia]PLATAFORMA[/COLOR][CR]'
 
+    txt += ' - [COLOR yellow][B]Fecha:[/B][/COLOR]  [COLOR aquamarine]' + str(datetime.today()) + '[/COLOR][CR][CR]'
+
     kver = str(xbmc.getInfoLabel('System.BuildVersion'))
 
     txt += ' - [COLOR gold]Media center:[/COLOR]  [COLOR coral]%s[/COLOR][CR][CR]' % kver
@@ -5137,7 +5153,7 @@ def get_plataforma(txt):
     elif kver.startswith('21.'): ver = '21 - Omega'
     else: ver = 'Desconocido'
 
-    txt += ' - [COLOR gold]Versión:[/COLOR]  ' + ver + '[CR][CR]'
+    txt += ' - [COLOR gold][B]Versión:[/B][/COLOR]  ' + ver + '[CR][CR]'
 
     try:
        if xbmc.getCondVisibility("System.Platform.Android"): plat = 'Android'
@@ -5155,15 +5171,15 @@ def get_plataforma(txt):
     except:
         plat = '?'
 
-    txt += ' - [COLOR gold]Plataforma:[/COLOR]  ' + plat + '[CR][CR]'
+    txt += ' - [COLOR gold][B]Plataforma:[/B][/COLOR]  ' + plat + '[CR][CR]'
 
-    txt += ' - [COLOR gold]Release:[/COLOR]  ' + str(platform.release()) + '[CR][CR]'
+    txt += ' - [COLOR gold]Release:[/COLOR]  ' + str(platform.release()) + '[CR]'
 
-    txt += ' - [COLOR gold]Procesador:[/COLOR]  ' + str(platform.machine()) + '[CR][CR]'
+    txt += ' - [COLOR gold]Procesador:[/COLOR]  ' + str(platform.machine()) + '[CR]'
 
-    txt += ' - [COLOR gold]Language:[/COLOR]  ' + str(xbmc.getInfoLabel('System.Language')) + '[CR][CR]'
+    txt += ' - [COLOR gold]Language:[/COLOR]  ' + str(xbmc.getInfoLabel('System.Language')) + '[CR]'
 
-    txt += ' - [COLOR gold]Uso CPU:[/COLOR]  ' + str(xbmc.getInfoLabel('System.CpuUsage')) + '[CR][CR]'
+    txt += ' - [COLOR gold]Uso CPU:[/COLOR]  ' + str(xbmc.getInfoLabel('System.CpuUsage')) + '[CR]'
 
     plataforma = platform.uname()
 
