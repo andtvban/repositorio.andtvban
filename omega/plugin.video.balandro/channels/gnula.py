@@ -177,7 +177,6 @@ def list_all(item):
 
     patron  = '<a class="Ntooltip" href="([^"]+)">([^<]+)<span><br[^<]+'
     patron += '<img src="([^"]+)"></span></a>(.*?)<br'
-
     matches = re.compile(patron, re.DOTALL).findall(data)
 
     # ~ reducir lista según idioma
@@ -211,19 +210,19 @@ def list_all(item):
         spans = scrapertools.find_multiple_matches(resto, '<span style="[^"]+">([^<]+)</span>')
 
         langs = []
-        qltys = ''
+        quality = ''
 
         for span in spans:
             if span.startswith('(') and span.endswith(')'):
                 lg = span[1:-1]
                 langs.append(IDIOMAS.get(lg, lg))
             elif len(langs) > 0:
-                qltys = span
+                quality = span
                 break
 
         title = title.replace('&#8217;', "'")
 
-        itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, languages=', '.join(langs), qualities=qltys,
+        itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, languages=', '.join(langs), qualities=quality,
                                     contentType='movie', contentTitle=title, infoLabels={'year': year} ))
 
         if len(itemlist) >= perpage: break
@@ -289,15 +288,14 @@ def findvideos(item):
 
     if len(matches) == 0:
         patron = '<strong>Ver película online</strong> \[<span style="[^"]*">([^<]+)</span>\](.*?)<table[^>]*>(.*?)</table>'
-
         matches = re.compile(patron, re.DOTALL).findall(data)
 
     # ~ players
+
     for opcion, iframes, tabla in matches:
         opcs = opcion.split(',')
-
         lang = opcs[1].strip().lower()
-        qlty = opcs[2].strip().upper()
+        quality = opcs[2].strip().upper()
 
         links = re.compile('<iframe width="[^"]+" height="[^"]+" src="([^"]+)', re.DOTALL).findall(iframes)
         if not links: links = re.compile('<iframe src="([^"]+)', re.DOTALL).findall(iframes)
@@ -319,22 +317,18 @@ def findvideos(item):
 
             if servidor == other: other = ''
 
-            lng = IDIOMAS.get(lang, lang)
-
             itemlist.append(Item( channel = item.channel, action = 'play', title = '', url = url, server = servidor,
-                                  language = lng, quality = qlty, quality_num = puntuar_calidad(qlty), other = other ))
+                                  language = IDIOMAS.get(lang, lang), quality = quality, quality_num = puntuar_calidad(quality), other = other ))
 
-        links = re.compile('<a href="(.*?)".*?<span class="(.*?)"', re.DOTALL).findall(tabla)
+        links = re.compile('<a href="([^"]+)', re.DOTALL).findall(tabla)
 
-        for url, srv in links:
+        for url in links:
             if url.endswith('/soon') or url.startswith('//soon.'): continue
 
-            srv = srv.strip().lower()
+            servidor = servertools.get_server_from_url(url, disabled_servers=True)
 
-            if srv == 'powvideo': continue
-            elif srv == 'tele': continue
+            if servidor is None: continue
 
-            servidor = servertools.get_server_from_url(url)
             servidor = servertools.corregir_servidor(servidor)
 
             if servertools.is_server_available(servidor):
@@ -344,16 +338,12 @@ def findvideos(item):
 
             other = servidor
 
-            if srv: other = srv
-
             if servidor == 'various': other = servertools.corregir_other(url)
 
             if servidor == other: other = ''
 
-            lng = IDIOMAS.get(lang, lang)
-
             itemlist.append(Item( channel = item.channel, action = 'play', title = '', url = url, server = servidor,
-                                  language = lng, quality = qlty, quality_num = puntuar_calidad(qlty), other = other ))
+                                  language = IDIOMAS.get(lang, lang), quality = quality, quality_num = puntuar_calidad(quality), other = other ))
 
     # ~ downloads
         bloque = scrapertools.find_single_match(data, '>Online/Descarga<(.*?)</table>')
@@ -442,7 +432,6 @@ def play(item):
         elif '/powvideo.' in url: url = ''
         elif '/1fichier.' in url: url = ''
         elif '/ul.' in url: url = ''
-        elif '/bembed.' in url: url = ''
 
     if url:
         servidor = servertools.get_server_from_url(url)

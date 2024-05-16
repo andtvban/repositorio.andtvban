@@ -1454,13 +1454,6 @@ def test_all_srvs(item):
 
         if dict_server['active'] == False: continue
 
-        try:
-           notes = dict_server['notes']
-        except: 
-           notes = ''
-
-        if "out of service" in notes.lower(): continue
-
         i += 1
 
         txt = ''
@@ -2116,7 +2109,6 @@ def show_help_adicionales(item):
     txt += '   [COLOR yellow]Lulustream[/COLOR][CR]'
     txt += '   [COLOR yellow]Moonplayer[/COLOR][CR]'
     txt += '   [COLOR yellow]Mvidoo[/COLOR][CR]'
-    txt += '   [COLOR yellow]Rumble[/COLOR][CR]'
     txt += '   [COLOR yellow]Rutube[/COLOR][CR]'
     txt += '   [COLOR yellow]Streamhub[/COLOR][CR]'
     txt += '   [COLOR yellow]Streamvid[/COLOR][CR]'
@@ -2131,7 +2123,7 @@ def show_help_adicionales(item):
     txt += '   [COLOR yellow]Vidello[/COLOR][CR]'
     txt += '   [COLOR yellow]Videowood[/COLOR][CR]'
     txt += '   [COLOR yellow]Vidguard[/COLOR][CR]'
-    txt += '   [COLOR yellow]Vidhide[/COLOR][CR]'
+    txt += '   [COLOR yellow]Vidhidepro[/COLOR][CR]'
     txt += '   [COLOR yellow]Vidspeed[/COLOR][CR]'
     txt += '   [COLOR yellow]Vkspeed[/COLOR][CR]'
     txt += '   [COLOR yellow]Vudeo[/COLOR][CR]'

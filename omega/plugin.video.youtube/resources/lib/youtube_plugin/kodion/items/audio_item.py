@@ -8,34 +8,25 @@
     See LICENSES/GPL-2.0-only for more information.
 """
 
-from __future__ import absolute_import, division, unicode_literals
-
 from .base_item import BaseItem
-from ..compatibility import to_str, unescape
+
+from html import unescape
 
 
 class AudioItem(BaseItem):
-    _playable = True
-
-    def __init__(self, name, uri, image='', fanart=''):
-        super(AudioItem, self).__init__(name, uri, image, fanart)
-        self._start_time = None
-        self._duration = -1
+    def __init__(self, name, uri, image=u'', fanart=u''):
+        BaseItem.__init__(self, name, uri, image, fanart)
+        self._duration = None
         self._track_number = None
         self._year = None
-        self._genres = None
+        self._genre = None
         self._album = None
-        self._artists = None
+        self._artist = None
         self._title = self.get_name()
         self._rating = None
 
     def set_rating(self, rating):
-        rating = float(rating)
-        if rating > 10:
-            rating = 10.0
-        elif rating < 0:
-            rating = 0.0
-        self._rating = rating
+        self._rating = float(rating)
 
     def get_rating(self):
         return self._rating
@@ -50,35 +41,23 @@ class AudioItem(BaseItem):
     def get_title(self):
         return self._title
 
-    def add_artist(self, artist):
-        if self._artists is None:
-            self._artists = []
-        if artist:
-            self._artists.append(to_str(artist))
+    def set_artist_name(self, artist_name):
+        self._artist = artist_name
 
-    def get_artists(self):
-        return self._artists
-
-    def set_artists(self, artists):
-        self._artists = list(artists)
+    def get_artist_name(self):
+        return self._artist
 
     def set_album_name(self, album_name):
-        self._album = album_name or ''
+        self._album = album_name
 
     def get_album_name(self):
         return self._album
 
-    def add_genre(self, genre):
-        if self._genres is None:
-            self._genres = []
-        if genre:
-            self._genres.append(to_str(genre))
+    def set_genre(self, genre):
+        self._genre = genre
 
-    def get_genres(self):
-        return self._genres
-
-    def set_genres(self, genres):
-        self._genres = list(genres)
+    def get_genre(self):
+        return self._genre
 
     def set_year(self, year):
         self._year = int(year)
@@ -106,9 +85,3 @@ class AudioItem(BaseItem):
 
     def get_duration(self):
         return self._duration
-
-    def set_start_time(self, start_time):
-        self._start_time = start_time or 0.0
-
-    def get_start_time(self):
-        return self._start_time

@@ -44,7 +44,7 @@ except:
    except: pass
 
 
-host = 'https://wuw.cinecalidad.gg/'
+host = 'https://mww.cinecalidad.gg/'
 
 
 _players = ['https://cinecalidad.', '.cinecalidad.']
@@ -78,9 +78,7 @@ ant_hosts = ['https://cinecalidad.lol/', 'https://cinecalidad.link/', 'https://w
              'https://wv.cinecalidad.gg/', 'https://vwv.cinecalidad.gg/', 'https://wwc.cinecalidad.gg/',
              'https://cww.cinecalidad.gg/', 'https://oww.cinecalidad.gg/', 'https://wow.cinecalidad.gg/',
              'https://woo.cinecalidad.gg/', 'https://oow.cinecalidad.gg/', 'https://wwe.cinecalidad.gg/',
-             'https://wwm.cinecalidad.gg/', 'https://mww.cinecalidad.gg/', 'https://wmw.cinecalidad.gg/',
-             'https://wwa.cinecalidad.gg/', 'https://aww.cinecalidad.gg/', 'https://waw.cinecalidad.gg/',
-             'https://wwz.cinecalidad.gg/', 'https://wwu.cinecalidad.gg/']
+             'https://wwm.cinecalidad.gg/']
 
 
 domain = config.get_setting('dominio', 'cinecalidadlol', default='')
@@ -143,7 +141,7 @@ def do_downloadpage(url, post=None, headers=None):
             data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
 
         if not data:
-            if not '?s=' in url:
+            if '?s=' in url:
                 if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('CineCalidadLoL', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
 
                 timeout = config.get_setting('channels_repeat', default=30)
@@ -587,94 +585,50 @@ def findvideos(item):
     if '>VER ONLINE<' in data:
         bloque = scrapertools.find_single_match(data, '>VER ONLINE<(.*?)>DESCARGAR<')
 
-        if not '/flags/' in bloque:
-            matches = scrapertools.find_multiple_matches(bloque, '<li id="player-option-.*?data-option="(.*?)">(.*?)<')
+        matches = scrapertools.find_multiple_matches(bloque, '<li id="player-option-.*?data-option="(.*?)">(.*?)<.*?src=.*?/flags/(.*?).png')
 
-            for url, srv in matches:
-                ses += 1
+        for url, srv, idio in matches:
+            ses += 1
 
-                if '/play/' in url: continue
-                elif 'youtube' in url: continue
+            if '/play/' in url: continue
+            elif 'youtube' in url: continue
 
-                srv = srv.lower().strip()
+            srv = srv.lower().strip()
 
-                if srv == 'vip': continue
-                elif '1fichier' in srv: continue
+            if srv == 'vip': continue
+            elif '1fichier' in srv: continue
 
-                servidor = servertools.get_server_from_url(url)
-                servidor = servertools.corregir_servidor(servidor)
+            servidor = servertools.get_server_from_url(url)
+            servidor = servertools.corregir_servidor(servidor)
 
-                url = servertools.normalize_url(servidor, url)
+            url = servertools.normalize_url(servidor, url)
 
-                qlty = '1080'
+            qlty = '1080'
 
-                language = lang
+            language = lang
+            if not '?ref=es' in item.url:
+               if idio == 'mx': language = 'Lat'
+               elif idio == 'es': language = 'Esp'
+               elif idio == 'en': language = 'Vose'
+            else:
+               if idio == 'en': language = 'Vose'
 
-                other = ''
+            other = ''
 
-                if servidor == 'directo':
-                    if srv == 'streamtape': servidor = 'streamtape'
-                    elif srv == 'voe': servidor = 'voe'
-                    elif srv == 'doods' or srv == 'doostream': servidor = 'doodstream'
+            if servidor == 'directo':
+                if srv == 'streamtape': servidor = 'streamtape'
+                elif srv == 'voe': servidor = 'voe'
+                elif srv == 'doods' or srv == 'doostream': servidor = 'doodstream'
 
-                    elif srv == 'netu' or servidor == 'hqq': servidor = 'waaw'
+                elif srv == 'netu' or servidor == 'hqq': servidor = 'waaw'
 
-                    elif '/okru.' in url: servidor = 'okru'
+                elif '/okru.' in url: servidor = 'okru'
 
-                    else: servidor = servertools.corregir_servidor(srv)
+                else: servidor = servertools.corregir_servidor(srv)
 
-                if servidor == 'various': other = srv.capitalize()
+            if servidor == 'various': other = srv.capitalize()
 
-                itemlist.append(Item (channel = item.channel, action = 'play', server = servidor, title = '', url = url,
-                                      quality = qlty, language = language, other = other ))
-
-        else:
-
-            matches = scrapertools.find_multiple_matches(bloque, '<li id="player-option-.*?data-option="(.*?)">(.*?)<.*?src=.*?/flags/(.*?).png')
-
-            for url, srv, idio in matches:
-                ses += 1
-
-                if '/play/' in url: continue
-                elif 'youtube' in url: continue
-
-                srv = srv.lower().strip()
-
-                if srv == 'vip': continue
-                elif '1fichier' in srv: continue
-
-                servidor = servertools.get_server_from_url(url)
-                servidor = servertools.corregir_servidor(servidor)
-
-                url = servertools.normalize_url(servidor, url)
-
-                qlty = '1080'
-
-                language = lang
-                if not '?ref=es' in item.url:
-                   if idio == 'mx': language = 'Lat'
-                   elif idio == 'es': language = 'Esp'
-                   elif idio == 'en': language = 'Vose'
-                else:
-                   if idio == 'en': language = 'Vose'
-
-                other = ''
-
-                if servidor == 'directo':
-                    if srv == 'streamtape': servidor = 'streamtape'
-                    elif srv == 'voe': servidor = 'voe'
-                    elif srv == 'doods' or srv == 'doostream': servidor = 'doodstream'
-
-                    elif srv == 'netu' or servidor == 'hqq': servidor = 'waaw'
-
-                    elif '/okru.' in url: servidor = 'okru'
-
-                    else: servidor = servertools.corregir_servidor(srv)
-
-                if servidor == 'various': other = srv.capitalize()
-
-                itemlist.append(Item (channel = item.channel, action = 'play', server = servidor, title = '', url = url,
-                                      quality = qlty, language = language, other = other ))
+            itemlist.append(Item (channel = item.channel, action = 'play', server = servidor, title = '', url = url, quality = qlty, language = language, other = other ))
 
     if '>DESCARGAR<' in data:
         bloque = scrapertools.find_single_match(data, '>DESCARGAR<(.*?)</ul>')
@@ -728,8 +682,7 @@ def findvideos(item):
                 other = 'D'
                 url = item.url.replace('?ref=es', '') + url
 
-            itemlist.append(Item (channel = item.channel, action = 'play', server = servidor, title = '', url = url,
-                                  quality = qlty, language = lang, other = other ))
+            itemlist.append(Item (channel = item.channel, action = 'play', server = servidor, title = '', url = url, quality = qlty, language = lang, other = other ))
 
     if not itemlist:
         if not ses == 0:
@@ -777,7 +730,6 @@ def play(item):
         if not url: url = scrapertools.find_single_match(data, '<iframe.*?src="(.*?)"')
         if not url: url = scrapertools.find_single_match(data, 'window.location.href = "(.*?)"')
         if not url: url = scrapertools.find_single_match(data, "window.location.href = '(.*?)'")
-        if not url: url = scrapertools.find_single_match(data, 'data-href="(.*?)"')
 
         if '/?id=' in url:
             data = do_downloadpage(url)

@@ -62,8 +62,8 @@ msgid "Always ask for the video quality"
 msgstr "Uvijek upitaj za video kvalitetu"
 
 msgctxt "#30010"
-msgid "Maximum video quality"
-msgstr ""
+msgid "Video quality"
+msgstr "Video kvaliteta"
 
 msgctxt "#30011"
 msgid "480p"
@@ -74,16 +74,16 @@ msgid "720p (HD)"
 msgstr "720p (HD)"
 
 msgctxt "#30013"
-msgid "1080p (FHD)"
-msgstr ""
+msgid "1080p (HD)"
+msgstr "1080p (HD)"
 
 msgctxt "#30014"
-msgid "2160p (4K)"
-msgstr ""
+msgid "2160p (4k)"
+msgstr "2160p (4k)"
 
 msgctxt "#30015"
-msgid "4320p (8K)"
-msgstr ""
+msgid "4320p (8k)"
+msgstr "4320p (8k)"
 
 msgctxt "#30016"
 msgid "240p"
@@ -96,10 +96,6 @@ msgstr "360p"
 msgctxt "#30018"
 msgid "1080p Live / 720p (HD)"
 msgstr "1080p Uživo / 720p (HD)"
-
-msgctxt "#30019"
-msgid "144p"
-msgstr ""
 
 # empty strings 30019
 msgctxt "#30020"
@@ -777,7 +773,7 @@ msgid "Port %s already in use. Cannot start http server."
 msgstr "Ulaz %s se već koristi. Nemoguće pokretanje http poslužitelja."
 
 msgctxt "#30621"
-msgid "Proxy is required for mpeg-dash vods (see Advanced > HTTP Server)"
+msgid "Proxy is required for mpeg-dash vods (see HTTP Server)"
 msgstr "Proxy je potreban za mpeg-dash video na zahtjev (vod) (provjerite HTTP poslužitelj)"
 
 msgctxt "#30622"
@@ -825,8 +821,8 @@ msgid "Enable API configuration page"
 msgstr "Omogući API stranicu podešavanja"
 
 msgctxt "#30633"
-msgid "http://<ipaddress>:<port>/youtube/api (see Advanced > HTTP Server)"
-msgstr "http://<ip-adresa>:<ulaz>/youtube/api (pogledajte HTTP poslužitelj)"
+msgid "http://<ipaddress>:<port>/api (see HTTP Server)"
+msgstr "http://<ip-adresa>:<ulaz>/api (pogledajte HTTP poslužitelj)"
 
 msgctxt "#30634"
 msgid "YouTube Add-on API Configuration"
@@ -993,8 +989,8 @@ msgid "Reset resume point"
 msgstr "Poništi vrijeme nastavka gledanja"
 
 msgctxt "#30675"
-msgid "Use local playback history (watched, resume tracking)"
-msgstr ""
+msgid "Use playback history (watched, resume tracking)"
+msgstr "Koristi povijest reprodukcije (pogledano, nastavi praćenje)"
 
 msgctxt "#30676"
 msgid "Just now"
@@ -1053,8 +1049,8 @@ msgid "Use for live streams"
 msgstr "Koristi za emitiranja uživo"
 
 msgctxt "#30690"
-msgid "InputStream Adaptive >= 2.0.12 is required for adaptive live streams"
-msgstr ""
+msgid "InputStream Adaptive >= 2.0.12 is required for live streams"
+msgstr "InputStream Adaptive >= 2.0.12 je potreban za emitiranje uživo"
 
 msgctxt "#30691"
 msgid "Airing now"
@@ -1181,35 +1177,35 @@ msgid "Default to WEBM adaptation set (4K)"
 msgstr "Zadano za paket WEBM prilagodbe (4K)"
 
 msgctxt "#30722"
-msgid "Enable HDR video"
-msgstr ""
+msgid "HDR"
+msgstr "HDR"
 
 msgctxt "#30723"
-msgid "Proxy is required for mpeg-dash vods (see Advanced > HTTP Server)[CR]> 1080p and HDR requires InputStream Adaptive >= 2.3.14"
+msgid "Proxy is required for mpeg-dash vods (see HTTP Server)[CR]> 1080p and HDR requires InputStream Adaptive >= 2.3.14"
 msgstr "Proxy je potreban za mpeg-dash video na zahtjev (vod) (pogledajte HTTP poslužitelj)[CR]> 1080p i HDR zahtijevaju InputStream Adaptive >= 2.3.14"
 
 msgctxt "#30724"
-msgid "Enable high framerate video"
-msgstr ""
+msgid "Limit to 30fps"
+msgstr "Ograniči na 30 sl/sek"
 
 msgctxt "#30725"
-msgid "1440p (QHD)"
-msgstr ""
+msgid "1440p (HD)"
+msgstr "1440p (HD)"
 
 msgctxt "#30726"
 msgid "Uploads"
 msgstr "Slanja"
 
 msgctxt "#30727"
-msgid "Enable H.264 video"
-msgstr ""
+msgid "Adaptive (MP4/H264)"
+msgstr "Prilagodljiva (MP4/H264)"
 
 msgctxt "#30728"
-msgid "Enable VP9 video"
-msgstr ""
+msgid "Adaptive (WEBM/VP9)"
+msgstr "Prilagodljiva (WEBM/VP9)"
 
 msgctxt "#30729"
-msgid ""
+msgid "Remote friendly search"
 msgstr "Prijateljska pretraga na daljinu"
 
 msgctxt "#30730"
@@ -1251,143 +1247,3 @@ msgstr ""
 msgctxt "#30739"
 msgid "Alternate #2"
 msgstr ""
-
-msgctxt "#30740"
-msgid "HLS"
-msgstr ""
-
-msgctxt "#30741"
-msgid "Multi-stream HLS"
-msgstr ""
-
-msgctxt "#30742"
-msgid "Adaptive HLS"
-msgstr ""
-
-msgctxt "#30743"
-msgid "MPEG-DASH"
-msgstr ""
-
-msgctxt "#30744"
-msgid "Original"
-msgstr ""
-
-msgctxt "#30745"
-msgid "Dubbed"
-msgstr ""
-
-msgctxt "#30746"
-msgid "Descriptive"
-msgstr ""
-
-msgctxt "#30747"
-msgid "Alternate"
-msgstr ""
-
-msgctxt "#30748"
-msgid "Stream features"
-msgstr ""
-
-msgctxt "#30749"
-msgid "Enable AV1 video"
-msgstr ""
-
-msgctxt "#30750"
-msgid "Enable Vorbis audio"
-msgstr ""
-
-msgctxt "#30751"
-msgid "Enable Opus audio"
-msgstr ""
-
-msgctxt "#30752"
-msgid "Enable AAC audio"
-msgstr ""
-
-msgctxt "#30753"
-msgid "Enable surround sound audio"
-msgstr ""
-
-msgctxt "#30754"
-msgid "Enable AC-3 audio"
-msgstr ""
-
-msgctxt "#30755"
-msgid "Enable EAC-3 audio"
-msgstr ""
-
-msgctxt "#30756"
-msgid "Enable DTS audio"
-msgstr ""
-
-msgctxt "#30757"
-msgid "Remove similar/duplicate streams"
-msgstr ""
-
-msgctxt "#30758"
-msgid "Stream selection"
-msgstr ""
-
-msgctxt "#30759"
-msgid "Quality selection"
-msgstr ""
-
-msgctxt "#30760"
-msgid "Automatic + Quality selection"
-msgstr ""
-
-msgctxt "#30761"
-msgid "Update playback history on Youtube"
-msgstr ""
-
-msgctxt "#30762"
-msgid "Multi-language"
-msgstr ""
-
-msgctxt "#30763"
-msgid "Multi-audio"
-msgstr ""
-
-#~ msgctxt "#30010"
-#~ msgid "Video quality"
-#~ msgstr "Video kvaliteta"
-
-#~ msgctxt "#30013"
-#~ msgid "1080p (HD)"
-#~ msgstr "1080p (HD)"
-
-#~ msgctxt "#30014"
-#~ msgid "2160p (4k)"
-#~ msgstr "2160p (4k)"
-
-#~ msgctxt "#30015"
-#~ msgid "4320p (8k)"
-#~ msgstr "4320p (8k)"
-
-#~ msgctxt "#30675"
-#~ msgid "Use playback history (watched, resume tracking)"
-#~ msgstr "Koristi povijest reprodukcije (pogledano, nastavi praćenje)"
-
-#~ msgctxt "#30690"
-#~ msgid "InputStream Adaptive >= 2.0.12 is required for live streams"
-#~ msgstr "InputStream Adaptive >= 2.0.12 je potreban za emitiranje uživo"
-
-#~ msgctxt "#30722"
-#~ msgid "HDR"
-#~ msgstr "HDR"
-
-#~ msgctxt "#30724"
-#~ msgid "Limit to 30fps"
-#~ msgstr "Ograniči na 30 sl/sek"
-
-#~ msgctxt "#30725"
-#~ msgid "1440p (HD)"
-#~ msgstr "1440p (HD)"
-
-#~ msgctxt "#30727"
-#~ msgid "Adaptive (MP4/H264)"
-#~ msgstr "Prilagodljiva (MP4/H264)"
-
-#~ msgctxt "#30728"
-#~ msgid "Adaptive (WEBM/VP9)"
-#~ msgstr "Prilagodljiva (WEBM/VP9)"
