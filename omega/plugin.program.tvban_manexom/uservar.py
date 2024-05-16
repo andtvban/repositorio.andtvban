@@ -129,7 +129,7 @@ NOTIFICATION = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/
 HEADERTYPE = 'Image'
 # Font size of header
 FONTHEADER = ''
-HEADERMESSAGE = '[COLOR azure][B]TVBAN[/B][/COLOR] [COLOR tan][B]WIZARD[/B][/COLOR]'
+HEADERMESSAGE = '[B][COLOR azure]TVBAN[/COLOR] [COLOR limegreen]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM[/COLOR][/B]'
 # url to image if using Image 424x180
 HEADERIMAGE = 'https://i.imgur.com/JOiidtt.png'
 # Font for Notification Window
