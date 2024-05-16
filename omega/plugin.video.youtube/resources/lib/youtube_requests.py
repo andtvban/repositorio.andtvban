@@ -7,30 +7,39 @@
     See LICENSES/GPL-2.0-only for more information.
 """
 
-from __future__ import absolute_import, division, unicode_literals
-
 import re
 
 from youtube_plugin.youtube.provider import Provider
-from youtube_plugin.kodion.context import XbmcContext
+from youtube_plugin.kodion.impl import Context
 
 
 def __get_core_components(addon_id=None):
     """
     :param addon_id: addon id associated with developer keys to use for requests
-    :return: addon provider, context and client
+    :return: addon provider, context and client 
     """
     provider = Provider()
     if addon_id is not None:
-        context = XbmcContext(params={'addon_id': addon_id})
+        context = Context(params={'addon_id': addon_id}, plugin_id='plugin.video.youtube')
     else:
-        context = XbmcContext()
+        context = Context(plugin_id='plugin.video.youtube')
     client = provider.get_client(context=context)
 
     return provider, context, client
 
 
-def v3_request(method='GET', headers=None, path=None, post_data=None, params=None, addon_id=None):
+def handle_error(context, json_data):
+    if json_data and 'error' in json_data:
+        message = json_data['error'].get('message', '')
+        reason = json_data['error']['errors'][0].get('reason', '')
+        context.log_error('Error reason: |%s| with message: |%s|' % (reason, message))
+
+        return False
+
+    return True
+
+
+def v3_request(method='GET', headers=None, path=None, post_data=None, params=None, allow_redirects=True, addon_id=None):
     """
         https://developers.google.com/youtube/v3/docs/
         :param method:
@@ -38,22 +47,16 @@ def v3_request(method='GET', headers=None, path=None, post_data=None, params=Non
         :param path:
         :param post_data:
         :param params:
+        :param allow_redirects:
         :param addon_id: addon id associated with developer keys to use for requests
         :type addon_id: str
     """
     provider, context, client = __get_core_components(addon_id)
-    return client.perform_v3_request(method=method,
-                                     headers=headers,
-                                     path=path,
-                                     post_data=post_data,
-                                     params=params,
-                                     notify=False,
-                                     pass_data=True,
-                                     raise_exc=False)
+    return client.perform_v3_request(method=method, headers=headers, path=path, post_data=post_data, params=params, allow_redirects=allow_redirects)
 
 
 def _append_missing_page_token(items):
-    if items and isinstance(items, list) and 'nextPageToken' not in items[-1]:
+    if items and isinstance(items, list) and (items[-1].get('nextPageToken') is None):
         items.append({'nextPageToken': ''})
 
     return items
@@ -72,14 +75,11 @@ def get_videos(video_id, addon_id=None):
     """
     provider, context, client = __get_core_components(addon_id)
 
-    json_data = client.get_videos(video_id,
-                                  notify=False,
-                                  pass_data=True,
-                                  raise_exc=False)
-    if not json_data or 'error' in json_data:
+    json_data = client.get_videos(video_id)
+    if not handle_error(context, json_data):
         return [json_data]
 
-    return json_data.get('items', [{}])
+    return [item for item in json_data.get('items', [])]
 
 
 def get_activities(channel_id, page_token='', all_pages=False, addon_id=None):
@@ -102,31 +102,23 @@ def get_activities(channel_id, page_token='', all_pages=False, addon_id=None):
     items = []
 
     def get_items(_page_token=''):
-        json_data = client.get_activities(channel_id,
-                                          page_token=_page_token,
-                                          notify=False,
-                                          pass_data=True,
-                                          raise_exc=False)
-        if not json_data or 'error' in json_data:
+        json_data = client.get_activities(channel_id, page_token=_page_token)
+        if not handle_error(context, json_data):
             return [json_data]
 
-        items.extend(json_data.get('items', [{}]))
-        error = False
+        for item in json_data.get('items', []):
+            items.append(item)
 
         next_page_token = json_data.get('nextPageToken')
-        if not next_page_token:
-            return error
-        if all_pages:
-            error = get_items(_page_token=next_page_token)
-        else:
+        if all_pages and (next_page_token is not None):
+            get_items(_page_token=next_page_token)
+        elif next_page_token is not None:
             items.append({'nextPageToken': next_page_token})
-        return error
 
-    error = get_items(_page_token=page_token)
-    if error:
-        return error
+    get_items(_page_token=page_token)
 
     items = _append_missing_page_token(items)
+
     return items
 
 
@@ -151,31 +143,23 @@ def get_playlist_items(playlist_id, page_token='', all_pages=False, addon_id=Non
     items = []
 
     def get_items(_page_token=''):
-        json_data = client.get_playlist_items(playlist_id,
-                                              page_token=_page_token,
-                                              notify=False,
-                                              pass_data=True,
-                                              raise_exc=False)
-        if not json_data or 'error' in json_data:
+        json_data = client.get_playlist_items(playlist_id, page_token=_page_token)
+        if not handle_error(context, json_data):
             return [json_data]
 
-        items.extend(json_data.get('items', [{}]))
-        error = False
+        for item in json_data.get('items', []):
+            items.append(item)
 
         next_page_token = json_data.get('nextPageToken')
-        if not next_page_token:
-            return error
-        if all_pages:
-            error = get_items(_page_token=next_page_token)
-        else:
+        if all_pages and (next_page_token is not None):
+            get_items(_page_token=next_page_token)
+        elif next_page_token is not None:
             items.append({'nextPageToken': next_page_token})
-        return error
 
-    error = get_items(_page_token=page_token)
-    if error:
-        return error
+    get_items(_page_token=page_token)
 
     items = _append_missing_page_token(items)
+
     return items
 
 
@@ -192,14 +176,11 @@ def get_channel_id(channel_name, addon_id=None):
     """
     provider, context, client = __get_core_components(addon_id)
 
-    json_data = client.get_channel_by_username(channel_name,
-                                               notify=False,
-                                               pass_data=True,
-                                               raise_exc=False)
-    if not json_data or 'error' in json_data:
+    json_data = client.get_channel_by_username(channel_name)
+    if not handle_error(context, json_data):
         return [json_data]
 
-    return json_data.get('items', [{}])
+    return [item for item in json_data.get('items', [])]
 
 
 def get_channels(channel_id, addon_id=None):
@@ -215,14 +196,11 @@ def get_channels(channel_id, addon_id=None):
     """
     provider, context, client = __get_core_components(addon_id)
 
-    json_data = client.get_channels(channel_id,
-                                    notify=False,
-                                    pass_data=True,
-                                    raise_exc=False)
-    if not json_data or 'error' in json_data:
+    json_data = client.get_channels(channel_id)
+    if not handle_error(context, json_data):
         return [json_data]
 
-    return json_data.get('items', [{}])
+    return [item for item in json_data.get('items', [])]
 
 
 def get_channel_sections(channel_id, addon_id=None):
@@ -238,14 +216,11 @@ def get_channel_sections(channel_id, addon_id=None):
     """
     provider, context, client = __get_core_components(addon_id)
 
-    json_data = client.get_channel_sections(channel_id,
-                                            notify=False,
-                                            pass_data=True,
-                                            raise_exc=False)
-    if not json_data or 'error' in json_data:
+    json_data = client.get_channel_sections(channel_id)
+    if not handle_error(context, json_data):
         return [json_data]
 
-    return json_data.get('items', [{}])
+    return [item for item in json_data.get('items', [])]
 
 
 def get_playlists_of_channel(channel_id, page_token='', all_pages=False, addon_id=None):
@@ -269,31 +244,23 @@ def get_playlists_of_channel(channel_id, page_token='', all_pages=False, addon_i
     items = []
 
     def get_items(_page_token=''):
-        json_data = client.get_playlists_of_channel(channel_id,
-                                                    page_token=_page_token,
-                                                    notify=False,
-                                                    pass_data=True,
-                                                    raise_exc=False)
-        if not json_data or 'error' in json_data:
+        json_data = client.get_playlists_of_channel(channel_id, page_token=_page_token)
+        if not handle_error(context, json_data):
             return [json_data]
 
-        items.extend(json_data.get('items', [{}]))
-        error = False
+        for item in json_data.get('items', []):
+            items.append(item)
 
         next_page_token = json_data.get('nextPageToken')
-        if not next_page_token:
-            return error
-        if all_pages:
-            error = get_items(_page_token=next_page_token)
-        else:
+        if all_pages and (next_page_token is not None):
+            get_items(_page_token=next_page_token)
+        elif next_page_token is not None:
             items.append({'nextPageToken': next_page_token})
-        return error
 
-    error = get_items(_page_token=page_token)
-    if error:
-        return error
+    get_items(_page_token=page_token)
 
     items = _append_missing_page_token(items)
+
     return items
 
 
@@ -310,14 +277,11 @@ def get_playlists(playlist_id, addon_id=None):
     """
     provider, context, client = __get_core_components(addon_id)
 
-    json_data = client.get_playlists(playlist_id,
-                                     notify=False,
-                                     pass_data=True,
-                                     raise_exc=False)
-    if not json_data or 'error' in json_data:
+    json_data = client.get_playlists(playlist_id)
+    if not handle_error(context, json_data):
         return [json_data]
 
-    return json_data.get('items', [{}])
+    return [item for item in json_data.get('items', [])]
 
 
 def get_related_videos(video_id, page_token='', addon_id=None):
@@ -340,28 +304,22 @@ def get_related_videos(video_id, page_token='', addon_id=None):
     items = []
 
     def get_items(_page_token=''):
-        json_data = client.get_related_videos(video_id,
-                                              page_token=_page_token,
-                                              notify=False,
-                                              pass_data=True,
-                                              raise_exc=False)
-        if not json_data or 'error' in json_data:
+        json_data = client.get_related_videos(video_id, page_token=_page_token)
+        if not handle_error(context, json_data):
             return [json_data]
 
-        items.extend([item for item in json_data.get('items', [{}])
-                      if 'snippet' in item])
-        error = False
+        for item in json_data.get('items', []):
+            if 'snippet' in item:
+                items.append(item)
 
         next_page_token = json_data.get('nextPageToken')
-        if next_page_token:
+        if next_page_token is not None:
             items.append({'nextPageToken': next_page_token})
-        return error
 
-    error = get_items(_page_token=page_token)
-    if error:
-        return error
+    get_items(_page_token=page_token)
 
     items = _append_missing_page_token(items)
+
     return items
 
 
@@ -396,32 +354,22 @@ def get_search(q, search_type='', event_type='', channel_id='', order='relevance
     items = []
 
     def get_items(_page_token=''):
-        json_data = client.search(q,
-                                  search_type=search_type,
-                                  event_type=event_type,
-                                  channel_id=channel_id,
-                                  order=order,
-                                  safe_search=safe_search,
-                                  page_token=_page_token,
-                                  notify=False,
-                                  pass_data=True,
-                                  raise_exc=False)
-        if not json_data or 'error' in json_data:
+        json_data = client.search(q, search_type=search_type, event_type=event_type, channel_id=channel_id,
+                                  order=order, safe_search=safe_search, page_token=_page_token)
+        if not handle_error(context, json_data):
             return [json_data]
 
-        items.extend(json_data.get('items', [{}]))
-        error = False
+        for item in json_data.get('items', []):
+            items.append(item)
 
         next_page_token = json_data.get('nextPageToken')
-        if next_page_token:
+        if next_page_token is not None:
             items.append({'nextPageToken': next_page_token})
-        return error
 
-    error = get_items(_page_token=page_token)
-    if error:
-        return error
+    get_items(_page_token=page_token)
 
     items = _append_missing_page_token(items)
+
     return items
 
 
@@ -481,7 +429,7 @@ def get_live(channel_id=None, user=None, url=None, addon_id=None):
 
     if matched_type == 'user':
         items = get_channel_id(matched_id, addon_id=addon_id)
-        if not items or not isinstance(items, list) or 'id' not in items[0]:
+        if not items or not isinstance(items, list):
             return None
 
         matched_id = items[0]['id']

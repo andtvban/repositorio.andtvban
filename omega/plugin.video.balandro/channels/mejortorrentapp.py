@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import re
+import re, os
 
 from platformcode import config, logger, platformtools
 from core.item import Item
 from core import httptools, scrapertools, tmdb
 
 
-host = 'https://www15.mejortorrent.rip'
+host = 'https://www14.mejortorrent.rip'
 
 
 # ~ por si viene de enlaces guardados
@@ -15,8 +15,7 @@ ant_hosts = ['https://mejortorrent.app', 'https://mejortorrent.wtf', 'https://ww
              'https://www2.mejortorrent.rip', 'https://www3.mejortorrent.rip', 'https://www4.mejortorrent.rip',
              'https://www5.mejortorrent.rip', 'https://www6.mejortorrent.rip', 'https://www7.mejortorrent.rip',
              'https://www8.mejortorrent.rip', 'https://www9.mejortorrent.rip', 'https://www10.mejortorrent.rip',
-             'https://www11.mejortorrent.rip', 'https://www12.mejortorrent.rip', 'https://www13.mejortorrent.rip',
-             'https://www14.mejortorrent.rip']
+             'https://www11.mejortorrent.rip', 'https://www12.mejortorrent.rip', 'https://www13.mejortorrent.rip']
 
 
 domain = config.get_setting('dominio', 'mejortorrentapp', default='')
@@ -337,7 +336,7 @@ def list_all(item):
 
             titulo = titulo.strip()
 
-            itemlist.append(item.clone( action = 'episodios', url = url, title = title, thumbnail=thumb, qualities=qlty,
+            itemlist.append(item.clone( action = 'findvideos', url = url, title = title, thumbnail=thumb, qualities=qlty,
                                         contentType = 'movie', contentTitle = titulo, contentExtra = 'documentary', infoLabels={'year': "-"} ))
 
         if len(itemlist) >= perpage: break
@@ -485,20 +484,15 @@ def episodios(item):
 
     bloque = scrapertools.find_single_match(data, '>Episodios:(.*?)</tbody>')
 
-    matches = scrapertools.find_multiple_matches(bloque, '<tr wire:(.*?)</tr>')
+    matches = scrapertools.find_multiple_matches(bloque, '<tr wire:key="episode-(.*?)".*?<a href="(.*?)"')
 
     tempo = 0
 
-    for match in matches:
-        link = scrapertools.find_single_match(match, '<a href="(.*?)"')
-
+    for nro_epis, link in matches:
         s_e = scrapertools.get_season_and_episode(link)
 
         try:
-           tempo = scrapertools.find_single_match(match, '<td class="px-2 py-1 whitespace-nowrap text-xs text-neutral-800">(.*?)</td>').strip()
-           if tempo: tempo = scrapertools.find_single_match(tempo, '(.*?)x')
-
-           if not tempo: tempo = int(s_e.split("x")[0])
+           tempo = int(s_e.split("x")[0])
         except:
            pass
 
@@ -561,13 +555,9 @@ def findvideos(item):
 
         url = scrapertools.find_single_match(data, '>Torrent:<.*?<a href="(.*?)"')
 
-        if not url.startswith(host): url = host + url
-
         itemlist.append(Item( channel = item.channel, action = 'play', title = '', url = url, server = 'torrent', language = lang, quality = item.qualities ))
 
         return itemlist
-
-    if not item.url.startswith(host): item.url = host + item.url
 
     itemlist.append(Item( channel = item.channel, action = 'play', title = '', url = item.url, server = 'torrent', language = lang ))
 

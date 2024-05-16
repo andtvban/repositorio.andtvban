@@ -21,7 +21,7 @@ if PY3:
        import xbmc
        if xbmc.getCondVisibility("system.platform.Linux.RaspberryPi") or xbmc.getCondVisibility("System.Platform.Linux"): LINUX = True
     except: pass
-
+ 
 try:
    if LINUX:
        try:
@@ -107,17 +107,6 @@ def do_downloadpage(url, post=None, headers=None, raise_weberror=True):
             data = httptools.downloadpage_proxy('pelisforte', url, post=post, headers=headers, raise_weberror=raise_weberror).data
         else:
             data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
-
-        if not data:
-            if not '?s=' in url:
-                if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('PelisForte', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
-
-                timeout = config.get_setting('channels_repeat', default=30)
-
-                if hay_proxies:
-                    data = httptools.downloadpage_proxy('pelisforte', url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
-                else:
-                    data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
 
     if '<title>You are being redirected...</title>' in data or '<title>Just a moment...</title>' in data:
         if BR or BR2:
@@ -324,7 +313,6 @@ def findvideos(item):
             if srv == 'ok': other = 'ok'
 
             elif srv == 'playpf': servidor = 'directo'
-            elif srv == 'ds': servidor = 'directo'
 
             if servidor == 'directo': other = srv
 

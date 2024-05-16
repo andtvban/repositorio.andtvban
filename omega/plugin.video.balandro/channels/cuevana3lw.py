@@ -15,7 +15,7 @@ from core.item import Item
 from core import httptools, scrapertools, servertools, tmdb
 
 
-host = 'https://wvl3.cuevana3.vip'
+host = 'https://ww3l.cuevana3.vip'
 
 
 # ~ por si viene de enlaces guardados
@@ -23,8 +23,7 @@ ant_hosts = ['https://cuevana3.law', 'https://pro.cuevana8.vip', 'https://cuevan
              'https://cuevana8.online', 'https://cuevana.la', 'https://www.cuevana.la',
              'https://ww2.cuevana3.law', 'https://wvv1.cuevana3.vip', 'https://new.cuevana3.vip',
              'https://vwv3.cuevana3.vip', 'https://vww3.cuevana3.vip', 'https://pro.cuevana3.vip',
-             'https://ww3i.cuevana3.vip', 'https://ww3l.cuevana3.vip', 'https://ww3i.cuevana3.vip',
-             'https://vw3i.cuevana3.vip', 'https://wwi3.cuevana3.vip', 'https://wv3.cuevana3.vip']
+             'https://ww3i.cuevana3.vip']
 
 domain = config.get_setting('dominio', 'cuevana3lw', default='')
 
@@ -94,7 +93,7 @@ def do_downloadpage(url, post=None, headers=None):
                 if hay_proxies:
                     data = httptools.downloadpage_proxy('cuevana3lw', url, post=post, headers=headers, timeout=timeout).data
                 else:
-                    data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
+                   data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
 
     return data
 
@@ -488,7 +487,6 @@ def findvideos(item):
                             if not url: continue
 
                             if '/hydrax.' in url: continue
-                            elif '/terabox.' in url: continue
 
                             servidor = servertools.get_server_from_url(url)
                             servidor = servertools.corregir_servidor(servidor)
@@ -517,7 +515,6 @@ def findvideos(item):
 
                     if url:
                         if '/hydrax.' in url: continue
-                        elif '/terabox.' in url: continue
                         elif '/media.esplay.one' in url: continue
 
                         servidor = servertools.get_server_from_url(url)

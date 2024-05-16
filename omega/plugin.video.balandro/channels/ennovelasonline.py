@@ -7,11 +7,11 @@ from core.item import Item
 from core import httptools, scrapertools, servertools, tmdb
 
 
-host = 'https://c.ennovelas.online/'
+host = 'https://a.ennovelas.online/'
 
 
 # ~ por si viene de enlaces guardados
-ant_hosts = ['https://ennovelas.online/', 'https://a.ennovelas.online/', 'https://b.ennovelas.online/']
+ant_hosts = ['https://ennovelas.online/']
 
 
 domain = config.get_setting('dominio', 'ennovelasonline', default='')
@@ -30,16 +30,6 @@ def do_downloadpage(url, post=None, headers=None, raise_weberror=True):
     if '/years/' in url: raise_weberror = False
 
     data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
-
-    if not data:
-        if not '?s=' in url:
-            if not '/temp/ajax/iframe.php?id=' in url:
-                if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('EnNovelasOnline', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
-
-                timeout = config.get_setting('channels_repeat', default=30)
-
-                data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
-
     return data
 
 

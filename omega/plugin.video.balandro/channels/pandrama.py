@@ -7,12 +7,12 @@ from core.item import Item
 from core import httptools, scrapertools, servertools, tmdb
 
 
-host = 'https://www1.pandrama.buzz/'
+host = 'https://pandrama.ru/'
 
 
 def do_downloadpage(url, post=None, headers=None):
     # ~ por si viene de enlaces guardados
-    ant_hosts = ['https://pandrama.buzz/', 'https://pandrama.ru/']
+    ant_hosts = ['https://pandrama.buzz/']
 
     for ant in ant_hosts:
         url = url.replace(ant, host)
@@ -50,7 +50,7 @@ def generos(item):
     data = do_downloadpage(host)
     data = re.sub(r'\n|\r|\t|\s{2}|&nbsp;', '', data)
 
-    bloque = scrapertools.find_single_match(data, '<ul class="genre">(.*?)</ul>')
+    bloque = scrapertools.find_single_match(data, '>Géneros<(.*?)</ul>')
 
     matches = re.compile('<a href="(.*?)".*?title="(.*?)"').findall(bloque)
 
@@ -69,8 +69,8 @@ def list_all(item):
     data = do_downloadpage(item.url)
     data = re.sub(r"\n|\r|\t|&nbsp;|<br>|<br/>", "", data)
 
-    bloque = scrapertools.find_single_match(data, '>Listas de series<(.*?)>Weekly<')
-    if not bloque: bloque = scrapertools.find_single_match(data, '</h1>(.*?)>Weekly<')
+    bloque = scrapertools.find_single_match(data, '>Listas de series<(.*?)>Ver en Populares<')
+    if not bloque: bloque = scrapertools.find_single_match(data, '</h1>(.*?)>Ver en Populares<')
 
     matches = re.compile('<article(.*?)</article>').findall(bloque)
 

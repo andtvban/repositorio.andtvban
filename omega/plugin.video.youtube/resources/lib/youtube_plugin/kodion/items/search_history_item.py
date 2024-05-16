@@ -8,35 +8,29 @@
     See LICENSES/GPL-2.0-only for more information.
 """
 
-from __future__ import absolute_import, division, unicode_literals
-
-from . import menu_items
 from .directory_item import DirectoryItem
-from ..constants import paths
+from .. import constants
 
 
 class SearchHistoryItem(DirectoryItem):
     def __init__(self, context, query, image=None, fanart=None, location=False):
         if image is None:
-            image = '{media}/search.png'
+            image = context.create_resource_path('media/search.png')
 
         params = {'q': query}
         if location:
             params['location'] = location
 
-        super(SearchHistoryItem, self).__init__(query,
-                                                context.create_uri(
-                                                    (paths.SEARCH, 'query',),
-                                                    params=params,
-                                                ),
-                                                image=image)
-
+        DirectoryItem.__init__(self, query, context.create_uri([constants.paths.SEARCH, 'query'], params=params), image=image)
         if fanart:
             self.set_fanart(fanart)
+        else:
+            self.set_fanart(context.get_fanart())
 
-        context_menu = [
-            menu_items.search_remove(context, query),
-            menu_items.search_rename(context, query),
-            menu_items.search_clear(context),
-        ]
+        context_menu = [(context.localize(constants.localize.SEARCH_REMOVE),
+                         'RunPlugin(%s)' % context.create_uri([constants.paths.SEARCH, 'remove'], params={'q': query})),
+                        (context.localize(constants.localize.SEARCH_RENAME),
+                         'RunPlugin(%s)' % context.create_uri([constants.paths.SEARCH, 'rename'], params={'q': query})),
+                        (context.localize(constants.localize.SEARCH_CLEAR),
+                         'RunPlugin(%s)' % context.create_uri([constants.paths.SEARCH, 'clear']))]
         self.set_context_menu(context_menu)

@@ -7,20 +7,18 @@
     See LICENSES/GPL-2.0-only for more information.
 """
 
-from __future__ import absolute_import, division, unicode_literals
-
 import re
 
 from youtube_plugin.youtube.provider import Provider
-from youtube_plugin.kodion.context import XbmcContext
+from youtube_plugin.kodion.impl import Context
 
 
 def _get_core_components(addon_id=None):
     provider = Provider()
     if addon_id is not None:
-        context = XbmcContext(params={'addon_id': addon_id})
+        context = Context(params={'addon_id': addon_id}, plugin_id='plugin.video.youtube')
     else:
-        context = XbmcContext()
+        context = Context(plugin_id='plugin.video.youtube')
     client = provider.get_client(context=context)
 
     return provider, context, client
@@ -56,6 +54,6 @@ def resolve(video_id, sort=True, addon_id=None):
         streams = client.get_video_streams(context=context, video_id=matched_id)
 
     if sort and streams:
-        streams = sorted(streams, key=lambda x: x.get('sort', (0, 0)))
+        streams = sorted(streams, key=lambda x: x.get('sort', 0), reverse=True)
 
     return streams

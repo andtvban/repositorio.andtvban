@@ -8,35 +8,25 @@
     See LICENSES/GPL-2.0-only for more information.
 """
 
-from __future__ import absolute_import, division, unicode_literals
-
 from .directory_item import DirectoryItem
-from ..constants import paths
+from .. import constants
 
 
 class SearchItem(DirectoryItem):
-    def __init__(self,
-                 context,
-                 name=None,
-                 image=None,
-                 fanart=None,
-                 location=False):
+    def __init__(self, context, alt_name=None, image=None, fanart=None, location=False):
+        name = alt_name
         if not name:
-            name = context.localize('search')
+            name = context.localize(constants.localize.SEARCH)
 
         if image is None:
-            image = '{media}/search.png'
+            image = context.create_resource_path('media/search.png')
 
-        params = {}
+        params = dict()
         if location:
-            params['location'] = location
+            params = {'location': location}
 
-        super(SearchItem, self).__init__(name,
-                                         context.create_uri(
-                                             (paths.SEARCH, 'list',),
-                                             params=params,
-                                         ),
-                                         image=image)
-
+        DirectoryItem.__init__(self, name, context.create_uri([constants.paths.SEARCH, 'list'], params=params), image=image)
         if fanart:
             self.set_fanart(fanart)
+        else:
+            self.set_fanart(context.get_fanart())

@@ -57,7 +57,6 @@ def get_video_url(page_url, url_referer=''):
         elif 'drop' in page_url: txt_server = 'Drop'
         elif 'userload' in page_url: txt_server = 'Userload'
         elif 'uploadraja' in page_url: txt_server = 'Uuloadraja'
-        elif 'rumble' in page_url: txt_server = 'Rumble'
 
         elif 'goodstream' in page_url:
               txt_server = 'Goodstream'
@@ -105,8 +104,6 @@ def get_video_url(page_url, url_referer=''):
               page_url = page_url.replace('/azipcdn.com/', '/filelions.to/')
               page_url = page_url.replace('/alions.pro/', '/filelions.to/').replace('/dlions.pro/', '/filelions.to/').replace('/mlions.pro/', '/filelions.to/').replace('/fviplions.com/', '/filelions.to/')
 
-              page_url = page_url.replace('/embed/', '//')
-
         elif 'youdbox' in page_url or 'yodbox' in page_url or 'youdboox' in page_url: 
               txt_server = 'Youdbox'
               page_url = page_url.replace('/youdbox.com/', '/youdbox.site/').replace('/youdbox.net/', '/youdbox.site/').replace('/youdbox.org/', '/youdbox.site/')
@@ -123,9 +120,9 @@ def get_video_url(page_url, url_referer=''):
               txt_server = 'Hexupload'
               page_url = page_url.replace('/hexload.com/', '/hexupload.net/')
 
-        elif 'vidguard' in page_url or 'vgfplay' in page_url or 'vgembed' in page_url or 'v6embed' in page_url or 'vembed' in page_url or 'vid-guard' in page_url or 'embedv' in page_url or 'bembed' in page_url:
+        elif 'vidguard' in page_url or 'vgfplay' in page_url or 'vgembed' in page_url or 'v6embed' in page_url or 'vembed' in page_url or 'vid-guard' in page_url or 'embedv':
               txt_server = 'Vidguard'
-              page_url = page_url.replace('/vidguard.to/', '/vgembed.com/').replace('/vgfplay.com/', '/vgembed.com/').replace('/vgfplay.xyz/', '/vgembed.com/').replace('/vgplayer.xyz/', '/vgembed.com/').replace('/v6embed.xyz/', '/vgembed.com/').replace('/vembed.net/', '/vgembed.com/').replace('/vembed.org/', '/vgembed.com/').replace('/vid-guard.com/', '/vgembed.com/').replace('/embedv.net/', '/vgembed.com/').replace('/bembed.net/', '/vgembed.com/')
+              page_url = page_url.replace('/vidguard.to/', '/vgembed.com/').replace('/vgfplay.com/', '/vgembed.com/').replace('/vgfplay.xyz/', '/vgembed.com/').replace('/vgplayer.xyz/', '/vgembed.com/').replace('/v6embed.xyz/', '/vgembed.com/').replace('/vembed.net/', '/vgembed.com/').replace('/vembed.org/', '/vgembed.com/').replace('/vid-guard.com/', '/vgembed.com/').replace('/embedv.net/', '/vgembed.com/')
 
         elif 'lulustream' in page_url or 'luluvdo' in page_url:
               txt_server = 'Lulustream'
@@ -152,9 +149,9 @@ def get_video_url(page_url, url_referer=''):
               txt_server = 'Twitch'
               page_url = page_url.replace('/player.twitch.tv/', '/www.twitch.tv/')
 
-        elif 'vidhide' in page_url:
+        elif 'vidhidepro' in page_url or 'vidhidevip' in page_url:
               txt_server = 'Vidhidepro'
-              page_url = page_url.replace('/vidhide.com/v/', '/vidhidepro.com/s/').replace('/vidhidepro.com/v/', '/vidhidepro.com/s/').replace('/vidhidevip.com/v/', '/vidhidepro.com/s/').replace('/vidhide.com/f/', '/vidhidepro.com/s/').replace('/vidhidepro.com/f/', '/vidhidepro.com/s/').replace('/vidhidevip.com/f/', '/vidhidepro.com/s/').replace('/vidhide.com/embed/', '/vidhidepro.com/s/').replace('/vidhidepro.com/embed/', '/vidhidepro.com/s/').replace('/vidhidevip.com/embed/', '/vidhidepro.com/s/')
+              page_url = page_url.replace('/vidhidepro.com/v/', '/vidhidepro.com/s/').replace('/vidhidevip.com/v/', '/vidhidepro.com/s/').replace('/vidhidepro.com/f/', '/vidhidepro.com/s/').replace('/vidhidevip.com/f/', '/vidhidepro.com/s/').replace('/vidhidepro.com/embed/', '/vidhidepro.com/s/').replace('/vidhidevip.com/embed/', '/vidhidepro.com/s/')
 
         if config.get_setting('servers_time', default=True):
             platformtools.dialog_notification('Cargando ' + '[COLOR cyan][B]' + txt_server + '[/B][/COLOR]', 'Espera requerida de %s segundos' % espera)

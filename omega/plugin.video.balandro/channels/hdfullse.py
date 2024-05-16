@@ -125,7 +125,7 @@ def do_downloadpage(url, post = None, referer = None):
             data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
 
         if not data:
-            if not '/search/' in url:
+            if not '/search' in url:
                 if config.get_setting('channels_re_charges', default=True): platformtools.dialog_notification('HdFullSe', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
 
                 timeout = config.get_setting('channels_repeat', default=30)
@@ -134,11 +134,6 @@ def do_downloadpage(url, post = None, referer = None):
                     data = httptools.downloadpage_proxy('hdfullse', url, post=post, headers=headers, timeout=timeout).data
                 else:
                     data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
-
-    if '<title>Just a moment...</title>' in data:
-        if not '/search/' in url:
-            platformtools.dialog_notification(config.__addon_name, '[COLOR red][B]CloudFlare[COLOR orangered] Protection[/B][/COLOR]')
-        return ''
 
     return data
 

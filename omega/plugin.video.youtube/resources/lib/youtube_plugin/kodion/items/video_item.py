@@ -8,29 +8,25 @@
     See LICENSES/GPL-2.0-only for more information.
 """
 
-from __future__ import absolute_import, division, unicode_literals
-
-import datetime
 import re
+import datetime
 
 from .base_item import BaseItem
-from ..compatibility import datetime_infolabel, to_str, unescape
-from ..utils import duration_to_seconds, seconds_to_duration
 
+from html import unescape
 
 __RE_IMDB__ = re.compile(r'(http(s)?://)?www.imdb.(com|de)/title/(?P<imdbid>[t0-9]+)(/)?')
 
 
 class VideoItem(BaseItem):
-    _playable = True
-
-    def __init__(self, name, uri, image='', fanart=''):
-        super(VideoItem, self).__init__(name, uri, image, fanart)
-        self._genres = None
+    def __init__(self, name, uri, image=u'', fanart=u''):
+        BaseItem.__init__(self, name, uri, image, fanart)
+        self._genre = None
         self._aired = None
+        self._aired_utc = None
         self._scheduled_start_utc = None
-        self._duration = -1
-        self._directors = None
+        self._duration = None
+        self._director = None
         self._premiered = None
         self._episode = None
         self._season = None
@@ -41,16 +37,15 @@ class VideoItem(BaseItem):
         self._cast = None
         self._rating = None
         self._track_number = None
-        self._studios = None
-        self._artists = None
+        self._studio = None
+        self._artist = None
         self._play_count = None
-        self._uses_isa = None
+        self._uses_dash = None
         self._mediatype = None
         self._last_played = None
         self._start_percent = None
         self._start_time = None
         self._live = False
-        self._upcoming = False
         self.subtitles = None
         self._headers = None
         self.license_key = None
@@ -59,44 +54,35 @@ class VideoItem(BaseItem):
         self._subscription_id = None
         self._playlist_id = None
         self._playlist_item_id = None
-        self._production_code = None
 
     def set_play_count(self, play_count):
-        self._play_count = int(play_count or 0)
+        self._play_count = int(play_count)
 
     def get_play_count(self):
         return self._play_count
 
     def add_artist(self, artist):
-        if self._artists is None:
-            self._artists = []
-        if artist:
-            self._artists.append(to_str(artist))
+        if self._artist is None:
+            self._artist = []
+        # noinspection PyUnresolvedReferences
+        self._artist.append(artist)
 
-    def get_artists(self):
-        return self._artists
+    def get_artist(self):
+        return self._artist
 
-    def set_artists(self, artists):
-        self._artists = list(artists)
+    def set_studio(self, studio):
+        self._studio = studio
 
-    def add_studio(self, studio):
-        if self._studios is None:
-            self._studios = []
-        if studio:
-            self._studios.append(to_str(studio))
-
-    def get_studios(self):
-        return self._studios
-
-    def set_studios(self, studios):
-        self._studios = list(studios)
+    def get_studio(self):
+        return self._studio
 
     def set_title(self, title):
         try:
             title = unescape(title)
         except:
             pass
-        self._name = self._title = title
+        self._title = title
+        self._name = self._title
 
     def get_title(self):
         return self._title
@@ -117,18 +103,13 @@ class VideoItem(BaseItem):
         return self._year
 
     def set_premiered(self, year, month, day):
-        self._premiered = datetime.date(year, month, day)
+        date = datetime.date(year, month, day)
+        self._premiered = date.isoformat()
 
     def set_premiered_from_datetime(self, date_time):
-        self._premiered = date_time.date()
+        self.set_premiered(year=date_time.year, month=date_time.month, day=date_time.day)
 
-    def get_premiered(self, as_text=True, as_info_label=False):
-        if not self._premiered:
-            return ''
-        if as_info_label:
-            return self._premiered.isoformat()
-        if as_text:
-            return self._premiered.strftime('%x')
+    def get_premiered(self):
         return self._premiered
 
     def set_plot(self, plot):
@@ -142,44 +123,25 @@ class VideoItem(BaseItem):
         return self._plot
 
     def set_rating(self, rating):
-        rating = float(rating)
-        if rating > 10:
-            rating = 10.0
-        elif rating < 0:
-            rating = 0.0
-        self._rating = rating
+        self._rating = float(rating)
 
     def get_rating(self):
         return self._rating
 
-    def add_directors(self, director):
-        if self._directors is None:
-            self._directors = []
-        if director:
-            self._directors.append(to_str(director))
+    def set_director(self, director_name):
+        self._director = director_name
 
-    def get_directors(self):
-        return self._directors
+    def get_director(self):
+        return self._director
 
-    def set_directors(self, directors):
-        self._directors = list(directors)
-
-    def add_cast(self, member, role=None, order=None, thumbnail=None):
+    def add_cast(self, cast):
         if self._cast is None:
             self._cast = []
-        if member:
-            self._cast.append({
-                'member': to_str(member),
-                'role': to_str(role) if role else '',
-                'order': int(order) if order else len(self._cast) + 1,
-                'thumbnail': to_str(thumbnail) if thumbnail else '',
-            })
+        # noinspection PyUnresolvedReferences
+        self._cast.append(cast)
 
     def get_cast(self):
         return self._cast
-
-    def set_cast(self, members):
-        self._cast = list(members)
 
     def set_imdb_id(self, url_or_id):
         re_match = __RE_IMDB__.match(url_or_id)
@@ -203,41 +165,36 @@ class VideoItem(BaseItem):
     def get_season(self):
         return self._season
 
-    def set_duration(self, hours=0, minutes=0, seconds=0, duration=''):
-        if duration:
-            _seconds = duration_to_seconds(duration)
-        else:
-            _seconds = seconds + minutes * 60 + hours * 3600
-        self._duration = _seconds or 0
+    def set_duration(self, hours, minutes, seconds=0):
+        _seconds = seconds
+        _seconds += minutes * 60
+        _seconds += hours * 60 * 60
+        self.set_duration_from_seconds(_seconds)
 
     def set_duration_from_minutes(self, minutes):
-        self._duration = int(minutes) * 60
+        self.set_duration_from_seconds(int(minutes) * 60)
 
     def set_duration_from_seconds(self, seconds):
-        self._duration = int(seconds or 0)
+        self._duration = int(seconds)
 
-    def get_duration(self, as_text=False):
-        if as_text:
-            return seconds_to_duration(self._duration)
+    def get_duration(self):
         return self._duration
 
     def set_aired(self, year, month, day):
-        self._aired = datetime.date(year, month, day)
+        date = datetime.date(year, month, day)
+        self._aired = date.isoformat()
+
+    def set_aired_utc(self, dt):
+        self._aired_utc = dt
+
+    def get_aired_utc(self):
+        return self._aired_utc
 
     def set_aired_from_datetime(self, date_time):
-        self._aired = date_time.date()
+        self.set_aired(year=date_time.year, month=date_time.month, day=date_time.day)
 
-    def get_aired(self, as_text=True, as_info_label=False):
-        if not self._aired:
-            return ''
-        if as_info_label:
-            return self._aired.isoformat()
-        if as_text:
-            return self._aired.strftime('%x')
-        return self._aired
-
-    def set_scheduled_start_utc(self, date_time):
-        self._scheduled_start_utc = date_time
+    def set_scheduled_start_utc(self, dt):
+        self._scheduled_start_utc = dt
 
     def get_scheduled_start_utc(self):
         return self._scheduled_start_utc
@@ -250,58 +207,42 @@ class VideoItem(BaseItem):
     def live(self, value):
         self._live = value
 
-    @property
-    def upcoming(self):
-        return self._upcoming
+    def get_aired(self):
+        return self._aired
 
-    @upcoming.setter
-    def upcoming(self, value):
-        self._upcoming = value
+    def set_genre(self, genre):
+        self._genre = genre
 
-    def add_genre(self, genre):
-        if self._genres is None:
-            self._genres = []
-        if genre:
-            self._genres.append(to_str(genre))
+    def get_genre(self):
+        return self._genre
 
-    def get_genres(self):
-        return self._genres
+    def set_date(self, year, month, day, hour=0, minute=0, second=0):
+        date = datetime.datetime(year, month, day, hour, minute, second)
+        self._date = date.isoformat(sep=' ')
 
-    def set_genres(self, genres):
-        self._genres = list(genres)
+    def set_date_from_datetime(self, date_time):
+        self.set_date(year=date_time.year, month=date_time.month, day=date_time.day, hour=date_time.hour,
+                      minute=date_time.minute, second=date_time.second)
 
-    def set_isa_video(self, value=True):
-        self._uses_isa = value
+    def get_date(self):
+        return self._date
 
-    def use_isa_video(self):
-        return self._uses_isa
+    def set_use_dash(self, value=True):
+        self._uses_dash = value
 
-    def use_hls_video(self):
-        uri = self.get_uri()
-        if 'manifest/hls' in uri or uri.endswith('.m3u8'):
-            return True
-        return False
-
-    def use_mpd_video(self):
-        uri = self.get_uri()
-        if 'manifest/dash' in uri or uri.endswith('.mpd'):
-            return True
-        return False
+    def use_dash(self):
+        return self._uses_dash is True and ('manifest/dash' in self.get_uri() or self.get_uri().endswith('.mpd'))
 
     def set_mediatype(self, mediatype):
         self._mediatype = mediatype
 
     def get_mediatype(self):
-        if (self._mediatype not in {'video',
-                                    'movie',
-                                    'tvshow', 'season', 'episode',
-                                    'musicvideo'}):
+        if self._mediatype not in ['video', 'movie', 'tvshow', 'season', 'episode', 'musicvideo']:
             self._mediatype = 'video'
         return self._mediatype
 
     def set_subtitles(self, value):
-        if value and isinstance(value, (list, tuple)):
-            self.subtitles = value
+        self.subtitles = value if value and isinstance(value, list) else None
 
     def set_headers(self, value):
         self._headers = value
@@ -318,19 +259,17 @@ class VideoItem(BaseItem):
     def set_last_played(self, last_played):
         self._last_played = last_played
 
-    def get_last_played(self, as_info_label=False):
-        if as_info_label:
-            return datetime_infolabel(self._last_played)
+    def get_last_played(self):
         return self._last_played
 
     def set_start_percent(self, start_percent):
-        self._start_percent = start_percent or 0
+        self._start_percent = start_percent
 
     def get_start_percent(self):
         return self._start_percent
 
     def set_start_time(self, start_time):
-        self._start_time = start_time or 0.0
+        self._start_time = start_time
 
     def get_start_time(self):
         return self._start_time
@@ -366,9 +305,3 @@ class VideoItem(BaseItem):
 
     def set_playlist_item_id(self, value):
         self._playlist_item_id = value
-
-    def get_code(self):
-        return self._production_code
-
-    def set_code(self, value):
-        self._production_code = value or ''

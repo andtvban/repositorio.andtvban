@@ -286,7 +286,7 @@ def save_download(item):
         if notification_d_ok:
             platformtools.dialog_ok(config.__addon_name, 'Error al descargar')
         else:
-            platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Error al descargar[/COLOR][/B]' % color_alert)
+            platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Error al descargar[/COLOR][/B]' % color_exec)
 
 
 # ~ (parecido a platformtools.play_video pero para descargar)
@@ -370,16 +370,14 @@ def download_video(item, parent_item):
         else:
             num_epis = parent_item.contentEpisodeNumber
 
-            nro_epis = str(num_epis)
+            if 'Capitulo' in num_epis: num_epis = num_epis.replace('Capitulo', '').strip()
+            elif 'Capítulo' in num_epis: num_epis = num_epis.replace('Capítulo', '').strip()
+            elif 'capitulo' in num_epis: num_epis = num_epis.replace('capitulo', '').strip()
+            elif 'capítulo' in num_epis: num_epis = num_epis.replace('capítulo', '').strip()
+            elif 'Episodio' in num_epis: num_epis = num_epis.replace('Episodio', '').strip()
+            elif 'episodio' in num_epis: num_epis = num_epis.replace('episodio', '').strip()
 
-            if 'Capitulo' in nro_epis: num_epis = num_epis.replace('Capitulo', '').strip()
-            elif 'Capítulo' in nro_epis: num_epis = num_epis.replace('Capítulo', '').strip()
-            elif 'capitulo' in nro_epis: num_epis = num_epis.replace('capitulo', '').strip()
-            elif 'capítulo' in nro_epis: num_epis = num_epis.replace('capítulo', '').strip()
-            elif 'Episodio' in nro_epis: num_epis = num_epis.replace('Episodio', '').strip()
-            elif 'episodio' in nro_epis: num_epis = num_epis.replace('episodio', '').strip()
-
-            if '-' in nro_epis: num_epis = num_epis.replace('-', '').strip()
+            if '-' in num_epis: num_epis = num_epis.replace('-', '').strip()
 
             try: nro_epis = int(num_epis)
             except: logger.error("Comprobar Número del Episodio: %s" % num_epis)
