@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.andTVban" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR cyan]and[COLOR azure]TV[COLOR blueviolet]ban[/B][/COLOR]" version="19.4.24" provider-name="andTVban, JoseaTeba">
+<addon id="repository.andTVban" name="[COLOR azure][B]Repo[/COLOR] [COLOR cyan]and[COLOR white]TV[COLOR blueviolet]ban[/B][/COLOR]" version="19.4.24" provider-name="andTVban, JoseaTeba">
     <extension point="xbmc.addon.repository" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR green]and[COLOR azure]TV[COLOR blueviolet]ban[/B][/COLOR]">
 		<dir minversion="19.9.9" maxversion="20.9.9">
             <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml</info>
@@ -13,7 +13,7 @@
         </dir>		
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary>[COLOR steelblue]Repo[/COLOR] [COLOR  cyan]and[COLOR azure]TV[/COLOR] [COLOR blueviolet]ban[/COLOR]</summary>
+        <summary>[COLOR azure]Repo[/COLOR] [COLOR  cyan]and[COLOR white]TV[/COLOR] [COLOR blueviolet]ban[/COLOR]</summary>
         <description>Repositorio de addons para [COLOR azure]TVBAN[/COLOR].
 [B][COLOR lime]CREDITOS:
 [COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseaTeba[/COLOR]</description> 		             
