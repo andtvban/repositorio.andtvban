@@ -422,7 +422,7 @@
     <extension point="xbmc.addon.metadata">
         <summary lang="en">
 	[COLOR azure]andtv[/COLOR][COLOR darkturquoise]TVBAN[/COLOR],
-	tu [COLOR azure]TVban[/COLOR] [COLOR limegreen]mat[COLOR darkviolet]nex[COLOR dodgerblue]om[/COLOR] para [COLOR teal]KODI 2..[/COLOR]
+	tu [COLOR azure]TVban[/COLOR] [COLOR limegreen]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM[/COLOR] para [COLOR teal]KODI 2..[/COLOR]
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
@@ -1133,9 +1133,9 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <datadir zip="true">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips</datadir>
         </dir>
         <dir minversion="20.9.9" maxversion="21.9.9">
-            <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/omega/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/omega/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/omega/zips</datadir>
         </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
