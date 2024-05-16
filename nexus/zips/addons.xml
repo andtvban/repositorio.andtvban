@@ -430,7 +430,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR limegreen]mat[COLOR darkviolet]nex[COLOR dodgerblue]om[/COLOR][/B]" version="17.9.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR limegreen]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM[/COLOR][/B]" version="17.9.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
