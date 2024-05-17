@@ -14,7 +14,7 @@ ART = os.path.join(PATH, 'resources', 'media')
 #########################################################
 #        User Edit Variables                            #
 #########################################################
-ADDONTITLE = '[B][COLOR azure]TVBAN [COLOR limegreen]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM[/COLOR][/B]'
+ADDONTITLE = '[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR purple]NEX[COLOR deepskyblue]OM[/COLOR][/B]'
 BUILDERNAME = 'JoseAndTEBA & AndTVban'
 EXCLUDES = [ADDON_ID, 'repository.andTVban']
 # Text File with build info in it.
@@ -129,7 +129,7 @@ NOTIFICATION = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/
 HEADERTYPE = 'Image'
 # Font size of header
 FONTHEADER = ''
-HEADERMESSAGE = '[B][COLOR azure]TVBAN [COLOR limegreen]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM[/COLOR][/B]'
+HEADERMESSAGE = '[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR purple]NEX[COLOR deepskyblue]OM[/COLOR][/B]'
 # url to image if using Image 424x180
 HEADERIMAGE = 'https://i.imgur.com/JOiidtt.png'
 # Font for Notification Window
