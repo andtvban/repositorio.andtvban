@@ -14,7 +14,7 @@ ART = os.path.join(PATH, 'resources', 'media')
 #########################################################
 #        User Edit Variables                            #
 #########################################################
-ADDONTITLE = '[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR blueviolet]NEX[COLOR deepskyblue]OM[/COLOR][/B]'
+ADDONTITLE = '[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR darkviolet]NEX[COLOR deepskyblue]OM[/COLOR][/B]'
 BUILDERNAME = 'JoseAndTEBA & AndTVban'
 EXCLUDES = [ADDON_ID, 'repository.andTVban']
 # Text File with build info in it.
@@ -64,7 +64,7 @@ SPACER = '<->'
 # THEME's so it grabs the text from the menu item
 #COLOR1 = 'limegreen'
 #COLOR1 = 'blueviolet'
-#COLOR1 = 'orchid'ndigo
+#COLOR1 = 'orchid'ndigo'
 #COLOR1 = 'darkorchid'
 COLOR1 = 'cyan'
 COLOR2 = 'white'
@@ -129,7 +129,7 @@ NOTIFICATION = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/
 HEADERTYPE = 'Image'
 # Font size of header
 FONTHEADER = ''
-HEADERMESSAGE = '[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR blueviolet]NEX[COLOR deepskyblue]OM[/COLOR][/B]'
+HEADERMESSAGE = '[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR darkviolet]NEX[COLOR deepskyblue]OM[/COLOR][/B]'
 # url to image if using Image 424x180
 HEADERIMAGE = 'https://i.imgur.com/JOiidtt.png'
 # Font for Notification Window

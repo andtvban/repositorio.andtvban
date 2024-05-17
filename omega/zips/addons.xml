@@ -1080,8 +1080,8 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 </addon>
 
-<addon id="repository.andTVban" name="[B][COLOR azure]Repo [COLOR green]MAT[COLOR purple]NEX[COLOR deepskyblue]OM[/COLOR][/B]" version="21.4.24" provider-name="andTVban, JoseaTeba">
-    <extension point="xbmc.addon.repository" name="[B][COLOR azure]Repo [COLOR green]MAT[COLOR purple]NEX[COLOR deepskyblue]OM[/COLOR][/B]">
+<addon id="repository.andTVban" name="[B][COLOR azure]Repo [COLOR cyan]and[COLOR white]TV[COLOR deepskyblue]ban[/COLOR][/B]" version="21.4.24" provider-name="andTVban, JoseaTeba">
+    <extension point="xbmc.addon.repository" name="[B][COLOR azure]Repo [COLOR cyan]and[COLOR white]TV[COLOR deepskyblue]ban[/COLOR][/B]">
 		<dir minversion="19.9.9" maxversion="20.9.9">
             <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml</info>
             <checksum>https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml.md5</checksum>
@@ -1095,11 +1095,11 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary>[COLOR azure]Repo [COLOR  cyan]and[COLOR white]TV[COLOR cyan]ban[/COLOR]</summary>
+        <summary>[COLOR azure]Repo [COLOR  cyan]and[COLOR white]TV[COLOR deepskyblue]ban[/COLOR]</summary>
         <description>Repositorio de addons para [COLOR azure]TVBAN[/COLOR].
 [B][COLOR lime]CREDITOS:
 [COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseaTeba[/COLOR]</description>
-        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons externos válidos para [COLOR steelblue]KODI 20 [COLOR blueviolet]NEXUS, KODI 21 [COLOR cyan]OMEGA [/COLOR]</disclaimer>
+        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons externos válidos para [COLOR steelblue]KODI 20 [COLOR blueviolet]NEXUS, [COLOR steelblue]KODI 21 [COLOR deepskyblue]OMEGA [/COLOR]</disclaimer>
         <platform>all</platform>
         <assets>
             <icon>icon.png</icon>
