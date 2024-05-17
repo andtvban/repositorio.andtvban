@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.tvban_manexom" name="[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR purple]NEX[COLOR deepskyblue]OM[/COLOR][/B]" version="13.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban_manexom" name="[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR darkviolet]NEX[COLOR deepskyblue]OM[/COLOR][/B]" version="13.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.1" />
         <import addon="script.module.requests" />
@@ -15,7 +15,7 @@
     <extension point="xbmc.addon.metadata">
         <summary lang="en">
 	[COLOR azure]andtv[COLOR darkturquoise]TVBAN[/COLOR], 
-	tu [COLOR azure]TVban [COLOR green]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM para [COLOR teal]KODI [/COLOR]	
+	tu [COLOR azure]TVban [COLOR green]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM [COLOR white]para [COLOR teal]KODI [/COLOR]	
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B] 
