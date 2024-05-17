@@ -413,6 +413,14 @@ msgctxt "#30121"
 msgid "Unfinished movies"
 msgstr "Películas no finalizadas"
 
+msgctxt "#30122"
+msgid "By release date"
+msgstr "Por fecha de estreno"
+
+msgctxt "#30123"
+msgid "By year of release and update"
+msgstr "Por año de estreno y actualización"
+
 msgctxt "#30124"
 msgid "Latest updates "
 msgstr "Últimas actualizaciones"

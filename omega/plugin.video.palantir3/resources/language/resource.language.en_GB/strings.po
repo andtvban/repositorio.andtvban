@@ -1000,6 +1000,14 @@ msgctxt "#30121"
 msgid "Unfinished movies"
 msgstr ""
 
+msgctxt "#30122"
+msgid "By release date"
+msgstr ""
+
+msgctxt "#30123"
+msgid "By year of release and update"
+msgstr ""
+
 msgctxt "#30124"
 msgid "Latest updates "
 msgstr ""
