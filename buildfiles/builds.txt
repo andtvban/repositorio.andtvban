@@ -10,7 +10,7 @@ fanart="https://andtv.github.io/tvban/wizard/wizardFI/FABuild.jpg"
 preview="http://"
 adult="no"
 info="http://"
-description="[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR purple]NEX[COLOR deepskyblue]OM[/COLOR][/B] para [COLOR teal][B]KODI: 21 [/B][/COLOR]                                                       [COLOR limegreen][B]Créditos:[/B][/COLOR]                                    [COLOR dodgerblue][B]Developers:[/B][/COLOR]   [B]JoseaTEBA[/B]                         [COLOR orange][B]Colaborador:[/B][/COLOR] [COLOR cyan][B]AndTvban[/B][/COLOR]"
+description="[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR blueviolet]NEX[COLOR deepskyblue]OM[/COLOR][/B] para [COLOR teal][B]KODI: 21 [/B][/COLOR]                                                       [COLOR limegreen][B]Créditos:[/B][/COLOR]                                    [COLOR dodgerblue][B]Developers:[/B][/COLOR]   [B]JoseaTEBA[/B]                         [COLOR orange][B]Colaborador:[/B][/COLOR] [COLOR cyan][B]AndTvban[/B][/COLOR]"
 
 name="TVBan ARM"
 version="1.0"
