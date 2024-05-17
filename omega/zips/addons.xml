@@ -377,7 +377,7 @@
     <extension point="xbmc.addon.metadata">
         <summary lang="en">
 	[COLOR azure]andtv[COLOR darkturquoise]TVBAN[/COLOR],
-	tu [COLOR azure]TVban [COLOR green]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM [COLOR white]para [COLOR teal]KODI [/COLOR]
+	tu [COLOR azure]TVban [COLOR green]MAT[COLOR darkviolet]NEX[COLOR deepskyblue]OM [COLOR azure]para [COLOR teal]KODI [/COLOR]
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
@@ -1461,34 +1461,6 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
-</addon>
-
-<addon id="script.kelebek"
-       name="KELEBEK"
-       version="3.6"
-       provider-name="Iron Butterfly">
-  <requires>
-    <import addon="script.module.pyxbmct" version="1.1.4" />
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="main.py">
-	<provides>executable</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <platform>all</platform>
-    <summary>KELEBEK V3.6</summary>
-    <description>Scan Sources searching changes and addons</description>
-    <language></language>
-    <license></license>
-    <source></source>
-    <forum></forum>
-    <website></website>
-	<assets>
-		<icon>resources/icon.png</icon>
-		<fanart>resources/fanart.jpg</fanart>
-	</assets>
-  </extension>
 </addon>
 
 <addon id="script.luar"
