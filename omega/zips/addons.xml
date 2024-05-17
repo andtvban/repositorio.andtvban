@@ -361,7 +361,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban_manexom" name="[B][COLOR azure]TVBAN [COLOR green]MAT[COLOR darkviolet]NEX[COLOR deepskyblue]OM[/COLOR][/B]" version="13.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvbanwizard" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR tan]WIZARD[/COLOR][/B]" version="13.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.1" />
         <import addon="script.module.requests" />
@@ -376,8 +376,8 @@
 
     <extension point="xbmc.addon.metadata">
         <summary lang="en">
-	[COLOR azure]andtv[COLOR darkturquoise]TVBAN[/COLOR],
-	tu [COLOR azure]TVban [COLOR green]MAT[COLOR darkviolet]NEX[COLOR deepskyblue]OM [COLOR azure]para [COLOR teal]KODI [/COLOR]
+	[COLOR azure]andtv[/COLOR][COLOR darkturquoise]tvban[/COLOR],
+	tu [COLOR azure]tvban[COLOR tan]Wizard[/COLOR] para [COLOR teal]KODI 2..[/COLOR]
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
@@ -394,7 +394,8 @@
 - Inciada la compatibilidad con Versiones de Kodi.
 - Nuevo Instalador a la versión  14.4.24
 - Añadido nuevos arreglos:
-¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
+¤ Limpieza de Miniaturas.
+¤ Color en Notificaciones.
 </news>
 	<assets>
 	    <icon>icon.png</icon>

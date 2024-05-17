@@ -41,7 +41,7 @@ class MainMenu:
                 if ver:
                     if ver > CONFIG.ADDON_VERSION:
                         directory.add_file(
-                            '{0} [v{1}] [COLOR red][B][ACTUALIZACION v{2}][/B][/COLOR]'.format(CONFIG.ADDONTITLE,
+                            '{0}[/COLOR] [v{1}] [COLOR red][B][ACTUALIZACION v{2}][/B][/COLOR]'.format(CONFIG.ADDONTITLE,
                                                                                         CONFIG.ADDON_VERSION, ver),
                             {'mode': 'wizardupdate'}, themeit=CONFIG.THEME2)
                     else:
@@ -65,9 +65,9 @@ class MainMenu:
                 directory.add_file('[COLOR indianred]Ninguno[/COLOR]' if CONFIG.BUILDTHEME == "" else CONFIG.BUILDTHEME, {'mode': 'theme', 'name': CONFIG.BUILDNAME},
                                    themeit=CONFIG.THEME5)
         else:
-            directory.add_dir('[COLOR tomato]Ninguno[/COLOR]', {'mode': 'builds'}, themeit=CONFIG.THEME4)
+            directory.add_dir('[COLOR indianred]Ninguno[/COLOR]', {'mode': 'builds'}, themeit=CONFIG.THEME4)
         directory.add_separator()
-        directory.add_dir('[B][COLOR dodgerblue]BUILDS[/COLOR] - [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN [COLOR cyan]OMEGA[/COLOR][/B]', {'mode': 'builds'}, icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME1)
+        directory.add_dir('[B][COLOR aquamarine]BUILDS - [COLOR aquamarine]PARCHES:[/B][COLOR azure][B] TVBAN[COLOR cyan]MATNEXOM[/COLOR][/B]', {'mode': 'builds'}, icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME1)
         directory.add_dir('[B]Mantenimiento[/B]', {'mode': 'maint'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME1)
         if (tools.platform() == 'android' or CONFIG.DEVELOPER == 'true'):
             directory.add_dir('[B]Instalador de APK[/B]', {'mode': 'apk'}, icon=CONFIG.ICONAPK, themeit=CONFIG.THEME1)

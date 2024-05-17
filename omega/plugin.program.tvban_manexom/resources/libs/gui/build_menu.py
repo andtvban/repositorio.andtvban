@@ -134,15 +134,15 @@ class BuildMenu:
 
         elif hidden > 0:
             if adultcount > 0:
-                directory.add_file('[COLOR azure]Actualmente Solo hay Builds para Adultos[/COLOR]', icon=CONFIG.ICONBUILDS,
+                directory.add_file('[COLOR azure]Actualmente Solo hay Builds para Adultos[COLOR]', icon=CONFIG.ICONBUILDS,
                                    themeit=CONFIG.THEME3)
-                directory.add_file('[COLOR azure]Habilitar Mostrar Adultos en los Ajustes de Addon[/COLOR] > Misc', icon=CONFIG.ICONBUILDS,
+                directory.add_file('[COLOR azure]Habilitar Mostrar Adultos en los Ajustes de Addon[COLOR] > Misc', icon=CONFIG.ICONBUILDS,
                                    themeit=CONFIG.THEME3)
             else:
-                directory.add_file('[COLOR azure]Actualmente No Se Ofrecen Builds de[/COLOR] {0}'.format(CONFIG.ADDONTITLE),
+                directory.add_file('[COLOR azure]Actualmente No Se Ofrecen Builds de[COLOR] {0}'.format(CONFIG.ADDONTITLE),
                                    icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
         else:
-            directory.add_file('[COLOR azure]El archivo de texto para la Build no tiene el formato correcto.[/COLOR]', icon=CONFIG.ICONBUILDS,
+            directory.add_file('[COLOR azure]El archivo de texto para la Build no tiene el formato correcto.[COLOR]', icon=CONFIG.ICONBUILDS,
                                themeit=CONFIG.THEME3)
 
     def view_build(self, name):
@@ -157,8 +157,8 @@ class BuildMenu:
             return
 
         if not check.check_build(name, 'version'):
-            directory.add_file('[COLOR azure]Error al leer el archivo txt.[/COLOR]', themeit=CONFIG.THEME3)
-            directory.add_file('{0} [COLOR azure]no se encontró en la lista de builds.[/COLOR]'.format(name), themeit=CONFIG.THEME3)
+            directory.add_file('[COLOR azure]Error al leer el archivo txt.[COLOR]', themeit=CONFIG.THEME3)
+            directory.add_file('{0} [COLOR azure]no se encontró en la lista de builds.[COLOR]'.format(name), themeit=CONFIG.THEME3)
             return
 
         match = re.compile(
