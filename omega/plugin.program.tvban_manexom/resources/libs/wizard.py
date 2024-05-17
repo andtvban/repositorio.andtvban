@@ -78,7 +78,7 @@ class Wizard:
             if over:
                 yes_pressed = 1
             else:
-                yes_pressed = self.dialog.yesno(CONFIG.ADDONTITLE, '[COLOR red][B]AVISO!![/B]'.format(CONFIG.ADDONTITLE)  + '\n' + '[COLOR {0}][B]La Instalación Sobreescribirá los datos de su Kodi Actual![/B]'.format(CONFIG.COLOR2)  + '\n\n' + '[COLOR {0}][B]Le gustaría Descargar e Instalar:[/B] '.format(CONFIG.COLOR2) + '[B][COLOR {0}]{1} v{2}[/COLOR]?[/B][/COLOR]'.format(CONFIG.COLOR1, name, check.check_build(name,'version')), nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Si, Instalar[/COLOR][/B]')
+                yes_pressed = self.dialog.yesno(CONFIG.ADDONTITLE, '[COLOR red][B]AVISO!![/B]'.format(CONFIG.ADDONTITLE)  + '\n' + '[COLOR {0}][B]La Instalación Sobreescribirá los datos de su Kodi Actual![/B]'.format(CONFIG.COLOR2)  + '\n\n' + '[COLOR {0}][B]Le gustaría Descargar e Instalar:[/B] '.format(CONFIG.COLOR2) + '[B][COLOR yellowgreen]{1} [COLOR khaki]v{2}[/COLOR azure]?[/COLOR][/B]'.format(CONFIG.COLOR1, name, check.check_build(name,'version')), nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Si, Instalar[/COLOR][/B]')
         if yes_pressed:
             CONFIG.clear_setting('build')
             buildzip = check.check_build(name, 'url')
