@@ -204,7 +204,7 @@ class BuildMenu:
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME7)
+                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME1)
 
                 response = tools.open_url(themefile)
                 theme = response.text
