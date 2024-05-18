@@ -78,13 +78,13 @@ class Wizard:
             if over:
                 yes_pressed = 1
             else:
-                yes_pressed = self.dialog.yesno(CONFIG.ADDONTITLE, '[COLOR red][B]AVISO!![/B]'.format(CONFIG.ADDONTITLE)  + '\n' + '[COLOR {0}][B]La Instalación Sobreescribirá los datos de su Kodi Actual![/B]'.format(CONFIG.COLOR2)  + '\n\n' + '[COLOR {0}][B]Le gustaría Descargar e Instalar:[/B] '.format(CONFIG.COLOR2) + '[B][COLOR {0}]{1} v{2}[/COLOR]?[/B][/COLOR]'.format(CONFIG.COLOR1, name, check.check_build(name,'version')), nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Si, Instalar[/COLOR][/B]')
+                yes_pressed = self.dialog.yesno(CONFIG.ADDONTITLE, '[COLOR red][B]AVISO!![/B]'.format(CONFIG.ADDONTITLE)  + '\n' + '[COLOR {0}][B]La Instalación Sobreescribirá los datos de su [COLOR cyan]Kodi Actual[/COLOR]![/B]'.format(CONFIG.COLOR2)  + '\n\n' + '[COLOR {0}][B]Le gustaría Descargar e Instalar:[/B] '.format(CONFIG.COLOR2) + '[B][COLOR yellowgreen]{1} [COLOR khaki]v{2}[COLOR azure]?[/COLOR][/B]'.format(CONFIG.COLOR1, name, check.check_build(name,'version')), nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Si, Instalar[/COLOR][/B]')
         if yes_pressed:
             CONFIG.clear_setting('build')
             buildzip = check.check_build(name, 'url')
             zipname = name.replace('\\', '').replace('/', '').replace(':', '').replace('*', '').replace('?', '').replace('"', '').replace('<', '').replace('>', '').replace('|', '')
 
-            self.dialogProgress.create(CONFIG.ADDONTITLE, '[COLOR {0}][B]Descargando:[/B][/COLOR] [COLOR {1}]{2} v{3}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, name, check.check_build(name, 'version')) + '\n' + 'Espere por Favor')
+            self.dialogProgress.create(CONFIG.ADDONTITLE, '[COLOR {0}][B]Descargando:[/B] [COLOR yellowgreen]{2} [COLOR khaki]v{3}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, name, check.check_build(name, 'version')) + '\n' + 'Espere por Favor')
 
             lib = os.path.join(CONFIG.MYBUILDS, '{0}.zip'.format(zipname))
             
@@ -108,7 +108,7 @@ class Wizard:
                 
             skin.look_and_feel_data('save')
             
-            title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2} v{3}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, name, check.check_build(name, 'version'))
+            title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR yellowgreen]{2} [COLOR khaki]v{3}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, name, check.check_build(name, 'version'))
             self.dialogProgress.update(0, title + '\n' + 'Espere por Favor')
             percent, errors, error = extract.all(lib, CONFIG.HOME, title=title)
             
@@ -205,7 +205,7 @@ class Wizard:
                     
                 return
             
-            title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, name)
+            title = '[COLOR {0}][B]Instalando:[/B][/COLOR] [COLOR yellowgreen]{2} [COLOR khaki[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, name)
             self.dialogProgress.update(0, title + '\n' + 'Espere por Favor')
             extract.all(lib, CONFIG.USERDATA, title=title)
             self.dialogProgress.close()
@@ -252,7 +252,7 @@ class Wizard:
                 logging.log_notify(CONFIG.ADDONTITLE,
                                    '[COLOR {0}]Instalación Parche:[/COLOR] [COLOR gold]Nada Encontrado![/COLOR]'.format(CONFIG.COLOR2))
         else:
-            installtheme = self.dialog.yesno(CONFIG.ADDONTITLE, '[COLOR {0}][B]Te gustaría instalar uno de los Parches que hay en:[/B]'.format(CONFIG.COLOR2) +' \n' + '[COLOR yellowgreen][B]PARCHES BUILD TVBAN[/B][/COLOR]'.format(CONFIG.COLOR1, theme) + '\n' + '[B]para [COLOR {0}]{1} v{2}[/COLOR]?[/B][/COLOR]'.format(CONFIG.COLOR1, name, check.check_build(name,'version')),yeslabel="[B][COLOR cyan]Instalar Parche[/COLOR][/B]", nolabel="[B][COLOR red]Cancelar Parche[/COLOR][/B]")
+            installtheme = self.dialog.yesno(CONFIG.ADDONTITLE, '[COLOR {0}][B]Te gustaría instalar uno de los Parches que hay en:[/B]'.format(CONFIG.COLOR2) +' \n' + '[COLOR yellowgreen][B]PARCHES BUILD TVBAN[/B][/COLOR]'.format(CONFIG.COLOR1, theme) + '\n' + '[B]para [COLOR yellowgreen]{1} [COLOR khaki]v{2}[/COLOR]?[/B][/COLOR]'.format(CONFIG.COLOR1, name, check.check_build(name,'version')),yeslabel="[B][COLOR cyan]Instalar Parche[/COLOR][/B]", nolabel="[B][COLOR red]Cancelar Parche[/COLOR][/B]")
                                         
         if installtheme:
             themezip = check.check_theme(name, theme, 'url')
@@ -264,7 +264,7 @@ class Wizard:
                                    '[COLOR {0}]Instalación Parche:[/COLOR] [COLOR gold]Url Zip Inválido![/COLOR]'.format(CONFIG.COLOR2))
                 return False
 
-            self.dialogProgress.create(CONFIG.ADDONTITLE, '[COLOR {0}][B]Descargando:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, zipname) +' \n' + 'Espere por Favor')
+            self.dialogProgress.create(CONFIG.ADDONTITLE, '[COLOR {0}][B]Descargando:[/B] [COLOR yellowgreen]{2} [COLOR khaki]v{3}[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1, zipname) +' \n' + 'Espere por Favor')
 
             lib = os.path.join(CONFIG.PACKAGES, '{0}.zip'.format(zipname))
             

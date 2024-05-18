@@ -197,14 +197,14 @@ class BuildMenu:
                     
             directory.add_separator('[B]INSTALACION BUILD[/B]')
             directory.add_file('[B][COLOR azure]• INSTALAR TVBAN[/COLOR][/B]', {'mode': 'install', 'action': 'build', 'name': name}, description=description, fanart=fanart,
-                               icon=icon, themeit=CONFIG.THEME1)
+                               icon=icon, themeit=CONFIG.THEME3)
                                
             if guicheck:
                 directory.add_file('Aplicar Corrección guiFix', {'mode': 'install', 'action': 'gui', 'name': name}, description=description, fanart=fanart,
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME1)
+                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME3)
 
                 response = tools.open_url(themefile)
                 theme = response.text

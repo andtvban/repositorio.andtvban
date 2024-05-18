@@ -66,9 +66,10 @@ SPACER = '<->'
 #COLOR1 = 'blueviolet'
 #COLOR1 = 'orchid'ndigo
 #COLOR1 = 'darkorchid'
+#COLOR13 = 'dodgerblue'
 COLOR1 = 'cyan'
 COLOR2 = 'white'
-COLOR3 = 'dodgerblue'
+COLOR3 = 'orange'
 COLOR4 = 'turquoise'
 COLOR5 = 'yellowgreen'
 # Primary menu items   / {0} is the menu item and is required

@@ -14,7 +14,7 @@ ART = os.path.join(PATH, 'resources', 'media')
 #########################################################
 #        User Edit Variables                            #
 #########################################################
-ADDONTITLE = '[B][COLOR azure]TVBAN[/COLOR] [COLOR limegreen]MAT[COLOR darkviolet]NEX[COLOR dodgerblue]OM[/COLOR][/B]'
+ADDONTITLE = '[COLOR azure][B]Tvban[/B][/COLOR] [COLOR blueviolet][B]Nexus[/B][/COLOR]'
 BUILDERNAME = 'JoseAndTEBA & AndTVban'
 EXCLUDES = [ADDON_ID, 'repository.Andtv-Nexus']
 # Text File with build info in it.
@@ -65,9 +65,10 @@ SPACER = '<->'
 #COLOR1 = 'limegreen'
 #COLOR1 = 'blueviolet'
 #COLOR1 = 'orchid'ndigo
+#COLOR13 = 'dodgerblue'
 COLOR1 = 'darkorchid'
 COLOR2 = 'white'
-COLOR3 = 'dodgerblue'
+COLOR3 = 'orange'
 COLOR4 = 'turquoise'
 COLOR5 = 'yellowgreen'
 # Primary menu items   / {0} is the menu item and is required
@@ -130,7 +131,7 @@ HEADERTYPE = 'Image'
 FONTHEADER = ''
 HEADERMESSAGE = '[COLOR azure][B]TVBAN[/B][/COLOR] [COLOR blueviolet][B]NEXUS[/B][/COLOR]'
 # url to image if using Image 424x180
-HEADERIMAGE = 'https://i.imgur.com/JOiidtt.png'
+HEADERIMAGE = 'https://i.imgur.com/TipaCbZ.png'
 # Font for Notification Window
 FONTSETTINGS = ''
 # Background for Notification Window

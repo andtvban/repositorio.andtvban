@@ -93,6 +93,6 @@ class Downloader:
         	xbmc.sleep(1000)
         	os.unlink(dest)
         	dialog = xbmcgui.Dialog()
-        	dialog.ok('[B][COLOR azure]TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/COLOR][/B]', '\n' + '[COLOR azure][B]Descarga Cancelada!![/B][/COLOR]')
+        	dialog.ok('[B][COLOR azure]TVBAN [COLOR tan]WIZARD[/COLOR][/B]', '\n' + '[COLOR tomato][B]Descarga Cancelada!![/B][/COLOR]')
         	quit()
         

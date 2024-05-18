@@ -67,7 +67,7 @@ class MainMenu:
         else:
             directory.add_dir('[COLOR indianred]Ninguno[/COLOR]', {'mode': 'builds'}, themeit=CONFIG.THEME4)
         directory.add_separator()
-        directory.add_dir('[B][COLOR dodgerblue]BUILDS[/COLOR] - [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN [COLOR cyan]OMEGA[/COLOR][/B]', {'mode': 'builds'}, icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME1)
+        directory.add_dir('[B][COLOR orange]BUILDS[COLOR azure] - [COLOR orange]PARCHES:[COLOR azure] TVBAN [COLOR cyan]MATNEXOM[/COLOR][/B]', {'mode': 'builds'}, icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME1)
         directory.add_dir('[B]Mantenimiento[/B]', {'mode': 'maint'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME1)
         if (tools.platform() == 'android' or CONFIG.DEVELOPER == 'true'):
             directory.add_dir('[B]Instalador de APK[/B]', {'mode': 'apk'}, icon=CONFIG.ICONAPK, themeit=CONFIG.THEME1)

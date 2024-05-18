@@ -115,13 +115,13 @@ class BuildMenu:
             else:
                 if count21 > 0:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW21 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS [COLOR azure]- [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN[/COLOR] [COLOR cyan]OMEGA[/B][/COLOR]'.format(state, count21), {'mode': 'togglesetting',
+                    directory.add_file('[B][COLOR orange]{0} BUILDS [COLOR azure]- [COLOR orange]PARCHES:[COLOR azure] TVBAN [COLOR cyan]MATNEXOM [COLOR deepskyblue]OMEGA[/COLOR][/B]'.format(state, count21), {'mode': 'togglesetting',
                                        'name': 'show21'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW21 == 'true':
                         self._list_all(match, kodiv=21)
                 if count20 > 0:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW20 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS [COLOR azure]- [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting',
+                    directory.add_file('[B][COLOR orange]{0} BUILDS [COLOR azure]- [COLOR orange]PARCHES:[COLOR azure] TVBAN [COLOR cyan]MATNEXOM [COLOR blueviolet]NEXUS[/COLOR][/B]'.format(state, count20), {'mode': 'togglesetting',
                                        'name': 'show20'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW20 == 'true':
                         self._list_all(match, kodiv=20)
@@ -197,14 +197,14 @@ class BuildMenu:
                     
             directory.add_separator('[B]INSTALACION BUILD[/B]')
             directory.add_file('[B][COLOR azure]• INSTALAR TVBAN[/COLOR][/B]', {'mode': 'install', 'action': 'build', 'name': name}, description=description, fanart=fanart,
-                               icon=icon, themeit=CONFIG.THEME1)
+                               icon=icon, themeit=CONFIG.THEME3)
                                
             if guicheck:
                 directory.add_file('Aplicar Corrección guiFix', {'mode': 'install', 'action': 'gui', 'name': name}, description=description, fanart=fanart,
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME7)
+                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME3)
 
                 response = tools.open_url(themefile)
                 theme = response.text
