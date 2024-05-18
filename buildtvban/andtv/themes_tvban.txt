@@ -1,9 +1,10 @@
-name="[B][COLOR white]Tvban ARM [COLOR gold]20.4.24[/COLOR][/B]"
+name="[B][COLOR white]• Tvban ARM [COLOR gold]20.4.24[/COLOR][/B]"
 url="https://github.com/andtvban/andtvban.github.io/releases/download/21/tvban.zip"
 icon="https://andtvban.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtvban.github.io/tvban/wizard/wizardFI/FABuild.jpg"
 adult="no"
 description="[COLOR azure][B]Andtv[/COLOR] para [COLOR teal][B]KODI: 21 Omega[/B][/COLOR]"
+[B][COLOR white]• [COLOR orange]MOTOR:[/COLOR] Elementum-All_0.186[/B]
 
 
 
