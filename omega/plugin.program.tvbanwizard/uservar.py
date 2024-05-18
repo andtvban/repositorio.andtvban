@@ -131,7 +131,7 @@ HEADERTYPE = 'Image'
 FONTHEADER = ''
 HEADERMESSAGE = '[COLOR azure][B]TVBAN[/B][/COLOR] [COLOR tan][B]WIZARD[/B][/COLOR]'
 # url to image if using Image 424x180
-HEADERIMAGE = 'https://i.imgur.com/Df5WX7V.png'
+HEADERIMAGE = 'https://i.imgur.com/WbE8N7K.png'
 # Font for Notification Window
 FONTSETTINGS = ''
 # Background for Notification Window
