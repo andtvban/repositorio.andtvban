@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR azure]ANDTV [COLOR blueviolet]NEXUS[/B][/COLOR]" version="12.5.23" provider-name="andTVban, JoseaTeba">
+<addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/COLOR] [COLOR azure]ANDTV [COLOR blueviolet]NEXUS[/B][/COLOR]" version="13.5.23" provider-name="andTVban, JoseaTeba">
     <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure]ANDTV [COLOR blueviolet]NEXUS[/B][/COLOR]">
 		<dir minversion="20.0" maxversion="20.9.0">
             <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml</info>
@@ -17,7 +17,7 @@
         <description>Repositorio de addons para [COLOR azure]TVBAN[/COLOR].
 [B][COLOR lime]CREDITOS:
 [COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseaTeba[/COLOR]</description> 		             
-        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons externos válidos para [COLOR azure]KODI 20 [COLOR blueviolet]NEXUS.[/COLOR]</disclaimer>
+        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons externos válidos para [COLOR steelblue]KODI 20 [COLOR blueviolet]NEXUS, [COLOR steelblue]KODI 21 [COLOR deepskyblue]OMEGA [/COLOR]</disclaimer>
         <platform>all</platform>
         <assets>
             <icon>icon.png</icon>
