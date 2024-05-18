@@ -14,8 +14,8 @@
     
     <extension point="xbmc.addon.metadata">
         <summary lang="en">
-	[COLOR azure]andtv[/COLOR][COLOR darkturquoise]tvban[/COLOR], 
-	tu [COLOR azure]tvban[COLOR tan]Wizard[/COLOR] para [COLOR teal]KODI 2..[/COLOR]	
+	[COLOR azure]TVBAN[/COLOR] [COLOR cyan]MATNEXOM[/COLOR], 
+	tu [COLOR azure]tvban[COLOR tan]Wizard[/COLOR] para [COLOR teal]KODI[/COLOR]	
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B] 

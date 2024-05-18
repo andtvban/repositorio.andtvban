@@ -25,7 +25,7 @@ UPDATECHECK = 0
 # Text File with apk info in it.  Leave as 'http://' to ignore
 APKFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/apks.txt'
 # Text File with Youtube Videos urls.  Leave as 'http://' to ignore
-YOUTUBETITLE = '[B]Conciertos ANDTV[/B]'
+YOUTUBETITLE = '[B][COLOR red]Conciertos[/COLOR] TVBAN [/B]'
 YOUTUBEFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/youtube.txt'
 # Text File for addon installer.  Leave as 'http://' to ignore
 ADDONFILE = 'http://'
@@ -91,7 +91,7 @@ THEME7 = u'[COLOR {color1}]{{}}[/COLOR]'.format(color1=COLOR5)
 # Enable 'Contact' menu item 'Yes' hide or 'No' dont hide
 HIDECONTACT = 'No'
 # You can add \n to do line breaks
-CONTACT = 'Gracias por elegir [COLOR azure]TVBAN_ANDTV.[/COLOR]\n\nContáctenos en el Grupo Telegram [COLOR white]https://t.me/+andTvban[/COLOR]'
+CONTACT = 'Gracias por elegir [COLOR azure]TVBAN_MATNEXOM.[/COLOR]\n\nContáctenos en el Grupo Telegram [COLOR white]https://t.me/+andTvban[/COLOR]'
 # Images used for the contact window.  http:// for default icon and fanart
 CONTACTICON = os.path.join(ART, 'qricon.png')
 CONTACTFANART = 'http://'

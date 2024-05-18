@@ -376,8 +376,8 @@
 
     <extension point="xbmc.addon.metadata">
         <summary lang="en">
-	[COLOR azure]andtv[/COLOR][COLOR darkturquoise]tvban[/COLOR],
-	tu [COLOR azure]tvban[COLOR tan]Wizard[/COLOR] para [COLOR teal]KODI 2..[/COLOR]
+	[COLOR azure]TVBAN[/COLOR] [COLOR cyan]MATNEXOM[/COLOR],
+	tu [COLOR azure]tvban[COLOR tan]Wizard[/COLOR] para [COLOR teal]KODI[/COLOR]
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
@@ -1093,8 +1093,8 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <checksum>https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/omega/zips/addons.xml</checksum>
             <datadir zip="true">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/omega/zips/</datadir>
         </dir>
+		    </extension>
 
-    </extension>
     <extension point="xbmc.addon.metadata">
         <summary>[COLOR azure]Repo [COLOR  cyan]and[COLOR white]TV[COLOR deepskyblue]ban[/COLOR]</summary>
         <description>Repositorio de addons para [COLOR azure]TVBAN[/COLOR].
