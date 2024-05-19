@@ -1,4 +1,4 @@
-name="[B][COLOR white]• [COLOR yellowgreen]TVban matnexom[COLOR khaki]26.4.24[/COLOR][/B]"
+name="[B][COLOR yellowgreen]TVban matnexom[COLOR khaki]v26[/COLOR][/B]"
 url="https://github.com/andtvban/andtvban.github.io/releases/download/21/P_matnexom26Ab.zip"
 icon="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtv.github.io/tvban/wizard/wizardFI/FABuild.jpg"
