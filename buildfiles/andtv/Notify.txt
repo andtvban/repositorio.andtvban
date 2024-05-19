@@ -29,5 +29,5 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 
 [COLOR white][B]GRACIAS POR UTILIZAR [COLOR azure]TVBAN [COLOR cyan]MATNEXON![/B][/COLOR]
 
-BACKGROUND = 'https://i.imgur.com/0ciyvn4.png'
+
 
