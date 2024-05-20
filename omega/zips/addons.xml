@@ -1678,9 +1678,9 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
     </extension>
 </addon>
 
-<addon id="skin.auramod.TVBAN-Nexus" version="1.1.9" name="[COLOR azure]Aura[/COLOR][COLOR darkviolet]TVBAN[/COLOR]" provider-name="[COLOR darkviolet]andtv_tvban,JoseAnd[/COLOR],auraMod">
+<addon id="skin.auramod.andtvban" version="1.1.11" name="[COLOR azure]Auramod[/COLOR][COLOR turquoise]TVBAN[/COLOR]" provider-name="Auramod, [COLOR azure]andTVban, JoseAnd[/COLOR]">
     <requires>
-        <import addon="xbmc.gui" version="5.15.0"/>
+        <import addon="xbmc.gui" version="5.17.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>
         <import addon="script.skin.helper.widgets" version="1.0.0"/>
         <import addon="script.skinshortcuts" version="2.0.3"/>
@@ -1696,21 +1696,10 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
         <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i"/>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="es">[COLOR azure]Mod[/COLOR] [COLOR darkviolet]TVBAN[/COLOR] [COLOR azure]de Auramod para Kodi 20 / Nexus Minimalista, Personalizable, Multiple Widgets.[/COLOR] </summary>
-        <description lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de AuraMod. Esta versión de Aura está basada para todos los usuarios. Editado por José Andrés</description>
+        <summary lang="es">[COLOR azure]Mod [COLOR turquoise]TVBAN[/COLOR] [COLOR azure]de auramod.andtvban para [COLOR steelblue]Kodi 21 [COLOR azure]/ [COLOR cyan]Omega [COLOR azure]Minimalista, Personalizable, Multiple Widgets.[/COLOR] </summary>
+        <description lang="es">Mod [COLOR turquoise]TVBAN[/COLOR] de AuraMod. Esta versión de Aura está basada para todos los usuarios. Editado por José Andrés</description>
 		<news>[COLOR tan]Nuevos cambios:[/COLOR]
-		    - Skin modificada para Kodi 20 Nexus y [COLOR darkviolet]TVBAN[/COLOR]
-			v1.1.9
-            -Fix Aura Home horizontal menu layout
-            -Fix conditional spacers when horizontal menu enabled
-            -Add conditional spacer when category widget disabled
-            v1.1.8
-            -Fix weather widget visibility
-            -Fix skin settings labels
-            -Fix skin settings comment blocks
-            v1.1.7
-            -Fix empty enabled widgets visibility
-            -Fix default widget paths
+		- Skin modificada por [COLOR darkviolet]JoseAnd[/COLOR] para Kodi 21 Omega andTVban.
 		</news>
         <platform>all</platform>
         <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>
