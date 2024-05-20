@@ -8,19 +8,19 @@
 [COLOR deepskyblue]* Para HACER la instalación correctamente deberás pulsar en la opción [COLOR white][B]"Build Menu"[/B][/COLOR] en la ventana que aparece después de instalar el [COLOR azure]plugin.program.tvbanwizard[/COLOR] (Wizard).
 
 En ésta ventana de Notificación, damos a [COLOR white][B]"Cerrar"[/B][/COLOR]
-Seleccionamos la Build que deseas instalar, por ejemplo [COLOR azure][B]Tvban[/COLOR] [COLOR yellowgreen]matnexom[/COLOR] - [COLOR white]INSTALAR TVBAN[/B][/COLOR] 
+Seleccionamos la Build que deseas instalar, por ejemplo [COLOR yellowgreen][B]Tvban matnexom[/COLOR] - [COLOR white]INSTALAR TVBAN[/B][/COLOR] 
 Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Forzar el Cierre de Kodi"[/B][/COLOR]. Pulsaremos en [COLOR white][B]"OK"[/B][/COLOR]
 Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.[/COLOR]
 
 [COLOR gold][B]¡¡¡Nuevo: [COLOR dodgerblue]PARCHE BUILD TVBAN[COLOR gold]!!![/B][/COLOR]
-[B][COLOR white]Tvban [COLOR yellowgreen]matnexom [COLOR khaki]- v26[/B][/COLOR]
+[B]Tvban [COLOR yellowgreen]matnexom [COLOR khaki]- v26[/B][/COLOR]
 
 [COLOR orange][B]*  Corrección de sonido 2.0, Actualizaciones de addons/repositorios, Nuevos repositorios[/B][/COLOR] 
 
 
 [COLOR aquamarine][B]INSTALACIÓN DEL PARCHE:[/B][/COLOR]
 
-[COLOR tan]Para instalar un parche, deberemos seleccionar la Build que tengamos instalada, por ejemplo [COLOR azure][B]Tvban [COLOR yellowgreen]matnexom, [COLOR tan]dentro veremos [B]el/os PARCHE/S[/B], por ejemplo [COLOR azure][B]Tvban [COLOR yellowgreen]matnexom [COLOR khaki]- v26[/B] [COLOR tan]y damos a instalar.[/COLOR]
+[COLOR tan]Para instalar un parche, deberemos seleccionar la Build que tengamos instalada, por ejemplo [COLOR azure][B]Tvban [COLOR yellowgreen]matnexom, [COLOR tan]dentro veremos [B][COLOR white]el/os PARCHE/S[/B],[COLOR tan] por ejemplo [COLOR yellowgreen][B]Tvban matnexom [COLOR khaki]- v26[/B] [COLOR tan]y damos a instalar.[/COLOR]
 
 
 [COLOR orange]                   ****** JOSEATEBA, ANDTVBAN******                 [/COLOR] 
