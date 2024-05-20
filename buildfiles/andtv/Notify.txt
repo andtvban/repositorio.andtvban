@@ -13,7 +13,7 @@ Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Fo
 Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.[/COLOR]
 
 [COLOR gold][B]¡¡¡Nuevo: [COLOR dodgerblue]PARCHE BUILD TVBAN[COLOR gold]!!![/B][/COLOR]
-[B]Tvban [COLOR yellowgreen]matnexom [COLOR khaki]- v1[/B][/COLOR]
+[COLOR yellowgreen][B]Tvban matnexom [COLOR khaki]- v1[/B][/COLOR]
 
 [COLOR orange][B]*  Corrección de sonido 2.0, Actualizaciones de addons/repositorios, Nuevos repositorios
                  *  Otras mejoras[/B][/COLOR]
