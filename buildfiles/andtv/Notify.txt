@@ -13,14 +13,14 @@ Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Fo
 Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.[/COLOR]
 
 [COLOR gold][B]¡¡¡Nuevo: [COLOR dodgerblue]PARCHE BUILD TVBAN[COLOR gold]!!![/B][/COLOR]
-[B]Tvban [COLOR yellowgreen]matnexom [COLOR khaki]- v26[/B][/COLOR]
+[B]Tvban [COLOR yellowgreen]matnexom [COLOR khaki]- v1[/B][/COLOR]
 
-[COLOR orange][B]*  Corrección de sonido 2.0, Actualizaciones de addons/repositorios, Nuevos repositorios[/B][/COLOR] 
-
+[COLOR orange][B]*  Corrección de sonido 2.0, Actualizaciones de addons/repositorios, Nuevos repositorios
+                 *  Otras mejoras[/B][/COLOR]
 
 [COLOR aquamarine][B]INSTALACIÓN DEL PARCHE:[/B][/COLOR]
 
-[COLOR tan]Para instalar un parche, deberemos seleccionar la Build que tengamos instalada, por ejemplo [COLOR azure][B]Tvban [COLOR yellowgreen]matnexom, [COLOR tan]dentro veremos [B][COLOR white]el/os PARCHE/S[/B],[COLOR tan] por ejemplo [COLOR yellowgreen][B]Tvban matnexom [COLOR khaki]- v26[/B] [COLOR tan]y damos a instalar.[/COLOR]
+[COLOR tan]Para instalar un parche, deberemos seleccionar la Build que tengamos instalada, por ejemplo [COLOR azure][B]Tvban [COLOR yellowgreen]matnexom, [COLOR tan]dentro veremos [B][COLOR white]el/os PARCHE/S[/B],[COLOR tan] por ejemplo [B][COLOR yellowgreen]Tvban matnexom [COLOR khaki]- v1[/B] [COLOR tan]y damos a instalar.[/COLOR]
 
 
 [COLOR orange]                   ****** JOSEATEBA, ANDTVBAN******                 [/COLOR] 
