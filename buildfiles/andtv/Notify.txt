@@ -16,7 +16,7 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 [COLOR yellowgreen][B]Tvban matnexom [COLOR khaki]- v1[/B][/COLOR]
 
 [COLOR orange][B]*  Corrección de sonido 2.0, Actualizaciones de addons/repositorios, Nuevos repositorios
-                 *  Otras mejoras[/B][/COLOR]
+*  Otras mejoras[/B][/COLOR]
 
 [COLOR aquamarine][B]INSTALACIÓN DEL PARCHE:[/B][/COLOR]
 
