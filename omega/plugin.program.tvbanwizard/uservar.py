@@ -114,9 +114,9 @@ AUTOINSTALL = 'Yes'
 # Addon ID for the repository
 REPOID = 'repository.andTVban'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
-REPOADDONXML = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/tvban/zips/addons.xml'
+REPOADDONXML = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/omega/zips/addons.xml'
 # Url to folder zip is located in
-REPOZIPURL = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/tvban/zips/repository.andTVban/'
+REPOZIPURL = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/omega/zips/repository.andTVban/'
 #########################################################
 
 #########################################################
