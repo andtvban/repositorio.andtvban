@@ -43,7 +43,7 @@ class BuildMenu:
 
             if not kodiv or kodiv == int(float(kodi)):
                 menu = self.create_install_menu(name)
-                directory.add_dir('[B][COLOR azure]•[/COLOR][COLOR yellowgreen] {1} - [COLOR khaki]v{2}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
+                directory.add_dir('[B][COLOR azure]• [COLOR yellowgreen]{1} [COLOR khaki]v{2}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
 
     def theme_count(self, name, count=True):
         from resources.libs import check
@@ -166,7 +166,7 @@ class BuildMenu:
             link)
             
         for version, url, gui, kodi, themefile, icon, fanart, preview, adult, info, description in match:
-            build = '[COLOR yellowgreen]{0}[/COLOR] [COLOR khaki]- v{1}[/COLOR]'.format(name, version)
+            build = '[COLOR yellowgreen]{0}[/COLOR] [COLOR khaki]v{1}[/COLOR]'.format(name, version)
             
             updatecheck = CONFIG.BUILDNAME == name and version > CONFIG.BUILDVERSION
             versioncheck = True if float(CONFIG.KODIV) == float(kodi) else False
@@ -175,7 +175,7 @@ class BuildMenu:
             themecheck = tools.open_url(themefile, check=True)
             
             if updatecheck:
-                build = '[COLOR yellowgreen]{0}[/COLOR] [COLOR khaki]- v{1}[/COLOR]'.format(build, CONFIG.BUILDVERSION)
+                build = '[COLOR yellowgreen]{0}[/COLOR] [COLOR khaki]v{1}[/COLOR]'.format(build, CONFIG.BUILDVERSION)
                 
             directory.add_file(build, description=description, fanart=fanart, icon=icon, themeit=CONFIG.THEME4)
             directory.add_separator()
