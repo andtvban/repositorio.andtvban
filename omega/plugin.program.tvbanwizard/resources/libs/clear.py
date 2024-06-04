@@ -448,7 +448,7 @@ def old_thumbs():
     removed = tools.convert_size(size)
     if len(images) > 0:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           '[COLOR {0}]Miniaturas Borrados:[COLOR gold] {1} Archivos / {2} MB[/COLOR]!'.format(CONFIG.COLOR2, str(len(images)), removed))
+                           '[COLOR {0}]Miniaturas Borrados:[COLOR gold] {1} Archivos / {2} [COLOR tan]MB[/COLOR]!'.format(CONFIG.COLOR2, str(len(images)), removed))
     else:
         logging.log_notify(CONFIG.ADDONTITLE,
                            '[COLOR {0}]Miniaturas Borrados: [COLOR gold]Ninguno Encontrado![/COLOR]'.format(CONFIG.COLOR2))
@@ -510,7 +510,7 @@ def total_clean():
     dialog = xbmcgui.Dialog()
 
     if dialog.yesno(CONFIG.ADDONTITLE,
-                        '[COLOR {0}]Le gustaria eliminar la [COLOR darkturquoise][B]Cache, los Paquetes y  Miniaturas[/B][/COLOR] ?'.format(CONFIG.COLOR2),
+                        '[COLOR {0}]Le gustaria eliminar la [COLOR darkturquoise][B]Cache, [COLOR {0}]los [COLOR darkturquoise]Paquetes [COLOR {0}]y [COLOR darkturquoise]Miniaturas[/B][/COLOR] ?'.format(CONFIG.COLOR2),
                         nolabel='[B][COLOR red]Cancelar Proceso[/COLOR][/B]',
                         yeslabel='[B][COLOR cyan]Eliminar Todo[/COLOR][/B]'):
         clear_archive()

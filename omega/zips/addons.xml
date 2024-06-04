@@ -361,6 +361,55 @@
     </extension>
 </addon>
 
+<addon id="plugin.program.tvbanwizard" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR tan]WIZARD[/COLOR][/B]" version="31.5.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+    <requires>
+        <import addon="xbmc.python" version="3.0.1" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.six" />
+    </requires>
+
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+    </extension>
+
+    <extension point="xbmc.service" library="startup.py" start="startup" />
+
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">
+	[COLOR azure]TVBAN[/COLOR] [COLOR cyan]MATNEXOM[/COLOR],
+	tu [COLOR azure]tvban[COLOR tan]Wizard[/COLOR] para [COLOR teal]KODI[/COLOR]
+	    </summary>
+    	<description lang="en">
+[COLOR lime][B]CREDITOS:[/COLOR][/B]
+[COLOR white][B]• Developers:[/B]      [COLOR darkorange]JoseaTEB[/COLOR]
+[COLOR white][B]• Testers:[/B]             [COLOR darkorange]JoseaTeb, [COLOR moccasin]Amillans[/COLOR]
+[COLOR white][B]• Telegram:[/B]         [COLOR dodgerblue]t.me/+andTvban[/COLOR]</description>
+        <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por AndTVban y Protegidos por los Derechos del Autor y Editor.[/B][/COLOR]</disclaimer>
+		<platform>all</platform>
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+        <source>https://andtvban.github.io/tvban/</source>
+		<news>
+• [COLOR darkorange]30/05/2024[/COLOR]
+- Nueva Skin con la colaboración de [COLOR moccasin]Amillans[/COLOR]
+
+• [COLOR darkorange]12/04/2024[/COLOR]
+- Nuevo Logo
+- Inciada la compatibilidad con Versiones de Kodi.
+- Nuevo Instalador a la versión  14.4.24
+- Añadido nuevos arreglos:
+¤ Limpieza de Miniaturas.
+¤ Color en Notificaciones.
+</news>
+	<assets>
+	    <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+	</assets>
+	<license>GNU GENERAL PUBLIC LICENSE Version 21</license>
+		<email></email>
+		<website></website>
+    </extension>
+</addon>
+
 <addon id="plugin.program.tvbanwizard" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR tan]WIZARD[/COLOR][/B]" version="20.4.24" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.1" />
@@ -535,6 +584,95 @@
   </extension>
 
   <extension point="xbmc.service" library="services.py" start="login|startup"/>
+</addon>
+
+<addon
+	id="plugin.video.chopocine" version="15" name="[B][COLOR white]chopo[COLOR aqua]cine[/COLOR][/B]" provider-name="equipo tvchopo">
+<requires>
+    <import addon="plugin.video.youtube" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.resolveurl"  optional="true" />
+    <import addon="script.module.six" />
+  </requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+
+	 <extension point="xbmc.addon.repository" name="tvchopo">
+        <info>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/</datadir>
+	    <dir>
+        <info compressed="false">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/</datadir>
+        </dir>
+    </extension>
+
+
+	<extension point="xbmc.addon.metadata">
+                <platform>all</platform>
+		<summary lang="en">choposeries</summary>
+		<summary lang="da">choposeries</summary>
+		<description lang="en">[B][LOWERCASE][CAPITALIZE][COLOR white]addon de cine de la familia tvchopo.....para cualquier consulta o problema  unete  a nuestro grupo de telegram [COLOR yellow]@tvchopo[/COLOR][/CAPITALIZE][/LOWERCASE][/B]</description>
+		<website></website>
+		<license>GPL 2.0</license>
+		<platform>all</platform>
+<assets>
+        <icon>icon.gif</icon>
+  <screenshot>resources/screenshots/screenshot1.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot2.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot3.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot4.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot5.jpg</screenshot>
+        <fanart>fanart.png</fanart>
+    </assets>
+		<language>es</language>
+	</extension>
+</addon>
+
+<addon
+	id="plugin.video.choposeries" version="20" name="[B][COLOR white]chopo[COLOR gold]series[/COLOR][/B]" provider-name="equipo tvchopo">
+<requires>
+    <import addon="script.module.requests" />
+    <import addon="script.module.resolveurl"  optional="true" />
+    <import addon="script.module.six" />
+  </requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+
+	 <extension point="xbmc.addon.repository" name="tvchopo">
+        <info>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/</datadir>
+	    <dir>
+        <info compressed="false">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/</datadir>
+        </dir>
+    </extension>
+
+
+	<extension point="xbmc.addon.metadata">
+                <platform>all</platform>
+		<summary lang="en">choposeries</summary>
+		<summary lang="da">choposeries</summary>
+		<description lang="en">[B][LOWERCASE][CAPITALIZE][COLOR white]addon de series de la familia tvchopo para cualquier consulta o problema  unete  a nuestro grupo de telegram [COLOR yellow]@tvchopo[/COLOR][/CAPITALIZE][/LOWERCASE][/B]</description>
+		<website></website>
+		<license>GPL 2.0</license>
+		<platform>all</platform>
+<assets>
+        <icon>icon.gif</icon>
+  <screenshot>resources/screenshots/screenshot1.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot2.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot3.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot4.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot5.jpg</screenshot>
+        <fanart>fanart.png</fanart>
+    </assets>
+		<language>es</language>
+	</extension>
 </addon>
 
 <addon id="plugin.video.cristalazul" name="[B][/B][COLOR aqua]CRISTAL AZUL 3.0.9[/COLOR]" version="3.0.9" provider-name="PICAPAU, LOURDES, SUPERTOPO, LUISMA, GEORGE">
@@ -925,6 +1063,36 @@ No se acepta ninguna responsabilidad por el uso de este addon.
   </extension>
 </addon>
 
+<addon id="plugin.video.sporthdme" name="SportHD" version="0.1.56" provider-name="Bugatsinho">
+  <requires>
+    <!--import addon="xbmc.python" version="2.1.0"/-->
+    <import addon="script.module.dateutil" />
+    <import addon="script.module.six" />
+    <import addon="script.module.requests" version="2.19.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">SportHD by Bugatsinho</summary>
+    <description lang="en">Sport Streams from SportHD.me</description>
+    <disclaimer lang="en">All the streams on this add-on are hosted on the third party site and uploaded by other people. We are not responsible for any content that hosted on on the third-party sites. If you have any legal issues please contact appropriate video owners hosters.</disclaimer>
+	  <language>EN</language>
+    <license>GNU GPL, version 2</license>
+    <twitter>https://twitter.com/Bugatsinho</twitter>
+    <news>
+      - compatible with Kodi 18.x - 19.x - 20.x - 21.x version
+      - timestamps fix finally credits to GKOBU
+      - fix s2watch resolver
+    </news>
+
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
+
 <addon id="plugin.video.tacones" name="[COLOR red]TACONES[/COLOR]" version="3.4.0" provider-name="La Mala de la Novela">
 	<requires>
 		<import addon="script.module.six" />
@@ -976,6 +1144,51 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 			<screenshot>resources/media/screenshoot-4.jpg</screenshot>
 		</assets>
 		<news>Primera versión basada en LSP Mod by Someone Like You</news>
+	</extension>
+</addon>
+
+<addon
+	id="plugin.video.tvchopo" version="29" name="[B][COLOR white]tv[COLOR aqua]chopo[/COLOR][/B]" provider-name="equipo tvchopo">
+<requires>
+    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.resolveurl" optional="true" />
+    <import addon="script.module.six" />
+  </requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+
+	 <extension point="xbmc.addon.repository" name="tvchopo">
+        <info>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/</datadir>
+	    <dir>
+        <info compressed="false">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/</datadir>
+        </dir>
+    </extension>
+
+
+	<extension point="xbmc.addon.metadata">
+                <platform>all</platform>
+		<summary lang="en"></summary>
+		<summary lang="da"></summary>
+	<description lang="en">[B][LOWERCASE][CAPITALIZE][COLOR white]addon principal de la familia tvchopo, valido para las versiones de kodi19 y kodi20. este addon es [COLOR red]totalmente gratuito no se aceptan donativos ... no permitas que te vendan este addon.. es  gratis  [COLOR white]..entra en telegram [COLOR gold]@tvchopo[COLOR white] y te ayudamos[/COLOR][/CAPITALIZE][/LOWERCASE][/B]</description>
+		<website></website>
+		<license>GPL 2.0</license>
+		<platform>all</platform>
+<assets>
+        <icon>icon.jpg</icon>
+  <screenshot>resources/screenshots/screenshot1.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot2.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot3.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot4.jpg</screenshot>
+  <screenshot>resources/screenshots/screenshot5.jpg</screenshot>
+        <fanart>fanart.png</fanart>
+    </assets>
+		<language>es</language>
 	</extension>
 </addon>
 
@@ -1166,7 +1379,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 </addon>
 
-<addon id="repository.andTVban" name="[B][COLOR azure]Repo [COLOR cyan]and[COLOR white]TV[COLOR deepskyblue]ban[/COLOR][/B]" version="23.4.24" provider-name="andTVban, JoseaTeba">
+<addon id="repository.andTVban" name="[B][COLOR azure]Repo [COLOR cyan]and[COLOR white]TV[COLOR deepskyblue]ban[/COLOR][/B]" version="24.4.24" provider-name="andTVban, JoseaTeba">
     <extension point="xbmc.addon.repository" name="[B][COLOR azure]Repo [COLOR cyan]and[COLOR white]TV[COLOR deepskyblue]ban[/COLOR][/B]">
 		<dir minversion="19.9.9" maxversion="20.9.9">
             <info compressed="false">https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml</info>
@@ -1182,10 +1395,10 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 
     <extension point="xbmc.addon.metadata">
         <summary>[COLOR azure]Repo [COLOR  cyan]and[COLOR white]TV[COLOR deepskyblue]ban[/COLOR]</summary>
-        <description>Repositorio de addons para [COLOR azure]TVBAN[/COLOR].
+        <description>Repositorio de addons para [COLOR azure]TVBAN [COLOR cyan]MATNEXOM[/COLOR].
 [B][COLOR lime]CREDITOS:
 [COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseaTeba[/COLOR]</description>
-        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons externos válidos para [COLOR steelblue]KODI 20 [COLOR blueviolet]NEXUS, [COLOR steelblue]KODI 21 [COLOR deepskyblue]OMEGA [/COLOR]</disclaimer>
+        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons externos válidos para [COLOR steelblue]KODI[/COLOR]</disclaimer>
         <platform>all</platform>
         <assets>
             <icon>icon.png</icon>
@@ -1748,6 +1961,42 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 			<fanart>resources/fanart.jpg</fanart>
 		</assets>
 	</extension>
+</addon>
+
+<addon id="skin.arctic.fuse" name="Arctic Fuse" provider-name="jurialmunkey" version="0.7.15~omega">
+    <requires>
+        <import addon="xbmc.gui" version="5.17.0" />
+        <import addon="script.skinvariables" version="2.1.14" />
+        <import addon="script.texturemaker" version="0.2.9" />
+        <import addon="plugin.video.themoviedb.helper" version="5.2.17~nexus" />
+        <import addon="resource.images.weathericons.white" version="0.0.1" />
+        <import addon="resource.images.studios.coloured" version="0.0.1" />
+        <import addon="resource.font.robotocjksc" version="0.0.1" />
+    </requires>
+    <extension debugging="false" defaultthemename="Textures.xbt" effectslowdown="1" point="xbmc.gui.skin">
+        <res aspect="16:9" default="true" folder="1080i" width="1920" height="1080" />
+        <res aspect="3:2" default="false" folder="1080i" width="1620" height="1080" />
+        <res aspect="4:3" default="false" folder="1080i" width="1440" height="1080" />
+        <res aspect="16:10" default="false" folder="1080i" width="1728" height="1080" />
+        <res aspect="17:9" default="false" folder="1080i" width="2040" height="1080" />
+        <res aspect="21:9" default="false" folder="1080i" width="2520" height="1080" />
+        <res aspect="19.5:9" default="false" folder="1080i" width="2340" height="1080" />
+        <res aspect="18:9" default="false" folder="1080i" width="2160" height="1080" />
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">A minimalist row based skin</summary>
+        <summary lang="fr">Un habillage minimaliste basé sur des lignes</summary>
+        <description lang="en">Arctic Fuse is a minimalist row based skin providing a vertical quick nav menu and customisable widgets</description>
+        <description lang="fr">Arctic Fuse est un hablillage minimaliste basé sur des lignes offrant un menu vertical pour une navigation rapide ainsi que des widgets personnalisables</description>
+        <platform>all</platform>
+        <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>
+        <forum />
+        <source />
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    </extension>
 </addon>
 
 <addon id="skin.auramod.andtvban" version="1.1.11" name="[COLOR azure]Auramod[/COLOR][COLOR turquoise]TVBAN[/COLOR]" provider-name="Auramod, [COLOR azure]andTVban, JoseAnd[/COLOR]">
